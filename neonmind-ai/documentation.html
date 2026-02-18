@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeonMind AI — Documentation</title>
+  <meta name="description" content="Documentation for the NeonMind AI landing page template." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: {
+              purple: '#b026ff',
+              cyan:   '#00f3ff',
+              pink:   '#ff00aa',
+              dark:   '#050510'
+            }
+          },
+          fontFamily: {
+            sans:    ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* ── Language toggle ── */
+    .lang-pt { display: none; }
+    .show-pt .lang-en { display: none !important; }
+    .show-pt .lang-pt { display: inline !important; }
+
+    /* ── Text gradient ── */
+    .text-gradient {
+      background: linear-gradient(90deg, #b026ff, #00f3ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Glass card ── */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      border-color: rgba(176, 38, 255, 0.35);
+      box-shadow: 0 0 28px rgba(176, 38, 255, 0.12);
+    }
+
+    /* ── Sidebar active link ── */
+    .sidebar-link {
+      color: rgba(255, 255, 255, 0.55);
+      transition: color 0.2s ease, padding-left 0.2s ease;
+      display: block;
+      padding: 0.25rem 0.5rem;
+      border-left: 2px solid transparent;
+      font-size: 0.875rem;
+    }
+    .sidebar-link:hover,
+    .sidebar-link.active {
+      color: #00f3ff;
+      border-left-color: #b026ff;
+      padding-left: 0.9rem;
+    }
+
+    /* ── Code blocks ── */
+    pre {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(176, 38, 255, 0.2);
+      border-radius: 0.6rem;
+      overflow-x: auto;
+      padding: 1.1rem 1.4rem;
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: #c4b5fd;
+    }
+    code {
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    }
+    pre code { color: inherit; }
+    :not(pre) > code {
+      background: rgba(176, 38, 255, 0.15);
+      border: 1px solid rgba(176, 38, 255, 0.25);
+      border-radius: 0.3rem;
+      padding: 0.1rem 0.4rem;
+      font-size: 0.82rem;
+      color: #e0aaff;
+    }
+
+    /* ── Color swatch ── */
+    .color-swatch {
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      flex-shrink: 0;
+    }
+
+    /* ── Lang toggle button active ── */
+    [data-lang-btn].active {
+      background: linear-gradient(90deg, #b026ff, #00f3ff);
+      color: #050510;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #050510; }
+    ::-webkit-scrollbar-thumb { background: #b026ff55; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #b026ff99; }
+
+    /* ── Section anchor offset for fixed nav ── */
+    [id] { scroll-margin-top: 5rem; }
+
+    /* ── Table ── */
+    table { border-collapse: collapse; width: 100%; }
+    th { color: #00f3ff; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+    th, td { padding: 0.6rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.07); text-align: left; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+  </style>
+</head>
+<body class="bg-[#050510] text-white font-sans antialiased min-h-screen">
+
+  <!-- ════════════════════════════════════
+       TOP NAV
+  ════════════════════════════════════ -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.07] bg-[#050510]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+
+      <!-- Logo / title -->
+      <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+        <img src="assets/img/favicon.svg" alt="NeonMind AI" class="w-7 h-7" onerror="this.style.display='none'" />
+        <span class="font-display font-bold text-base tracking-tight">
+          <span class="text-gradient">NeonMind AI</span>
+          <span class="text-white/40 font-normal ml-1 text-sm">
+            <span class="lang-en">Docs</span>
+            <span class="lang-pt">Docs</span>
+          </span>
+        </span>
+      </a>
+
+      <!-- Right side -->
+      <div class="flex items-center gap-3">
+        <a href="index.html"
+           class="text-sm text-white/50 hover:text-white transition-colors hidden sm:inline-flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span class="lang-en">Back to template</span>
+          <span class="lang-pt">Voltar ao template</span>
+        </a>
+
+        <!-- Language toggle -->
+        <div class="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1">
+          <button data-lang-btn="en" onclick="setLang('en')"
+                  class="px-3 py-1 rounded-full text-xs font-semibold font-display transition-all duration-200">
+            EN
+          </button>
+          <button data-lang-btn="pt" onclick="setLang('pt')"
+                  class="px-3 py-1 rounded-full text-xs font-semibold font-display transition-all duration-200">
+            PT
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════
+       MAIN LAYOUT
+  ════════════════════════════════════ -->
+  <div class="max-w-7xl mx-auto px-5 pt-24 pb-20 flex gap-8">
+
+    <!-- ── Sidebar (desktop) ── -->
+    <aside class="hidden lg:block w-56 xl:w-64 shrink-0">
+      <nav class="sticky top-24 space-y-0.5">
+        <p class="text-xs font-display font-semibold uppercase tracking-widest text-white/30 mb-3 px-0.5">
+          <span class="lang-en">Contents</span>
+          <span class="lang-pt">Conteúdo</span>
+        </p>
+
+        <a href="#overview"     class="sidebar-link"><span class="lang-en">1. Overview</span><span class="lang-pt">1. Visão Geral</span></a>
+        <a href="#structure"    class="sidebar-link"><span class="lang-en">2. File Structure</span><span class="lang-pt">2. Estrutura de Arquivos</span></a>
+        <a href="#tech-stack"   class="sidebar-link"><span class="lang-en">3. Tech Stack</span><span class="lang-pt">3. Tecnologias</span></a>
+        <a href="#layout"       class="sidebar-link"><span class="lang-en">4. Layout</span><span class="lang-pt">4. Layout</span></a>
+        <a href="#typewriter"   class="sidebar-link"><span class="lang-en">5. Typewriter Effect</span><span class="lang-pt">5. Efeito Typewriter</span></a>
+        <a href="#slider"       class="sidebar-link"><span class="lang-en">6. Comparison Slider</span><span class="lang-pt">6. Slider de Comparação</span></a>
+        <a href="#glass-cards"  class="sidebar-link"><span class="lang-en">7. Glass Cards</span><span class="lang-pt">7. Glass Cards</span></a>
+        <a href="#pricing"      class="sidebar-link"><span class="lang-en">8. Pricing Section</span><span class="lang-pt">8. Seção de Preços</span></a>
+        <a href="#colors"       class="sidebar-link"><span class="lang-en">9. Colors</span><span class="lang-pt">9. Cores</span></a>
+        <a href="#seo"          class="sidebar-link"><span class="lang-en">10. SEO</span><span class="lang-pt">10. SEO</span></a>
+        <a href="#performance"  class="sidebar-link"><span class="lang-en">11. Performance</span><span class="lang-pt">11. Performance</span></a>
+        <a href="#credits"      class="sidebar-link"><span class="lang-en">12. Credits</span><span class="lang-pt">12. Créditos</span></a>
+      </nav>
+    </aside>
+
+    <!-- ── Main content ── -->
+    <main class="flex-1 min-w-0 space-y-10">
+
+      <!-- ══ HERO ══ -->
+      <div class="text-center py-8">
+        <p class="text-xs font-display font-semibold uppercase tracking-widest text-neon-purple mb-3">
+          <span class="lang-en">Template Documentation</span>
+          <span class="lang-pt">Documentação do Template</span>
+        </p>
+        <h1 class="font-display font-bold text-4xl sm:text-5xl text-gradient mb-4">NeonMind AI</h1>
+        <p class="text-white/50 max-w-xl mx-auto text-base leading-relaxed">
+          <span class="lang-en">Complete reference for the NeonMind AI landing page template — structure, components, customization and deployment.</span>
+          <span class="lang-pt">Referência completa do template de landing page NeonMind AI — estrutura, componentes, customização e deploy.</span>
+        </p>
+      </div>
+
+      <!-- ══ 1. OVERVIEW ══ -->
+      <section id="overview" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">1. Overview</span>
+          <span class="lang-pt">1. Visão Geral</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-4">
+          <span class="lang-en">
+            <strong class="text-white">NeonMind AI</strong> is a modern, fully static landing page template designed for
+            AI-powered SaaS products. It features a striking dark neon aesthetic with purple, cyan and pink accent colors,
+            delivering a cutting-edge visual identity that resonates with tech audiences.
+          </span>
+          <span class="lang-pt">
+            <strong class="text-white">NeonMind AI</strong> é um template de landing page moderno, totalmente estático,
+            projetado para produtos SaaS baseados em inteligência artificial. Apresenta uma estética dark neon marcante
+            com cores de destaque em roxo, ciano e rosa, entregando uma identidade visual de ponta para audiências tech.
+          </span>
+        </p>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">
+            The template is built without any JavaScript frameworks — only vanilla JS is used for interactive components.
+            It requires no build step, no package manager and no server: just open <code>index.html</code> in a browser
+            or deploy to any static host.
+          </span>
+          <span class="lang-pt">
+            O template é construído sem frameworks JavaScript — apenas JS vanilla é utilizado para componentes interativos.
+            Não requer etapa de build, gerenciador de pacotes ou servidor: basta abrir <code>index.html</code> no navegador
+            ou fazer deploy em qualquer host estático.
+          </span>
+        </p>
+
+        <div class="grid sm:grid-cols-3 gap-4">
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4 text-center">
+            <div class="text-3xl font-display font-bold text-gradient mb-1">Zero</div>
+            <div class="text-sm text-white/50">
+              <span class="lang-en">dependencies / build tools</span>
+              <span class="lang-pt">dependências / build tools</span>
+            </div>
+          </div>
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4 text-center">
+            <div class="text-3xl font-display font-bold text-gradient mb-1">5</div>
+            <div class="text-sm text-white/50">
+              <span class="lang-en">files total</span>
+              <span class="lang-pt">arquivos no total</span>
+            </div>
+          </div>
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4 text-center">
+            <div class="text-3xl font-display font-bold text-gradient mb-1">100%</div>
+            <div class="text-sm text-white/50">
+              <span class="lang-en">static HTML</span>
+              <span class="lang-pt">HTML estático</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 2. FILE STRUCTURE ══ -->
+      <section id="structure" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">2. File Structure</span>
+          <span class="lang-pt">2. Estrutura de Arquivos</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">All template files live inside the <code>neonmind-ai/</code> directory:</span>
+          <span class="lang-pt">Todos os arquivos do template estão dentro do diretório <code>neonmind-ai/</code>:</span>
+        </p>
+
+        <pre><code>neonmind-ai/
+├── index.html            <span class="lang-en"># Main landing page</span><span class="lang-pt"># Landing page principal</span>
+├── documentation.html    <span class="lang-en"># This file</span><span class="lang-pt"># Este arquivo</span>
+└── assets/
+    ├── css/
+    │   └── style.css     <span class="lang-en"># Custom styles (animations, glass, gradient)</span><span class="lang-pt"># Estilos customizados</span>
+    ├── js/
+    │   └── script.js     <span class="lang-en"># Vanilla JS (typewriter, slider, nav scroll)</span><span class="lang-pt"># JS vanilla (typewriter, slider, nav)</span>
+    └── img/
+        └── favicon.svg   <span class="lang-en"># SVG favicon / logo mark</span><span class="lang-pt"># Favicon SVG / logo</span></code></pre>
+
+        <div class="mt-5 space-y-3">
+          <div class="flex gap-3 items-start">
+            <code class="shrink-0 text-neon-cyan">index.html</code>
+            <span class="text-white/60 text-sm">
+              <span class="lang-en">Entry point. Contains all HTML sections, inline Tailwind config and CDN links. No server required.</span>
+              <span class="lang-pt">Ponto de entrada. Contém todas as seções HTML, configuração inline do Tailwind e links de CDN. Sem servidor necessário.</span>
+            </span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <code class="shrink-0 text-neon-cyan">style.css</code>
+            <span class="text-white/60 text-sm">
+              <span class="lang-en">Supplements Tailwind with keyframe animations (<code>@keyframes float</code>, <code>pulse-glow</code>), the <code>.glass-card</code> class, text gradient and scrollbar styling.</span>
+              <span class="lang-pt">Complementa o Tailwind com animações keyframe (<code>@keyframes float</code>, <code>pulse-glow</code>), a classe <code>.glass-card</code>, gradiente de texto e estilo da barra de rolagem.</span>
+            </span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <code class="shrink-0 text-neon-cyan">script.js</code>
+            <span class="text-white/60 text-sm">
+              <span class="lang-en">Handles all interactivity: typewriter loop, before/after comparison slider (mouse + touch), sticky nav background on scroll and mobile menu toggle.</span>
+              <span class="lang-pt">Gerencia toda a interatividade: loop typewriter, slider de comparação antes/depois (mouse + touch), fundo da nav ao rolar e toggle do menu mobile.</span>
+            </span>
+          </div>
+          <div class="flex gap-3 items-start">
+            <code class="shrink-0 text-neon-cyan">favicon.svg</code>
+            <span class="text-white/60 text-sm">
+              <span class="lang-en">Scalable SVG favicon that also doubles as the in-page logo mark. Themed with the neon purple brand color.</span>
+              <span class="lang-pt">Favicon SVG escalável que também serve como logo na página. Temático com a cor roxa neon da marca.</span>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 3. TECH STACK ══ -->
+      <section id="tech-stack" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">3. Tech Stack</span>
+          <span class="lang-pt">3. Tecnologias Utilizadas</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">
+            The template purposely uses only CDN-loaded resources so anyone can fork and edit without installing anything.
+          </span>
+          <span class="lang-pt">
+            O template usa intencionalmente apenas recursos carregados via CDN para que qualquer pessoa possa fazer fork e editar sem instalar nada.
+          </span>
+        </p>
+
+        <div class="overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th><span class="lang-en">Technology</span><span class="lang-pt">Tecnologia</span></th>
+                <th><span class="lang-en">Version / Source</span><span class="lang-pt">Versão / Fonte</span></th>
+                <th><span class="lang-en">Purpose</span><span class="lang-pt">Uso</span></th>
+              </tr>
+            </thead>
+            <tbody class="text-white/65 text-sm">
+              <tr>
+                <td><strong class="text-white">Tailwind CSS</strong></td>
+                <td><code>v3 CDN (cdn.tailwindcss.com)</code></td>
+                <td>
+                  <span class="lang-en">Utility-first CSS framework — all layout and spacing</span>
+                  <span class="lang-pt">Framework CSS utilitário — todo layout e espaçamento</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong class="text-white">Space Grotesk</strong></td>
+                <td>Google Fonts</td>
+                <td>
+                  <span class="lang-en">Display / heading typeface</span>
+                  <span class="lang-pt">Tipografia de títulos e display</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong class="text-white">Inter</strong></td>
+                <td>Google Fonts</td>
+                <td>
+                  <span class="lang-en">Body / UI text typeface</span>
+                  <span class="lang-pt">Tipografia de corpo e interface</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong class="text-white">Vanilla JS</strong></td>
+                <td>
+                  <span class="lang-en">No library</span>
+                  <span class="lang-pt">Sem biblioteca</span>
+                </td>
+                <td>
+                  <span class="lang-en">Typewriter, slider, nav scroll behavior</span>
+                  <span class="lang-pt">Typewriter, slider, comportamento da nav ao rolar</span>
+                </td>
+              </tr>
+              <tr>
+                <td><strong class="text-white">Unsplash</strong></td>
+                <td>unsplash.com</td>
+                <td>
+                  <span class="lang-en">Placeholder images (comparison slider)</span>
+                  <span class="lang-pt">Imagens de placeholder (slider de comparação)</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-5 p-4 bg-neon-purple/10 border border-neon-purple/20 rounded-xl text-sm text-white/70">
+          <strong class="text-neon-purple">
+            <span class="lang-en">Note:</span>
+            <span class="lang-pt">Nota:</span>
+          </strong>
+          <span class="lang-en">
+            No Alpine.js, React, Vue or any other JS framework is used. The template is intentionally dependency-free
+            to ensure maximum browser compatibility and zero build complexity.
+          </span>
+          <span class="lang-pt">
+            Nenhum Alpine.js, React, Vue ou outro framework JS é utilizado. O template é intencionalmente livre de
+            dependências para garantir máxima compatibilidade entre navegadores e zero complexidade de build.
+          </span>
+        </div>
+      </section>
+
+      <!-- ══ 4. LAYOUT ══ -->
+      <section id="layout" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">4. Layout</span>
+          <span class="lang-pt">4. Layout</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">
+            The page is full-width with a fixed dark navbar and a centered content column (<code>max-w-7xl mx-auto</code>).
+            It is composed of a navigation bar followed by four main content sections and a footer.
+          </span>
+          <span class="lang-pt">
+            A página é de largura total com uma navbar dark fixa e uma coluna de conteúdo centralizada (<code>max-w-7xl mx-auto</code>).
+            É composta por uma barra de navegação seguida de quatro seções de conteúdo principais e um rodapé.
+          </span>
+        </p>
+
+        <div class="space-y-3 mb-5">
+          <!-- Nav -->
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full bg-neon-purple shrink-0"></div>
+            <div>
+              <span class="font-display font-semibold text-white">
+                <span class="lang-en">Sticky Navigation</span>
+                <span class="lang-pt">Navegação Fixa</span>
+              </span>
+              <span class="text-white/55 text-sm ml-2">
+                <span class="lang-en">— Logo, nav links, CTA button. Background transitions from transparent to opaque glass on scroll.</span>
+                <span class="lang-pt">— Logo, links de nav, botão CTA. Fundo passa de transparente para glass opaco ao rolar.</span>
+              </span>
+            </div>
+          </div>
+          <!-- Hero -->
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full bg-neon-cyan shrink-0"></div>
+            <div>
+              <span class="font-display font-semibold text-white">
+                <span class="lang-en">Hero Section</span>
+                <span class="lang-pt">Seção Hero</span>
+              </span>
+              <span class="text-white/55 text-sm ml-2">
+                <span class="lang-en">— Full-viewport-height intro with animated typewriter headline, subtitle, dual CTAs and a floating glass demo card.</span>
+                <span class="lang-pt">— Intro de altura total com manchete typewriter animada, subtítulo, CTAs duplos e um card demo glass flutuante.</span>
+              </span>
+            </div>
+          </div>
+          <!-- Features -->
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full bg-neon-pink shrink-0"></div>
+            <div>
+              <span class="font-display font-semibold text-white">
+                <span class="lang-en">Features Section</span>
+                <span class="lang-pt">Seção de Funcionalidades</span>
+              </span>
+              <span class="text-white/55 text-sm ml-2">
+                <span class="lang-en">— 3-column grid of glass feature cards, each with an icon, title and description.</span>
+                <span class="lang-pt">— Grade de 3 colunas com glass cards de funcionalidades, cada um com ícone, título e descrição.</span>
+              </span>
+            </div>
+          </div>
+          <!-- Demo/Comparison -->
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full bg-neon-purple shrink-0"></div>
+            <div>
+              <span class="font-display font-semibold text-white">
+                <span class="lang-en">Demo / Comparison Section</span>
+                <span class="lang-pt">Seção Demo / Comparação</span>
+              </span>
+              <span class="text-white/55 text-sm ml-2">
+                <span class="lang-en">— Interactive before/after slider showcasing AI output vs. original.</span>
+                <span class="lang-pt">— Slider interativo antes/depois mostrando output de IA vs. original.</span>
+              </span>
+            </div>
+          </div>
+          <!-- Pricing -->
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full bg-neon-cyan shrink-0"></div>
+            <div>
+              <span class="font-display font-semibold text-white">
+                <span class="lang-en">Pricing Section</span>
+                <span class="lang-pt">Seção de Preços</span>
+              </span>
+              <span class="text-white/55 text-sm ml-2">
+                <span class="lang-en">— 3-tier pricing cards (Hobby, Pro Neural, Enterprise) with the middle tier featured.</span>
+                <span class="lang-pt">— Cards de preços em 3 níveis (Hobby, Pro Neural, Enterprise) com o nível do meio em destaque.</span>
+              </span>
+            </div>
+          </div>
+          <!-- Footer -->
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full bg-white/30 shrink-0"></div>
+            <div>
+              <span class="font-display font-semibold text-white">Footer</span>
+              <span class="text-white/55 text-sm ml-2">
+                <span class="lang-en">— Logo, nav links grouped by category and copyright notice.</span>
+                <span class="lang-pt">— Logo, links de nav agrupados por categoria e aviso de copyright.</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-white/60 text-sm">
+          <span class="lang-en">
+            The layout is fully responsive. On mobile, the nav collapses to a hamburger menu and multi-column grids
+            stack to a single column via Tailwind's <code>sm:</code> / <code>lg:</code> responsive prefixes.
+          </span>
+          <span class="lang-pt">
+            O layout é totalmente responsivo. Em dispositivos móveis, a nav colapsa em um menu hamburger e grades
+            multi-coluna empilham em coluna única via prefixos responsivos <code>sm:</code> / <code>lg:</code> do Tailwind.
+          </span>
+        </p>
+      </section>
+
+      <!-- ══ 5. TYPEWRITER EFFECT ══ -->
+      <section id="typewriter" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">5. Typewriter Effect</span>
+          <span class="lang-pt">5. Efeito Typewriter</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">
+            The hero headline cycles through a list of AI-related words using a pure-JS typewriter that types each word
+            character by character, pauses, then deletes it before moving to the next word. A blinking cursor is
+            appended with CSS.
+          </span>
+          <span class="lang-pt">
+            O título do hero percorre uma lista de palavras relacionadas à IA usando um typewriter em JS puro que
+            digita cada palavra caractere a caractere, pausa e então a apaga antes de passar para a próxima.
+            Um cursor piscante é adicionado com CSS.
+          </span>
+        </p>
+
+        <pre><code><span class="lang-en">// script.js — Typewriter logic</span><span class="lang-pt">// script.js — Lógica do Typewriter</span>
+const words   = ['Intelligence', 'Creativity', 'Productivity', 'Innovation'];
+const target  = document.getElementById('typewriter');
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function type() {
+  const current = words[wordIndex];
+  const speed   = isDeleting ? 60 : 120;
+
+  if (!isDeleting) {
+    target.textContent = current.slice(0, ++charIndex);
+    if (charIndex === current.length) {
+      isDeleting = true;
+      return setTimeout(type, 1800); <span class="lang-en">// pause after full word</span><span class="lang-pt">// pausa após palavra completa</span>
+    }
+  } else {
+    target.textContent = current.slice(0, --charIndex);
+    if (charIndex === 0) {
+      isDeleting = false;
+      wordIndex  = (wordIndex + 1) % words.length;
+    }
+  }
+  setTimeout(type, speed);
+}
+type();</code></pre>
+
+        <div class="mt-5 grid sm:grid-cols-2 gap-4 text-sm">
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4">
+            <div class="text-neon-cyan font-display font-semibold mb-1">
+              <span class="lang-en">Timing</span>
+              <span class="lang-pt">Temporização</span>
+            </div>
+            <ul class="text-white/60 space-y-1">
+              <li><span class="lang-en">Typing speed:</span><span class="lang-pt">Velocidade de digitação:</span> <code>120ms/char</code></li>
+              <li><span class="lang-en">Delete speed:</span><span class="lang-pt">Velocidade de deleção:</span> <code>60ms/char</code></li>
+              <li><span class="lang-en">Pause (full word):</span><span class="lang-pt">Pausa (palavra completa):</span> <code>1800ms</code></li>
+            </ul>
+          </div>
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4">
+            <div class="text-neon-purple font-display font-semibold mb-1">
+              <span class="lang-en">Customization</span>
+              <span class="lang-pt">Customização</span>
+            </div>
+            <ul class="text-white/60 space-y-1">
+              <li>
+                <span class="lang-en">Edit the <code>words</code> array to change cycling words.</span>
+                <span class="lang-pt">Edite o array <code>words</code> para mudar as palavras.</span>
+              </li>
+              <li>
+                <span class="lang-en">Adjust timing constants to change speed/pause.</span>
+                <span class="lang-pt">Ajuste as constantes de tempo para mudar velocidade/pausa.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 6. COMPARISON SLIDER ══ -->
+      <section id="slider" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">6. Comparison Slider</span>
+          <span class="lang-pt">6. Slider de Comparação</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-4">
+          <span class="lang-en">
+            The demo section features a before/after image comparison slider. Dragging the handle reveals either the
+            "Before AI" or "After AI" image. It supports both mouse and touch input for full mobile compatibility.
+          </span>
+          <span class="lang-pt">
+            A seção de demo apresenta um slider de comparação de imagens antes/depois. Arrastar o handle revela a
+            imagem "Antes da IA" ou "Depois da IA". Suporta mouse e touch para compatibilidade total em mobile.
+          </span>
+        </p>
+
+        <pre><code><span class="lang-en">// script.js — Comparison slider (simplified)</span><span class="lang-pt">// script.js — Slider de comparação (simplificado)</span>
+const slider   = document.getElementById('comparison-slider');
+const handle   = document.getElementById('slider-handle');
+const afterImg = document.getElementById('after-image');
+let isDragging = false;
+
+function updateSlider(clientX) {
+  const rect   = slider.getBoundingClientRect();
+  const offset = Math.min(Math.max(clientX - rect.left, 0), rect.width);
+  const pct    = (offset / rect.width) * 100;
+  afterImg.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+  handle.style.left = `${pct}%`;
+}
+
+<span class="lang-en">// Mouse events</span><span class="lang-pt">// Eventos de mouse</span>
+handle.addEventListener('mousedown', () => isDragging = true);
+document.addEventListener('mousemove', e => { if (isDragging) updateSlider(e.clientX); });
+document.addEventListener('mouseup',   () => isDragging = false);
+
+<span class="lang-en">// Touch events</span><span class="lang-pt">// Eventos de touch</span>
+handle.addEventListener('touchstart', () => isDragging = true, { passive: true });
+document.addEventListener('touchmove', e => {
+  if (isDragging) updateSlider(e.touches[0].clientX);
+}, { passive: true });
+document.addEventListener('touchend', () => isDragging = false);</code></pre>
+
+        <div class="mt-5 p-4 bg-neon-cyan/5 border border-neon-cyan/15 rounded-xl text-sm text-white/65">
+          <strong class="text-neon-cyan">
+            <span class="lang-en">How to replace images:</span>
+            <span class="lang-pt">Como substituir as imagens:</span>
+          </strong>
+          <span class="lang-en">
+            Find the <code>before-image</code> and <code>after-image</code> elements in <code>index.html</code> and
+            update their <code>src</code> attributes with your own URLs or local paths. Both images should be the
+            same dimensions for best results.
+          </span>
+          <span class="lang-pt">
+            Encontre os elementos <code>before-image</code> e <code>after-image</code> em <code>index.html</code> e
+            atualize seus atributos <code>src</code> com suas próprias URLs ou caminhos locais. Ambas as imagens
+            devem ter as mesmas dimensões para melhores resultados.
+          </span>
+        </div>
+      </section>
+
+      <!-- ══ 7. GLASS CARDS ══ -->
+      <section id="glass-cards" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">7. Glass Cards</span>
+          <span class="lang-pt">7. Glass Cards</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-4">
+          <span class="lang-en">
+            Glass cards are the primary UI surface throughout the template. They use the <strong>glassmorphism</strong>
+            technique — a semi-transparent background with a backdrop blur — to create a frosted-glass effect that
+            sits naturally on the dark neon background.
+          </span>
+          <span class="lang-pt">
+            Glass cards são a principal superfície de UI em todo o template. Utilizam a técnica de
+            <strong>glassmorphism</strong> — fundo semi-transparente com blur de backdrop — para criar um efeito
+            de vidro fosco que se encaixa naturalmente no fundo dark neon.
+          </span>
+        </p>
+
+        <pre><code><span class="lang-en">/* style.css — Glass card definition */</span><span class="lang-pt">/* style.css — Definição do glass card */</span>
+.glass-card {
+  background:         rgba(255, 255, 255, 0.04);
+  border:             1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter:    blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius:      1rem;
+  transition:         border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(176, 38, 255, 0.35);
+  box-shadow:   0 0 28px rgba(176, 38, 255, 0.12);
+}</code></pre>
+
+        <div class="mt-5 grid sm:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p class="text-neon-purple font-display font-semibold mb-2">
+              <span class="lang-en">Key properties</span>
+              <span class="lang-pt">Propriedades principais</span>
+            </p>
+            <ul class="text-white/60 space-y-1.5">
+              <li><code>backdrop-filter: blur(12px)</code> — <span class="lang-en">blur depth</span><span class="lang-pt">profundidade do blur</span></li>
+              <li><code>rgba(255,255,255,0.04)</code> — <span class="lang-en">4% white tint</span><span class="lang-pt">tinta branca a 4%</span></li>
+              <li><code>rgba(255,255,255,0.08)</code> — <span class="lang-en">subtle border</span><span class="lang-pt">borda sutil</span></li>
+              <li><span class="lang-en">Hover border brightens to neon purple</span><span class="lang-pt">Borda no hover clareia para roxo neon</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="text-neon-cyan font-display font-semibold mb-2">
+              <span class="lang-en">Usage</span>
+              <span class="lang-pt">Uso</span>
+            </p>
+            <ul class="text-white/60 space-y-1.5">
+              <li>
+                <span class="lang-en">Add <code>class="glass-card"</code> to any container.</span>
+                <span class="lang-pt">Adicione <code>class="glass-card"</code> a qualquer container.</span>
+              </li>
+              <li>
+                <span class="lang-en">Works on <code>&lt;div&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>.</span>
+                <span class="lang-pt">Funciona em <code>&lt;div&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>.</span>
+              </li>
+              <li>
+                <span class="lang-en">Combine with Tailwind padding, e.g. <code>p-6</code> or <code>p-8</code>.</span>
+                <span class="lang-pt">Combine com padding do Tailwind, ex: <code>p-6</code> ou <code>p-8</code>.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ 8. PRICING SECTION ══ -->
+      <section id="pricing" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">8. Pricing Section</span>
+          <span class="lang-pt">8. Seção de Preços</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">
+            The pricing section displays three tiers side by side. The middle tier (<strong>Pro Neural</strong>) is
+            visually elevated with a neon gradient border and a "Most Popular" badge to drive conversions.
+          </span>
+          <span class="lang-pt">
+            A seção de preços exibe três níveis lado a lado. O nível do meio (<strong>Pro Neural</strong>) é
+            visualmente elevado com uma borda de gradiente neon e um badge "Mais Popular" para impulsionar conversões.
+          </span>
+        </p>
+
+        <!-- Tier comparison -->
+        <div class="grid sm:grid-cols-3 gap-4 mb-6">
+          <!-- Hobby -->
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-5">
+            <p class="font-display font-bold text-lg text-white mb-1">Hobby</p>
+            <p class="text-3xl font-display font-bold text-white mb-1">$0<span class="text-base text-white/40 font-normal">/mo</span></p>
+            <p class="text-xs text-white/40 mb-4">
+              <span class="lang-en">Free forever</span>
+              <span class="lang-pt">Gratuito para sempre</span>
+            </p>
+            <ul class="text-sm text-white/60 space-y-1.5">
+              <li>✓ 50 <span class="lang-en">AI requests/mo</span><span class="lang-pt">req. IA/mês</span></li>
+              <li>✓ <span class="lang-en">Basic models</span><span class="lang-pt">Modelos básicos</span></li>
+              <li>✓ <span class="lang-en">1 workspace</span><span class="lang-pt">1 workspace</span></li>
+              <li class="text-white/30">✗ <span class="lang-en">Priority support</span><span class="lang-pt">Suporte prioritário</span></li>
+              <li class="text-white/30">✗ API access</li>
+            </ul>
+          </div>
+          <!-- Pro Neural (featured) -->
+          <div class="bg-gradient-to-b from-neon-purple/20 to-neon-cyan/10 border border-neon-purple/40 rounded-xl p-5 relative">
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-display font-bold uppercase tracking-widest bg-gradient-to-r from-neon-purple to-neon-cyan text-[#050510] px-3 py-1 rounded-full">
+              <span class="lang-en">Most Popular</span>
+              <span class="lang-pt">Mais Popular</span>
+            </span>
+            <p class="font-display font-bold text-lg text-gradient mb-1">Pro Neural</p>
+            <p class="text-3xl font-display font-bold text-white mb-1">$49<span class="text-base text-white/40 font-normal">/mo</span></p>
+            <p class="text-xs text-white/40 mb-4">
+              <span class="lang-en">Billed monthly</span>
+              <span class="lang-pt">Cobrado mensalmente</span>
+            </p>
+            <ul class="text-sm text-white/70 space-y-1.5">
+              <li>✓ 5,000 <span class="lang-en">AI requests/mo</span><span class="lang-pt">req. IA/mês</span></li>
+              <li>✓ <span class="lang-en">All models</span><span class="lang-pt">Todos os modelos</span></li>
+              <li>✓ <span class="lang-en">Unlimited workspaces</span><span class="lang-pt">Workspaces ilimitados</span></li>
+              <li>✓ <span class="lang-en">Priority support</span><span class="lang-pt">Suporte prioritário</span></li>
+              <li>✓ API access</li>
+            </ul>
+          </div>
+          <!-- Enterprise -->
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-5">
+            <p class="font-display font-bold text-lg text-white mb-1">Enterprise</p>
+            <p class="text-3xl font-display font-bold text-white mb-1">
+              <span class="lang-en">Custom</span>
+              <span class="lang-pt">Sob consulta</span>
+            </p>
+            <p class="text-xs text-white/40 mb-4">
+              <span class="lang-en">Contact sales</span>
+              <span class="lang-pt">Fale com vendas</span>
+            </p>
+            <ul class="text-sm text-white/60 space-y-1.5">
+              <li>✓ <span class="lang-en">Unlimited requests</span><span class="lang-pt">Requisições ilimitadas</span></li>
+              <li>✓ <span class="lang-en">Custom models</span><span class="lang-pt">Modelos customizados</span></li>
+              <li>✓ <span class="lang-en">Dedicated support</span><span class="lang-pt">Suporte dedicado</span></li>
+              <li>✓ SSO / SAML</li>
+              <li>✓ SLA</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="text-white/55 text-sm">
+          <span class="lang-en">
+            To update pricing, edit the corresponding card in the <code>#pricing</code> section of <code>index.html</code>.
+            The featured card is identified by its <code>border-neon-purple/40</code> Tailwind class and the gradient background.
+          </span>
+          <span class="lang-pt">
+            Para atualizar os preços, edite o card correspondente na seção <code>#pricing</code> de <code>index.html</code>.
+            O card em destaque é identificado pela classe Tailwind <code>border-neon-purple/40</code> e o fundo degradê.
+          </span>
+        </p>
+      </section>
+
+      <!-- ══ 9. COLORS ══ -->
+      <section id="colors" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">9. Color Palette</span>
+          <span class="lang-pt">9. Paleta de Cores</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">
+            The neon color palette is configured in the Tailwind config block inside <code>index.html</code>.
+            All four colors are available as Tailwind utilities such as <code>bg-neon-purple</code>,
+            <code>text-neon-cyan</code>, <code>border-neon-pink</code>, etc.
+          </span>
+          <span class="lang-pt">
+            A paleta de cores neon é configurada no bloco de configuração do Tailwind dentro de <code>index.html</code>.
+            Todas as quatro cores estão disponíveis como utilitários Tailwind como <code>bg-neon-purple</code>,
+            <code>text-neon-cyan</code>, <code>border-neon-pink</code>, etc.
+          </span>
+        </p>
+
+        <pre><code>tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        neon: {
+          purple: '#b026ff',  <span class="lang-en">// Primary brand / CTA</span><span class="lang-pt">// Marca principal / CTA</span>
+          cyan:   '#00f3ff',  <span class="lang-en">// Accent / highlights</span><span class="lang-pt">// Destaque / realces</span>
+          pink:   '#ff00aa',  <span class="lang-en">// Secondary accent</span><span class="lang-pt">// Destaque secundário</span>
+          dark:   '#050510',  <span class="lang-en">// Page background</span><span class="lang-pt">// Fundo da página</span>
+        }
+      }
+    }
+  }
+};</code></pre>
+
+        <!-- Swatches -->
+        <div class="mt-5 space-y-3">
+          <div class="flex items-center gap-4 p-3 bg-white/[0.03] rounded-xl">
+            <div class="color-swatch" style="background:#b026ff;box-shadow:0 0 12px #b026ff66;"></div>
+            <div class="flex-1">
+              <p class="font-display font-semibold text-white text-sm">
+                neon-purple
+                <span class="lang-en"> — Primary</span>
+                <span class="lang-pt"> — Principal</span>
+              </p>
+              <p class="text-white/45 text-xs"><code>#b026ff</code> · <span class="lang-en">CTAs, gradient start, typewriter cursor</span><span class="lang-pt">CTAs, início do gradiente, cursor typewriter</span></p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 p-3 bg-white/[0.03] rounded-xl">
+            <div class="color-swatch" style="background:#00f3ff;box-shadow:0 0 12px #00f3ff66;"></div>
+            <div class="flex-1">
+              <p class="font-display font-semibold text-white text-sm">
+                neon-cyan
+                <span class="lang-en"> — Accent</span>
+                <span class="lang-pt"> — Destaque</span>
+              </p>
+              <p class="text-white/45 text-xs"><code>#00f3ff</code> · <span class="lang-en">Gradient end, icon accents, stats, links</span><span class="lang-pt">Final do gradiente, ícones, estatísticas, links</span></p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 p-3 bg-white/[0.03] rounded-xl">
+            <div class="color-swatch" style="background:#ff00aa;box-shadow:0 0 12px #ff00aa66;"></div>
+            <div class="flex-1">
+              <p class="font-display font-semibold text-white text-sm">
+                neon-pink
+                <span class="lang-en"> — Secondary Accent</span>
+                <span class="lang-pt"> — Destaque Secundário</span>
+              </p>
+              <p class="text-white/45 text-xs"><code>#ff00aa</code> · <span class="lang-en">Badge highlights, tertiary decorative elements</span><span class="lang-pt">Destaques de badge, elementos decorativos terciários</span></p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 p-3 bg-white/[0.03] rounded-xl">
+            <div class="color-swatch" style="background:#050510;border:1px solid rgba(255,255,255,0.2);"></div>
+            <div class="flex-1">
+              <p class="font-display font-semibold text-white text-sm">
+                neon-dark
+                <span class="lang-en"> — Background</span>
+                <span class="lang-pt"> — Fundo</span>
+              </p>
+              <p class="text-white/45 text-xs"><code>#050510</code> · <span class="lang-en">Page background, navbar, card base layers</span><span class="lang-pt">Fundo da página, navbar, camadas base dos cards</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 p-4 bg-white/[0.03] border border-white/[0.07] rounded-xl text-sm text-white/60">
+          <strong class="text-white">
+            <span class="lang-en">Text gradient:</span>
+            <span class="lang-pt">Gradiente de texto:</span>
+          </strong>
+          <span class="lang-en"> The <code>.text-gradient</code> class applies a left-to-right linear gradient from <code>#b026ff</code> to <code>#00f3ff</code> clipped to the text shape.</span>
+          <span class="lang-pt"> A classe <code>.text-gradient</code> aplica um gradiente linear da esquerda para a direita de <code>#b026ff</code> a <code>#00f3ff</code> recortado no formato do texto.</span>
+        </div>
+      </section>
+
+      <!-- ══ 10. SEO ══ -->
+      <section id="seo" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">10. SEO</span>
+          <span class="lang-pt">10. SEO</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">
+            The template ships with a comprehensive set of meta tags covering search engines, social sharing and
+            structured data. Update the placeholder values in the <code>&lt;head&gt;</code> of <code>index.html</code>
+            before going live.
+          </span>
+          <span class="lang-pt">
+            O template vem com um conjunto abrangente de meta tags cobrindo motores de busca, compartilhamento social
+            e dados estruturados. Atualize os valores de placeholder no <code>&lt;head&gt;</code> de <code>index.html</code>
+            antes de publicar.
+          </span>
+        </p>
+
+        <!-- Open Graph -->
+        <h3 class="font-display font-semibold text-neon-cyan mb-2">Open Graph</h3>
+        <pre><code>&lt;meta property="og:type"        content="website" /&gt;
+&lt;meta property="og:url"         content="https://yourdomain.com/" /&gt;
+&lt;meta property="og:title"       content="NeonMind AI — Supercharge Your Workflow" /&gt;
+&lt;meta property="og:description" content="AI-powered SaaS..." /&gt;
+&lt;meta property="og:image"       content="https://yourdomain.com/assets/img/og.png" /&gt;</code></pre>
+
+        <!-- Twitter Card -->
+        <h3 class="font-display font-semibold text-neon-purple mt-5 mb-2">Twitter Card</h3>
+        <pre><code>&lt;meta name="twitter:card"        content="summary_large_image" /&gt;
+&lt;meta name="twitter:site"        content="@yourhandle" /&gt;
+&lt;meta name="twitter:title"       content="NeonMind AI — Supercharge Your Workflow" /&gt;
+&lt;meta name="twitter:description" content="AI-powered SaaS..." /&gt;
+&lt;meta name="twitter:image"       content="https://yourdomain.com/assets/img/og.png" /&gt;</code></pre>
+
+        <!-- Schema.org -->
+        <h3 class="font-display font-semibold text-neon-pink mt-5 mb-2">Schema.org — SoftwareApplication</h3>
+        <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "NeonMind AI",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+&lt;/script&gt;</code></pre>
+
+        <!-- robots -->
+        <h3 class="font-display font-semibold text-white/60 mt-5 mb-2">Robots meta</h3>
+        <pre><code>&lt;meta name="robots" content="index, follow" /&gt;</code></pre>
+
+        <div class="mt-5 p-4 bg-neon-pink/5 border border-neon-pink/15 rounded-xl text-sm text-white/60">
+          <strong class="text-neon-pink">
+            <span class="lang-en">Checklist before deploying:</span>
+            <span class="lang-pt">Checklist antes de publicar:</span>
+          </strong>
+          <ul class="mt-2 space-y-1 list-disc list-inside">
+            <li><span class="lang-en">Replace all placeholder URLs with your real domain.</span><span class="lang-pt">Substitua todas as URLs placeholder pelo seu domínio real.</span></li>
+            <li><span class="lang-en">Create an <code>og.png</code> image (1200×630 px) for social previews.</span><span class="lang-pt">Crie uma imagem <code>og.png</code> (1200×630 px) para previews sociais.</span></li>
+            <li><span class="lang-en">Update <code>&lt;title&gt;</code> and <code>&lt;meta name="description"&gt;</code> with real copy.</span><span class="lang-pt">Atualize <code>&lt;title&gt;</code> e <code>&lt;meta name="description"&gt;</code> com textos reais.</span></li>
+            <li><span class="lang-en">Fill in the Schema.org price with your actual starting price.</span><span class="lang-pt">Preencha o preço no Schema.org com seu preço inicial real.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ══ 11. PERFORMANCE ══ -->
+      <section id="performance" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">11. Performance</span>
+          <span class="lang-pt">11. Performance</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-5">
+          <span class="lang-en">
+            Because the template is fully static with CDN-loaded assets, it is fast out of the box. The following
+            optimizations are already applied in <code>index.html</code>.
+          </span>
+          <span class="lang-pt">
+            Como o template é totalmente estático com assets carregados via CDN, ele é rápido por padrão. As seguintes
+            otimizações já estão aplicadas em <code>index.html</code>.
+          </span>
+        </p>
+
+        <div class="space-y-4">
+          <!-- Preconnect -->
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4">
+            <p class="font-display font-semibold text-neon-cyan mb-2">
+              <span class="lang-en">DNS Preconnect</span>
+              <span class="lang-pt">Pré-conexão DNS</span>
+            </p>
+            <pre class="!mt-0"><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /&gt;</code></pre>
+            <p class="text-sm text-white/50 mt-2">
+              <span class="lang-en">Establishes early connections to Google Fonts servers, reducing font load latency.</span>
+              <span class="lang-pt">Estabelece conexões antecipadas com servidores do Google Fonts, reduzindo a latência de carregamento das fontes.</span>
+            </p>
+          </div>
+
+          <!-- CDN Resources -->
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4">
+            <p class="font-display font-semibold text-neon-purple mb-2">
+              <span class="lang-en">CDN Resources</span>
+              <span class="lang-pt">Recursos via CDN</span>
+            </p>
+            <ul class="text-sm text-white/60 space-y-1.5">
+              <li>
+                <strong class="text-white">Tailwind CSS CDN</strong>
+                <span class="lang-en"> — served from Tailwind's global CDN with HTTP/2 push and edge caching.</span>
+                <span class="lang-pt"> — servido pelo CDN global do Tailwind com HTTP/2 push e cache em edge.</span>
+              </li>
+              <li>
+                <strong class="text-white">Google Fonts</strong>
+                <span class="lang-en"> — cached aggressively by browsers after first load; uses <code>display=swap</code> to avoid render-blocking.</span>
+                <span class="lang-pt"> — cacheadas agressivamente pelo navegador após o primeiro carregamento; usa <code>display=swap</code> para evitar bloqueio de renderização.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Minimal custom CSS -->
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4">
+            <p class="font-display font-semibold text-neon-pink mb-2">
+              <span class="lang-en">Minimal Custom CSS</span>
+              <span class="lang-pt">CSS Customizado Mínimo</span>
+            </p>
+            <p class="text-sm text-white/60">
+              <span class="lang-en">
+                <code>style.css</code> only defines rules that cannot be expressed with Tailwind utility classes:
+                keyframe animations, <code>backdrop-filter</code> for glassmorphism, the text-gradient clip technique
+                and scrollbar theming. Everything else uses Tailwind, keeping the custom CSS footprint tiny.
+              </span>
+              <span class="lang-pt">
+                <code>style.css</code> define apenas regras que não podem ser expressas com classes utilitárias do Tailwind:
+                animações keyframe, <code>backdrop-filter</code> para glassmorphism, a técnica de clipe de gradiente de texto
+                e tema da barra de rolagem. Todo o resto usa Tailwind, mantendo o CSS customizado minúsculo.
+              </span>
+            </p>
+          </div>
+
+          <!-- No JS framework -->
+          <div class="bg-white/[0.03] border border-white/[0.07] rounded-xl p-4">
+            <p class="font-display font-semibold text-white mb-2">
+              <span class="lang-en">No JavaScript Framework Overhead</span>
+              <span class="lang-pt">Sem Overhead de Framework JavaScript</span>
+            </p>
+            <p class="text-sm text-white/60">
+              <span class="lang-en">
+                Vanilla JS for the typewriter and slider means zero framework bundle weight. The entire
+                <code>script.js</code> is a few kilobytes — far smaller than any framework equivalent.
+              </span>
+              <span class="lang-pt">
+                JS vanilla para o typewriter e slider significa zero peso de bundle de framework. O
+                <code>script.js</code> completo tem poucos kilobytes — muito menor do que qualquer equivalente em framework.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-5 p-4 bg-neon-cyan/5 border border-neon-cyan/15 rounded-xl text-sm text-white/60">
+          <strong class="text-neon-cyan">
+            <span class="lang-en">Further optimization tip:</span>
+            <span class="lang-pt">Dica de otimização adicional:</span>
+          </strong>
+          <span class="lang-en">
+            For production, replace the Tailwind CDN script with a locally purged Tailwind build to reduce CSS size
+            from ~3 MB (CDN) to under 10 kB (purged). Run <code>npx tailwindcss -i input.css -o output.css --minify</code>
+            and reference the output file instead.
+          </span>
+          <span class="lang-pt">
+            Para produção, substitua o script Tailwind CDN por um build local purgado do Tailwind para reduzir o
+            tamanho do CSS de ~3 MB (CDN) para menos de 10 kB (purgado). Execute
+            <code>npx tailwindcss -i input.css -o output.css --minify</code> e referencie o arquivo de saída.
+          </span>
+        </div>
+      </section>
+
+      <!-- ══ 12. CREDITS ══ -->
+      <section id="credits" class="glass-card p-7">
+        <h2 class="font-display font-bold text-2xl text-gradient mb-5">
+          <span class="lang-en">12. Credits</span>
+          <span class="lang-pt">12. Créditos</span>
+        </h2>
+
+        <p class="text-white/70 leading-relaxed mb-6">
+          <span class="lang-en">
+            NeonMind AI is built upon the shoulders of excellent open-source projects and free services.
+          </span>
+          <span class="lang-pt">
+            NeonMind AI é construído sobre excelentes projetos open-source e serviços gratuitos.
+          </span>
+        </p>
+
+        <div class="space-y-4">
+
+          <div class="flex items-start gap-4 p-4 bg-white/[0.03] border border-white/[0.07] rounded-xl">
+            <div class="w-10 h-10 rounded-lg bg-neon-cyan/10 border border-neon-cyan/20 flex items-center justify-center shrink-0 text-neon-cyan">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-display font-semibold text-white">Tailwind CSS</p>
+              <p class="text-sm text-white/50 mt-0.5">
+                <span class="lang-en">Utility-first CSS framework. MIT License.</span>
+                <span class="lang-pt">Framework CSS utilitário. Licença MIT.</span>
+              </p>
+              <a href="https://tailwindcss.com" target="_blank" rel="noopener"
+                 class="text-xs text-neon-cyan hover:underline mt-1 inline-block">tailwindcss.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 p-4 bg-white/[0.03] border border-white/[0.07] rounded-xl">
+            <div class="w-10 h-10 rounded-lg bg-neon-purple/10 border border-neon-purple/20 flex items-center justify-center shrink-0 text-neon-purple">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/>
+                <line x1="12" y1="4" x2="12" y2="20"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-display font-semibold text-white">Google Fonts — Inter &amp; Space Grotesk</p>
+              <p class="text-sm text-white/50 mt-0.5">
+                <span class="lang-en">
+                  <strong>Inter</strong> by Rasmus Andersson — SIL Open Font License.<br/>
+                  <strong>Space Grotesk</strong> by Florian Karsten — SIL Open Font License.
+                </span>
+                <span class="lang-pt">
+                  <strong>Inter</strong> por Rasmus Andersson — Licença SIL Open Font.<br/>
+                  <strong>Space Grotesk</strong> por Florian Karsten — Licença SIL Open Font.
+                </span>
+              </p>
+              <a href="https://fonts.google.com" target="_blank" rel="noopener"
+                 class="text-xs text-neon-cyan hover:underline mt-1 inline-block">fonts.google.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4 p-4 bg-white/[0.03] border border-white/[0.07] rounded-xl">
+            <div class="w-10 h-10 rounded-lg bg-neon-pink/10 border border-neon-pink/20 flex items-center justify-center shrink-0 text-neon-pink">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </div>
+            <div>
+              <p class="font-display font-semibold text-white">Unsplash</p>
+              <p class="text-sm text-white/50 mt-0.5">
+                <span class="lang-en">
+                  High-resolution placeholder images used in the before/after comparison slider.
+                  Free for commercial and personal use under the Unsplash License.
+                </span>
+                <span class="lang-pt">
+                  Imagens de placeholder de alta resolução usadas no slider de comparação antes/depois.
+                  Gratuitas para uso comercial e pessoal sob a Licença Unsplash.
+                </span>
+              </p>
+              <a href="https://unsplash.com" target="_blank" rel="noopener"
+                 class="text-xs text-neon-cyan hover:underline mt-1 inline-block">unsplash.com</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer of docs -->
+        <div class="mt-8 pt-6 border-t border-white/[0.07] text-center">
+          <p class="text-white/30 text-sm">
+            <span class="lang-en">NeonMind AI Template · Documentation · Built with Tailwind CSS v3</span>
+            <span class="lang-pt">Template NeonMind AI · Documentação · Construído com Tailwind CSS v3</span>
+          </p>
+          <a href="index.html"
+             class="mt-3 inline-flex items-center gap-2 text-sm font-display font-semibold
+                    bg-gradient-to-r from-neon-purple to-neon-cyan text-[#050510]
+                    px-5 py-2 rounded-full hover:opacity-90 transition-opacity">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            <span class="lang-en">Back to template</span>
+            <span class="lang-pt">Voltar ao template</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ════════════════════════════════════
+       LANGUAGE TOGGLE JS
+  ════════════════════════════════════ -->
+  <script>
+    function setLang(lang) {
+      document.body.classList.toggle('show-pt', lang === 'pt');
+      localStorage.setItem('neonmind-doc-lang', lang);
+      document.querySelectorAll('[data-lang-btn]').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.langBtn === lang);
+      });
+    }
+
+    (function() {
+      var saved = localStorage.getItem('neonmind-doc-lang') || 'en';
+      setLang(saved);
+    })();
+
+    /* ── Sidebar active link on scroll ── */
+    (function() {
+      var links = document.querySelectorAll('.sidebar-link');
+      var sections = Array.from(links).map(function(l) {
+        var id = l.getAttribute('href').replace('#', '');
+        return document.getElementById(id);
+      });
+
+      function onScroll() {
+        var scrollY = window.scrollY + 120;
+        var active = sections[0];
+        sections.forEach(function(sec) {
+          if (sec && sec.offsetTop <= scrollY) active = sec;
+        });
+        links.forEach(function(l) {
+          var id = l.getAttribute('href').replace('#', '');
+          l.classList.toggle('active', active && active.id === id);
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
+</body>
+</html>

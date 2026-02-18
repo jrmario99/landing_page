@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Primary -->
+  <title>Em Breve — Algo Incrível Está Chegando | Coming Soon</title>
+  <meta name="description" content="Estamos preparando algo extraordinário. Cadastre seu e-mail e seja o primeiro a saber quando lançarmos. Vagas limitadas!">
+  <meta name="keywords" content="em breve, lançamento, coming soon, novidade, cadastro antecipado, early access">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://seusite.com/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seusite.com/">
+  <meta property="og:title" content="Algo Incrível Está Chegando — Seja o Primeiro a Saber">
+  <meta property="og:description" content="Cadastre-se agora e garanta acesso antecipado. Junte-se a milhares de pessoas que já estão na lista.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://seusite.com/">
+  <meta name="twitter:title" content="Algo Incrível Está Chegando — Seja o Primeiro a Saber">
+  <meta name="twitter:description" content="Cadastre-se agora e garanta acesso antecipado. Junte-se a milhares de pessoas que já estão na lista.">
+  <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Em Breve — Algo Incrível Está Chegando",
+    "description": "Página de pré-lançamento. Cadastre seu e-mail para acesso antecipado.",
+    "url": "https://seusite.com/"
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Background particles -->
+  <div class="bg-particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <main class="container">
+    <!-- Badge -->
+    <div class="badge" aria-label="Pré-lançamento">
+      <span class="badge-dot"></span>
+      Pré-lançamento
+    </div>
+
+    <!-- Heading -->
+    <h1 class="hero-title">
+      <span class="line">Algo incrível</span>
+      <span class="line gradient-text">está chegando.</span>
+    </h1>
+
+    <p class="subtitle">
+      Estamos construindo algo que vai mudar o jogo. Seja o primeiro a experimentar.
+    </p>
+
+    <!-- Progress bar -->
+    <section class="progress-section" aria-label="Meta de inscritos">
+      <div class="progress-header">
+        <span class="progress-label">🔥 Comunidade crescendo</span>
+        <span class="progress-count"><strong id="currentCount">847</strong> / <span id="goalCount">1.000</span> inscritos</span>
+      </div>
+      <div class="progress-track" role="progressbar" aria-valuenow="847" aria-valuemin="0" aria-valuemax="1000">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <p class="progress-cta">Faltam apenas <strong id="remaining">153</strong> para desbloquearmos o acesso!</p>
+    </section>
+
+    <!-- Email form -->
+    <form id="emailForm" class="email-form" novalidate aria-label="Formulário de inscrição">
+      <div class="input-wrapper">
+        <input
+          type="email"
+          id="emailInput"
+          name="email"
+          placeholder="seu@email.com"
+          autocomplete="email"
+          required
+          aria-describedby="emailError"
+        >
+        <button type="submit" id="submitBtn">
+          <span class="btn-text">Quero participar</span>
+          <span class="btn-loader" aria-hidden="true"></span>
+        </button>
+      </div>
+      <p class="email-error" id="emailError" role="alert" aria-live="polite"></p>
+    </form>
+
+    <!-- Success message -->
+    <div class="success-message" id="successMessage" role="status" aria-live="polite">
+      <div class="success-icon">✓</div>
+      <h2>Você está na lista! 🎉</h2>
+      <p>Enviamos uma confirmação para <strong id="confirmedEmail"></strong></p>
+      <p class="share-prompt">Compartilhe e ajude a desbloquear o acesso mais rápido:</p>
+
+      <!-- Social sharing -->
+      <div class="share-buttons">
+        <a href="#" id="shareWhatsApp" class="share-btn whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no WhatsApp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="#" id="shareTwitter" class="share-btn twitter" target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no X/Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Twitter / X
+        </a>
+        <a href="#" id="shareTelegram" class="share-btn telegram" target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no Telegram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Telegram
+        </a>
+        <button class="share-btn copy-link" id="copyLink" aria-label="Copiar link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <span id="copyText">Copiar link</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Trust -->
+    <p class="trust-note">🔒 Sem spam. Cancele quando quiser.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Sua Empresa. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

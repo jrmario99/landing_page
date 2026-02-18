@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Artigos sobre JavaScript — Tutoriais, guias e análises para desenvolvedores.">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="JavaScript — Chronicle">
+    <meta property="og:description" content="Artigos sobre JavaScript — Tutoriais, guias e análises para desenvolvedores.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JavaScript — Chronicle">
+    <meta name="twitter:description" content="Artigos sobre JavaScript — Tutoriais, guias e análises para desenvolvedores.">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+    <title>JavaScript — Chronicle</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        ink: {
+                            50: '#f8f9fa', 100: '#f1f3f5', 200: '#e9ecef', 300: '#dee2e6',
+                            400: '#adb5bd', 500: '#868e96', 600: '#495057', 700: '#343a40',
+                            800: '#212529', 900: '#121416', 950: '#0a0b0d',
+                        },
+                        accent: { DEFAULT: '#6366f1', light: '#818cf8', dark: '#4f46e5' },
+                        surface: { light: '#ffffff', dark: '#0f1117', 'dark-alt': '#161922' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="bg-surface-light dark:bg-surface-dark text-ink-800 dark:text-ink-200 font-serif antialiased transition-colors duration-300">
+
+    <!-- ============================================
+         HEADER
+    ============================================ -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-surface-dark/80 backdrop-blur-xl border-b border-ink-200/60 dark:border-ink-800/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-[72px]">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2.5 shrink-0">
+                    <svg width="32" height="32" viewBox="0 0 48 48" class="text-accent">
+                        <rect width="48" height="48" rx="10" fill="currentColor"/>
+                        <path d="M14 14h8v20h-8zM26 14h8v12h-8z" fill="white"/>
+                        <rect x="26" y="30" width="8" height="4" rx="2" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="font-sans font-bold text-xl tracking-tight text-ink-900 dark:text-white">Chronicle</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center gap-1 font-sans text-sm font-medium">
+                    <a href="index.html" class="nav-link px-3 py-2 rounded-lg text-ink-500 dark:text-ink-400 hover:text-ink-900 dark:hover:text-white transition-colors">Home</a>
+                    <a href="category.html" class="nav-link active px-3 py-2 rounded-lg text-ink-900 dark:text-white">Artigos</a>
+                    <a href="#" class="nav-link px-3 py-2 rounded-lg text-ink-500 dark:text-ink-400 hover:text-ink-900 dark:hover:text-white transition-colors">Tutoriais</a>
+                    <a href="#" class="nav-link px-3 py-2 rounded-lg text-ink-500 dark:text-ink-400 hover:text-ink-900 dark:hover:text-white transition-colors">Reviews</a>
+                    <a href="#" class="nav-link px-3 py-2 rounded-lg text-ink-500 dark:text-ink-400 hover:text-ink-900 dark:hover:text-white transition-colors">Sobre</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-2">
+                    <button id="searchToggle" class="p-2.5 rounded-xl text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors" aria-label="Buscar">
+                        <svg id="searchIconOpen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <svg id="searchIconClose" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                    <button id="themeToggle" class="p-2.5 rounded-xl text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors" aria-label="Alternar tema escuro">
+                        <svg id="themeIconLight" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                        <svg id="themeIconDark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
+                    <button id="menuToggle" class="lg:hidden p-2.5 rounded-xl text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors" aria-label="Menu" aria-expanded="false">
+                        <svg id="menuIconOpen" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+                        <svg id="menuIconClose" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div id="searchBar" class="hidden border-t border-ink-200/60 dark:border-ink-800/60 bg-white dark:bg-surface-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div class="relative">
+                    <svg class="absolute left-4 top-1/2 -translate-y-1/2 text-ink-400" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="search" placeholder="Buscar artigos, tutoriais, tags..." class="w-full pl-12 pr-4 py-3 bg-ink-50 dark:bg-ink-900 border border-ink-200 dark:border-ink-700 rounded-xl font-sans text-sm text-ink-800 dark:text-ink-200 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all">
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 opacity-0 invisible transition-all duration-300 lg:hidden"></div>
+        <nav id="mobileMenu" class="fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white dark:bg-surface-dark-alt z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out lg:hidden overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-8">
+                    <span class="font-sans font-bold text-lg text-ink-900 dark:text-white">Menu</span>
+                    <button id="mobileClose" class="p-2 rounded-lg hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors" aria-label="Fechar menu">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </button>
+                </div>
+                <div class="space-y-1">
+                    <a href="index.html" class="mobile-link block px-4 py-3 rounded-xl font-sans font-medium text-ink-600 dark:text-ink-300 hover:bg-ink-50 dark:hover:bg-ink-800 transition-colors">Home</a>
+                    <a href="category.html" class="mobile-link block px-4 py-3 rounded-xl font-sans font-medium text-ink-900 dark:text-white bg-ink-50 dark:bg-ink-800">Artigos</a>
+                    <a href="#" class="mobile-link block px-4 py-3 rounded-xl font-sans font-medium text-ink-600 dark:text-ink-300 hover:bg-ink-50 dark:hover:bg-ink-800 transition-colors">Tutoriais</a>
+                    <a href="#" class="mobile-link block px-4 py-3 rounded-xl font-sans font-medium text-ink-600 dark:text-ink-300 hover:bg-ink-50 dark:hover:bg-ink-800 transition-colors">Reviews</a>
+                    <a href="#" class="mobile-link block px-4 py-3 rounded-xl font-sans font-medium text-ink-600 dark:text-ink-300 hover:bg-ink-50 dark:hover:bg-ink-800 transition-colors">Sobre</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ============================================
+             CATEGORY HEADER
+        ============================================ -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 lg:pt-14 pb-8">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 font-sans text-sm text-ink-400 mb-6" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                <span class="text-ink-600 dark:text-ink-300">JavaScript</span>
+            </nav>
+
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="w-10 h-10 rounded-xl bg-yellow-400/10 flex items-center justify-center">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#f7df1e"/><text x="12" y="18" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#000">JS</text></svg>
+                        </span>
+                        <h1 class="font-sans font-extrabold text-3xl lg:text-4xl text-ink-900 dark:text-white">JavaScript</h1>
+                    </div>
+                    <p class="text-ink-500 dark:text-ink-400 max-w-xl">
+                        Tutoriais, guias e análises sobre JavaScript moderno — ES2024+, frameworks, padrões e boas práticas.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2 font-sans text-sm text-ink-400 shrink-0">
+                    <span>42 artigos</span>
+                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                    <span>Ordenar por:</span>
+                    <select class="bg-transparent border-none font-sans text-sm font-medium text-ink-700 dark:text-ink-300 focus:outline-none cursor-pointer">
+                        <option>Mais recentes</option>
+                        <option>Mais lidos</option>
+                        <option>Mais antigos</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================
+             ARTICLES LIST
+        ============================================ -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 lg:pb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+
+                <!-- Articles — 2/3 -->
+                <div class="lg:col-span-2 space-y-6">
+
+                    <!-- Article 1 — Featured -->
+                    <article class="group">
+                        <a href="post.html" class="grid grid-cols-1 sm:grid-cols-5 gap-5 p-5 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-white dark:bg-surface-dark-alt hover:border-accent/30 dark:hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300">
+                            <div class="sm:col-span-2 relative aspect-[16/10] sm:aspect-auto rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop" alt="Código JavaScript" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="sm:col-span-3 flex flex-col justify-center gap-2.5">
+                                <div class="flex items-center gap-2 font-sans">
+                                    <span class="px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400">JavaScript</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <time datetime="2026-02-15" class="text-xs text-ink-400">15 Fev 2026</time>
+                                </div>
+                                <h2 class="font-sans font-bold text-lg text-ink-900 dark:text-white leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                                    O Guia Definitivo de Performance em JavaScript: Da Teoria à Prática
+                                </h2>
+                                <p class="text-sm text-ink-500 dark:text-ink-400 leading-relaxed line-clamp-2">
+                                    Aprenda as técnicas avançadas que os melhores engenheiros utilizam para otimizar aplicações JavaScript.
+                                </p>
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-white font-sans font-bold text-[9px]">MA</div>
+                                    <span class="font-sans text-xs text-ink-500">Marina Alves</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <span class="font-sans text-xs text-ink-400">12 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Article 2 -->
+                    <article class="group">
+                        <a href="post.html" class="grid grid-cols-1 sm:grid-cols-5 gap-5 p-5 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-white dark:bg-surface-dark-alt hover:border-accent/30 dark:hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300">
+                            <div class="sm:col-span-2 relative aspect-[16/10] sm:aspect-auto rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=400&h=300&fit=crop" alt="Programação" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="sm:col-span-3 flex flex-col justify-center gap-2.5">
+                                <div class="flex items-center gap-2 font-sans">
+                                    <span class="px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400">JavaScript</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <time datetime="2026-02-10" class="text-xs text-ink-400">10 Fev 2026</time>
+                                </div>
+                                <h2 class="font-sans font-bold text-lg text-ink-900 dark:text-white leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                                    Async/Await vs Promises: Quando Usar Cada Um
+                                </h2>
+                                <p class="text-sm text-ink-500 dark:text-ink-400 leading-relaxed line-clamp-2">
+                                    Entenda as diferenças, vantagens e armadilhas de cada abordagem para programação assíncrona.
+                                </p>
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-red-400 flex items-center justify-center text-white font-sans font-bold text-[9px]">TR</div>
+                                    <span class="font-sans text-xs text-ink-500">Thiago Ribeiro</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <span class="font-sans text-xs text-ink-400">7 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Article 3 -->
+                    <article class="group">
+                        <a href="post.html" class="grid grid-cols-1 sm:grid-cols-5 gap-5 p-5 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-white dark:bg-surface-dark-alt hover:border-accent/30 dark:hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300">
+                            <div class="sm:col-span-2 relative aspect-[16/10] sm:aspect-auto rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1515879218367-8466d910auj7?w=400&h=300&fit=crop" alt="Testing" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="sm:col-span-3 flex flex-col justify-center gap-2.5">
+                                <div class="flex items-center gap-2 font-sans">
+                                    <span class="px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400">JavaScript</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <time datetime="2026-02-05" class="text-xs text-ink-400">5 Fev 2026</time>
+                                </div>
+                                <h2 class="font-sans font-bold text-lg text-ink-900 dark:text-white leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                                    Testes Unitários com Vitest: Guia Completo para 2026
+                                </h2>
+                                <p class="text-sm text-ink-500 dark:text-ink-400 leading-relaxed line-clamp-2">
+                                    Setup, mocking, coverage e CI/CD — tudo que você precisa para testar suas aplicações JavaScript.
+                                </p>
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-emerald-400 flex items-center justify-center text-white font-sans font-bold text-[9px]">CS</div>
+                                    <span class="font-sans text-xs text-ink-500">Camila Silva</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <span class="font-sans text-xs text-ink-400">9 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Article 4 -->
+                    <article class="group">
+                        <a href="post.html" class="grid grid-cols-1 sm:grid-cols-5 gap-5 p-5 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-white dark:bg-surface-dark-alt hover:border-accent/30 dark:hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300">
+                            <div class="sm:col-span-2 relative aspect-[16/10] sm:aspect-auto rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=300&fit=crop" alt="Node.js" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="sm:col-span-3 flex flex-col justify-center gap-2.5">
+                                <div class="flex items-center gap-2 font-sans">
+                                    <span class="px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400">JavaScript</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <time datetime="2026-01-28" class="text-xs text-ink-400">28 Jan 2026</time>
+                                </div>
+                                <h2 class="font-sans font-bold text-lg text-ink-900 dark:text-white leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                                    Proxy e Reflect: Metaprogramação em JavaScript
+                                </h2>
+                                <p class="text-sm text-ink-500 dark:text-ink-400 leading-relaxed line-clamp-2">
+                                    Desbloqueie o poder da metaprogramação com Proxy e Reflect para criar APIs elegantes e reativas.
+                                </p>
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-indigo-400 flex items-center justify-center text-white font-sans font-bold text-[9px]">LC</div>
+                                    <span class="font-sans text-xs text-ink-500">Lucas Costa</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <span class="font-sans text-xs text-ink-400">11 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Article 5 -->
+                    <article class="group">
+                        <a href="post.html" class="grid grid-cols-1 sm:grid-cols-5 gap-5 p-5 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-white dark:bg-surface-dark-alt hover:border-accent/30 dark:hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 transition-all duration-300">
+                            <div class="sm:col-span-2 relative aspect-[16/10] sm:aspect-auto rounded-xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop" alt="Code on screen" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="sm:col-span-3 flex flex-col justify-center gap-2.5">
+                                <div class="flex items-center gap-2 font-sans">
+                                    <span class="px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400">JavaScript</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <time datetime="2026-01-20" class="text-xs text-ink-400">20 Jan 2026</time>
+                                </div>
+                                <h2 class="font-sans font-bold text-lg text-ink-900 dark:text-white leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                                    Signals: O Novo Paradigma de Reatividade
+                                </h2>
+                                <p class="text-sm text-ink-500 dark:text-ink-400 leading-relaxed line-clamp-2">
+                                    Como Signals estão mudando a forma como gerenciamos estado em frameworks modernos.
+                                </p>
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-6 h-6 rounded-full bg-gradient-to-br from-purple-500 to-pink-400 flex items-center justify-center text-white font-sans font-bold text-[9px]">PO</div>
+                                    <span class="font-sans text-xs text-ink-500">Pedro Oliveira</span>
+                                    <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                                    <span class="font-sans text-xs text-ink-400">8 min</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Pagination -->
+                    <nav class="flex items-center justify-center gap-2 pt-8 font-sans" aria-label="Paginação">
+                        <button class="p-2.5 rounded-lg border border-ink-200 dark:border-ink-700 text-ink-400 hover:border-accent hover:text-accent transition-colors" aria-label="Página anterior">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+                        </button>
+                        <button class="w-10 h-10 rounded-lg bg-accent text-white font-semibold text-sm">1</button>
+                        <button class="w-10 h-10 rounded-lg border border-ink-200 dark:border-ink-700 text-ink-600 dark:text-ink-300 font-medium text-sm hover:border-accent hover:text-accent transition-colors">2</button>
+                        <button class="w-10 h-10 rounded-lg border border-ink-200 dark:border-ink-700 text-ink-600 dark:text-ink-300 font-medium text-sm hover:border-accent hover:text-accent transition-colors">3</button>
+                        <span class="text-ink-400 px-1">...</span>
+                        <button class="w-10 h-10 rounded-lg border border-ink-200 dark:border-ink-700 text-ink-600 dark:text-ink-300 font-medium text-sm hover:border-accent hover:text-accent transition-colors">7</button>
+                        <button class="p-2.5 rounded-lg border border-ink-200 dark:border-ink-700 text-ink-400 hover:border-accent hover:text-accent transition-colors" aria-label="Próxima página">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="lg:col-span-1">
+                    <div class="sticky top-[100px] space-y-8">
+
+                        <!-- All Categories -->
+                        <div class="p-6 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-white dark:bg-surface-dark-alt">
+                            <h3 class="font-sans font-bold text-base text-ink-900 dark:text-white mb-4">Categorias</h3>
+                            <ul class="space-y-2">
+                                <li><a href="category.html" class="flex items-center justify-between py-2 px-3 rounded-lg bg-accent/5 dark:bg-accent/10 text-accent font-sans text-sm font-medium"><span>JavaScript</span><span class="text-xs bg-accent/10 px-2 py-0.5 rounded-full">42</span></a></li>
+                                <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-800 text-ink-600 dark:text-ink-300 font-sans text-sm transition-colors"><span>React</span><span class="text-xs text-ink-400">28</span></a></li>
+                                <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-800 text-ink-600 dark:text-ink-300 font-sans text-sm transition-colors"><span>CSS</span><span class="text-xs text-ink-400">19</span></a></li>
+                                <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-800 text-ink-600 dark:text-ink-300 font-sans text-sm transition-colors"><span>Node.js</span><span class="text-xs text-ink-400">15</span></a></li>
+                                <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-800 text-ink-600 dark:text-ink-300 font-sans text-sm transition-colors"><span>DevOps</span><span class="text-xs text-ink-400">12</span></a></li>
+                                <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-800 text-ink-600 dark:text-ink-300 font-sans text-sm transition-colors"><span>IA &amp; ML</span><span class="text-xs text-ink-400">10</span></a></li>
+                                <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-800 text-ink-600 dark:text-ink-300 font-sans text-sm transition-colors"><span>TypeScript</span><span class="text-xs text-ink-400">9</span></a></li>
+                                <li><a href="#" class="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-ink-50 dark:hover:bg-ink-800 text-ink-600 dark:text-ink-300 font-sans text-sm transition-colors"><span>UI/UX</span><span class="text-xs text-ink-400">8</span></a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Newsletter -->
+                        <div class="p-6 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-gradient-to-br from-accent/5 via-transparent to-purple-500/5 dark:from-accent/10 dark:to-purple-500/10">
+                            <h3 class="font-sans font-bold text-base text-ink-900 dark:text-white mb-2">Newsletter</h3>
+                            <p class="text-sm text-ink-500 dark:text-ink-400 mb-4">Receba os melhores artigos toda semana.</p>
+                            <form class="space-y-3">
+                                <input type="email" placeholder="seu@email.com" required class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-ink-900 border border-ink-200 dark:border-ink-700 font-sans text-sm text-ink-800 dark:text-ink-200 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent">
+                                <button type="submit" class="w-full px-4 py-2.5 rounded-xl bg-accent hover:bg-accent-dark text-white font-sans font-semibold text-sm transition-colors">Inscrever-se</button>
+                            </form>
+                        </div>
+
+                        <!-- Ad Space -->
+                        <div class="rounded-2xl border border-dashed border-ink-300 dark:border-ink-700 bg-ink-50 dark:bg-ink-900/50 flex flex-col items-center justify-center p-8 min-h-[250px]">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="text-ink-300 dark:text-ink-600 mb-2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                            <p class="font-sans text-xs text-ink-400 dark:text-ink-500">Ad Space &middot; 300&times;250</p>
+                        </div>
+
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
+    <footer class="border-t border-ink-200/60 dark:border-ink-800/60 bg-ink-50/50 dark:bg-surface-dark-alt/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <svg width="24" height="24" viewBox="0 0 48 48" class="text-accent">
+                        <rect width="48" height="48" rx="10" fill="currentColor"/>
+                        <path d="M14 14h8v20h-8zM26 14h8v12h-8z" fill="white"/>
+                        <rect x="26" y="30" width="8" height="4" rx="2" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="font-sans font-bold text-lg text-ink-900 dark:text-white">Chronicle</span>
+                </div>
+                <p class="font-sans text-xs text-ink-400">&copy; 2026 Chronicle. Todos os direitos reservados.</p>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="text-ink-400 hover:text-ink-700 dark:hover:text-white transition-colors" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" class="text-ink-400 hover:text-ink-700 dark:hover:text-white transition-colors" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                    <a href="#" class="text-ink-400 hover:text-ink-700 dark:hover:text-white transition-colors" aria-label="RSS"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

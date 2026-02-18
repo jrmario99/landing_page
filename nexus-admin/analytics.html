@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NexusAdmin — Professional admin dashboard template for SaaS, CRM, and ERP backends. Built with Tailwind CSS, Alpine.js, and ApexCharts.">
+    <meta name="keywords" content="admin dashboard, SaaS template, CRM, ERP, Tailwind CSS, Alpine.js, ApexCharts, dark mode">
+    <meta name="author" content="NexusAdmin">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NexusAdmin — Professional Admin Dashboard Template">
+    <meta property="og:description" content="Responsive admin dashboard for SaaS, CRM, and ERP. Dark mode, charts, and modular components.">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NexusAdmin — Professional Admin Dashboard Template">
+    <meta name="twitter:description" content="Responsive admin dashboard for SaaS, CRM, and ERP. Dark mode, charts, and modular components.">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "NexusAdmin",
+        "url": "https://yoursite.com/",
+        "description": "Professional admin dashboard template for SaaS, CRM, and ERP backends.",
+        "applicationCategory": "AdminPanel",
+        "operatingSystem": "Web"
+    }
+    </script>
+
+    <title>NexusAdmin — Analytics</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <!-- FOUC Prevention -->
+    <script>if(localStorage.getItem('nexus-dark')==='true')document.documentElement.classList.add('dark');</script>
+
+    <!-- Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        nexus: {
+                            50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe',
+                            300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1',
+                            600: '#4f46e5', 700: '#4338ca', 800: '#3730a3',
+                            900: '#312e81', 950: '#1e1b4b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="font-sans antialiased bg-slate-50 dark:bg-slate-900 text-slate-700 dark:text-slate-300">
+
+    <!-- ============================================
+         APP WRAPPER (Alpine.js Global State)
+    ============================================ -->
+    <div id="app" x-data="{
+        sidebarOpen: false,
+        darkMode: localStorage.getItem('nexus-dark') === 'true',
+        profileOpen: false,
+        notifOpen: false,
+        init() {
+            this.$watch('darkMode', val => {
+                localStorage.setItem('nexus-dark', val);
+                document.documentElement.classList.toggle('dark', val);
+            });
+            if (this.darkMode) document.documentElement.classList.add('dark');
+        }
+    }" x-init="init()">
+
+        <!-- ============================================
+             SIDEBAR OVERLAY (Mobile)
+        ============================================ -->
+        <div x-show="sidebarOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click="sidebarOpen = false" class="fixed inset-0 z-30 sidebar-overlay lg:hidden" x-cloak></div>
+
+        <!-- ============================================
+             SIDEBAR
+        ============================================ -->
+        <aside id="sidebar" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'" class="fixed top-0 left-0 z-40 h-screen w-64 bg-white dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col lg:translate-x-0">
+
+            <!-- Logo -->
+            <div class="h-16 flex items-center gap-3 px-6 border-b border-slate-200 dark:border-slate-700 shrink-0">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-nexus-500 to-cyan-500 flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">N</span>
+                </div>
+                <span class="font-bold text-lg text-slate-900 dark:text-white">NexusAdmin</span>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 overflow-y-auto px-4 py-6 space-y-1">
+                <a href="index.html" class="nav-link">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="customers.html" class="nav-link">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span>Customers</span>
+                </a>
+                <a href="products.html" class="nav-link">
+                    <i data-lucide="package" class="w-5 h-5"></i>
+                    <span>Products</span>
+                </a>
+                <a href="analytics.html" class="nav-link active">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                    <span>Analytics</span>
+                </a>
+                <a href="settings.html" class="nav-link">
+                    <i data-lucide="settings" class="w-5 h-5"></i>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <!-- Upgrade to Pro -->
+            <div class="px-4 pb-6 shrink-0">
+                <div class="bg-gradient-to-br from-nexus-500 to-cyan-500 rounded-xl p-5 text-white">
+                    <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
+                        <i data-lucide="zap" class="w-5 h-5"></i>
+                    </div>
+                    <p class="font-semibold text-sm mb-1">Upgrade to Pro</p>
+                    <p class="text-xs text-white/70 mb-3">Unlock all features and premium support.</p>
+                    <button class="w-full bg-white text-nexus-600 font-semibold text-xs py-2 rounded-lg hover:bg-white/90 transition">Upgrade Now</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ============================================
+             MAIN CONTENT AREA
+        ============================================ -->
+        <div class="lg:ml-64 min-h-screen flex flex-col">
+
+            <!-- ============================================
+                 TOP NAVBAR
+            ============================================ -->
+            <header class="sticky top-0 z-20 h-16 bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-4 sm:px-6 shrink-0">
+
+                <!-- Left: Hamburger + Search -->
+                <div class="flex items-center gap-4 flex-1">
+                    <!-- Hamburger (mobile) -->
+                    <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+
+                    <!-- Search -->
+                    <div class="relative hidden sm:block w-full max-w-xs">
+                        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+                        <input type="text" placeholder="Search..." class="w-full pl-10 pr-4 py-2 text-sm bg-slate-100 dark:bg-slate-700 border-0 rounded-lg text-slate-700 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:ring-2 focus:ring-nexus-500 transition">
+                    </div>
+                </div>
+
+                <!-- Right: Actions -->
+                <div class="flex items-center gap-2">
+
+                    <!-- Dark Mode Toggle -->
+                    <button @click="darkMode = !darkMode" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition" aria-label="Toggle dark mode">
+                        <i data-lucide="moon" class="w-5 h-5" x-show="!darkMode"></i>
+                        <i data-lucide="sun" class="w-5 h-5" x-show="darkMode" x-cloak></i>
+                    </button>
+
+                    <!-- Notifications -->
+                    <div class="relative" @click.away="notifOpen = false">
+                        <button @click="notifOpen = !notifOpen" class="relative p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 transition">
+                            <i data-lucide="bell" class="w-5 h-5"></i>
+                            <span class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center notif-badge">3</span>
+                        </button>
+
+                        <!-- Notification Dropdown -->
+                        <div x-show="notifOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-1" class="absolute right-0 mt-2 w-80 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden" x-cloak>
+                            <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-700">
+                                <p class="text-sm font-semibold text-slate-900 dark:text-white">Notifications</p>
+                            </div>
+                            <div class="max-h-72 overflow-y-auto">
+                                <a href="#" class="flex items-start gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="user-plus" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-slate-700 dark:text-slate-200"><strong>New user registered</strong></p>
+                                        <p class="text-xs text-slate-400 mt-0.5">Sarah Connor just signed up</p>
+                                        <p class="text-xs text-slate-400 mt-1">2 min ago</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex items-start gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="credit-card" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-slate-700 dark:text-slate-200"><strong>Payment received</strong></p>
+                                        <p class="text-xs text-slate-400 mt-0.5">$1,250.00 from John Doe</p>
+                                        <p class="text-xs text-slate-400 mt-1">15 min ago</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="flex items-start gap-3 px-4 py-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                                    <div class="w-8 h-8 rounded-full bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center shrink-0 mt-0.5">
+                                        <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600 dark:text-amber-400"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-slate-700 dark:text-slate-200"><strong>Server load high</strong></p>
+                                        <p class="text-xs text-slate-400 mt-0.5">CPU usage at 92%</p>
+                                        <p class="text-xs text-slate-400 mt-1">1 hour ago</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="px-4 py-3 border-t border-slate-100 dark:border-slate-700 text-center">
+                                <a href="#" class="text-xs font-medium text-nexus-500 hover:text-nexus-600 dark:text-nexus-400">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1 hidden sm:block"></div>
+
+                    <!-- Profile Dropdown -->
+                    <div class="relative" @click.away="profileOpen = false">
+                        <button @click="profileOpen = !profileOpen" class="flex items-center gap-3 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-nexus-500 to-cyan-500 flex items-center justify-center">
+                                <span class="text-white text-xs font-bold">AU</span>
+                            </div>
+                            <div class="hidden sm:block text-left">
+                                <p class="text-sm font-medium text-slate-900 dark:text-white leading-none">Admin User</p>
+                                <p class="text-xs text-slate-400 mt-0.5">admin@nexus.com</p>
+                            </div>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 hidden sm:block"></i>
+                        </button>
+
+                        <!-- Profile Dropdown Menu -->
+                        <div x-show="profileOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-1" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-1" class="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden" x-cloak>
+                            <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-700">
+                                <p class="text-sm font-semibold text-slate-900 dark:text-white">Admin User</p>
+                                <p class="text-xs text-slate-400">admin@nexus.com</p>
+                            </div>
+                            <div class="py-1">
+                                <a href="profile.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                                    <i data-lucide="user" class="w-4 h-4"></i> My Profile
+                                </a>
+                                <a href="settings.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition">
+                                    <i data-lucide="settings" class="w-4 h-4"></i> Settings
+                                </a>
+                            </div>
+                            <div class="border-t border-slate-100 dark:border-slate-700 py-1">
+                                <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition">
+                                    <i data-lucide="log-out" class="w-4 h-4"></i> Log Out
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ============================================
+                 MAIN ANALYTICS CONTENT
+            ============================================ -->
+            <main class="flex-1 p-4 sm:p-6">
+
+                <!-- Page Header -->
+                <div class="mb-6">
+                    <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Analytics</h1>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Track your website performance and visitor insights.</p>
+                </div>
+
+                <!-- ============================================
+                     ROW 1: KPI CARDS
+                ============================================ -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
+
+                    <!-- Page Views -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Page Views</p>
+                                <p class="text-2xl font-bold text-slate-900 dark:text-white mt-1">142,587</p>
+                                <span class="inline-flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400 mt-2">
+                                    <i data-lucide="trending-up" class="w-3 h-3 mr-1"></i> +18.2%
+                                </span>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-nexus-50 dark:bg-nexus-900/30 flex items-center justify-center">
+                                <i data-lucide="eye" class="w-6 h-6 text-nexus-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Avg. Session Duration -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Avg. Session Duration</p>
+                                <p class="text-2xl font-bold text-slate-900 dark:text-white mt-1">4m 32s</p>
+                                <span class="inline-flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400 mt-2">
+                                    <i data-lucide="trending-up" class="w-3 h-3 mr-1"></i> +6.8%
+                                </span>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center">
+                                <i data-lucide="clock" class="w-6 h-6 text-cyan-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conversion Rate -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Conversion Rate</p>
+                                <p class="text-2xl font-bold text-slate-900 dark:text-white mt-1">3.24%</p>
+                                <span class="inline-flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400 mt-2">
+                                    <i data-lucide="trending-up" class="w-3 h-3 mr-1"></i> +0.8%
+                                </span>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center">
+                                <i data-lucide="target" class="w-6 h-6 text-amber-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue per Visitor -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Revenue per Visitor</p>
+                                <p class="text-2xl font-bold text-slate-900 dark:text-white mt-1">$2.14</p>
+                                <span class="inline-flex items-center text-xs font-medium text-emerald-600 dark:text-emerald-400 mt-2">
+                                    <i data-lucide="trending-up" class="w-3 h-3 mr-1"></i> +11.3%
+                                </span>
+                            </div>
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center">
+                                <i data-lucide="dollar-sign" class="w-6 h-6 text-emerald-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     ROW 2: CHARTS
+                ============================================ -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 mt-6">
+
+                    <!-- Visitors Overview (2/3) -->
+                    <div class="lg:col-span-2 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-semibold text-slate-900 dark:text-white">Visitors Overview</h3>
+                            <select class="text-sm bg-slate-100 dark:bg-slate-700 rounded-lg px-3 py-1.5 border-0 text-slate-600 dark:text-slate-300 outline-none cursor-pointer">
+                                <option>This Week</option>
+                                <option>Last Week</option>
+                                <option>This Month</option>
+                            </select>
+                        </div>
+                        <div id="visitorsChart" class="chart-container"></div>
+                    </div>
+
+                    <!-- Device Breakdown (1/3) -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-semibold text-slate-900 dark:text-white">Device Breakdown</h3>
+                        </div>
+                        <div id="deviceChart" class="chart-container"></div>
+                    </div>
+                </div>
+
+                <!-- ============================================
+                     ROW 3: TOP PAGES & TOP REFERRERS
+                ============================================ -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-6">
+
+                    <!-- Top Pages -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+                            <h3 class="font-semibold text-slate-900 dark:text-white">Top Pages</h3>
+                            <a href="#" class="text-sm font-medium text-nexus-500 hover:text-nexus-600 dark:text-nexus-400 transition">View All</a>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="border-b border-slate-200 dark:border-slate-700">
+                                        <th class="text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-6 py-3">Page</th>
+                                        <th class="text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-6 py-3">Views</th>
+                                        <th class="text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-6 py-3">Bounce Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition">
+                                        <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">/dashboard</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">42,580</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">18.2%</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition">
+                                        <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">/products</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">31,245</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">24.7%</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition">
+                                        <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">/pricing</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">28,190</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">31.5%</td>
+                                    </tr>
+                                    <tr class="border-b border-slate-100 dark:border-slate-700/50 hover:bg-slate-50 dark:hover:bg-slate-700/30 transition">
+                                        <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">/blog</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">22,847</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">42.1%</td>
+                                    </tr>
+                                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/30 transition">
+                                        <td class="px-6 py-4 text-sm font-medium text-slate-900 dark:text-white">/about</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">17,725</td>
+                                        <td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">38.6%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Top Referrers -->
+                    <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
+                            <h3 class="font-semibold text-slate-900 dark:text-white">Top Referrers</h3>
+                            <a href="#" class="text-sm font-medium text-nexus-500 hover:text-nexus-600 dark:text-nexus-400 transition">View All</a>
+                        </div>
+                        <div class="px-6 py-4 space-y-5">
+                            <!-- Google -->
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-slate-900 dark:text-white">Google</span>
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">45%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-nexus-500 rounded-full" style="width: 45%"></div>
+                                </div>
+                            </div>
+                            <!-- Twitter -->
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-slate-900 dark:text-white">Twitter</span>
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">22%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-cyan-500 rounded-full" style="width: 22%"></div>
+                                </div>
+                            </div>
+                            <!-- GitHub -->
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-slate-900 dark:text-white">GitHub</span>
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">15%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-amber-500 rounded-full" style="width: 15%"></div>
+                                </div>
+                            </div>
+                            <!-- LinkedIn -->
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-slate-900 dark:text-white">LinkedIn</span>
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">12%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-emerald-500 rounded-full" style="width: 12%"></div>
+                                </div>
+                            </div>
+                            <!-- Direct -->
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-slate-900 dark:text-white">Direct</span>
+                                    <span class="text-sm text-slate-500 dark:text-slate-400">6%</span>
+                                </div>
+                                <div class="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                                    <div class="h-full bg-violet-500 rounded-full" style="width: 6%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ============================================
+         ANALYTICS CHARTS INITIALIZATION
+    ============================================ -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        /* ============================================
+           1. DARK MODE OBSERVER FOR CHARTS
+        ============================================ */
+        const htmlEl = document.documentElement;
+        const isDark = () => htmlEl.classList.contains('dark');
+
+        let visitorsChart = null;
+        let deviceChart = null;
+
+        const observer = new MutationObserver(() => {
+            updateChartsTheme();
+        });
+        observer.observe(htmlEl, { attributes: true, attributeFilter: ['class'] });
+
+        /* ============================================
+           2. CHART THEME HELPERS
+        ============================================ */
+        function getChartColors() {
+            return {
+                text: isDark() ? '#94a3b8' : '#64748b',
+                grid: isDark() ? '#334155' : '#e2e8f0',
+                bg: isDark() ? '#1e293b' : '#ffffff',
+            };
+        }
+
+        /* ============================================
+           3. VISITORS OVERVIEW — Bar Chart
+        ============================================ */
+        const visitorsEl = document.querySelector('#visitorsChart');
+
+        if (visitorsEl) {
+            const colors = getChartColors();
+            const visitorsOptions = {
+                series: [
+                    {
+                        name: 'New Visitors',
+                        data: [3200, 4100, 3800, 5200, 4800, 3500, 2900]
+                    },
+                    {
+                        name: 'Returning Visitors',
+                        data: [1800, 2400, 2100, 2800, 2600, 2200, 1700]
+                    }
+                ],
+                chart: {
+                    type: 'bar',
+                    height: 320,
+                    fontFamily: 'Inter, sans-serif',
+                    toolbar: { show: false },
+                    background: 'transparent',
+                },
+                colors: ['#6366f1', '#06b6d4'],
+                plotOptions: {
+                    bar: {
+                        borderRadius: 6,
+                        columnWidth: '55%',
+                    }
+                },
+                xaxis: {
+                    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    labels: { style: { colors: colors.text, fontSize: '12px' } },
+                    axisBorder: { show: false },
+                    axisTicks: { show: false },
+                },
+                yaxis: {
+                    labels: {
+                        style: { colors: colors.text, fontSize: '12px' },
+                        formatter: function (val) {
+                            return (val / 1000).toFixed(1) + 'k';
+                        }
+                    }
+                },
+                grid: {
+                    borderColor: colors.grid,
+                    strokeDashArray: 4,
+                    padding: { left: 8, right: 8 }
+                },
+                dataLabels: { enabled: false },
+                tooltip: {
+                    theme: isDark() ? 'dark' : 'light',
+                    y: {
+                        formatter: function (val) {
+                            return val.toLocaleString() + ' visitors';
+                        }
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    horizontalAlign: 'right',
+                    labels: { colors: colors.text },
+                    markers: { radius: 3 }
+                },
+            };
+
+            visitorsChart = new ApexCharts(visitorsEl, visitorsOptions);
+            visitorsChart.render();
+        }
+
+        /* ============================================
+           4. DEVICE BREAKDOWN — Radial Bar Chart
+        ============================================ */
+        const deviceEl = document.querySelector('#deviceChart');
+
+        if (deviceEl) {
+            const colors = getChartColors();
+            const deviceOptions = {
+                series: [62, 31, 7],
+                chart: {
+                    type: 'radialBar',
+                    height: 320,
+                    fontFamily: 'Inter, sans-serif',
+                },
+                labels: ['Desktop', 'Mobile', 'Tablet'],
+                colors: ['#6366f1', '#06b6d4', '#f59e0b'],
+                plotOptions: {
+                    radialBar: {
+                        dataLabels: {
+                            name: {
+                                fontSize: '14px',
+                                color: colors.text,
+                            },
+                            value: {
+                                fontSize: '20px',
+                                fontWeight: 700,
+                                color: isDark() ? '#e2e8f0' : '#0f172a',
+                                formatter: function (val) {
+                                    return val + '%';
+                                }
+                            },
+                            total: {
+                                show: true,
+                                label: 'Desktop',
+                                color: colors.text,
+                                formatter: function () {
+                                    return '62%';
+                                }
+                            }
+                        },
+                        hollow: {
+                            size: '40%',
+                        },
+                        track: {
+                            background: isDark() ? '#334155' : '#e2e8f0',
+                        }
+                    }
+                },
+                stroke: { lineCap: 'round' },
+                legend: {
+                    show: true,
+                    position: 'bottom',
+                    labels: { colors: colors.text },
+                    markers: { radius: 3 }
+                },
+            };
+
+            deviceChart = new ApexCharts(deviceEl, deviceOptions);
+            deviceChart.render();
+        }
+
+        /* ============================================
+           5. UPDATE CHARTS ON THEME CHANGE
+        ============================================ */
+        function updateChartsTheme() {
+            const colors = getChartColors();
+            const tooltipTheme = isDark() ? 'dark' : 'light';
+
+            if (visitorsChart) {
+                visitorsChart.updateOptions({
+                    xaxis: { labels: { style: { colors: colors.text } } },
+                    yaxis: { labels: { style: { colors: colors.text } } },
+                    grid: { borderColor: colors.grid },
+                    tooltip: { theme: tooltipTheme },
+                    legend: { labels: { colors: colors.text } },
+                }, false, false);
+            }
+
+            if (deviceChart) {
+                deviceChart.updateOptions({
+                    plotOptions: {
+                        radialBar: {
+                            dataLabels: {
+                                name: { color: colors.text },
+                                value: { color: isDark() ? '#e2e8f0' : '#0f172a' },
+                                total: { color: colors.text }
+                            },
+                            track: {
+                                background: isDark() ? '#334155' : '#e2e8f0',
+                            }
+                        }
+                    },
+                    legend: { labels: { colors: colors.text } },
+                }, false, false);
+            }
+        }
+    });
+    </script>
+</body>
+</html>

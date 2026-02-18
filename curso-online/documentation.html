@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO: Primary Meta Tags -->
+  <title>Documentation | MasterClass Elite - Color Customization Guide</title>
+  <meta name="description" content="Learn how to customize the global color palette of your MasterClass Elite landing page by editing the Tailwind CSS configuration. Guide available in English and Portuguese." />
+  <meta name="keywords" content="tailwind css, color customization, landing page documentation, masterclass elite, tailwind config" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://masterclass-elite.com/documentation.html" />
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://masterclass-elite.com/documentation.html" />
+  <meta property="og:title" content="MasterClass Elite - Color Customization Guide" />
+  <meta property="og:description" content="Step-by-step guide to customize colors in the MasterClass Elite landing page using Tailwind CSS." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:site_name" content="MasterClass Elite" />
+
+  <!-- SEO: Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MasterClass Elite - Color Customization Guide" />
+  <meta name="twitter:description" content="Step-by-step guide to customize colors using Tailwind CSS configuration." />
+
+  <!-- SEO: Structured Data - TechArticle -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "MasterClass Elite - Global Color Customization Guide",
+    "description": "Learn how to customize the global color palette by editing the Tailwind CSS configuration.",
+    "author": { "@type": "Organization", "name": "MasterClass Elite" },
+    "inLanguage": ["en", "pt-BR"],
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "MasterClass Elite",
+      "url": "https://masterclass-elite.com"
+    }
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN + Config -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          colors: {
+            deep: {
+              900: '#0a1128',
+              800: '#0f1a3e',
+              700: '#162354',
+              600: '#1c2d6b',
+              500: '#243b8a',
+            },
+            gold: {
+              100: '#fff7e0',
+              200: '#ffe8a3',
+              300: '#ffd966',
+              400: '#d4a843',
+              500: '#c9952a',
+              600: '#a67b1e',
+            },
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body: ['"Inter"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="assets/css/docs.css" />
+</head>
+<body class="bg-deep-900 text-gray-200 antialiased">
+
+  <!-- Header -->
+  <header class="border-b border-white/5 bg-deep-900/95 backdrop-blur-md sticky top-0 z-50" role="banner">
+    <nav class="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between" aria-label="Navegação da documentação">
+      <a href="index.html" class="flex items-center gap-2 text-gray-200 hover:text-white transition" aria-label="Voltar para a Landing Page">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+        <span class="text-sm font-medium">Back to Landing Page</span>
+      </a>
+      <!-- Language Toggle -->
+      <div class="flex border border-white/10 rounded-lg overflow-hidden" role="group" aria-label="Language selector">
+        <button onclick="switchLang('en')" id="tab-en" class="lang-tab px-4 py-1.5 text-xs font-semibold border-r border-white/10 active" aria-pressed="true">EN</button>
+        <button onclick="switchLang('pt')" id="tab-pt" class="lang-tab px-4 py-1.5 text-xs font-semibold" aria-pressed="false">PT</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-6 py-16">
+
+    <!-- ==================== ENGLISH ==================== -->
+    <div id="lang-en">
+      <div class="mb-12">
+        <span class="text-gold-300 text-xs font-semibold uppercase tracking-widest">Documentation</span>
+        <h1 class="font-display text-4xl font-bold text-white mt-3">Global Color Customization Guide</h1>
+        <p class="text-gray-300 mt-4 leading-relaxed max-w-2xl">Learn how to customize the global color palette of your MasterClass Elite landing page by editing the Tailwind CSS configuration.</p>
+      </div>
+
+      <!-- Table of Contents -->
+      <nav class="bg-deep-800 rounded-xl border border-white/5 p-6 mb-12">
+        <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Table of Contents</h2>
+        <ol class="space-y-2 text-sm list-decimal list-inside">
+          <li><a href="#en-overview" class="text-gold-300 hover:text-gold-200 transition">Overview of the Color System</a></li>
+          <li><a href="#en-where" class="text-gold-300 hover:text-gold-200 transition">Where Colors Are Defined</a></li>
+          <li><a href="#en-palette" class="text-gold-300 hover:text-gold-200 transition">Understanding the Color Palette</a></li>
+          <li><a href="#en-changing" class="text-gold-300 hover:text-gold-200 transition">How to Change Colors</a></li>
+          <li><a href="#en-css" class="text-gold-300 hover:text-gold-200 transition">CSS Custom Properties to Update</a></li>
+          <li><a href="#en-examples" class="text-gold-300 hover:text-gold-200 transition">Example: Alternative Themes</a></li>
+          <li><a href="#en-tips" class="text-gold-300 hover:text-gold-200 transition">Tips &amp; Best Practices</a></li>
+        </ol>
+      </nav>
+
+      <!-- Section 1 -->
+      <section id="en-overview" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">1. Overview of the Color System</h2>
+        <p class="leading-relaxed mb-4">The MasterClass Elite landing page uses a two-tone color system built on <strong class="text-white">Tailwind CSS</strong>:</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div class="bg-deep-800 rounded-lg border border-white/5 p-5">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-8 h-8 rounded-md bg-[#0a1128] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#0f1a3e] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#162354] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#1c2d6b] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#243b8a] border border-white/10"></span>
+            </div>
+            <p class="text-sm font-semibold text-white">Deep Blue (Primary Background)</p>
+            <p class="text-xs text-gray-300 mt-1">Used for backgrounds, cards, and dark UI elements.</p>
+          </div>
+          <div class="bg-deep-800 rounded-lg border border-white/5 p-5">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-8 h-8 rounded-md bg-[#fff7e0] border border-gold-600/40"></span>
+              <span class="w-8 h-8 rounded-md bg-[#ffe8a3] border border-gold-600/40"></span>
+              <span class="w-8 h-8 rounded-md bg-[#ffd966] border border-gold-600/40"></span>
+              <span class="w-8 h-8 rounded-md bg-[#d4a843] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#c9952a] border border-white/10"></span>
+            </div>
+            <p class="text-sm font-semibold text-white">Gold (Accent / CTA)</p>
+            <p class="text-xs text-gray-300 mt-1">Used for buttons, highlights, icons, and accents.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2 -->
+      <section id="en-where" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">2. Where Colors Are Defined</h2>
+        <p class="leading-relaxed mb-4">Since this project uses the <strong class="text-white">Tailwind CDN</strong>, the configuration is defined inline in the <code class="bg-deep-800 px-2 py-0.5 rounded text-gold-300 text-sm">&lt;script&gt;</code> tag at the top of <code class="bg-deep-800 px-2 py-0.5 rounded text-gold-300 text-sm">index.html</code>:</p>
+        <div class="code-block mb-4">
+          <code>&lt;script&gt;
+  <span class="hl-fn">tailwindcss</span>.<span class="hl-key">config</span> = {
+    <span class="hl-key">theme</span>: {
+      <span class="hl-key">extend</span>: {
+        <span class="hl-key">colors</span>: {
+          <span class="hl-key">deep</span>: {
+            <span class="hl-num">900</span>: <span class="hl-str">'#0a1128'</span>,  <span class="hl-comment">// Darkest background</span>
+            <span class="hl-num">800</span>: <span class="hl-str">'#0f1a3e'</span>,  <span class="hl-comment">// Card backgrounds</span>
+            <span class="hl-num">700</span>: <span class="hl-str">'#162354'</span>,  <span class="hl-comment">// Lighter sections</span>
+            <span class="hl-num">600</span>: <span class="hl-str">'#1c2d6b'</span>,  <span class="hl-comment">// Hover states</span>
+            <span class="hl-num">500</span>: <span class="hl-str">'#243b8a'</span>,  <span class="hl-comment">// Lightest deep</span>
+          },
+          <span class="hl-key">gold</span>: {
+            <span class="hl-num">100</span>: <span class="hl-str">'#fff7e0'</span>,  <span class="hl-comment">// Lightest gold</span>
+            <span class="hl-num">200</span>: <span class="hl-str">'#ffe8a3'</span>,
+            <span class="hl-num">300</span>: <span class="hl-str">'#ffd966'</span>,  <span class="hl-comment">// Shimmer highlights</span>
+            <span class="hl-num">400</span>: <span class="hl-str">'#d4a843'</span>,  <span class="hl-comment">// Icons &amp; borders</span>
+            <span class="hl-num">500</span>: <span class="hl-str">'#c9952a'</span>,  <span class="hl-comment">// Buttons &amp; CTAs</span>
+            <span class="hl-num">600</span>: <span class="hl-str">'#a67b1e'</span>,  <span class="hl-comment">// Darkest gold</span>
+          },
+        },
+      },
+    },
+  }
+&lt;/script&gt;</code>
+        </div>
+        <div class="bg-gold-500/10 border border-gold-500/20 rounded-lg p-4">
+          <p class="text-sm text-gold-300"><strong>Note:</strong> If you migrate to a build tool (Vite, Webpack, etc.), move this configuration to a <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">tailwind.config.js</code> file with the same structure.</p>
+        </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section id="en-palette" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">3. Understanding the Color Palette</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-white/10">
+                <th class="text-left py-3 pr-4 text-white font-semibold">Token</th>
+                <th class="text-left py-3 pr-4 text-white font-semibold">Hex</th>
+                <th class="text-left py-3 pr-4 text-white font-semibold">Usage</th>
+                <th class="text-left py-3 text-white font-semibold">Preview</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">deep-900</code></td><td class="pr-4 font-mono text-xs">#0a1128</td><td class="pr-4 text-xs">Main body background</td><td><span class="inline-block w-6 h-6 rounded bg-[#0a1128] border border-white/10"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">deep-800</code></td><td class="pr-4 font-mono text-xs">#0f1a3e</td><td class="pr-4 text-xs">Cards, sections, inputs</td><td><span class="inline-block w-6 h-6 rounded bg-[#0f1a3e] border border-white/10"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">deep-700</code></td><td class="pr-4 font-mono text-xs">#162354</td><td class="pr-4 text-xs">Lighter backgrounds</td><td><span class="inline-block w-6 h-6 rounded bg-[#162354] border border-white/10"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">gold-300</code></td><td class="pr-4 font-mono text-xs">#ffd966</td><td class="pr-4 text-xs">Shimmer gradient, highlights</td><td><span class="inline-block w-6 h-6 rounded bg-[#ffd966] border border-gold-600/40"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">gold-400</code></td><td class="pr-4 font-mono text-xs">#d4a843</td><td class="pr-4 text-xs">Icons, badges, borders</td><td><span class="inline-block w-6 h-6 rounded bg-[#d4a843] border border-white/10"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">gold-500</code></td><td class="pr-4 font-mono text-xs">#c9952a</td><td class="pr-4 text-xs">Primary buttons, CTAs</td><td><span class="inline-block w-6 h-6 rounded bg-[#c9952a] border border-white/10"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 4 -->
+      <section id="en-changing" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">4. How to Change Colors</h2>
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 text-sm font-bold shrink-0">1</span>
+            <div>
+              <p class="text-white font-medium">Open <code class="bg-deep-800 px-2 py-0.5 rounded text-gold-300 text-sm">index.html</code></p>
+              <p class="text-sm text-gray-300 mt-1">Find the <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">&lt;script&gt;</code> block containing <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">tailwindcss.config</code> near the top of the file.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 text-sm font-bold shrink-0">2</span>
+            <div>
+              <p class="text-white font-medium">Replace the hex values</p>
+              <p class="text-sm text-gray-300 mt-1">Change any hex color code to your desired color. Keep the same shade numbering (lower = darker/lighter depending on the palette).</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 text-sm font-bold shrink-0">3</span>
+            <div>
+              <p class="text-white font-medium">Update the CSS custom properties</p>
+              <p class="text-sm text-gray-300 mt-1">Some colors are hard-coded in the <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">&lt;style&gt;</code> block (shimmer gradient, scrollbar, etc.). See <a href="#en-css" class="text-gold-300 hover:text-gold-200">Section 5</a> for details.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 text-sm font-bold shrink-0">4</span>
+            <div>
+              <p class="text-white font-medium">Save and refresh the browser</p>
+              <p class="text-sm text-gray-300 mt-1">Since we use the Tailwind CDN, changes take effect immediately on page load.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5 -->
+      <section id="en-css" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">5. CSS Custom Properties to Update</h2>
+        <p class="leading-relaxed mb-4">Besides the Tailwind config, some colors are used directly in the <code class="bg-deep-800 px-2 py-0.5 rounded text-gold-300 text-sm">&lt;style&gt;</code> block. When changing your palette, update these too:</p>
+        <div class="code-block mb-4">
+          <code><span class="hl-comment">/* Scrollbar thumb color */</span>
+::-webkit-scrollbar-thumb { <span class="hl-key">background</span>: <span class="hl-str">#c9952a</span>; }
+
+<span class="hl-comment">/* Gold shimmer gradient (text-shimmer class) */</span>
+.<span class="hl-fn">text-shimmer</span> {
+  <span class="hl-key">background</span>: linear-gradient(
+    135deg,
+    <span class="hl-str">#ffd966</span> 0%,    <span class="hl-comment">/* gold-300 */</span>
+    <span class="hl-str">#c9952a</span> 40%,   <span class="hl-comment">/* gold-500 */</span>
+    <span class="hl-str">#ffe8a3</span> 60%,   <span class="hl-comment">/* gold-200 */</span>
+    <span class="hl-str">#c9952a</span> 100%   <span class="hl-comment">/* gold-500 */</span>
+  );
+}
+
+<span class="hl-comment">/* Play button pulse glow */</span>
+@keyframes <span class="hl-fn">pulse-ring</span> {
+  0% { box-shadow: 0 0 0 0 <span class="hl-str">rgba(201,149,42,0.5)</span>; }  <span class="hl-comment">/* gold-500 */</span>
+}
+
+<span class="hl-comment">/* Progress bar gradient */</span>
+.<span class="hl-fn">progress-bar</span> {
+  <span class="hl-key">background</span>: linear-gradient(90deg, <span class="hl-str">#c9952a</span>, <span class="hl-str">#ffd966</span>);
+}
+
+<span class="hl-comment">/* Playlist hover */</span>
+.<span class="hl-fn">playlist-item</span>:hover {
+  <span class="hl-key">background</span>: linear-gradient(90deg, <span class="hl-str">rgba(201,149,42,0.15)</span>, transparent);
+  <span class="hl-key">border-left-color</span>: <span class="hl-str">#c9952a</span>;
+}
+
+<span class="hl-comment">/* Scrollbar track (deep-900) */</span>
+::-webkit-scrollbar-track { <span class="hl-key">background</span>: <span class="hl-str">#0a1128</span>; }</code>
+        </div>
+      </section>
+
+      <!-- Section 6 -->
+      <section id="en-examples" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">6. Example: Alternative Themes</h2>
+        <p class="leading-relaxed mb-6">Here are two alternative palettes you can copy-paste directly into the config:</p>
+
+        <h3 class="text-lg font-semibold text-white mb-3">Emerald &amp; Silver</h3>
+        <div class="code-block mb-6">
+          <code><span class="hl-key">colors</span>: {
+  <span class="hl-key">deep</span>: {
+    <span class="hl-num">900</span>: <span class="hl-str">'#0a1a14'</span>,
+    <span class="hl-num">800</span>: <span class="hl-str">'#0f2e1f'</span>,
+    <span class="hl-num">700</span>: <span class="hl-str">'#16402d'</span>,
+    <span class="hl-num">600</span>: <span class="hl-str">'#1c5a3e'</span>,
+    <span class="hl-num">500</span>: <span class="hl-str">'#24754f'</span>,
+  },
+  <span class="hl-key">gold</span>: {           <span class="hl-comment">// rename to "silver" optionally</span>
+    <span class="hl-num">100</span>: <span class="hl-str">'#f8f9fa'</span>,
+    <span class="hl-num">200</span>: <span class="hl-str">'#e9ecef'</span>,
+    <span class="hl-num">300</span>: <span class="hl-str">'#dee2e6'</span>,
+    <span class="hl-num">400</span>: <span class="hl-str">'#ced4da'</span>,
+    <span class="hl-num">500</span>: <span class="hl-str">'#adb5bd'</span>,
+    <span class="hl-num">600</span>: <span class="hl-str">'#868e96'</span>,
+  },
+}</code>
+        </div>
+
+        <h3 class="text-lg font-semibold text-white mb-3">Royal Purple &amp; Rose Gold</h3>
+        <div class="code-block mb-4">
+          <code><span class="hl-key">colors</span>: {
+  <span class="hl-key">deep</span>: {
+    <span class="hl-num">900</span>: <span class="hl-str">'#120a28'</span>,
+    <span class="hl-num">800</span>: <span class="hl-str">'#1a0f3e'</span>,
+    <span class="hl-num">700</span>: <span class="hl-str">'#261654'</span>,
+    <span class="hl-num">600</span>: <span class="hl-str">'#331c6b'</span>,
+    <span class="hl-num">500</span>: <span class="hl-str">'#42248a'</span>,
+  },
+  <span class="hl-key">gold</span>: {           <span class="hl-comment">// rename to "rose" optionally</span>
+    <span class="hl-num">100</span>: <span class="hl-str">'#fff0f0'</span>,
+    <span class="hl-num">200</span>: <span class="hl-str">'#fdd'</span>,
+    <span class="hl-num">300</span>: <span class="hl-str">'#f5b7b1'</span>,
+    <span class="hl-num">400</span>: <span class="hl-str">'#e8967d'</span>,
+    <span class="hl-num">500</span>: <span class="hl-str">'#d4756b'</span>,
+    <span class="hl-num">600</span>: <span class="hl-str">'#b05a4f'</span>,
+  },
+}</code>
+        </div>
+        <div class="bg-gold-500/10 border border-gold-500/20 rounded-lg p-4">
+          <p class="text-sm text-gold-300"><strong>Important:</strong> Keep the <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">deep</code> and <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">gold</code> key names unchanged &mdash; renaming them would require updating every Tailwind class in the HTML (e.g., <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">bg-deep-900</code>, <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">text-gold-400</code>).</p>
+        </div>
+      </section>
+
+      <!-- Section 7 -->
+      <section id="en-tips" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">7. Tips &amp; Best Practices</h2>
+        <ul class="space-y-3 text-sm">
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Maintain contrast:</strong> Ensure your accent color has at least a 4.5:1 contrast ratio against the background for accessibility.</span></li>
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Use a color tool:</strong> Tools like <em>coolors.co</em> or <em>Tailwind CSS Color Generator</em> help generate harmonious shade scales.</span></li>
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Test on mobile:</strong> Always preview color changes on mobile devices where screens may render colors differently.</span></li>
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Keep shade consistency:</strong> The 900 shade should always be the darkest for backgrounds. Higher numbers in the <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">gold</code> scale should be more saturated/darker.</span></li>
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Migration path:</strong> To use a <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">tailwind.config.js</code> file, install Tailwind via npm, move the config, and replace the CDN script with your build output.</span></li>
+        </ul>
+      </section>
+    </div>
+
+    <!-- ==================== PORTUGUESE ==================== -->
+    <div id="lang-pt" class="hidden">
+      <div class="mb-12">
+        <span class="text-gold-300 text-xs font-semibold uppercase tracking-widest">Documentação</span>
+        <h1 class="font-display text-4xl font-bold text-white mt-3">Guia de Personalização de Cores Globais</h1>
+        <p class="text-gray-300 mt-4 leading-relaxed max-w-2xl">Aprenda como personalizar a paleta de cores global da sua landing page MasterClass Elite editando a configuração do Tailwind CSS.</p>
+      </div>
+
+      <!-- Índice -->
+      <nav class="bg-deep-800 rounded-xl border border-white/5 p-6 mb-12">
+        <h2 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Índice</h2>
+        <ol class="space-y-2 text-sm list-decimal list-inside">
+          <li><a href="#pt-overview" class="text-gold-300 hover:text-gold-200 transition">Visão Geral do Sistema de Cores</a></li>
+          <li><a href="#pt-where" class="text-gold-300 hover:text-gold-200 transition">Onde as Cores São Definidas</a></li>
+          <li><a href="#pt-palette" class="text-gold-300 hover:text-gold-200 transition">Entendendo a Paleta de Cores</a></li>
+          <li><a href="#pt-changing" class="text-gold-300 hover:text-gold-200 transition">Como Alterar as Cores</a></li>
+          <li><a href="#pt-css" class="text-gold-300 hover:text-gold-200 transition">Propriedades CSS para Atualizar</a></li>
+          <li><a href="#pt-examples" class="text-gold-300 hover:text-gold-200 transition">Exemplo: Temas Alternativos</a></li>
+          <li><a href="#pt-tips" class="text-gold-300 hover:text-gold-200 transition">Dicas e Boas Práticas</a></li>
+        </ol>
+      </nav>
+
+      <!-- Seção 1 -->
+      <section id="pt-overview" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">1. Visão Geral do Sistema de Cores</h2>
+        <p class="leading-relaxed mb-4">A landing page MasterClass Elite usa um sistema de duas cores construído com o <strong class="text-white">Tailwind CSS</strong>:</p>
+        <div class="grid sm:grid-cols-2 gap-4 mb-4">
+          <div class="bg-deep-800 rounded-lg border border-white/5 p-5">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-8 h-8 rounded-md bg-[#0a1128] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#0f1a3e] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#162354] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#1c2d6b] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#243b8a] border border-white/10"></span>
+            </div>
+            <p class="text-sm font-semibold text-white">Deep Blue (Fundo Principal)</p>
+            <p class="text-xs text-gray-300 mt-1">Usado para fundos, cards e elementos escuros da interface.</p>
+          </div>
+          <div class="bg-deep-800 rounded-lg border border-white/5 p-5">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="w-8 h-8 rounded-md bg-[#fff7e0] border border-gold-600/40"></span>
+              <span class="w-8 h-8 rounded-md bg-[#ffe8a3] border border-gold-600/40"></span>
+              <span class="w-8 h-8 rounded-md bg-[#ffd966] border border-gold-600/40"></span>
+              <span class="w-8 h-8 rounded-md bg-[#d4a843] border border-white/10"></span>
+              <span class="w-8 h-8 rounded-md bg-[#c9952a] border border-white/10"></span>
+            </div>
+            <p class="text-sm font-semibold text-white">Gold (Destaque / CTA)</p>
+            <p class="text-xs text-gray-300 mt-1">Usado para botões, destaques, ícones e acentos.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 2 -->
+      <section id="pt-where" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">2. Onde as Cores São Definidas</h2>
+        <p class="leading-relaxed mb-4">Como este projeto usa o <strong class="text-white">CDN do Tailwind</strong>, a configuração é definida inline na tag <code class="bg-deep-800 px-2 py-0.5 rounded text-gold-300 text-sm">&lt;script&gt;</code> no topo do arquivo <code class="bg-deep-800 px-2 py-0.5 rounded text-gold-300 text-sm">index.html</code>:</p>
+        <div class="code-block mb-4">
+          <code>&lt;script&gt;
+  <span class="hl-fn">tailwindcss</span>.<span class="hl-key">config</span> = {
+    <span class="hl-key">theme</span>: {
+      <span class="hl-key">extend</span>: {
+        <span class="hl-key">colors</span>: {
+          <span class="hl-key">deep</span>: {
+            <span class="hl-num">900</span>: <span class="hl-str">'#0a1128'</span>,  <span class="hl-comment">// Fundo mais escuro</span>
+            <span class="hl-num">800</span>: <span class="hl-str">'#0f1a3e'</span>,  <span class="hl-comment">// Fundo de cards</span>
+            <span class="hl-num">700</span>: <span class="hl-str">'#162354'</span>,  <span class="hl-comment">// Seções mais claras</span>
+            <span class="hl-num">600</span>: <span class="hl-str">'#1c2d6b'</span>,  <span class="hl-comment">// Estados de hover</span>
+            <span class="hl-num">500</span>: <span class="hl-str">'#243b8a'</span>,  <span class="hl-comment">// Deep mais claro</span>
+          },
+          <span class="hl-key">gold</span>: {
+            <span class="hl-num">100</span>: <span class="hl-str">'#fff7e0'</span>,  <span class="hl-comment">// Gold mais claro</span>
+            <span class="hl-num">200</span>: <span class="hl-str">'#ffe8a3'</span>,
+            <span class="hl-num">300</span>: <span class="hl-str">'#ffd966'</span>,  <span class="hl-comment">// Destaques shimmer</span>
+            <span class="hl-num">400</span>: <span class="hl-str">'#d4a843'</span>,  <span class="hl-comment">// Ícones e bordas</span>
+            <span class="hl-num">500</span>: <span class="hl-str">'#c9952a'</span>,  <span class="hl-comment">// Botões e CTAs</span>
+            <span class="hl-num">600</span>: <span class="hl-str">'#a67b1e'</span>,  <span class="hl-comment">// Gold mais escuro</span>
+          },
+        },
+      },
+    },
+  }
+&lt;/script&gt;</code>
+        </div>
+        <div class="bg-gold-500/10 border border-gold-500/20 rounded-lg p-4">
+          <p class="text-sm text-gold-300"><strong>Nota:</strong> Se você migrar para uma ferramenta de build (Vite, Webpack, etc.), mova esta configuração para um arquivo <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">tailwind.config.js</code> com a mesma estrutura.</p>
+        </div>
+      </section>
+
+      <!-- Seção 3 -->
+      <section id="pt-palette" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">3. Entendendo a Paleta de Cores</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="border-b border-white/10">
+                <th class="text-left py-3 pr-4 text-white font-semibold">Token</th>
+                <th class="text-left py-3 pr-4 text-white font-semibold">Hex</th>
+                <th class="text-left py-3 pr-4 text-white font-semibold">Uso</th>
+                <th class="text-left py-3 text-white font-semibold">Preview</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">deep-900</code></td><td class="pr-4 font-mono text-xs">#0a1128</td><td class="pr-4 text-xs">Fundo principal do body</td><td><span class="inline-block w-6 h-6 rounded bg-[#0a1128] border border-white/10"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">deep-800</code></td><td class="pr-4 font-mono text-xs">#0f1a3e</td><td class="pr-4 text-xs">Cards, seções, inputs</td><td><span class="inline-block w-6 h-6 rounded bg-[#0f1a3e] border border-white/10"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">deep-700</code></td><td class="pr-4 font-mono text-xs">#162354</td><td class="pr-4 text-xs">Fundos mais claros</td><td><span class="inline-block w-6 h-6 rounded bg-[#162354] border border-white/10"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">gold-300</code></td><td class="pr-4 font-mono text-xs">#ffd966</td><td class="pr-4 text-xs">Gradiente shimmer, destaques</td><td><span class="inline-block w-6 h-6 rounded bg-[#ffd966] border border-gold-600/40"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">gold-400</code></td><td class="pr-4 font-mono text-xs">#d4a843</td><td class="pr-4 text-xs">Ícones, badges, bordas</td><td><span class="inline-block w-6 h-6 rounded bg-[#d4a843] border border-white/10"></span></td></tr>
+              <tr><td class="py-2.5 pr-4"><code class="text-gold-300 text-xs">gold-500</code></td><td class="pr-4 font-mono text-xs">#c9952a</td><td class="pr-4 text-xs">Botões principais, CTAs</td><td><span class="inline-block w-6 h-6 rounded bg-[#c9952a] border border-white/10"></span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Seção 4 -->
+      <section id="pt-changing" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">4. Como Alterar as Cores</h2>
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 text-sm font-bold shrink-0">1</span>
+            <div>
+              <p class="text-white font-medium">Abra o arquivo <code class="bg-deep-800 px-2 py-0.5 rounded text-gold-300 text-sm">index.html</code></p>
+              <p class="text-sm text-gray-300 mt-1">Encontre o bloco <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">&lt;script&gt;</code> que contém <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">tailwindcss.config</code> no início do arquivo.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 text-sm font-bold shrink-0">2</span>
+            <div>
+              <p class="text-white font-medium">Substitua os valores hexadecimais</p>
+              <p class="text-sm text-gray-300 mt-1">Altere qualquer código hex para a cor desejada. Mantenha a mesma numeração de tonalidades.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 text-sm font-bold shrink-0">3</span>
+            <div>
+              <p class="text-white font-medium">Atualize as propriedades CSS</p>
+              <p class="text-sm text-gray-300 mt-1">Algumas cores estão diretamente no bloco <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">&lt;style&gt;</code> (gradiente shimmer, scrollbar, etc.). Veja a <a href="#pt-css" class="text-gold-300 hover:text-gold-200">Seção 5</a> para detalhes.</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="w-8 h-8 rounded-full bg-gold-500/20 border border-gold-500/30 flex items-center justify-center text-gold-400 text-sm font-bold shrink-0">4</span>
+            <div>
+              <p class="text-white font-medium">Salve e atualize o navegador</p>
+              <p class="text-sm text-gray-300 mt-1">Como usamos o CDN do Tailwind, as alterações são aplicadas imediatamente ao carregar a página.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 5 -->
+      <section id="pt-css" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">5. Propriedades CSS para Atualizar</h2>
+        <p class="leading-relaxed mb-4">Além da configuração do Tailwind, algumas cores são usadas diretamente no bloco <code class="bg-deep-800 px-2 py-0.5 rounded text-gold-300 text-sm">&lt;style&gt;</code>. Ao mudar sua paleta, atualize estas também:</p>
+        <div class="code-block mb-4">
+          <code><span class="hl-comment">/* Cor do thumb do scrollbar */</span>
+::-webkit-scrollbar-thumb { <span class="hl-key">background</span>: <span class="hl-str">#c9952a</span>; }
+
+<span class="hl-comment">/* Gradiente shimmer dourado (classe text-shimmer) */</span>
+.<span class="hl-fn">text-shimmer</span> {
+  <span class="hl-key">background</span>: linear-gradient(
+    135deg,
+    <span class="hl-str">#ffd966</span> 0%,    <span class="hl-comment">/* gold-300 */</span>
+    <span class="hl-str">#c9952a</span> 40%,   <span class="hl-comment">/* gold-500 */</span>
+    <span class="hl-str">#ffe8a3</span> 60%,   <span class="hl-comment">/* gold-200 */</span>
+    <span class="hl-str">#c9952a</span> 100%   <span class="hl-comment">/* gold-500 */</span>
+  );
+}
+
+<span class="hl-comment">/* Pulso do botão play */</span>
+@keyframes <span class="hl-fn">pulse-ring</span> {
+  0% { box-shadow: 0 0 0 0 <span class="hl-str">rgba(201,149,42,0.5)</span>; }
+}
+
+<span class="hl-comment">/* Gradiente da barra de progresso */</span>
+.<span class="hl-fn">progress-bar</span> {
+  <span class="hl-key">background</span>: linear-gradient(90deg, <span class="hl-str">#c9952a</span>, <span class="hl-str">#ffd966</span>);
+}
+
+<span class="hl-comment">/* Hover da playlist */</span>
+.<span class="hl-fn">playlist-item</span>:hover {
+  <span class="hl-key">background</span>: linear-gradient(90deg, <span class="hl-str">rgba(201,149,42,0.15)</span>, transparent);
+  <span class="hl-key">border-left-color</span>: <span class="hl-str">#c9952a</span>;
+}
+
+<span class="hl-comment">/* Track do scrollbar (deep-900) */</span>
+::-webkit-scrollbar-track { <span class="hl-key">background</span>: <span class="hl-str">#0a1128</span>; }</code>
+        </div>
+      </section>
+
+      <!-- Seção 6 -->
+      <section id="pt-examples" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">6. Exemplo: Temas Alternativos</h2>
+        <p class="leading-relaxed mb-6">Aqui estão duas paletas alternativas que você pode copiar e colar diretamente na configuração:</p>
+
+        <h3 class="text-lg font-semibold text-white mb-3">Esmeralda e Prata</h3>
+        <div class="code-block mb-6">
+          <code><span class="hl-key">colors</span>: {
+  <span class="hl-key">deep</span>: {
+    <span class="hl-num">900</span>: <span class="hl-str">'#0a1a14'</span>,
+    <span class="hl-num">800</span>: <span class="hl-str">'#0f2e1f'</span>,
+    <span class="hl-num">700</span>: <span class="hl-str">'#16402d'</span>,
+    <span class="hl-num">600</span>: <span class="hl-str">'#1c5a3e'</span>,
+    <span class="hl-num">500</span>: <span class="hl-str">'#24754f'</span>,
+  },
+  <span class="hl-key">gold</span>: {           <span class="hl-comment">// renomeie para "silver" opcionalmente</span>
+    <span class="hl-num">100</span>: <span class="hl-str">'#f8f9fa'</span>,
+    <span class="hl-num">200</span>: <span class="hl-str">'#e9ecef'</span>,
+    <span class="hl-num">300</span>: <span class="hl-str">'#dee2e6'</span>,
+    <span class="hl-num">400</span>: <span class="hl-str">'#ced4da'</span>,
+    <span class="hl-num">500</span>: <span class="hl-str">'#adb5bd'</span>,
+    <span class="hl-num">600</span>: <span class="hl-str">'#868e96'</span>,
+  },
+}</code>
+        </div>
+
+        <h3 class="text-lg font-semibold text-white mb-3">Roxo Real e Rose Gold</h3>
+        <div class="code-block mb-4">
+          <code><span class="hl-key">colors</span>: {
+  <span class="hl-key">deep</span>: {
+    <span class="hl-num">900</span>: <span class="hl-str">'#120a28'</span>,
+    <span class="hl-num">800</span>: <span class="hl-str">'#1a0f3e'</span>,
+    <span class="hl-num">700</span>: <span class="hl-str">'#261654'</span>,
+    <span class="hl-num">600</span>: <span class="hl-str">'#331c6b'</span>,
+    <span class="hl-num">500</span>: <span class="hl-str">'#42248a'</span>,
+  },
+  <span class="hl-key">gold</span>: {           <span class="hl-comment">// renomeie para "rose" opcionalmente</span>
+    <span class="hl-num">100</span>: <span class="hl-str">'#fff0f0'</span>,
+    <span class="hl-num">200</span>: <span class="hl-str">'#fdd'</span>,
+    <span class="hl-num">300</span>: <span class="hl-str">'#f5b7b1'</span>,
+    <span class="hl-num">400</span>: <span class="hl-str">'#e8967d'</span>,
+    <span class="hl-num">500</span>: <span class="hl-str">'#d4756b'</span>,
+    <span class="hl-num">600</span>: <span class="hl-str">'#b05a4f'</span>,
+  },
+}</code>
+        </div>
+        <div class="bg-gold-500/10 border border-gold-500/20 rounded-lg p-4">
+          <p class="text-sm text-gold-300"><strong>Importante:</strong> Mantenha os nomes das chaves <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">deep</code> e <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">gold</code> inalterados &mdash; renomeá-los exigiria atualizar todas as classes Tailwind no HTML (ex: <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">bg-deep-900</code>, <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">text-gold-400</code>).</p>
+        </div>
+      </section>
+
+      <!-- Seção 7 -->
+      <section id="pt-tips" class="mb-14">
+        <h2 class="text-2xl font-bold text-white mb-4">7. Dicas e Boas Práticas</h2>
+        <ul class="space-y-3 text-sm">
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Mantenha o contraste:</strong> Garanta que sua cor de destaque tenha pelo menos 4.5:1 de contraste contra o fundo para acessibilidade.</span></li>
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Use uma ferramenta de cores:</strong> Ferramentas como <em>coolors.co</em> ou <em>Tailwind CSS Color Generator</em> ajudam a gerar escalas de tons harmoniosas.</span></li>
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Teste no mobile:</strong> Sempre pré-visualize as mudanças de cores em dispositivos móveis, onde as telas podem renderizar cores de forma diferente.</span></li>
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Mantenha consistência:</strong> O tom 900 deve ser sempre o mais escuro para fundos. Números maiores na escala <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">gold</code> devem ser mais saturados/escuros.</span></li>
+          <li class="flex gap-3"><svg class="w-5 h-5 text-gold-300 shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/></svg><span><strong class="text-white">Caminho de migração:</strong> Para usar um arquivo <code class="bg-deep-800 px-1.5 py-0.5 rounded text-xs">tailwind.config.js</code>, instale o Tailwind via npm, mova a configuração e substitua o script CDN pela saída do build.</span></li>
+        </ul>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/5 py-8" role="contentinfo">
+    <div class="max-w-4xl mx-auto px-6 text-center text-gray-300 text-sm">
+      <p>&copy; 2026 MasterClass Elite &mdash; Documentation</p>
+    </div>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src="assets/js/docs.js"></script>
+</body>
+</html>

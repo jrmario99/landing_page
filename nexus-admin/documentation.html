@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusAdmin — Documentation / Documentacao</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; color: #334155; line-height: 1.7; }
+        .lang-pt { display: none; }
+        .show-pt .lang-en { display: none; }
+        .show-pt .lang-pt { display: block; }
+        a { color: #6366f1; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e2e8f0; }
+        header .inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 0.95rem; color: #0f172a; text-decoration: none; }
+        .logo:hover { text-decoration: none; }
+        .logo-icon { width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, #6366f1, #06b6d4); display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 800; }
+        .lang-btns { display: flex; gap: 4px; }
+        .lang-btn { padding: 4px 14px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.02em; border: 1px solid #e2e8f0; border-radius: 8px; background: transparent; color: #94a3b8; cursor: pointer; transition: all 0.15s; }
+        .lang-btn.active { background: #0f172a; color: white; border-color: #0f172a; }
+        main { max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+        h1 { font-size: 2rem; font-weight: 800; color: #0f172a; margin-bottom: 0.5rem; }
+        .subtitle { color: #64748b; font-size: 1rem; margin-bottom: 2.5rem; }
+        h2 { font-size: 1.35rem; font-weight: 700; color: #0f172a; margin: 2.5rem 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e2e8f0; }
+        h3 { font-size: 1rem; font-weight: 600; color: #0f172a; margin: 1.5rem 0 0.5rem; }
+        p { margin-bottom: 0.75rem; font-size: 0.92rem; }
+        ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { margin: 0.3rem 0; font-size: 0.92rem; }
+        pre { background: #0f172a; color: #e2e8f0; padding: 1.25rem; border-radius: 12px; overflow-x: auto; font-size: 0.8rem; line-height: 1.7; margin: 1rem 0; }
+        code { font-family: 'JetBrains Mono', monospace; font-size: 0.82em; background: #f1f5f9; padding: 2px 6px; border-radius: 4px; color: #6366f1; }
+        pre code { background: none; padding: 0; color: inherit; }
+        .toc { background: #f1f5f9; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem; }
+        .toc-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 0.75rem; }
+        .toc ol { list-style: none; padding: 0; columns: 2; }
+        .toc li { margin: 0.35rem 0; }
+        .toc a { font-size: 0.88rem; color: #6366f1; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.88rem; }
+        th, td { text-align: left; padding: 0.6rem 1rem; border-bottom: 1px solid #e2e8f0; }
+        th { font-weight: 600; color: #0f172a; background: #f8fafc; }
+        footer { border-top: 1px solid #e2e8f0; padding: 2rem 0; text-align: center; }
+        footer p { font-size: 0.75rem; color: #94a3b8; }
+        @media (max-width: 640px) { h1 { font-size: 1.5rem; } .toc ol { columns: 1; } main { padding: 2rem 1rem; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="inner">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">N</div>
+                NexusAdmin <span style="font-weight: 400; color: #94a3b8; margin-left: 4px;">Docs</span>
+            </a>
+            <div class="lang-btns">
+                <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">EN</button>
+                <button class="lang-btn" onclick="switchLang('pt')" id="btnPt">PT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>
+            <span class="lang-en">NexusAdmin Documentation</span>
+            <span class="lang-pt">Documentacao NexusAdmin</span>
+        </h1>
+        <p class="subtitle lang-en">Complete guide to customize and deploy the NexusAdmin dashboard template.</p>
+        <p class="subtitle lang-pt">Guia completo para personalizar e publicar o template de dashboard NexusAdmin.</p>
+
+        <!-- TOC -->
+        <nav class="toc">
+            <div class="toc-title lang-en">Table of Contents</div>
+            <div class="toc-title lang-pt">Sumario</div>
+            <ol>
+                <li><a href="#overview"><span class="lang-en">1. Overview</span><span class="lang-pt">1. Visao Geral</span></a></li>
+                <li><a href="#structure"><span class="lang-en">2. File Structure</span><span class="lang-pt">2. Estrutura de Arquivos</span></a></li>
+                <li><a href="#tech"><span class="lang-en">3. Tech Stack</span><span class="lang-pt">3. Stack Tecnica</span></a></li>
+                <li><a href="#layout"><span class="lang-en">4. Layout Architecture</span><span class="lang-pt">4. Arquitetura de Layout</span></a></li>
+                <li><a href="#sidebar"><span class="lang-en">5. Sidebar Customization</span><span class="lang-pt">5. Personalizacao da Sidebar</span></a></li>
+                <li><a href="#charts"><span class="lang-en">6. Charts Configuration</span><span class="lang-pt">6. Configuracao de Graficos</span></a></li>
+                <li><a href="#darkmode"><span class="lang-en">7. Dark Mode</span><span class="lang-pt">7. Modo Escuro</span></a></li>
+                <li><a href="#forms"><span class="lang-en">8. Forms & Settings</span><span class="lang-pt">8. Formularios & Configuracoes</span></a></li>
+                <li><a href="#colors"><span class="lang-en">9. Color Customization</span><span class="lang-pt">9. Personalizacao de Cores</span></a></li>
+                <li><a href="#seo"><span class="lang-en">10. SEO</span><span class="lang-pt">10. SEO</span></a></li>
+                <li><a href="#performance"><span class="lang-en">11. Performance</span><span class="lang-pt">11. Performance</span></a></li>
+                <li><a href="#credits"><span class="lang-en">12. Credits</span><span class="lang-pt">12. Creditos</span></a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Overview -->
+        <section id="overview">
+            <h2><span class="lang-en">1. Overview</span><span class="lang-pt">1. Visao Geral</span></h2>
+            <div class="lang-en">
+                <p>NexusAdmin is a professional admin dashboard template designed for SaaS backends, CRMs, and ERPs. Built with a clean, modular, Stripe-inspired design philosophy emphasizing high contrast and readability.</p>
+                <p>Key features include: responsive sidebar navigation, real-time stat cards, interactive ApexCharts (revenue & traffic), a transactions table, a full settings page with tabbed forms, and native dark mode with smooth transitions.</p>
+            </div>
+            <div class="lang-pt">
+                <p>NexusAdmin e um template profissional de dashboard admin projetado para backends SaaS, CRMs e ERPs. Construido com um design limpo, modular e inspirado no Stripe, com enfase em alto contraste e legibilidade.</p>
+                <p>Recursos principais: navegacao sidebar responsiva, cards de estatisticas em tempo real, graficos interativos ApexCharts (receita e trafego), tabela de transacoes, pagina de configuracoes completa com abas, e modo escuro nativo com transicoes suaves.</p>
+            </div>
+        </section>
+
+        <!-- 2. File Structure -->
+        <section id="structure">
+            <h2><span class="lang-en">2. File Structure</span><span class="lang-pt">2. Estrutura de Arquivos</span></h2>
+<pre><code>nexus-admin/
+├── index.html              # Main dashboard
+├── settings.html           # Settings page (tabbed forms)
+├── documentation.html      # This documentation
+└── assets/
+    ├── css/
+    │   └── style.css       # Custom CSS (scrollbar, badges, toggles)
+    ├── js/
+    │   └── main.js         # ApexCharts init + dark mode sync
+    └── img/
+        ├── favicon.svg     # Gradient N icon
+        └── og-image.jpg    # Social share image (1200x630)</code></pre>
+        </section>
+
+        <!-- 3. Tech Stack -->
+        <section id="tech">
+            <h2><span class="lang-en">3. Tech Stack</span><span class="lang-pt">3. Stack Tecnica</span></h2>
+            <div class="lang-en">
+                <table>
+                    <thead><tr><th>Technology</th><th>Purpose</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Tailwind CSS v3</strong></td><td>Utility-first CSS framework (CDN)</td></tr>
+                        <tr><td><strong>Alpine.js v3</strong></td><td>Sidebar toggle, dropdowns, dark mode state, tabs</td></tr>
+                        <tr><td><strong>ApexCharts</strong></td><td>Revenue area chart and traffic donut chart</td></tr>
+                        <tr><td><strong>Lucide Icons</strong></td><td>Clean SVG icon set for navigation and UI</td></tr>
+                        <tr><td><strong>Inter</strong></td><td>Primary font via Google Fonts (400-800)</td></tr>
+                    </tbody>
+                </table>
+                <p>All dependencies are loaded via CDN. No build step is required.</p>
+            </div>
+            <div class="lang-pt">
+                <table>
+                    <thead><tr><th>Tecnologia</th><th>Finalidade</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Tailwind CSS v3</strong></td><td>Framework CSS utilitario (CDN)</td></tr>
+                        <tr><td><strong>Alpine.js v3</strong></td><td>Toggle sidebar, dropdowns, modo escuro, abas</td></tr>
+                        <tr><td><strong>ApexCharts</strong></td><td>Grafico area de receita e grafico donut de trafego</td></tr>
+                        <tr><td><strong>Lucide Icons</strong></td><td>Conjunto de icones SVG para navegacao e UI</td></tr>
+                        <tr><td><strong>Inter</strong></td><td>Fonte principal via Google Fonts (400-800)</td></tr>
+                    </tbody>
+                </table>
+                <p>Todas as dependencias sao carregadas via CDN. Nenhum build e necessario.</p>
+            </div>
+        </section>
+
+        <!-- 4. Layout Architecture -->
+        <section id="layout">
+            <h2><span class="lang-en">4. Layout Architecture</span><span class="lang-pt">4. Arquitetura de Layout</span></h2>
+            <div class="lang-en">
+                <p>The dashboard uses a fixed sidebar + scrollable main content layout:</p>
+                <ul>
+                    <li><strong>Sidebar</strong> — Fixed left, <code>w-64</code> (256px). Contains logo, nav links, and "Upgrade to Pro" CTA.</li>
+                    <li><strong>Main Area</strong> — <code>lg:ml-64</code> offset. Contains the sticky top navbar and scrollable content.</li>
+                    <li><strong>Top Navbar</strong> — Sticky with search, dark mode toggle, notifications, and profile dropdown.</li>
+                </ul>
+                <p>On mobile (<code>&lt; lg</code>), the sidebar is hidden and toggled via a hamburger menu with an overlay.</p>
+            </div>
+            <div class="lang-pt">
+                <p>O dashboard usa um layout de sidebar fixa + conteudo principal rolavel:</p>
+                <ul>
+                    <li><strong>Sidebar</strong> — Fixa a esquerda, <code>w-64</code> (256px). Contem logo, links de navegacao e CTA "Upgrade to Pro".</li>
+                    <li><strong>Area Principal</strong> — Offset <code>lg:ml-64</code>. Contem a navbar sticky e conteudo rolavel.</li>
+                    <li><strong>Navbar Superior</strong> — Sticky com busca, toggle modo escuro, notificacoes e dropdown de perfil.</li>
+                </ul>
+                <p>No mobile (<code>&lt; lg</code>), a sidebar fica oculta e e ativada pelo menu hamburger com overlay.</p>
+            </div>
+        </section>
+
+        <!-- 5. Sidebar Customization -->
+        <section id="sidebar">
+            <h2><span class="lang-en">5. Sidebar Customization</span><span class="lang-pt">5. Personalizacao da Sidebar</span></h2>
+            <div class="lang-en">
+                <p>Navigation links are inside the <code>&lt;nav&gt;</code> element in the sidebar. Each link uses the <code>.nav-link</code> class. To add a new link:</p>
+<pre><code>&lt;a href="new-page.html" class="nav-link"&gt;
+    &lt;i data-lucide="icon-name" class="w-5 h-5"&gt;&lt;/i&gt;
+    &lt;span&gt;Page Name&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+                <p>Mark the active page by adding the <code>active</code> class to its link. Browse available icons at <a href="https://lucide.dev/icons" target="_blank">lucide.dev/icons</a>.</p>
+            </div>
+            <div class="lang-pt">
+                <p>Os links de navegacao ficam dentro do elemento <code>&lt;nav&gt;</code> na sidebar. Cada link usa a classe <code>.nav-link</code>. Para adicionar um novo link:</p>
+<pre><code>&lt;a href="nova-pagina.html" class="nav-link"&gt;
+    &lt;i data-lucide="nome-icone" class="w-5 h-5"&gt;&lt;/i&gt;
+    &lt;span&gt;Nome da Pagina&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+                <p>Marque a pagina ativa adicionando a classe <code>active</code> ao link. Consulte icones disponiveis em <a href="https://lucide.dev/icons" target="_blank">lucide.dev/icons</a>.</p>
+            </div>
+        </section>
+
+        <!-- 6. Charts Configuration -->
+        <section id="charts">
+            <h2><span class="lang-en">6. Charts Configuration</span><span class="lang-pt">6. Configuracao de Graficos</span></h2>
+            <div class="lang-en">
+                <p>Charts are powered by ApexCharts and initialized in <code>assets/js/main.js</code>. Two charts are included:</p>
+                <ul>
+                    <li><strong>Revenue Overview</strong> — Area chart with Revenue vs Expenses series (12 months)</li>
+                    <li><strong>Traffic Sources</strong> — Donut chart with Direct, Organic, Referral, Social segments</li>
+                </ul>
+                <p>To modify chart data, edit the <code>series</code> arrays in <code>main.js</code>. The charts automatically adapt to dark mode via a <code>MutationObserver</code> that watches for class changes on the <code>&lt;html&gt;</code> element.</p>
+                <h3>Changing Chart Colors</h3>
+<pre><code>// In main.js, update the colors array:
+colors: ['#6366f1', '#06b6d4'],  // Revenue chart
+colors: ['#6366f1', '#06b6d4', '#f59e0b', '#10b981'],  // Traffic chart</code></pre>
+            </div>
+            <div class="lang-pt">
+                <p>Os graficos sao alimentados pelo ApexCharts e inicializados em <code>assets/js/main.js</code>. Dois graficos estao inclusos:</p>
+                <ul>
+                    <li><strong>Visao de Receita</strong> — Grafico area com series Receita vs Despesas (12 meses)</li>
+                    <li><strong>Fontes de Trafego</strong> — Grafico donut com segmentos Direto, Organico, Referencia, Social</li>
+                </ul>
+                <p>Para modificar os dados, edite os arrays <code>series</code> em <code>main.js</code>. Os graficos se adaptam automaticamente ao modo escuro via <code>MutationObserver</code> que monitora mudancas de classe no elemento <code>&lt;html&gt;</code>.</p>
+                <h3>Alterando Cores dos Graficos</h3>
+<pre><code>// Em main.js, atualize o array colors:
+colors: ['#6366f1', '#06b6d4'],  // Grafico de receita
+colors: ['#6366f1', '#06b6d4', '#f59e0b', '#10b981'],  // Grafico de trafego</code></pre>
+            </div>
+        </section>
+
+        <!-- 7. Dark Mode -->
+        <section id="darkmode">
+            <h2><span class="lang-en">7. Dark Mode</span><span class="lang-pt">7. Modo Escuro</span></h2>
+            <div class="lang-en">
+                <p>Dark mode is managed by Alpine.js using Tailwind's <code>darkMode: 'class'</code> strategy:</p>
+                <ol>
+                    <li>On load, a FOUC-prevention script in <code>&lt;head&gt;</code> reads <code>localStorage('nexus-dark')</code> and sets the <code>dark</code> class immediately.</li>
+                    <li>Alpine.js <code>$watch</code> syncs the toggle state to <code>localStorage</code> and toggles the class.</li>
+                    <li>ApexCharts detect the class change via <code>MutationObserver</code> and re-theme automatically.</li>
+                </ol>
+                <p>Light mode: white cards (<code>bg-white</code>) on <code>bg-slate-50</code>. Dark mode: <code>bg-slate-800</code> cards on <code>bg-slate-900</code>.</p>
+            </div>
+            <div class="lang-pt">
+                <p>O modo escuro e gerenciado pelo Alpine.js usando a estrategia <code>darkMode: 'class'</code> do Tailwind:</p>
+                <ol>
+                    <li>No carregamento, um script anti-FOUC no <code>&lt;head&gt;</code> le <code>localStorage('nexus-dark')</code> e define a classe <code>dark</code> imediatamente.</li>
+                    <li>O <code>$watch</code> do Alpine.js sincroniza o estado do toggle com <code>localStorage</code> e alterna a classe.</li>
+                    <li>O ApexCharts detecta a mudanca via <code>MutationObserver</code> e re-aplica o tema automaticamente.</li>
+                </ol>
+                <p>Modo claro: cards brancos (<code>bg-white</code>) sobre <code>bg-slate-50</code>. Modo escuro: cards <code>bg-slate-800</code> sobre <code>bg-slate-900</code>.</p>
+            </div>
+        </section>
+
+        <!-- 8. Forms & Settings -->
+        <section id="forms">
+            <h2><span class="lang-en">8. Forms & Settings</span><span class="lang-pt">8. Formularios & Configuracoes</span></h2>
+            <div class="lang-en">
+                <p>The settings page (<code>settings.html</code>) features an Alpine.js tab system with 4 panels:</p>
+                <ul>
+                    <li><strong>Profile</strong> — Avatar upload, name, email, phone, bio fields</li>
+                    <li><strong>Security</strong> — Password change form + 2FA toggle switch</li>
+                    <li><strong>Billing</strong> — Current plan, payment method, billing history table</li>
+                    <li><strong>Notifications</strong> — 5 notification preferences with toggle switches</li>
+                </ul>
+                <p>Toggle switches use the <code>.toggle-switch</code> CSS class. Toggle the <code>active</code> class to change state.</p>
+            </div>
+            <div class="lang-pt">
+                <p>A pagina de configuracoes (<code>settings.html</code>) possui um sistema de abas Alpine.js com 4 paineis:</p>
+                <ul>
+                    <li><strong>Perfil</strong> — Upload de avatar, nome, email, telefone, bio</li>
+                    <li><strong>Seguranca</strong> — Formulario de senha + toggle 2FA</li>
+                    <li><strong>Cobranca</strong> — Plano atual, metodo de pagamento, historico de cobranca</li>
+                    <li><strong>Notificacoes</strong> — 5 preferencias com toggle switches</li>
+                </ul>
+                <p>Os toggle switches usam a classe CSS <code>.toggle-switch</code>. Alterne a classe <code>active</code> para mudar o estado.</p>
+            </div>
+        </section>
+
+        <!-- 9. Color Customization -->
+        <section id="colors">
+            <h2><span class="lang-en">9. Color Customization</span><span class="lang-pt">9. Personalizacao de Cores</span></h2>
+            <div class="lang-en">
+                <p>The primary brand color is defined as <code>nexus</code> in the Tailwind config inside each HTML file:</p>
+<pre><code>nexus: {
+    50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe',
+    300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1',
+    600: '#4f46e5', 700: '#4338ca', 800: '#3730a3',
+    900: '#312e81', 950: '#1e1b4b',
+}</code></pre>
+                <p>Replace these values to match your brand. Also update the gradient colors used in the sidebar logo and "Upgrade to Pro" card (<code>from-nexus-500 to-cyan-500</code>).</p>
+            </div>
+            <div class="lang-pt">
+                <p>A cor primaria da marca e definida como <code>nexus</code> na config do Tailwind dentro de cada arquivo HTML:</p>
+<pre><code>nexus: {
+    50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe',
+    300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1',
+    600: '#4f46e5', 700: '#4338ca', 800: '#3730a3',
+    900: '#312e81', 950: '#1e1b4b',
+}</code></pre>
+                <p>Substitua esses valores para combinar com sua marca. Atualize tambem as cores de gradiente usadas no logo da sidebar e no card "Upgrade to Pro" (<code>from-nexus-500 to-cyan-500</code>).</p>
+            </div>
+        </section>
+
+        <!-- 10. SEO -->
+        <section id="seo">
+            <h2><span class="lang-en">10. SEO</span><span class="lang-pt">10. SEO</span></h2>
+            <div class="lang-en">
+                <ul>
+                    <li><strong>Open Graph</strong> — og:title, og:description, og:image configured</li>
+                    <li><strong>Twitter Card</strong> — summary_large_image with all fields</li>
+                    <li><strong>Schema.org</strong> — WebApplication JSON-LD structured data</li>
+                    <li><strong>Robots</strong> — index, follow</li>
+                    <li><strong>Favicon</strong> — SVG format at <code>assets/img/favicon.svg</code></li>
+                    <li><strong>og-image</strong> — Replace <code>assets/img/og-image.jpg</code> (1200x630px)</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <ul>
+                    <li><strong>Open Graph</strong> — og:title, og:description, og:image configurados</li>
+                    <li><strong>Twitter Card</strong> — summary_large_image com todos os campos</li>
+                    <li><strong>Schema.org</strong> — Dados estruturados WebApplication JSON-LD</li>
+                    <li><strong>Robots</strong> — index, follow</li>
+                    <li><strong>Favicon</strong> — Formato SVG em <code>assets/img/favicon.svg</code></li>
+                    <li><strong>og-image</strong> — Substitua <code>assets/img/og-image.jpg</code> (1200x630px)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 11. Performance -->
+        <section id="performance">
+            <h2><span class="lang-en">11. Performance</span><span class="lang-pt">11. Performance</span></h2>
+            <div class="lang-en">
+                <ul>
+                    <li>CDN-based dependencies with browser caching</li>
+                    <li>Alpine.js loaded with <code>defer</code> to avoid render blocking</li>
+                    <li>FOUC prevention script runs before CSS load</li>
+                    <li>Minimal custom CSS — Tailwind utilities handle most styling</li>
+                    <li>Charts lazy-initialize on <code>DOMContentLoaded</code></li>
+                    <li>Google Fonts with <code>preconnect</code> for faster loading</li>
+                    <li>Lucide icons render as inline SVG — no icon font overhead</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <ul>
+                    <li>Dependencias via CDN com cache do navegador</li>
+                    <li>Alpine.js carregado com <code>defer</code> para evitar bloqueio de renderizacao</li>
+                    <li>Script anti-FOUC executa antes do CSS carregar</li>
+                    <li>CSS customizado minimo — utilitarios Tailwind cobrem a maioria dos estilos</li>
+                    <li>Graficos inicializam lazy no <code>DOMContentLoaded</code></li>
+                    <li>Google Fonts com <code>preconnect</code> para carregamento rapido</li>
+                    <li>Icones Lucide renderizam como SVG inline — sem overhead de font de icones</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 12. Credits -->
+        <section id="credits">
+            <h2><span class="lang-en">12. Credits</span><span class="lang-pt">12. Creditos</span></h2>
+            <div class="lang-en">
+                <ul>
+                    <li><a href="https://tailwindcss.com" target="_blank">Tailwind CSS</a> — Utility-first CSS framework</li>
+                    <li><a href="https://alpinejs.dev" target="_blank">Alpine.js</a> — Lightweight reactive JavaScript framework</li>
+                    <li><a href="https://apexcharts.com" target="_blank">ApexCharts</a> — Modern charting library</li>
+                    <li><a href="https://lucide.dev" target="_blank">Lucide Icons</a> — Beautiful open-source icons</li>
+                    <li><a href="https://fonts.google.com/specimen/Inter" target="_blank">Inter</a> — Google Fonts</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <ul>
+                    <li><a href="https://tailwindcss.com" target="_blank">Tailwind CSS</a> — Framework CSS utilitario</li>
+                    <li><a href="https://alpinejs.dev" target="_blank">Alpine.js</a> — Framework JavaScript reativo e leve</li>
+                    <li><a href="https://apexcharts.com" target="_blank">ApexCharts</a> — Biblioteca moderna de graficos</li>
+                    <li><a href="https://lucide.dev" target="_blank">Lucide Icons</a> — Icones open-source</li>
+                    <li><a href="https://fonts.google.com/specimen/Inter" target="_blank">Inter</a> — Google Fonts</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 NexusAdmin. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            localStorage.setItem('nexus-doc-lang', lang);
+            document.body.classList.toggle('show-pt', lang === 'pt');
+            document.getElementById('btnEn').className = lang === 'en'
+                ? 'lang-btn active' : 'lang-btn';
+            document.getElementById('btnPt').className = lang === 'pt'
+                ? 'lang-btn active' : 'lang-btn';
+        }
+
+        switchLang(localStorage.getItem('nexus-doc-lang') || 'en');
+    </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Novus - Documentation</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+          colors: {
+            primary: { DEFAULT: '#6366f1', light: '#818cf8', dark: '#4f46e5' },
+            accent: { DEFAULT: '#06b6d4', light: '#22d3ee' },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/input.css" />
+
+  <style>
+    .doc-sidebar-link {
+      display: block;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .doc-sidebar-link:hover,
+    .doc-sidebar-link.active {
+      color: var(--primary);
+      background: rgba(99, 102, 241, 0.08);
+    }
+    .doc-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+    .doc-content h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    .doc-content p {
+      margin-bottom: 1rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+    .doc-content code {
+      background: var(--bg-tertiary);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--primary);
+    }
+    .doc-content pre {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .doc-content pre code {
+      background: none;
+      padding: 0;
+      color: var(--text-primary);
+    }
+    .doc-content ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .doc-content ul li {
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+    .doc-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+    }
+    .doc-content th,
+    .doc-content td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-color);
+      text-align: left;
+    }
+    .doc-content th {
+      background: var(--bg-tertiary);
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .doc-content td {
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navbar (simplified) -->
+  <nav id="navbar" class="navbar scrolled py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-xl font-extrabold" style="color: var(--text-primary); text-decoration: none;">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+          <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+        </div>
+        Novus <span class="text-sm font-medium ml-2 px-2 py-0.5 rounded-md" style="background: var(--bg-tertiary); color: var(--text-tertiary);">Docs</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <button id="langToggle" onclick="toggleLang()" class="text-xs font-bold px-3 py-1.5 rounded-lg border transition-colors" style="border-color: var(--border-color); color: var(--text-secondary);" aria-label="Toggle language">
+          <span id="langLabel">EN</span>
+        </button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <i data-lucide="sun" class="theme-toggle-sun"></i>
+          <i data-lucide="moon" class="theme-toggle-moon"></i>
+        </button>
+        <a href="index.html" class="btn-secondary text-sm py-2 px-4">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          Back to Site
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Documentation Layout -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+    <div class="lg:grid lg:grid-cols-[260px_1fr] gap-12">
+
+      <!-- Sidebar -->
+      <aside class="hidden lg:block">
+        <div class="sticky top-28 space-y-1">
+          <p class="text-xs font-bold uppercase tracking-wider mb-3 px-1" style="color: var(--text-tertiary);" data-en="Getting Started" data-pt="Primeiros Passos">Getting Started</p>
+          <a href="#introduction" class="doc-sidebar-link active" data-en="Introduction" data-pt="Introducao">Introduction</a>
+          <a href="#installation" class="doc-sidebar-link" data-en="Installation" data-pt="Instalacao">Installation</a>
+          <a href="#file-structure" class="doc-sidebar-link" data-en="File Structure" data-pt="Estrutura de Arquivos">File Structure</a>
+
+          <p class="text-xs font-bold uppercase tracking-wider mb-3 mt-6 px-1" style="color: var(--text-tertiary);" data-en="Customization" data-pt="Personalizacao">Customization</p>
+          <a href="#colors" class="doc-sidebar-link" data-en="Colors & Theming" data-pt="Cores & Temas">Colors & Theming</a>
+          <a href="#typography" class="doc-sidebar-link" data-en="Typography" data-pt="Tipografia">Typography</a>
+          <a href="#components" class="doc-sidebar-link" data-en="Components" data-pt="Componentes">Components</a>
+          <a href="#dark-mode" class="doc-sidebar-link" data-en="Dark Mode" data-pt="Modo Escuro">Dark Mode</a>
+
+          <p class="text-xs font-bold uppercase tracking-wider mb-3 mt-6 px-1" style="color: var(--text-tertiary);" data-en="Advanced" data-pt="Avancado">Advanced</p>
+          <a href="#javascript" class="doc-sidebar-link" data-en="JavaScript API" data-pt="API JavaScript">JavaScript API</a>
+          <a href="#deployment" class="doc-sidebar-link" data-en="Deployment" data-pt="Publicacao">Deployment</a>
+          <a href="#credits" class="doc-sidebar-link" data-en="Credits" data-pt="Creditos">Credits</a>
+          <a href="#support" class="doc-sidebar-link" data-en="Support" data-pt="Suporte">Support</a>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <main class="doc-content min-w-0">
+        <h1 class="text-3xl font-extrabold mb-2" style="color: var(--text-primary);" data-en="Documentation" data-pt="Documentacao">Documentation</h1>
+        <p class="text-lg mb-8" style="color: var(--text-secondary);" data-en="Everything you need to customize and deploy the Novus template." data-pt="Tudo que voce precisa para personalizar e publicar o template Novus.">Everything you need to customize and deploy the Novus template.</p>
+
+        <!-- Introduction -->
+        <h2 id="introduction" data-en="Introduction" data-pt="Introducao">Introduction</h2>
+        <p data-en="Thank you for purchasing &lt;strong&gt;Novus - Modern SaaS &amp; App Tech Template&lt;/strong&gt;. This document covers everything you need to get started, customize the template to your brand, and deploy it to production." data-pt="Obrigado por adquirir o &lt;strong&gt;Novus - Template Moderno SaaS &amp; App Tech&lt;/strong&gt;. Este documento cobre tudo que voce precisa para comecar, personalizar o template para sua marca e publicar em producao.">Thank you for purchasing <strong>Novus - Modern SaaS & App Tech Template</strong>. This document covers everything you need to get started, customize the template to your brand, and deploy it to production.</p>
+        <p data-en="Novus is built with modern web technologies including &lt;strong&gt;Tailwind CSS v3&lt;/strong&gt;, &lt;strong&gt;Vanilla JavaScript&lt;/strong&gt;, and &lt;strong&gt;Lucide Icons&lt;/strong&gt;. No build step is required for the preview version (CDN-based), but we recommend a Tailwind build pipeline for production." data-pt="Novus e construido com tecnologias web modernas incluindo &lt;strong&gt;Tailwind CSS v3&lt;/strong&gt;, &lt;strong&gt;JavaScript Vanilla&lt;/strong&gt; e &lt;strong&gt;Lucide Icons&lt;/strong&gt;. Nenhum build e necessario para a versao preview (via CDN), mas recomendamos um pipeline Tailwind para producao.">Novus is built with modern web technologies including <strong>Tailwind CSS v3</strong>, <strong>Vanilla JavaScript</strong>, and <strong>Lucide Icons</strong>. No build step is required for the preview version (CDN-based), but we recommend a Tailwind build pipeline for production.</p>
+
+        <!-- Installation -->
+        <h2 id="installation" data-en="Installation" data-pt="Instalacao">Installation</h2>
+        <h3>Quick Start (CDN)</h3>
+        <p>The template works out of the box with CDN dependencies. Simply open <code>index.html</code> in your browser.</p>
+
+        <h3>Production Setup (Recommended)</h3>
+        <p>For production, install Tailwind CSS locally for optimized builds:</p>
+        <pre><code>npm init -y
+npm install -D tailwindcss
+npx tailwindcss init</code></pre>
+        <p>Configure your <code>tailwind.config.js</code> to scan your HTML files, then build:</p>
+        <pre><code>npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify</code></pre>
+        <p>Update the <code>&lt;link&gt;</code> tag in your HTML to point to <code>output.css</code> and remove the CDN script tag.</p>
+
+        <!-- File Structure -->
+        <h2 id="file-structure" data-en="File Structure" data-pt="Estrutura de Arquivos">File Structure</h2>
+        <pre><code>novus/
+├── index.html              # Main landing page
+├── documentation.html      # This documentation
+└── assets/
+    ├── css/
+    │   └── input.css       # Custom styles & animations
+    ├── js/
+    │   └── main.js         # All interactive logic
+    └── img/
+        ├── favicon.svg
+        └── og-image.jpg    # 1200x630</code></pre>
+
+        <!-- Colors & Theming -->
+        <h2 id="colors" data-en="Colors & Theming" data-pt="Cores & Temas">Colors & Theming</h2>
+        <p>All colors are defined as CSS custom properties in <code>assets/css/input.css</code> under <code>:root</code> and <code>.dark</code> selectors. To change the brand color, update these variables:</p>
+        <table>
+          <thead>
+            <tr><th>Variable</th><th>Light Mode</th><th>Dark Mode</th><th>Usage</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>--primary</code></td><td>#6366f1</td><td>#818cf8</td><td>Buttons, links, accents</td></tr>
+            <tr><td><code>--accent</code></td><td>#06b6d4</td><td>#22d3ee</td><td>Secondary accent color</td></tr>
+            <tr><td><code>--bg-primary</code></td><td>#ffffff</td><td>#0f172a</td><td>Main background</td></tr>
+            <tr><td><code>--text-primary</code></td><td>#0f172a</td><td>#f1f5f9</td><td>Headings, body text</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Typography -->
+        <h2 id="typography" data-en="Typography" data-pt="Tipografia">Typography</h2>
+        <p>The template uses <strong>Plus Jakarta Sans</strong> from Google Fonts. To change the font, update the Google Fonts link in the HTML <code>&lt;head&gt;</code> and the <code>font-family</code> in the Tailwind config and CSS.</p>
+
+        <!-- Components -->
+        <h2 id="components" data-en="Components" data-pt="Componentes">Components</h2>
+        <p>Key reusable components and their CSS classes:</p>
+        <ul>
+          <li><code>.btn-primary</code> / <code>.btn-secondary</code> - Button styles</li>
+          <li><code>.glass-card</code> - Glassmorphism card with blur effect</li>
+          <li><code>.section-badge</code> - Section label badges</li>
+          <li><code>.section-title</code> - Responsive section headings</li>
+          <li><code>.pricing-card</code> / <code>.pricing-card.featured</code> - Pricing cards</li>
+          <li><code>.testimonial-card</code> - Testimonial review cards</li>
+          <li><code>.tab-btn</code> / <code>.tab-panel</code> - Tabbed interface</li>
+        </ul>
+
+        <!-- Dark Mode -->
+        <h2 id="dark-mode" data-en="Dark Mode" data-pt="Modo Escuro">Dark Mode</h2>
+        <p>Dark mode is toggled by adding/removing the <code>dark</code> class on the <code>&lt;html&gt;</code> element. The user's preference is saved to <code>localStorage</code> under the key <code>novus-theme</code>. The toggle automatically respects the user's OS preference on first visit.</p>
+
+        <!-- JavaScript API -->
+        <h2 id="javascript" data-en="JavaScript API" data-pt="API JavaScript">JavaScript API</h2>
+        <p>All JavaScript is contained in <code>assets/js/main.js</code> using an IIFE pattern (no global scope pollution). Key modules:</p>
+        <ul>
+          <li><strong>Theme Toggle</strong> - Saves preference to localStorage</li>
+          <li><strong>Navbar</strong> - Adds glass effect on scroll</li>
+          <li><strong>Mobile Menu</strong> - Slide-in drawer with body scroll lock</li>
+          <li><strong>AOS</strong> - Custom IntersectionObserver-based scroll animations</li>
+          <li><strong>Feature Tabs</strong> - Click-to-switch content panels</li>
+          <li><strong>Timeline</strong> - Progress bar that fills on scroll</li>
+          <li><strong>Counters</strong> - Animated number count-up with easing</li>
+          <li><strong>Pricing Toggle</strong> - Monthly/Yearly price switch</li>
+        </ul>
+
+        <!-- Deployment -->
+        <h2 id="deployment" data-en="Deployment" data-pt="Publicacao">Deployment</h2>
+        <p>Novus is a static HTML template and can be deployed on any hosting provider:</p>
+        <ul>
+          <li><strong>Netlify</strong> - Drag and drop the project folder</li>
+          <li><strong>Vercel</strong> - Import from Git or upload</li>
+          <li><strong>GitHub Pages</strong> - Push to a repository and enable Pages</li>
+          <li><strong>Any web server</strong> - Upload files via FTP/SFTP</li>
+        </ul>
+
+        <!-- Credits -->
+        <h2 id="credits" data-en="Credits" data-pt="Creditos">Credits</h2>
+        <ul>
+          <li><a href="https://tailwindcss.com" target="_blank" style="color: var(--primary);">Tailwind CSS</a> - Utility-first CSS framework</li>
+          <li><a href="https://lucide.dev" target="_blank" style="color: var(--primary);">Lucide Icons</a> - Beautiful open-source icons</li>
+          <li><a href="https://fonts.google.com/specimen/Plus+Jakarta+Sans" target="_blank" style="color: var(--primary);">Plus Jakarta Sans</a> - Google Fonts</li>
+        </ul>
+
+        <!-- Support -->
+        <h2 id="support" data-en="Support" data-pt="Suporte">Support</h2>
+        <p>If you have questions or need assistance, please reach out through the ThemeForest item comments or our support email. We typically respond within 24 hours on business days.</p>
+        <p>Before contacting support, please check this documentation and the FAQ section in the item description.</p>
+
+        <div class="mt-12 p-6 rounded-2xl" style="background: var(--bg-secondary); border: 1px solid var(--border-color);">
+          <p class="font-semibold mb-1" style="color: var(--text-primary);">Need more help?</p>
+          <p class="text-sm" style="color: var(--text-secondary);">Open a support ticket on ThemeForest or email us at <code>support@novus-template.com</code></p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-8" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-sm" style="color: var(--text-tertiary);">&copy; 2026 Novus. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>lucide.createIcons();</script>
+  <script>
+    function toggleLang() {
+        const current = localStorage.getItem('novus-doc-lang') || 'en';
+        applyLang(current === 'en' ? 'pt' : 'en');
+    }
+    function applyLang(lang) {
+        localStorage.setItem('novus-doc-lang', lang);
+        document.getElementById('langLabel').textContent = lang.toUpperCase();
+        document.querySelectorAll('[data-en][data-pt]').forEach(el => {
+            el.innerHTML = el.getAttribute('data-' + lang);
+        });
+    }
+    applyLang(localStorage.getItem('novus-doc-lang') || 'en');
+  </script>
+</body>
+</html>

@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SaaS Bento — Documentation</title>
+  <meta name="description" content="Documentation for the SaaS Bento landing page template." />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+
+  <!-- Tailwind CSS CDN -->
+  <script>
+    window.tailwind = window.tailwind || {};
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            background: '#0B0C10',
+            surface: '#131418',
+            primary: '#5E6AD2',
+            border: 'rgba(255, 255, 255, 0.1)'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Language toggle ─── */
+    .lang-pt { display: none; }
+    .show-pt .lang-en { display: none !important; }
+    .show-pt .lang-pt { display: inline !important; }
+
+    /* Block-level bilingual elements */
+    .lang-en.block-el { display: block; }
+    .lang-pt.block-el { display: none; }
+    .show-pt .lang-en.block-el { display: none !important; }
+    .show-pt .lang-pt.block-el { display: block !important; }
+
+    /* ─── Scrollbar ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0B0C10; }
+    ::-webkit-scrollbar-thumb { background: #5E6AD2; border-radius: 3px; }
+
+    /* ─── Active lang button ─── */
+    [data-lang-btn].active {
+      background-color: #5E6AD2;
+      color: #fff;
+    }
+
+    /* ─── Code blocks ─── */
+    pre {
+      overflow-x: auto;
+      tab-size: 2;
+    }
+
+    /* ─── Sidebar active link ─── */
+    .toc-link.active {
+      color: #5E6AD2;
+      border-left-color: #5E6AD2;
+    }
+
+    /* ─── Smooth scroll ─── */
+    html { scroll-behavior: smooth; }
+
+    /* ─── Section scroll offset for fixed-ish layout ─── */
+    section[id] { scroll-margin-top: 5rem; }
+  </style>
+</head>
+<body class="bg-[#0B0C10] text-white font-sans antialiased">
+
+  <!-- ═══════════════════════════════════════════
+       TOP BAR
+  ═══════════════════════════════════════════ -->
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0B0C10]/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+
+      <!-- Logo / title -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          <span class="lang-en">Back to template</span>
+          <span class="lang-pt">Voltar ao template</span>
+        </a>
+        <span class="text-white/20 hidden sm:inline">|</span>
+        <span class="font-semibold text-sm hidden sm:inline">
+          SaaS Bento &mdash; <span class="lang-en">Docs</span><span class="lang-pt">Documentação</span>
+        </span>
+      </div>
+
+      <!-- Language toggle -->
+      <div class="flex items-center gap-1 rounded-lg border border-white/10 p-1 bg-surface">
+        <button
+          data-lang-btn="en"
+          onclick="setLang('en')"
+          class="px-3 py-1 rounded-md text-xs font-semibold transition-all duration-200 text-white/50 hover:text-white"
+        >EN</button>
+        <button
+          data-lang-btn="pt"
+          onclick="setLang('pt')"
+          class="px-3 py-1 rounded-md text-xs font-semibold transition-all duration-200 text-white/50 hover:text-white"
+        >PT</button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN LAYOUT
+  ═══════════════════════════════════════════ -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-20 pb-16 flex gap-8">
+
+    <!-- ─── Sidebar (desktop) ─── -->
+    <aside class="hidden lg:block w-56 xl:w-64 shrink-0">
+      <nav class="sticky top-20">
+        <p class="text-[11px] uppercase tracking-widest text-white/30 font-semibold mb-3 px-3">
+          <span class="lang-en">Contents</span>
+          <span class="lang-pt">Conteúdo</span>
+        </p>
+        <ul class="space-y-0.5 text-sm">
+          <!-- Items generated from sections below -->
+          <li><a href="#overview"     class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">1. Overview</span><span class="lang-pt">1. Visão Geral</span></a></li>
+          <li><a href="#file-structure" class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">2. File Structure</span><span class="lang-pt">2. Estrutura de Arquivos</span></a></li>
+          <li><a href="#tech-stack"   class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">3. Tech Stack</span><span class="lang-pt">3. Tecnologias</span></a></li>
+          <li><a href="#layout"       class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">4. Layout</span><span class="lang-pt">4. Layout</span></a></li>
+          <li><a href="#bento-grid"   class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">5. Bento Grid</span><span class="lang-pt">5. Bento Grid</span></a></li>
+          <li><a href="#3d-effect"    class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">6. 3D Dashboard</span><span class="lang-pt">6. Efeito 3D</span></a></li>
+          <li><a href="#scroll-anim"  class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">7. Scroll Animations</span><span class="lang-pt">7. Animações de Scroll</span></a></li>
+          <li><a href="#login"        class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">8. Login Page</span><span class="lang-pt">8. Página de Login</span></a></li>
+          <li><a href="#pricing"      class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">9. Pricing Section</span><span class="lang-pt">9. Seção de Preços</span></a></li>
+          <li><a href="#colors"       class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">10. Colors</span><span class="lang-pt">10. Cores</span></a></li>
+          <li><a href="#seo"          class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">11. SEO</span><span class="lang-pt">11. SEO</span></a></li>
+          <li><a href="#credits"      class="toc-link block px-3 py-1.5 rounded-md border-l-2 border-transparent text-white/50 hover:text-white hover:bg-white/5 transition-all"><span class="lang-en">12. Credits</span><span class="lang-pt">12. Créditos</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- ─── Main content ─── -->
+    <main class="flex-1 min-w-0 space-y-12">
+
+      <!-- PAGE HEADING -->
+      <div class="border-b border-white/10 pb-8">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span class="lang-en">Documentation</span>
+          <span class="lang-pt">Documentação</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-bold mb-2">SaaS Bento</h1>
+        <p class="text-white/50 text-lg">
+          <span class="lang-en">Landing page template — complete developer reference</span>
+          <span class="lang-pt">Template de landing page — referência completa para desenvolvedores</span>
+        </p>
+      </div>
+
+      <!-- ══════════════════════════════
+           1. OVERVIEW
+      ══════════════════════════════ -->
+      <section id="overview">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">01</span>
+          <span class="lang-en">Overview</span>
+          <span class="lang-pt">Visão Geral</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">What is this template?</span>
+          <span class="lang-pt">O que é este template?</span>
+        </p>
+
+        <div class="space-y-4 text-white/70 leading-relaxed">
+          <p>
+            <span class="lang-en">
+              <strong class="text-white">SaaS Bento</strong> is a modern, dark-themed landing page template built for
+              SaaS products. Its design is inspired by <strong class="text-white">Linear</strong>'s clean aesthetic —
+              tight typography, glassy cards, and subtle glows on a near-black canvas.
+            </span>
+            <span class="lang-pt">
+              <strong class="text-white">SaaS Bento</strong> é um template moderno de landing page com tema escuro,
+              criado para produtos SaaS. Seu design é inspirado na estética limpa do <strong class="text-white">Linear</strong>
+              — tipografia precisa, cards translúcidos e brilhos sutis sobre um fundo quase preto.
+            </span>
+          </p>
+          <p>
+            <span class="lang-en">
+              The name comes from its <strong class="text-white">bento-grid features section</strong>: a mosaic of cards with
+              varying column and row spans that showcase product capabilities in a visually engaging layout — similar to
+              a Japanese bento box where each compartment holds something different.
+            </span>
+            <span class="lang-pt">
+              O nome vem da <strong class="text-white">seção de features em bento-grid</strong>: um mosaico de cards com
+              diferentes spans de coluna e linha que exibem as capacidades do produto de forma visualmente envolvente —
+              semelhante a uma marmita japonesa bento, onde cada compartimento tem algo diferente.
+            </span>
+          </p>
+
+          <!-- Key highlights -->
+          <div class="grid sm:grid-cols-3 gap-3 mt-6">
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <div class="text-primary mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="3" height="9" x="8" y="12"/><rect width="3" height="5" x="14" y="16"/><rect width="3" height="14" x="2" y="7"/><path d="M22 22H2"/></svg>
+              </div>
+              <p class="font-semibold text-sm mb-1">
+                <span class="lang-en">No build step</span>
+                <span class="lang-pt">Sem build</span>
+              </p>
+              <p class="text-white/40 text-xs">
+                <span class="lang-en">CDN-only. Open index.html and go.</span>
+                <span class="lang-pt">Apenas CDN. Abra o index.html e pronto.</span>
+              </p>
+            </div>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <div class="text-primary mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              </div>
+              <p class="font-semibold text-sm mb-1">
+                <span class="lang-en">Two pages included</span>
+                <span class="lang-pt">Duas páginas incluídas</span>
+              </p>
+              <p class="text-white/40 text-xs">
+                <span class="lang-en">index.html (landing) + login.html</span>
+                <span class="lang-pt">index.html (landing) + login.html</span>
+              </p>
+            </div>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <div class="text-primary mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <p class="font-semibold text-sm mb-1">
+                <span class="lang-en">Fully responsive</span>
+                <span class="lang-pt">Totalmente responsivo</span>
+              </p>
+              <p class="text-white/40 text-xs">
+                <span class="lang-en">Mobile-first Tailwind breakpoints throughout.</span>
+                <span class="lang-pt">Breakpoints Tailwind mobile-first em todo o projeto.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           2. FILE STRUCTURE
+      ══════════════════════════════ -->
+      <section id="file-structure">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">02</span>
+          <span class="lang-en">File Structure</span>
+          <span class="lang-pt">Estrutura de Arquivos</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">What's in the package</span>
+          <span class="lang-pt">O que está incluído no pacote</span>
+        </p>
+
+        <div class="bg-surface rounded-xl border border-white/5 p-5">
+          <pre class="text-sm text-white/80 font-mono leading-relaxed"><code>saas-bento/
+├── index.html            <span class="text-white/30 lang-en"># Main landing page</span><span class="text-white/30 lang-pt"># Landing page principal</span>
+├── login.html            <span class="text-white/30 lang-en"># Login / sign-in page</span><span class="text-white/30 lang-pt"># Página de login</span>
+├── documentation.html    <span class="text-white/30 lang-en"># This file</span><span class="text-white/30 lang-pt"># Este arquivo</span>
+└── assets/
+    ├── css/
+    │   └── style.css     <span class="text-white/30 lang-en"># Custom styles &amp; animations</span><span class="text-white/30 lang-pt"># Estilos e animações customizados</span>
+    ├── js/
+    │   └── main.js       <span class="text-white/30 lang-en"># 3D tilt, scroll observer, misc</span><span class="text-white/30 lang-pt"># Tilt 3D, observer de scroll, etc.</span>
+    └── img/
+        └── favicon.svg   <span class="text-white/30 lang-en"># SVG favicon</span><span class="text-white/30 lang-pt"># Favicon SVG</span></code></pre>
+        </div>
+
+        <p class="text-white/60 text-sm mt-4 leading-relaxed">
+          <span class="lang-en">
+            The template is intentionally flat. There is no <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">node_modules</code>,
+            no bundler config, and no framework overhead. All dependencies are loaded from CDN at runtime, making
+            the project instantly portable — just copy the folder to any static host.
+          </span>
+          <span class="lang-pt">
+            O template é intencionalmente simples. Não há <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">node_modules</code>,
+            sem configuração de bundler e sem overhead de framework. Todas as dependências são carregadas via CDN em
+            tempo de execução, tornando o projeto imediatamente portável — basta copiar a pasta para qualquer host estático.
+          </span>
+        </p>
+      </section>
+
+      <!-- ══════════════════════════════
+           3. TECH STACK
+      ══════════════════════════════ -->
+      <section id="tech-stack">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">03</span>
+          <span class="lang-en">Tech Stack</span>
+          <span class="lang-pt">Tecnologias</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">Libraries and dependencies used</span>
+          <span class="lang-pt">Bibliotecas e dependências utilizadas</span>
+        </p>
+
+        <div class="space-y-3">
+          <!-- Tailwind -->
+          <div class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-[#06B6D4]/10 border border-[#06B6D4]/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-0.5">Tailwind CSS <span class="text-white/30 font-normal">v3 — CDN</span></p>
+              <p class="text-white/50 text-xs leading-relaxed">
+                <span class="lang-en">
+                  Loaded via <code class="bg-white/10 px-1 rounded">cdn.tailwindcss.com</code> with an inline
+                  <code class="bg-white/10 px-1 rounded">tailwind.config</code> block for custom tokens (colors,
+                  font family). No PostCSS or purge needed for development.
+                </span>
+                <span class="lang-pt">
+                  Carregado via <code class="bg-white/10 px-1 rounded">cdn.tailwindcss.com</code> com um bloco
+                  <code class="bg-white/10 px-1 rounded">tailwind.config</code> inline para tokens customizados
+                  (cores, fonte). Sem PostCSS ou purge necessários para desenvolvimento.
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Alpine.js -->
+          <div class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-[#8BC0D0]/10 border border-[#8BC0D0]/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8BC0D0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-0.5">Alpine.js <span class="text-white/30 font-normal">v3 — CDN</span></p>
+              <p class="text-white/50 text-xs leading-relaxed">
+                <span class="lang-en">
+                  Used <strong class="text-white/80">only</strong> for the pricing section's annual/monthly toggle.
+                  The <code class="bg-white/10 px-1 rounded">x-data</code> / <code class="bg-white/10 px-1 rounded">x-show</code>
+                  directives handle reactive state without any custom JS.
+                </span>
+                <span class="lang-pt">
+                  Usado <strong class="text-white/80">apenas</strong> para o toggle anual/mensal da seção de preços.
+                  As diretivas <code class="bg-white/10 px-1 rounded">x-data</code> / <code class="bg-white/10 px-1 rounded">x-show</code>
+                  gerenciam o estado reativo sem JS customizado.
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Lucide -->
+          <div class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5E6AD2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 14.14 14.14"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-0.5">Lucide Icons <span class="text-white/30 font-normal">— CDN</span></p>
+              <p class="text-white/50 text-xs leading-relaxed">
+                <span class="lang-en">
+                  Inline SVG icons taken from <a href="https://lucide.dev" class="text-primary hover:underline" target="_blank">lucide.dev</a>.
+                  No icon font, no JS icon loader — each icon is a raw <code class="bg-white/10 px-1 rounded">&lt;svg&gt;</code> element,
+                  keeping the template free of extra HTTP requests.
+                </span>
+                <span class="lang-pt">
+                  Ícones SVG inline retirados de <a href="https://lucide.dev" class="text-primary hover:underline" target="_blank">lucide.dev</a>.
+                  Sem icon font, sem loader JS — cada ícone é um elemento <code class="bg-white/10 px-1 rounded">&lt;svg&gt;</code>
+                  bruto, mantendo o template sem requisições HTTP extras.
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Inter -->
+          <div class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+              <span class="text-white font-bold text-sm">Aa</span>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-0.5">Inter <span class="text-white/30 font-normal">— Google Fonts</span></p>
+              <p class="text-white/50 text-xs leading-relaxed">
+                <span class="lang-en">
+                  Weights 300–700. Loaded via Google Fonts with <code class="bg-white/10 px-1 rounded">display=swap</code>
+                  for fast LCP. Set as the sole <code class="bg-white/10 px-1 rounded">font-sans</code> family in the
+                  Tailwind config.
+                </span>
+                <span class="lang-pt">
+                  Pesos 300–700. Carregada via Google Fonts com <code class="bg-white/10 px-1 rounded">display=swap</code>
+                  para LCP rápido. Definida como única família <code class="bg-white/10 px-1 rounded">font-sans</code>
+                  no config do Tailwind.
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <!-- Vanilla JS -->
+          <div class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-yellow-400/10 border border-yellow-400/20 flex items-center justify-center">
+              <span class="text-yellow-400 font-bold text-xs">JS</span>
+            </div>
+            <div>
+              <p class="font-semibold text-sm mb-0.5">
+                <span class="lang-en">Vanilla JavaScript</span>
+                <span class="lang-pt">JavaScript Puro</span>
+              </p>
+              <p class="text-white/50 text-xs leading-relaxed">
+                <span class="lang-en">
+                  All custom behaviour — 3D tilt, IntersectionObserver scroll animations, mobile menu — lives in
+                  <code class="bg-white/10 px-1 rounded">assets/js/main.js</code>. Zero framework dependency.
+                </span>
+                <span class="lang-pt">
+                  Todos os comportamentos customizados — tilt 3D, animações de scroll com IntersectionObserver, menu
+                  mobile — estão em <code class="bg-white/10 px-1 rounded">assets/js/main.js</code>. Zero dependência de framework.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           4. LAYOUT
+      ══════════════════════════════ -->
+      <section id="layout">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">04</span>
+          <span class="lang-en">Layout</span>
+          <span class="lang-pt">Layout</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">Page structure from top to bottom</span>
+          <span class="lang-pt">Estrutura da página de cima para baixo</span>
+        </p>
+
+        <div class="space-y-4 text-white/70 text-sm leading-relaxed">
+          <p>
+            <span class="lang-en">
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">index.html</code> is composed of five
+              top-level sections stacked vertically inside a single <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">&lt;body&gt;</code>:
+            </span>
+            <span class="lang-pt">
+              O <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">index.html</code> é composto por cinco
+              seções de nível superior empilhadas verticalmente dentro de um único <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">&lt;body&gt;</code>:
+            </span>
+          </p>
+
+          <ol class="space-y-3 list-none ml-0">
+            <!-- Nav -->
+            <li class="bg-surface rounded-xl border border-white/5 p-4">
+              <p class="font-semibold text-white mb-1">
+                <span class="text-primary mr-2">1.</span>
+                <span class="lang-en">Fixed Navigation</span>
+                <span class="lang-pt">Navegação Fixa</span>
+              </p>
+              <p class="text-white/50 text-xs">
+                <span class="lang-en">
+                  <code class="bg-white/10 px-1 rounded">&lt;nav&gt;</code> with <code class="bg-white/10 px-1 rounded">position: fixed</code>
+                  and <code class="bg-white/10 px-1 rounded">backdrop-blur</code>. Contains logo, desktop links, and a
+                  hamburger menu for mobile. Becomes opaque on scroll via a JS class toggle.
+                </span>
+                <span class="lang-pt">
+                  <code class="bg-white/10 px-1 rounded">&lt;nav&gt;</code> com <code class="bg-white/10 px-1 rounded">position: fixed</code>
+                  e <code class="bg-white/10 px-1 rounded">backdrop-blur</code>. Contém logo, links desktop e menu hamburger
+                  para mobile. Torna-se opaco ao rolar via toggle de classe JS.
+                </span>
+              </p>
+            </li>
+            <!-- Hero -->
+            <li class="bg-surface rounded-xl border border-white/5 p-4">
+              <p class="font-semibold text-white mb-1">
+                <span class="text-primary mr-2">2.</span>
+                <span class="lang-en">Hero — 3D Dashboard Preview</span>
+                <span class="lang-pt">Hero — Preview de Dashboard 3D</span>
+              </p>
+              <p class="text-white/50 text-xs">
+                <span class="lang-en">
+                  Full-viewport section with centered headline, subtext, CTA buttons, and a perspective-transformed
+                  dashboard screenshot that tilts in response to mouse movement.
+                </span>
+                <span class="lang-pt">
+                  Seção de viewport completa com headline centralizada, subtexto, botões de CTA e um screenshot de
+                  dashboard com transformação em perspectiva que inclina em resposta ao movimento do mouse.
+                </span>
+              </p>
+            </li>
+            <!-- Features -->
+            <li class="bg-surface rounded-xl border border-white/5 p-4">
+              <p class="font-semibold text-white mb-1">
+                <span class="text-primary mr-2">3.</span>
+                <span class="lang-en">Features — Bento Grid</span>
+                <span class="lang-pt">Features — Bento Grid</span>
+              </p>
+              <p class="text-white/50 text-xs">
+                <span class="lang-en">
+                  CSS Grid with auto-placed and manually spanned cards. Each card fades in on scroll. See
+                  <a href="#bento-grid" class="text-primary hover:underline">section 5</a> for details.
+                </span>
+                <span class="lang-pt">
+                  CSS Grid com cards posicionados automaticamente e com span manual. Cada card aparece com fade
+                  ao rolar. Veja a <a href="#bento-grid" class="text-primary hover:underline">seção 5</a> para detalhes.
+                </span>
+              </p>
+            </li>
+            <!-- Pricing -->
+            <li class="bg-surface rounded-xl border border-white/5 p-4">
+              <p class="font-semibold text-white mb-1">
+                <span class="text-primary mr-2">4.</span>
+                <span class="lang-en">Pricing Section</span>
+                <span class="lang-pt">Seção de Preços</span>
+              </p>
+              <p class="text-white/50 text-xs">
+                <span class="lang-en">
+                  Three-column pricing grid controlled by an Alpine.js toggle for annual vs monthly billing.
+                  See <a href="#pricing" class="text-primary hover:underline">section 9</a>.
+                </span>
+                <span class="lang-pt">
+                  Grade de preços em três colunas controlada por toggle Alpine.js para cobrança anual vs. mensal.
+                  Veja a <a href="#pricing" class="text-primary hover:underline">seção 9</a>.
+                </span>
+              </p>
+            </li>
+            <!-- Footer -->
+            <li class="bg-surface rounded-xl border border-white/5 p-4">
+              <p class="font-semibold text-white mb-1">
+                <span class="text-primary mr-2">5.</span>
+                <span class="lang-en">Footer</span>
+                <span class="lang-pt">Rodapé</span>
+              </p>
+              <p class="text-white/50 text-xs">
+                <span class="lang-en">
+                  Multi-column footer with product links, legal links, and a bottom bar with copyright notice.
+                  Uses the same dark surface card style as the rest of the page.
+                </span>
+                <span class="lang-pt">
+                  Rodapé multicolunas com links do produto, links legais e uma barra inferior com aviso de copyright.
+                  Usa o mesmo estilo de card dark surface do restante da página.
+                </span>
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           5. BENTO GRID
+      ══════════════════════════════ -->
+      <section id="bento-grid">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">05</span>
+          Bento Grid
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">How the feature mosaic is built</span>
+          <span class="lang-pt">Como o mosaico de features é construído</span>
+        </p>
+
+        <div class="space-y-5 text-white/70 text-sm leading-relaxed">
+          <p>
+            <span class="lang-en">
+              The bento grid is a standard CSS Grid with 12 columns. Cards use Tailwind's
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">col-span-*</code> and
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">row-span-*</code> utilities to create the
+              asymmetric mosaic layout. On mobile the grid collapses to a single column.
+            </span>
+            <span class="lang-pt">
+              O bento grid é um CSS Grid padrão com 12 colunas. Os cards usam os utilitários
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">col-span-*</code> e
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">row-span-*</code> do Tailwind para criar o
+              layout mosaico assimétrico. Em mobile o grid colapsa para uma única coluna.
+            </span>
+          </p>
+
+          <!-- Code: grid wrapper -->
+          <div>
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-2">
+              <span class="lang-en">Grid container</span>
+              <span class="lang-pt">Container do grid</span>
+            </p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"grid grid-cols-1 md:grid-cols-12 gap-4"</span><span class="text-primary">&gt;</span>
+
+  <span class="text-white/40">&lt;!-- Wide card: 8 of 12 cols --&gt;</span>
+  <span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"bento-card md:col-span-8"</span><span class="text-primary">&gt;</span>...<span class="text-primary">&lt;/div&gt;</span>
+
+  <span class="text-white/40">&lt;!-- Narrow card: 4 of 12 cols --&gt;</span>
+  <span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"bento-card md:col-span-4"</span><span class="text-primary">&gt;</span>...<span class="text-primary">&lt;/div&gt;</span>
+
+  <span class="text-white/40">&lt;!-- Tall card: 2 rows --&gt;</span>
+  <span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"bento-card md:col-span-4 md:row-span-2"</span><span class="text-primary">&gt;</span>...<span class="text-primary">&lt;/div&gt;</span>
+
+<span class="text-primary">&lt;/div&gt;</span></code></pre>
+            </div>
+          </div>
+
+          <!-- Code: bento-card CSS -->
+          <div>
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-2">
+              <span class="lang-en">The .bento-card class (style.css)</span>
+              <span class="lang-pt">A classe .bento-card (style.css)</span>
+            </p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">.bento-card</span> {
+  background: <span class="text-yellow-300">#131418</span>;          <span class="text-white/30">/* surface token */</span>
+  border: <span class="text-yellow-300">1px solid rgba(255,255,255,0.06)</span>;
+  border-radius: <span class="text-yellow-300">1rem</span>;
+  padding: <span class="text-yellow-300">1.5rem</span>;
+  overflow: <span class="text-yellow-300">hidden</span>;
+  position: <span class="text-yellow-300">relative</span>;
+  transition: border-color <span class="text-yellow-300">0.25s ease</span>, transform <span class="text-yellow-300">0.25s ease</span>;
+}
+
+<span class="text-primary">.bento-card:hover</span> {
+  border-color: <span class="text-yellow-300">rgba(94,106,210,0.4)</span>; <span class="text-white/30">/* primary glow */</span>
+  transform: <span class="text-yellow-300">translateY(-2px)</span>;
+}</code></pre>
+            </div>
+          </div>
+
+          <p class="text-white/50 text-xs">
+            <span class="lang-en">
+              The subtle <code class="bg-white/10 px-1 rounded">translateY(-2px)</code> on hover combined with
+              the primary-color border glow gives each card a "lifting" feel without heavy shadow usage.
+            </span>
+            <span class="lang-pt">
+              O sutil <code class="bg-white/10 px-1 rounded">translateY(-2px)</code> no hover combinado com o brilho
+              de borda na cor primária dá a cada card uma sensação de "elevação" sem uso pesado de sombras.
+            </span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           6. 3D DASHBOARD EFFECT
+      ══════════════════════════════ -->
+      <section id="3d-effect">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">06</span>
+          <span class="lang-en">3D Dashboard Effect</span>
+          <span class="lang-pt">Efeito 3D do Dashboard</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">Mouse-driven perspective tilt</span>
+          <span class="lang-pt">Tilt por perspectiva guiado pelo mouse</span>
+        </p>
+
+        <div class="space-y-5 text-sm text-white/70 leading-relaxed">
+          <p>
+            <span class="lang-en">
+              The hero dashboard image has a subtle 3D tilt that tracks the user's cursor. It is achieved with
+              pure CSS <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">perspective</code> and
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">rotateX / rotateY</code> transforms,
+              updated by a <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">mousemove</code> listener in
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">main.js</code>.
+            </span>
+            <span class="lang-pt">
+              A imagem do dashboard no hero tem um tilt 3D sutil que rastreia o cursor do usuário. É alcançado com
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">perspective</code> e transformações
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">rotateX / rotateY</code> puras em CSS,
+              atualizadas por um listener <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">mousemove</code>
+              em <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">main.js</code>.
+            </span>
+          </p>
+
+          <!-- HTML structure -->
+          <div>
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-2">
+              <span class="lang-en">HTML structure</span>
+              <span class="lang-pt">Estrutura HTML</span>
+            </p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"perspective-container"</span><span class="text-primary">&gt;</span>
+  <span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"dashboard-tilt"</span><span class="text-primary">&gt;</span>
+    <span class="text-white/40">&lt;!-- dashboard screenshot / mock-up --&gt;</span>
+    <span class="text-primary">&lt;img</span> src=<span class="text-yellow-300">"..."</span> alt=<span class="text-yellow-300">"Dashboard preview"</span> <span class="text-primary">/&gt;</span>
+  <span class="text-primary">&lt;/div&gt;</span>
+<span class="text-primary">&lt;/div&gt;</span></code></pre>
+            </div>
+          </div>
+
+          <!-- CSS -->
+          <div>
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-2">CSS</p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">.perspective-container</span> {
+  perspective: <span class="text-yellow-300">1200px</span>;
+}
+
+<span class="text-primary">.dashboard-tilt</span> {
+  transform-style: <span class="text-yellow-300">preserve-3d</span>;
+  transition: transform <span class="text-yellow-300">0.1s ease-out</span>;
+  will-change: <span class="text-yellow-300">transform</span>;
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- JS -->
+          <div>
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-2">
+              <span class="lang-en">JavaScript (main.js)</span>
+              <span class="lang-pt">JavaScript (main.js)</span>
+            </p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-white/40">// Mouse parallax tilt</span>
+<span class="text-primary">const</span> container = document.querySelector(<span class="text-yellow-300">'.perspective-container'</span>);
+<span class="text-primary">const</span> tilt     = document.querySelector(<span class="text-yellow-300">'.dashboard-tilt'</span>);
+
+<span class="text-primary">if</span> (container && tilt) {
+  container.addEventListener(<span class="text-yellow-300">'mousemove'</span>, (e) =&gt; {
+    <span class="text-primary">const</span> { left, top, width, height } = container.getBoundingClientRect();
+    <span class="text-primary">const</span> x = (e.clientX - left) / width  - 0.5;  <span class="text-white/30">// -0.5 → 0.5</span>
+    <span class="text-primary">const</span> y = (e.clientY - top)  / height - 0.5;
+
+    tilt.style.transform = <span class="text-yellow-300">`rotateY(${x * 12}deg) rotateX(${-y * 8}deg)`</span>;
+  });
+
+  container.addEventListener(<span class="text-yellow-300">'mouseleave'</span>, () =&gt; {
+    tilt.style.transform = <span class="text-yellow-300">'rotateY(0deg) rotateX(0deg)'</span>;
+  });
+}</code></pre>
+            </div>
+          </div>
+
+          <p class="text-white/50 text-xs">
+            <span class="lang-en">
+              The multipliers <code class="bg-white/10 px-1 rounded">* 12</code> (Y-axis) and <code class="bg-white/10 px-1 rounded">* 8</code>
+              (X-axis) cap the maximum rotation angles. Adjust them to taste — lower values give a
+              subtler effect, higher values make it more dramatic.
+            </span>
+            <span class="lang-pt">
+              Os multiplicadores <code class="bg-white/10 px-1 rounded">* 12</code> (eixo Y) e <code class="bg-white/10 px-1 rounded">* 8</code>
+              (eixo X) limitam os ângulos máximos de rotação. Ajuste-os ao gosto — valores menores dão um
+              efeito mais sutil, valores maiores tornam-no mais dramático.
+            </span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           7. SCROLL ANIMATIONS
+      ══════════════════════════════ -->
+      <section id="scroll-anim">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">07</span>
+          <span class="lang-en">Scroll Animations</span>
+          <span class="lang-pt">Animações de Scroll</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">IntersectionObserver-based fade-in</span>
+          <span class="lang-pt">Fade-in baseado em IntersectionObserver</span>
+        </p>
+
+        <div class="space-y-5 text-sm text-white/70 leading-relaxed">
+          <p>
+            <span class="lang-en">
+              Elements with the class <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">.fade-in-section</code>
+              start invisible and slightly translated downward. When they enter the viewport,
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">.is-visible</code> is added, triggering
+              a CSS transition to full opacity and zero translation.
+            </span>
+            <span class="lang-pt">
+              Elementos com a classe <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">.fade-in-section</code>
+              começam invisíveis e ligeiramente transladados para baixo. Quando entram na viewport,
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">.is-visible</code> é adicionado, ativando
+              uma transição CSS para opacidade total e translação zero.
+            </span>
+          </p>
+
+          <!-- CSS -->
+          <div class="bg-surface rounded-xl border border-white/5 p-4">
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-3">CSS</p>
+            <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">.fade-in-section</span> {
+  opacity: <span class="text-yellow-300">0</span>;
+  transform: <span class="text-yellow-300">translateY(24px)</span>;
+  transition: opacity <span class="text-yellow-300">0.6s ease</span>, transform <span class="text-yellow-300">0.6s ease</span>;
+}
+
+<span class="text-primary">.fade-in-section.is-visible</span> {
+  opacity: <span class="text-yellow-300">1</span>;
+  transform: <span class="text-yellow-300">translateY(0)</span>;
+}
+
+<span class="text-white/30">/* Staggered delay utilities */</span>
+<span class="text-primary">.delay-100</span> { transition-delay: <span class="text-yellow-300">100ms</span>; }
+<span class="text-primary">.delay-200</span> { transition-delay: <span class="text-yellow-300">200ms</span>; }
+<span class="text-primary">.delay-300</span> { transition-delay: <span class="text-yellow-300">300ms</span>; }
+<span class="text-primary">.delay-400</span> { transition-delay: <span class="text-yellow-300">400ms</span>; }</code></pre>
+          </div>
+
+          <!-- JS -->
+          <div class="bg-surface rounded-xl border border-white/5 p-4">
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-3">
+              <span class="lang-en">JavaScript (main.js)</span>
+              <span class="lang-pt">JavaScript (main.js)</span>
+            </p>
+            <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">const</span> observer = <span class="text-primary">new</span> IntersectionObserver(
+  (entries) =&gt; {
+    entries.forEach((entry) =&gt; {
+      <span class="text-primary">if</span> (entry.isIntersecting) {
+        entry.target.classList.add(<span class="text-yellow-300">'is-visible'</span>);
+        observer.unobserve(entry.target); <span class="text-white/30">// fire once</span>
+      }
+    });
+  },
+  { threshold: <span class="text-yellow-300">0.15</span> }
+);
+
+document
+  .querySelectorAll(<span class="text-yellow-300">'.fade-in-section'</span>)
+  .forEach((el) =&gt; observer.observe(el));</code></pre>
+          </div>
+
+          <p class="text-white/50 text-xs">
+            <span class="lang-en">
+              Using <code class="bg-white/10 px-1 rounded">observer.unobserve()</code> after the first intersection
+              means each element animates in only once — subsequent scrolls back up won't re-trigger the animation.
+              Change <code class="bg-white/10 px-1 rounded">threshold: 0.15</code> to control how much of the element
+              must be visible before it triggers.
+            </span>
+            <span class="lang-pt">
+              Usar <code class="bg-white/10 px-1 rounded">observer.unobserve()</code> após a primeira interseção significa
+              que cada elemento anima apenas uma vez — rolar de volta para cima não reativa a animação.
+              Altere <code class="bg-white/10 px-1 rounded">threshold: 0.15</code> para controlar quanto do elemento
+              deve estar visível antes de disparar.
+            </span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           8. LOGIN PAGE
+      ══════════════════════════════ -->
+      <section id="login">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">08</span>
+          <span class="lang-en">Login Page</span>
+          <span class="lang-pt">Página de Login</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">login.html structure and specifics</span>
+          <span class="lang-pt">Estrutura e detalhes do login.html</span>
+        </p>
+
+        <div class="space-y-5 text-sm text-white/70 leading-relaxed">
+          <p>
+            <span class="lang-en">
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">login.html</code> is a standalone page — it does not
+              inherit anything from <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">index.html</code>. It shares the
+              same CDN stack (Tailwind, Inter, Lucide) and the same color palette.
+            </span>
+            <span class="lang-pt">
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">login.html</code> é uma página autônoma — não herda nada
+              do <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">index.html</code>. Compartilha a mesma stack CDN
+              (Tailwind, Inter, Lucide) e a mesma paleta de cores.
+            </span>
+          </p>
+
+          <!-- Structure -->
+          <div class="bg-surface rounded-xl border border-white/5 p-4">
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-3">
+              <span class="lang-en">Page layout</span>
+              <span class="lang-pt">Layout da página</span>
+            </p>
+            <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">&lt;body&gt;</span>  <span class="text-white/30">bg-[#0B0C10]</span>
+
+  <span class="text-white/40">&lt;!-- centered card --&gt;</span>
+  <span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"min-h-screen flex items-center justify-center"</span><span class="text-primary">&gt;</span>
+    <span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"bg-surface border border-white/5 rounded-2xl p-8 w-full max-w-sm"</span><span class="text-primary">&gt;</span>
+
+      <span class="text-white/40">&lt;!-- Logo --&gt;</span>
+      <span class="text-white/40">&lt;!-- Heading --&gt;</span>
+
+      <span class="text-white/40">&lt;!-- Social login buttons (Google, GitHub) --&gt;</span>
+      <span class="text-primary">&lt;button&gt;</span>Continue with Google<span class="text-primary">&lt;/button&gt;</span>
+      <span class="text-primary">&lt;button&gt;</span>Continue with GitHub<span class="text-primary">&lt;/button&gt;</span>
+
+      <span class="text-white/40">&lt;!-- Divider --&gt;</span>
+      <span class="text-primary">&lt;div</span> class=<span class="text-yellow-300">"divider"</span><span class="text-primary">&gt;</span>or<span class="text-primary">&lt;/div&gt;</span>
+
+      <span class="text-white/40">&lt;!-- Email / password form --&gt;</span>
+      <span class="text-primary">&lt;form&gt;</span>
+        <span class="text-primary">&lt;input</span> type=<span class="text-yellow-300">"email"</span>    ... <span class="text-primary">/&gt;</span>
+        <span class="text-primary">&lt;input</span> type=<span class="text-yellow-300">"password"</span> ... <span class="text-primary">/&gt;</span>
+        <span class="text-primary">&lt;button</span> type=<span class="text-yellow-300">"submit"</span><span class="text-primary">&gt;</span>Sign in<span class="text-primary">&lt;/button&gt;</span>
+      <span class="text-primary">&lt;/form&gt;</span>
+
+      <span class="text-white/40">&lt;!-- Sign up link --&gt;</span>
+    <span class="text-primary">&lt;/div&gt;</span>
+  <span class="text-primary">&lt;/div&gt;</span>
+<span class="text-primary">&lt;/body&gt;</span></code></pre>
+          </div>
+
+          <!-- Autofill fix -->
+          <div>
+            <p class="font-semibold text-white mb-2">
+              <span class="lang-en">Autofill background fix</span>
+              <span class="lang-pt">Correção do background de autofill</span>
+            </p>
+            <p class="text-white/50 text-xs mb-3">
+              <span class="lang-en">
+                Browsers inject a bright yellow or white background on autofilled inputs. Overriding it requires
+                a CSS trick using a long <code class="bg-white/10 px-1 rounded">transition-delay</code> on
+                <code class="bg-white/10 px-1 rounded">background-color</code>:
+              </span>
+              <span class="lang-pt">
+                Navegadores injetam um fundo amarelo brilhante ou branco em inputs preenchidos automaticamente.
+                Sobrescrevê-lo requer um truque CSS usando um longo <code class="bg-white/10 px-1 rounded">transition-delay</code>
+                em <code class="bg-white/10 px-1 rounded">background-color</code>:
+              </span>
+            </p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">input:-webkit-autofill</span>,
+<span class="text-primary">input:-webkit-autofill:hover</span>,
+<span class="text-primary">input:-webkit-autofill:focus</span> {
+  -webkit-box-shadow: <span class="text-yellow-300">0 0 0 1000px #131418 inset</span>;
+  -webkit-text-fill-color: <span class="text-yellow-300">#ffffff</span>;
+  transition: background-color <span class="text-yellow-300">9999s ease-in-out 0s</span>;
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           9. PRICING SECTION
+      ══════════════════════════════ -->
+      <section id="pricing">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">09</span>
+          <span class="lang-en">Pricing Section</span>
+          <span class="lang-pt">Seção de Preços</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">Alpine.js toggle and three pricing tiers</span>
+          <span class="lang-pt">Toggle Alpine.js e três planos de preço</span>
+        </p>
+
+        <div class="space-y-5 text-sm text-white/70 leading-relaxed">
+          <p>
+            <span class="lang-en">
+              The pricing section is wrapped in an Alpine.js component (<code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">x-data</code>)
+              that holds a single boolean: <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">annual</code>.
+              A toggle button switches between monthly and annual billing; prices update instantly via
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">x-show</code> / <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">x-text</code>.
+            </span>
+            <span class="lang-pt">
+              A seção de preços é envolta em um componente Alpine.js (<code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">x-data</code>)
+              que mantém um único booleano: <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">annual</code>.
+              Um botão toggle alterna entre cobrança mensal e anual; os preços atualizam instantaneamente via
+              <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">x-show</code> / <code class="bg-white/10 px-1.5 py-0.5 rounded text-xs">x-text</code>.
+            </span>
+          </p>
+
+          <!-- Alpine component -->
+          <div class="bg-surface rounded-xl border border-white/5 p-4">
+            <p class="text-xs text-white/30 uppercase tracking-widest mb-3">
+              <span class="lang-en">Alpine.js component</span>
+              <span class="lang-pt">Componente Alpine.js</span>
+            </p>
+            <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">&lt;section</span> x-data=<span class="text-yellow-300">"{ annual: true }"</span><span class="text-primary">&gt;</span>
+
+  <span class="text-white/40">&lt;!-- Toggle --&gt;</span>
+  <span class="text-primary">&lt;button</span> @click=<span class="text-yellow-300">"annual = !annual"</span><span class="text-primary">&gt;</span>
+    <span class="text-primary">&lt;span</span> :class=<span class="text-yellow-300">"annual ? 'active' : ''"</span><span class="text-primary">&gt;</span>Annual<span class="text-primary">&lt;/span&gt;</span>
+    <span class="text-primary">&lt;span</span> :class=<span class="text-yellow-300">"!annual ? 'active' : ''"</span><span class="text-primary">&gt;</span>Monthly<span class="text-primary">&lt;/span&gt;</span>
+  <span class="text-primary">&lt;/button&gt;</span>
+
+  <span class="text-white/40">&lt;!-- Annual price (shown when annual === true) --&gt;</span>
+  <span class="text-primary">&lt;span</span> x-show=<span class="text-yellow-300">"annual"</span><span class="text-primary">&gt;</span>$8<span class="text-primary">&lt;/span&gt;</span>
+  <span class="text-primary">&lt;span</span> x-show=<span class="text-yellow-300">"!annual"</span><span class="text-primary">&gt;</span>$12<span class="text-primary">&lt;/span&gt;</span>
+
+<span class="text-primary">&lt;/section&gt;</span></code></pre>
+          </div>
+
+          <!-- Tiers table -->
+          <p class="font-semibold text-white">
+            <span class="lang-en">The three tiers</span>
+            <span class="lang-pt">Os três planos</span>
+          </p>
+          <div class="overflow-x-auto">
+            <table class="w-full text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-white/10">
+                  <th class="text-left py-2 pr-4 text-white/40 font-medium">
+                    <span class="lang-en">Tier</span><span class="lang-pt">Plano</span>
+                  </th>
+                  <th class="text-left py-2 pr-4 text-white/40 font-medium">
+                    <span class="lang-en">Monthly</span><span class="lang-pt">Mensal</span>
+                  </th>
+                  <th class="text-left py-2 pr-4 text-white/40 font-medium">
+                    <span class="lang-en">Annual</span><span class="lang-pt">Anual</span>
+                  </th>
+                  <th class="text-left py-2 text-white/40 font-medium">
+                    <span class="lang-en">Highlighted</span><span class="lang-pt">Destaque</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-white/5">
+                <tr>
+                  <td class="py-2.5 pr-4 text-white font-medium">Starter</td>
+                  <td class="py-2.5 pr-4 text-white/60">$12 / mo</td>
+                  <td class="py-2.5 pr-4 text-white/60">$8 / mo</td>
+                  <td class="py-2.5 text-white/40">
+                    <span class="lang-en">No</span><span class="lang-pt">Não</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-4 text-white font-medium">Pro</td>
+                  <td class="py-2.5 pr-4 text-white/60">$29 / mo</td>
+                  <td class="py-2.5 pr-4 text-white/60">$22 / mo</td>
+                  <td class="py-2.5 text-primary">
+                    <span class="lang-en">Yes — primary ring</span><span class="lang-pt">Sim — borda primária</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-4 text-white font-medium">Enterprise</td>
+                  <td class="py-2.5 pr-4 text-white/60">
+                    <span class="lang-en">Custom</span><span class="lang-pt">Personalizado</span>
+                  </td>
+                  <td class="py-2.5 pr-4 text-white/60">
+                    <span class="lang-en">Custom</span><span class="lang-pt">Personalizado</span>
+                  </td>
+                  <td class="py-2.5 text-white/40">
+                    <span class="lang-en">No</span><span class="lang-pt">Não</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           10. COLORS
+      ══════════════════════════════ -->
+      <section id="colors">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">10</span>
+          <span class="lang-en">Colors</span>
+          <span class="lang-pt">Cores</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">Design tokens and how they're used</span>
+          <span class="lang-pt">Tokens de design e como são usados</span>
+        </p>
+
+        <div class="space-y-4">
+          <!-- Swatches -->
+          <div class="grid sm:grid-cols-2 gap-3">
+            <!-- Background -->
+            <div class="bg-surface rounded-xl border border-white/5 p-4 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg border border-white/10 shrink-0" style="background:#0B0C10;"></div>
+              <div>
+                <p class="font-semibold text-sm">background</p>
+                <p class="font-mono text-xs text-white/40">#0B0C10</p>
+                <p class="text-xs text-white/40 mt-0.5">
+                  <span class="lang-en">Page background, nav, footer</span>
+                  <span class="lang-pt">Fundo da página, nav, rodapé</span>
+                </p>
+              </div>
+            </div>
+            <!-- Surface -->
+            <div class="bg-surface rounded-xl border border-white/5 p-4 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg border border-white/10 shrink-0" style="background:#131418;"></div>
+              <div>
+                <p class="font-semibold text-sm">surface</p>
+                <p class="font-mono text-xs text-white/40">#131418</p>
+                <p class="text-xs text-white/40 mt-0.5">
+                  <span class="lang-en">Cards, bento cells, input fields</span>
+                  <span class="lang-pt">Cards, células bento, campos de input</span>
+                </p>
+              </div>
+            </div>
+            <!-- Primary -->
+            <div class="bg-surface rounded-xl border border-white/5 p-4 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg border border-white/10 shrink-0" style="background:#5E6AD2;"></div>
+              <div>
+                <p class="font-semibold text-sm">primary</p>
+                <p class="font-mono text-xs text-white/40">#5E6AD2</p>
+                <p class="text-xs text-white/40 mt-0.5">
+                  <span class="lang-en">CTA buttons, accents, hover borders, glows</span>
+                  <span class="lang-pt">Botões CTA, destaques, bordas hover, brilhos</span>
+                </p>
+              </div>
+            </div>
+            <!-- Border -->
+            <div class="bg-surface rounded-xl border border-white/5 p-4 flex items-center gap-4">
+              <div class="w-12 h-12 rounded-lg border border-white/10 shrink-0" style="background:rgba(255,255,255,0.1);"></div>
+              <div>
+                <p class="font-semibold text-sm">border</p>
+                <p class="font-mono text-xs text-white/40">rgba(255, 255, 255, 0.1)</p>
+                <p class="text-xs text-white/40 mt-0.5">
+                  <span class="lang-en">Default card borders, dividers, nav underlines</span>
+                  <span class="lang-pt">Bordas padrão de cards, divisores, sublinhados de nav</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Glow gradient -->
+          <div class="bg-surface rounded-xl border border-white/5 p-5">
+            <p class="font-semibold text-sm mb-3">
+              <span class="lang-en">Glow gradient (hero)</span>
+              <span class="lang-pt">Gradiente de brilho (hero)</span>
+            </p>
+            <div class="h-20 rounded-lg mb-3" style="background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(94,106,210,0.25) 0%, transparent 70%);"></div>
+            <pre class="text-xs text-white/70 font-mono"><code>background: radial-gradient(
+  ellipse 60% 40% at 50% 0%,
+  rgba(94, 106, 210, 0.25) 0%,
+  transparent 70%
+);</code></pre>
+          </div>
+
+          <p class="text-white/50 text-xs">
+            <span class="lang-en">
+              All four tokens are registered in the <code class="bg-white/10 px-1 rounded">tailwind.config</code> block,
+              so you can use them as Tailwind classes anywhere:
+              <code class="bg-white/10 px-1 rounded">bg-background</code>,
+              <code class="bg-white/10 px-1 rounded">bg-surface</code>,
+              <code class="bg-white/10 px-1 rounded">text-primary</code>,
+              <code class="bg-white/10 px-1 rounded">border-border</code>.
+            </span>
+            <span class="lang-pt">
+              Todos os quatro tokens são registrados no bloco <code class="bg-white/10 px-1 rounded">tailwind.config</code>,
+              então você pode usá-los como classes Tailwind em qualquer lugar:
+              <code class="bg-white/10 px-1 rounded">bg-background</code>,
+              <code class="bg-white/10 px-1 rounded">bg-surface</code>,
+              <code class="bg-white/10 px-1 rounded">text-primary</code>,
+              <code class="bg-white/10 px-1 rounded">border-border</code>.
+            </span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           11. SEO
+      ══════════════════════════════ -->
+      <section id="seo">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">11</span>
+          SEO
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">Meta tags, Open Graph, Schema.org</span>
+          <span class="lang-pt">Meta tags, Open Graph, Schema.org</span>
+        </p>
+
+        <div class="space-y-5 text-sm text-white/70 leading-relaxed">
+
+          <!-- robots / canonical -->
+          <div>
+            <p class="font-semibold text-white mb-2">
+              <span class="lang-en">Standard meta</span>
+              <span class="lang-pt">Meta tags padrão</span>
+            </p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">&lt;meta</span> name=<span class="text-yellow-300">"description"</span> content=<span class="text-yellow-300">"Your product description"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> name=<span class="text-yellow-300">"robots"</span>      content=<span class="text-yellow-300">"index, follow"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;link</span> rel=<span class="text-yellow-300">"canonical"</span> href=<span class="text-yellow-300">"https://yourdomain.com/"</span> <span class="text-primary">/&gt;</span></code></pre>
+            </div>
+          </div>
+
+          <!-- Open Graph -->
+          <div>
+            <p class="font-semibold text-white mb-2">Open Graph</p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">&lt;meta</span> property=<span class="text-yellow-300">"og:type"</span>        content=<span class="text-yellow-300">"website"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> property=<span class="text-yellow-300">"og:url"</span>         content=<span class="text-yellow-300">"https://yourdomain.com/"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> property=<span class="text-yellow-300">"og:title"</span>       content=<span class="text-yellow-300">"SaaS Bento — Your Tagline"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> property=<span class="text-yellow-300">"og:description"</span>  content=<span class="text-yellow-300">"Your product description"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> property=<span class="text-yellow-300">"og:image"</span>       content=<span class="text-yellow-300">"https://yourdomain.com/og-image.png"</span> <span class="text-primary">/&gt;</span></code></pre>
+            </div>
+          </div>
+
+          <!-- Twitter Card -->
+          <div>
+            <p class="font-semibold text-white mb-2">Twitter Card</p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">&lt;meta</span> name=<span class="text-yellow-300">"twitter:card"</span>        content=<span class="text-yellow-300">"summary_large_image"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> name=<span class="text-yellow-300">"twitter:site"</span>        content=<span class="text-yellow-300">"@yourhandle"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> name=<span class="text-yellow-300">"twitter:title"</span>       content=<span class="text-yellow-300">"SaaS Bento — Your Tagline"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> name=<span class="text-yellow-300">"twitter:description"</span>  content=<span class="text-yellow-300">"Your product description"</span> <span class="text-primary">/&gt;</span>
+<span class="text-primary">&lt;meta</span> name=<span class="text-yellow-300">"twitter:image"</span>       content=<span class="text-yellow-300">"https://yourdomain.com/og-image.png"</span> <span class="text-primary">/&gt;</span></code></pre>
+            </div>
+          </div>
+
+          <!-- Schema.org -->
+          <div>
+            <p class="font-semibold text-white mb-1">Schema.org — SoftwareApplication</p>
+            <p class="text-white/50 text-xs mb-2">
+              <span class="lang-en">
+                Add the following JSON-LD block inside the <code class="bg-white/10 px-1 rounded">&lt;head&gt;</code>
+                to tell search engines this is a software product. Update <code class="bg-white/10 px-1 rounded">name</code>,
+                <code class="bg-white/10 px-1 rounded">url</code>, and price details to match your product.
+              </span>
+              <span class="lang-pt">
+                Adicione o bloco JSON-LD a seguir dentro do <code class="bg-white/10 px-1 rounded">&lt;head&gt;</code>
+                para informar aos motores de busca que este é um produto de software. Atualize <code class="bg-white/10 px-1 rounded">name</code>,
+                <code class="bg-white/10 px-1 rounded">url</code> e detalhes de preço para corresponder ao seu produto.
+              </span>
+            </p>
+            <div class="bg-surface rounded-xl border border-white/5 p-4">
+              <pre class="text-xs text-white/80 font-mono leading-relaxed"><code><span class="text-primary">&lt;script</span> type=<span class="text-yellow-300">"application/ld+json"</span><span class="text-primary">&gt;</span>
+{
+  <span class="text-primary">"@context"</span>:         <span class="text-yellow-300">"https://schema.org"</span>,
+  <span class="text-primary">"@type"</span>:            <span class="text-yellow-300">"SoftwareApplication"</span>,
+  <span class="text-primary">"name"</span>:             <span class="text-yellow-300">"Your SaaS Product"</span>,
+  <span class="text-primary">"applicationCategory"</span>: <span class="text-yellow-300">"BusinessApplication"</span>,
+  <span class="text-primary">"url"</span>:              <span class="text-yellow-300">"https://yourdomain.com"</span>,
+  <span class="text-primary">"offers"</span>: {
+    <span class="text-primary">"@type"</span>:    <span class="text-yellow-300">"Offer"</span>,
+    <span class="text-primary">"price"</span>:    <span class="text-yellow-300">"8.00"</span>,
+    <span class="text-primary">"priceCurrency"</span>: <span class="text-yellow-300">"USD"</span>
+  }
+}
+<span class="text-primary">&lt;/script&gt;</span></code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════
+           12. CREDITS
+      ══════════════════════════════ -->
+      <section id="credits">
+        <h2 class="text-xl font-bold mb-1 flex items-center gap-2">
+          <span class="text-primary font-mono text-sm">12</span>
+          <span class="lang-en">Credits</span>
+          <span class="lang-pt">Créditos</span>
+        </h2>
+        <p class="text-white/40 text-sm mb-5 border-b border-white/5 pb-4">
+          <span class="lang-en">Open-source tools that make this template possible</span>
+          <span class="lang-pt">Ferramentas open-source que tornam este template possível</span>
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-3">
+          <!-- Tailwind -->
+          <a href="https://tailwindcss.com" target="_blank" rel="noopener"
+             class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4 hover:border-primary/30 transition-colors group">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-[#06B6D4]/10 border border-[#06B6D4]/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm group-hover:text-primary transition-colors">Tailwind CSS</p>
+              <p class="text-white/40 text-xs mt-0.5">tailwindcss.com — MIT</p>
+              <p class="text-white/50 text-xs mt-1">
+                <span class="lang-en">Utility-first CSS framework.</span>
+                <span class="lang-pt">Framework CSS utility-first.</span>
+              </p>
+            </div>
+          </a>
+
+          <!-- Alpine -->
+          <a href="https://alpinejs.dev" target="_blank" rel="noopener"
+             class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4 hover:border-primary/30 transition-colors group">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-[#8BC0D0]/10 border border-[#8BC0D0]/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8BC0D0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm group-hover:text-primary transition-colors">Alpine.js</p>
+              <p class="text-white/40 text-xs mt-0.5">alpinejs.dev — MIT</p>
+              <p class="text-white/50 text-xs mt-1">
+                <span class="lang-en">Lightweight JS reactivity framework.</span>
+                <span class="lang-pt">Framework JS reativo e leve.</span>
+              </p>
+            </div>
+          </a>
+
+          <!-- Lucide -->
+          <a href="https://lucide.dev" target="_blank" rel="noopener"
+             class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4 hover:border-primary/30 transition-colors group">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E6AD2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            </div>
+            <div>
+              <p class="font-semibold text-sm group-hover:text-primary transition-colors">Lucide Icons</p>
+              <p class="text-white/40 text-xs mt-0.5">lucide.dev — ISC</p>
+              <p class="text-white/50 text-xs mt-1">
+                <span class="lang-en">Beautiful &amp; consistent open-source icon set.</span>
+                <span class="lang-pt">Conjunto de ícones open-source belo e consistente.</span>
+              </p>
+            </div>
+          </a>
+
+          <!-- Google Fonts / Inter -->
+          <a href="https://fonts.google.com/specimen/Inter" target="_blank" rel="noopener"
+             class="bg-surface rounded-xl border border-white/5 p-5 flex gap-4 hover:border-primary/30 transition-colors group">
+            <div class="shrink-0 w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+              <span class="text-white font-bold text-sm">Aa</span>
+            </div>
+            <div>
+              <p class="font-semibold text-sm group-hover:text-primary transition-colors">Inter — Google Fonts</p>
+              <p class="text-white/40 text-xs mt-0.5">rsms.me/inter — OFL</p>
+              <p class="text-white/50 text-xs mt-1">
+                <span class="lang-en">Typeface designed for computer screens by Rasmus Andersson.</span>
+                <span class="lang-pt">Tipografia projetada para telas de computador por Rasmus Andersson.</span>
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Final note -->
+        <div class="mt-8 rounded-xl border border-primary/20 bg-primary/5 p-5 text-sm text-white/70">
+          <p>
+            <span class="lang-en">
+              All dependencies are loaded from public CDNs. No attribution is required in the final product,
+              but it's always appreciated. If you find this template useful, consider starring the repository.
+            </span>
+            <span class="lang-pt">
+              Todas as dependências são carregadas de CDNs públicas. Nenhuma atribuição é necessária no produto final,
+              mas é sempre bem-vinda. Se você achar este template útil, considere dar uma estrela no repositório.
+            </span>
+          </p>
+        </div>
+      </section>
+
+      <!-- Footer spacer -->
+      <div class="border-t border-white/5 pt-8 text-center text-xs text-white/20">
+        SaaS Bento &mdash; Documentation &mdash; 2025
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════ -->
+  <script>
+    /* ─── Language toggle ─── */
+    function setLang(lang) {
+      document.body.classList.toggle('show-pt', lang === 'pt');
+      localStorage.setItem('saasbento-doc-lang', lang);
+      document.querySelectorAll('[data-lang-btn]').forEach(function(btn) {
+        btn.classList.toggle('active', btn.dataset.langBtn === lang);
+      });
+    }
+
+    (function() {
+      var saved = localStorage.getItem('saasbento-doc-lang') || 'en';
+      setLang(saved);
+    })();
+
+    /* ─── Sidebar active link on scroll ─── */
+    (function() {
+      var sections = document.querySelectorAll('section[id]');
+      var links    = document.querySelectorAll('.toc-link');
+
+      if (!sections.length || !links.length) return;
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.id;
+            links.forEach(function(link) {
+              var active = link.getAttribute('href') === '#' + id;
+              link.classList.toggle('active', active);
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+
+      sections.forEach(function(section) {
+        observer.observe(section);
+      });
+    })();
+  </script>
+
+</body>
+</html>

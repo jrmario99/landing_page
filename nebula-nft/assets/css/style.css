@@ -1,0 +1,242 @@
+/* ==============================
+   NebulaNFT — Custom Styles
+   Glassmorphism, holographic effects,
+   and deep-space aesthetics.
+   ============================== */
+
+/* --- Base Reset & Scroll --- */
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 240, 255, 0.3) transparent;
+}
+
+body {
+  background-color: #0a0a1a;
+}
+
+::selection {
+  background: rgba(0, 240, 255, 0.25);
+  color: #fff;
+}
+
+/* --- Glassmorphism Utilities --- */
+.glass-nav {
+  background: rgba(10, 10, 26, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.05);
+}
+
+.glass-chip {
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* --- Holographic Text Gradient --- */
+.holo-text {
+  background: linear-gradient(135deg, #00f0ff 0%, #a855f7 40%, #ec4899 70%, #00f0ff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: holo-shift 4s ease-in-out infinite;
+}
+
+@keyframes holo-shift {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+/* --- Holographic Button --- */
+.btn-holo {
+  position: relative;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(168, 85, 247, 0.15));
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  color: #fff;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.btn-holo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-holo:hover {
+  border-color: rgba(0, 240, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), 0 0 40px rgba(168, 85, 247, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn-holo:hover::before {
+  opacity: 1;
+}
+
+.btn-holo:active {
+  transform: translateY(0);
+}
+
+/* --- Timeline --- */
+.timeline-line {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 240, 255, 0.4),
+    rgba(168, 85, 247, 0.4),
+    rgba(236, 72, 153, 0.4),
+    rgba(59, 130, 246, 0.4)
+  );
+}
+
+.timeline-line-glow {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 240, 255, 0.15),
+    rgba(168, 85, 247, 0.15),
+    rgba(236, 72, 153, 0.15),
+    rgba(59, 130, 246, 0.15)
+  );
+  filter: blur(4px);
+  width: 3px;
+  transform: translateX(-1px);
+}
+
+.timeline-dot {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover .timeline-dot {
+  transform: translateX(-50%) scale(1.4);
+}
+
+/* --- FAQ Accordion --- */
+.faq-toggle:focus {
+  outline: none;
+}
+
+.faq-toggle:focus-visible {
+  outline: 2px solid rgba(0, 240, 255, 0.5);
+  outline-offset: -2px;
+  border-radius: 1rem;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-item.active .faq-content {
+  max-height: 300px;
+}
+
+/* --- Animations --- */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ping-slow {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out both;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out both;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+.delay-200 { animation-delay: 0.2s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-1000 { animation-delay: 1s; }
+
+/* --- Scroll-triggered Roadmap Items --- */
+.roadmap-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.roadmap-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger from alternating sides on desktop */
+@media (min-width: 768px) {
+  .roadmap-item[data-phase="1"],
+  .roadmap-item[data-phase="3"] {
+    transform: translateX(-40px) translateY(20px);
+  }
+
+  .roadmap-item[data-phase="2"],
+  .roadmap-item[data-phase="4"] {
+    transform: translateX(40px) translateY(20px);
+  }
+
+  .roadmap-item.visible {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+/* --- Wallet Modal --- */
+#wallet-modal.active {
+  display: flex;
+}
+
+/* --- Responsive --- */
+@media (max-width: 767px) {
+  .timeline-line,
+  .timeline-line-glow {
+    left: 1.5rem;
+  }
+}

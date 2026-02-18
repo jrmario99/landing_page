@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeonMind AI — Generate marketing copy, code, blog posts, and more in seconds using neural networks. GPU-accelerated AI content generation platform.">
+    <meta name="author" content="NeonMind AI">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NeonMind AI — Generate the Future">
+    <meta property="og:description" content="Unleash the power of neural networks to create high-fidelity assets. Stop imagining, start generating.">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NeonMind AI — Generate the Future">
+    <meta name="twitter:description" content="Unleash the power of neural networks to create high-fidelity assets. Stop imagining, start generating.">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "NeonMind AI",
+        "url": "https://yoursite.com/",
+        "description": "GPU-accelerated AI content generation platform for marketing copy, code, blog posts, and more.",
+        "applicationCategory": "ArtificialIntelligence",
+        "operatingSystem": "Web",
+        "offers": [
+            { "@type": "Offer", "name": "Hobby", "price": "0", "priceCurrency": "USD" },
+            { "@type": "Offer", "name": "Pro Neural", "price": "29", "priceCurrency": "USD" }
+        ]
+    }
+    </script>
+
+    <title>NeonMind AI — Generate the Future</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <!-- Fonts: Inter + Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        neon: {
+                            purple: '#b026ff',
+                            cyan: '#00f3ff',
+                            pink: '#ff00aa',
+                            dark: '#050510'
+                        }
+                    },
+                    backgroundImage: {
+                        'cyber-gradient': 'linear-gradient(to right, #b026ff, #00f3ff)',
+                        'grid-pattern': "linear-gradient(to right, #ffffff05 1px, transparent 1px), linear-gradient(to bottom, #ffffff05 1px, transparent 1px)"
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'cursor': 'cursor .75s step-end infinite'
+                    },
+                    keyframes: {
+                        cursor: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased selection:bg-neon-cyan selection:text-neon-dark relative">
+
+    <div class="fixed inset-0 bg-grid-pattern bg-[size:40px_40px] pointer-events-none z-0"></div>
+    
+    <nav class="relative z-50 w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="text-2xl font-display font-bold tracking-tighter">
+            Neon<span class="text-neon-cyan">Mind</span>.ai
+        </div>
+        <div class="hidden md:flex gap-8 text-sm text-gray-400">
+            <a href="#" class="hover:text-neon-cyan transition-colors">Features</a>
+            <a href="#" class="hover:text-neon-cyan transition-colors">Pricing</a>
+            <a href="#" class="hover:text-neon-cyan transition-colors">Showcase</a>
+        </div>
+        <button class="px-5 py-2 rounded-full border border-white/20 hover:border-neon-cyan hover:text-neon-cyan transition-all text-sm glass-card text-white">
+            Login
+        </button>
+    </nav>
+
+    <main>
+    <section class="relative z-10 pt-20 pb-32 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neon-purple/10 border border-neon-purple/30 text-neon-purple text-xs font-semibold tracking-wide uppercase">
+                <span class="w-2 h-2 rounded-full bg-neon-purple animate-pulse"></span>
+                v2.0 Now Available
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight">
+                Generate <br>
+                <span id="typewriter" class="text-gradient"></span><span class="animate-cursor text-neon-cyan">|</span>
+                <br> in seconds.
+            </h1>
+            
+            <p class="text-gray-400 text-lg max-w-md leading-relaxed">
+                Unleash the power of neural networks to create high-fidelity assets. Stop imagining, start generating.
+            </p>
+
+            <div class="pt-4 flex gap-4">
+                <div class="relative group">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-neon-pink to-neon-cyan rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                    <button class="relative px-8 py-4 bg-black rounded-lg leading-none flex items-center divide-x divide-gray-600">
+                        <span class="flex items-center space-x-5">
+                            <span class="pr-6 text-gray-100 font-bold group-hover:text-neon-cyan transition-colors">Start Creating</span>
+                        </span>
+                        <span class="pl-6 text-indigo-400 group-hover:text-gray-100 transition duration-200">&rarr;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative h-[400px] w-full flex items-center justify-center">
+            <div class="absolute inset-0 bg-neon-cyan/20 blur-[100px] rounded-full mix-blend-screen"></div>
+            <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1074&auto=format&fit=crop" 
+                 alt="AI Brain" 
+                 class="relative z-10 w-full h-full object-cover rounded-2xl shadow-2xl opacity-90 animate-pulse-slow mix-blend-lighten">
+        </div>
+    </section>
+
+    <section class="relative z-10 py-24 bg-black/50">
+        <div class="max-w-4xl mx-auto px-6 text-center mb-12">
+            <h2 class="text-3xl font-display font-bold mb-4">Enhance Reality</h2>
+            <p class="text-gray-400">Drag the slider to see how NeonMind upgrades resolution and detail.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 h-[500px]">
+            <div id="comparison-container" class="slider-container group">
+                
+                <div class="absolute inset-0 w-full h-full bg-cover bg-center" 
+                     style="background-image: url('https://images.unsplash.com/photo-1535868463750-c78d9543614f?q=80&w=1776&auto=format&fit=crop');">
+                     <span class="absolute top-4 right-4 bg-black/60 px-2 py-1 text-xs rounded text-neon-cyan font-bold backdrop-blur-sm border border-neon-cyan/20">AI ENHANCED</span>
+                </div>
+
+                <div id="original-image-wrapper" class="absolute top-0 left-0 h-full w-1/2 overflow-hidden border-r border-white/20 bg-cover bg-center z-10">
+                     <div class="absolute inset-0 w-full h-full bg-cover bg-center"
+                          style="background-image: url('https://images.unsplash.com/photo-1515630278258-407f66498911?q=80&w=1798&auto=format&fit=crop'); width: 100vw; max-width: 1024px;"> </div>
+                     <span class="absolute top-4 left-4 bg-black/60 px-2 py-1 text-xs rounded text-white/70 font-bold backdrop-blur-sm">ORIGINAL INPUT</span>
+                </div>
+
+                <div id="slider-handle" class="slider-handle left-1/2">
+                    <div class="slider-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="w-4 h-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="relative z-10 py-24 max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl md:text-5xl font-display font-bold text-center mb-16">
+            Neural <span class="text-gradient">Capabilities</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="glass-card p-8 rounded-2xl group">
+                <div class="w-12 h-12 bg-neon-purple/20 rounded-lg flex items-center justify-center mb-6 text-neon-purple group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white group-hover:text-neon-cyan transition-colors">Instant Generation</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">GPU-accelerated clusters render your requests in milliseconds, not minutes.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl group">
+                <div class="w-12 h-12 bg-neon-cyan/20 rounded-lg flex items-center justify-center mb-6 text-neon-cyan group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white group-hover:text-neon-cyan transition-colors">Style Transfer</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Apply the aesthetics of cyberpunk, oil painting, or 3D render to any input.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl group">
+                <div class="w-12 h-12 bg-neon-pink/20 rounded-lg flex items-center justify-center mb-6 text-neon-pink group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white group-hover:text-neon-cyan transition-colors">Code Synthesis</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Translates natural language into Python, JS, or C++ with syntax highlighting.</p>
+            </div>
+
+             <div class="glass-card p-8 rounded-2xl group">
+                <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white group-hover:text-neon-cyan transition-colors">Enterprise Security</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">SOC2 compliant data handling ensures your prompts remain your intellectual property.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl group">
+                <div class="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-6 text-yellow-400 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white group-hover:text-neon-cyan transition-colors">Cloud Sync</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Start creating on mobile and finish on desktop with seamless state synchronization.</p>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl group">
+                <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-6 text-green-400 group-hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-white group-hover:text-neon-cyan transition-colors">History Rollback</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">Never lose a prompt. Traverse your generation timeline like git version control.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative z-10 py-24 max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl md:text-5xl font-display font-bold text-center mb-4">Choose your <span class="text-neon-purple">Power</span></h2>
+        <p class="text-center text-gray-400 mb-16">Transparent pricing for every stage of evolution.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="glass-card p-8 rounded-2xl hover:border-white/30">
+                <h3 class="text-xl font-bold text-gray-300">Hobby</h3>
+                <div class="my-4"><span class="text-3xl font-bold">$0</span><span class="text-gray-500">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-400 mb-8">
+                    <li class="flex gap-2">✓ 100 Generations/mo</li>
+                    <li class="flex gap-2">✓ Standard Speed</li>
+                    <li class="flex gap-2">✓ Public Gallery</li>
+                </ul>
+                <button class="w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">Get Started</button>
+            </div>
+
+            <div class="relative bg-slate-900/80 backdrop-blur-xl p-8 rounded-2xl border border-neon-cyan shadow-[0_0_40px_rgba(0,243,255,0.15)] transform md:scale-105 z-10">
+                <div class="absolute top-0 right-0 bg-neon-cyan text-black text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">MOST POPULAR</div>
+                <h3 class="text-xl font-bold text-white">Pro Neural</h3>
+                <div class="my-4"><span class="text-4xl font-bold text-neon-cyan">$29</span><span class="text-gray-500">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                    <li class="flex gap-2 text-white">✓ <span class="text-neon-cyan">Unlimited</span> Generations</li>
+                    <li class="flex gap-2 text-white">✓ <span class="text-neon-cyan">Fast</span> GPU Mode</li>
+                    <li class="flex gap-2">✓ Private Gallery</li>
+                </ul>
+                <button class="w-full py-3 rounded-lg bg-gradient-to-r from-neon-purple to-neon-cyan text-black font-bold hover:shadow-[0_0_20px_rgba(0,243,255,0.4)] transition-shadow">Upgrade Now</button>
+            </div>
+
+            <div class="glass-card p-8 rounded-2xl hover:border-white/30">
+                <h3 class="text-xl font-bold text-gray-300">Enterprise</h3>
+                <div class="my-4"><span class="text-3xl font-bold">Custom</span></div>
+                <ul class="space-y-3 text-sm text-gray-400 mb-8">
+                    <li class="flex gap-2">✓ API Access</li>
+                    <li class="flex gap-2">✓ Dedicated Support</li>
+                    <li class="flex gap-2">✓ Custom Model Training</li>
+                </ul>
+                <button class="w-full py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-colors">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="border-t border-white/10 bg-black py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-gray-500 text-sm">
+                © 2025 NeonMind AI Inc. All rights reserved.
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-500 hover:text-neon-cyan transition-colors">Twitter</a>
+                <a href="#" class="text-gray-500 hover:text-neon-cyan transition-colors">Discord</a>
+                <a href="#" class="text-gray-500 hover:text-neon-cyan transition-colors">Github</a>
+            </div>
+
+            <div class="flex items-center gap-2 bg-white/5 px-3 py-1 rounded-full border border-white/10">
+                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                <span class="text-xs text-gray-300">Powered by GPT-4</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js" defer></script>
+</body>
+</html>

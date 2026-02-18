@@ -1,0 +1,82 @@
+/* assets/css/style.css */
+
+/* Base Styles */
+body {
+    background-color: #050510; /* Fallback color */
+    color: #ffffff;
+    overflow-x: hidden; /* Previne scroll horizontal acidental */
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(0, 243, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
+    transform: translateY(-5px);
+}
+
+/* Text Gradients */
+.text-gradient {
+    background: linear-gradient(to right, #b026ff, #00f3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Comparison Slider Styles */
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 50px rgba(0, 243, 255, 0.15);
+    user-select: none; /* Impede seleção de texto ao arrastar */
+}
+
+.slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #00f3ff;
+    cursor: ew-resize; /* Cursor de redimensionamento horizontal */
+    z-index: 20;
+    box-shadow: 0 0 15px #00f3ff;
+    touch-action: none; /* Importante para mobile */
+}
+
+.slider-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #050510;
+    border: 2px solid #00f3ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+/* Animation Utilities */
+@keyframes tilt {
+    0%, 50%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+}
+
+.animate-tilt {
+    animation: tilt 10s infinite linear;
+}

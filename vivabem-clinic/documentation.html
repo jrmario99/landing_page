@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VivaBem Clinic — Documentation</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --primary: #2563eb;
+            --primary-light: #dbeafe;
+            --code-bg: #f1f5f9;
+            --accent: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* ── Language Toggle ── */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 4px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ── Layout ── */
+        .wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        .doc-header {
+            text-align: center;
+            margin-bottom: 56px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .doc-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .doc-header .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .doc-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ── TOC ── */
+        .toc {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+        }
+
+        .toc h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc;
+            padding: 0;
+        }
+
+        .toc li {
+            counter-increment: toc;
+            margin-bottom: 8px;
+        }
+
+        .toc li::before {
+            content: counter(toc, decimal-leading-zero) ".";
+            color: var(--primary);
+            font-weight: 700;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .toc a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .toc a:hover { color: var(--primary); }
+
+        /* ── Sections ── */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            color: var(--text);
+        }
+
+        .section h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 24px 0 10px;
+            color: var(--text);
+        }
+
+        .section p, .section li {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .section ul, .section ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .section ul li { list-style: disc; }
+
+        /* ── Code ── */
+        code {
+            background: var(--code-bg);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: var(--primary);
+        }
+
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px 24px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 16px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: inherit;
+        }
+
+        /* ── Tables ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-alt);
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        td { color: var(--text-muted); }
+
+        /* ── Tip / Warning Boxes ── */
+        .tip {
+            background: #ecfdf5;
+            border-left: 4px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #065f46;
+        }
+
+        .warning {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        /* ── File Tree ── */
+        .file-tree {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .file-tree .folder { color: var(--primary); font-weight: 600; }
+        .file-tree .comment { color: var(--text-muted); opacity: 0.6; }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .wrapper { padding: 40px 16px 60px; }
+            .doc-header h1 { font-size: 1.6rem; }
+            .lang-toggle { top: 12px; right: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
+</div>
+
+<div class="wrapper">
+
+    <!-- ═══════════════════════════════════════════
+         ENGLISH VERSION
+    ═══════════════════════════════════════════ -->
+    <div id="lang-en">
+
+        <header class="doc-header">
+            <div class="badge">Documentation</div>
+            <h1>VivaBem Clinic</h1>
+            <p>Local Business / Health Clinic Landing Page Template — customization guide and file reference.</p>
+        </header>
+
+        <!-- TOC -->
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#en-overview">Overview</a></li>
+                <li><a href="#en-structure">File Structure</a></li>
+                <li><a href="#en-tech">Tech Stack</a></li>
+                <li><a href="#en-sections">Page Sections</a></li>
+                <li><a href="#en-colors">Changing Colors</a></li>
+                <li><a href="#en-maps">Google Maps Location</a></li>
+                <li><a href="#en-hours">Business Hours</a></li>
+                <li><a href="#en-whatsapp">WhatsApp Number</a></li>
+                <li><a href="#en-social">Social Media Links</a></li>
+                <li><a href="#en-seo">SEO &amp; Schema.org</a></li>
+                <li><a href="#en-performance">Performance</a></li>
+                <li><a href="#en-credits">Credits &amp; License</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Overview -->
+        <section class="section" id="en-overview">
+            <h2>1. Overview</h2>
+            <p>VivaBem Clinic is a single-page landing page template designed for health clinics, medical offices, gyms, and local businesses. It features a clean, modern design with sections for services, testimonials, business hours, location map, and a contact form.</p>
+            <p>The template is fully responsive, uses vanilla CSS and JavaScript (zero dependencies), and is built with accessibility and SEO best practices in mind.</p>
+        </section>
+
+        <!-- 2. File Structure -->
+        <section class="section" id="en-structure">
+            <h2>2. File Structure</h2>
+            <div class="file-tree">
+                <span class="folder">vivabem-clinic/</span><br>
+                ├── index.html <span class="comment">← Main page</span><br>
+                ├── documentation.html <span class="comment">← This file</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── style.css <span class="comment">← All styles (~1200 lines)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── main.js <span class="comment">← Interactivity (~190 lines)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Browser tab icon</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Social sharing image (1200×630)</span>
+            </div>
+        </section>
+
+        <!-- 3. Tech Stack -->
+        <section class="section" id="en-tech">
+            <h2>3. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 Semantic</td><td>Structure (header, main, section, footer)</td></tr>
+                    <tr><td>CSS3 Custom Properties</td><td>Theming with CSS variables</td></tr>
+                    <tr><td>Vanilla JavaScript</td><td>Interactivity (zero dependencies)</td></tr>
+                    <tr><td>Google Fonts (Inter)</td><td>Typography</td></tr>
+                    <tr><td>Schema.org JSON-LD</td><td>Structured data for search engines</td></tr>
+                    <tr><td>BEM Naming</td><td>CSS class methodology</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 4. Page Sections -->
+        <section class="section" id="en-sections">
+            <h2>4. Page Sections</h2>
+            <ul>
+                <li><strong>Header</strong> — Sticky navigation with logo, links, CTA button, and mobile hamburger menu</li>
+                <li><strong>Hero</strong> — Full-width banner with headline, subtext, dual CTA buttons, and placeholder image</li>
+                <li><strong>Services</strong> — 3-column cards (Physiotherapy, Dentistry, Gym) with icons and descriptions</li>
+                <li><strong>About</strong> — Split layout with image placeholder and text + feature highlights</li>
+                <li><strong>Testimonials</strong> — 3 client review cards with star ratings</li>
+                <li><strong>Business Hours</strong> — Table with open/closed auto-detection based on current time</li>
+                <li><strong>Location</strong> — Google Maps iframe embed (lazy loaded)</li>
+                <li><strong>Contact Form</strong> — Name, email, phone (with mask), service select, and message textarea</li>
+                <li><strong>Footer</strong> — 4-column layout with brand, quick links, services, and contact info</li>
+                <li><strong>Floating WhatsApp</strong> — Fixed button linking to WhatsApp chat</li>
+                <li><strong>Sticky CTA Bar</strong> — Mobile-only fixed bottom bar with "Schedule Now" button</li>
+            </ul>
+        </section>
+
+        <!-- 5. Changing Colors -->
+        <section class="section" id="en-colors">
+            <h2>5. Changing Colors</h2>
+            <p>Open <code>assets/css/style.css</code> and find the <code>:root</code> block near the top:</p>
+            <pre><code>:root {
+    /* ── EDITABLE: Brand Colors ── */
+    --primary: #2563eb;        /* Main blue */
+    --primary-dark: #1d4ed8;   /* Hover blue */
+    --primary-light: #dbeafe;  /* Light blue backgrounds */
+    --accent: #10b981;         /* Green accent */
+    --accent-dark: #059669;    /* Hover green */
+}</code></pre>
+            <p>Change these values to match your brand. All buttons, links, and highlights will update automatically.</p>
+        </section>
+
+        <!-- 6. Google Maps -->
+        <section class="section" id="en-maps">
+            <h2>6. Google Maps Location</h2>
+            <ol>
+                <li>Go to <a href="https://maps.google.com" target="_blank" rel="noopener">Google Maps</a></li>
+                <li>Search for your business address</li>
+                <li>Click <strong>Share</strong> → <strong>Embed a map</strong> → <strong>Copy HTML</strong></li>
+                <li>In <code>index.html</code>, find the comment <code>&lt;!-- EDITABLE: Google Maps Embed --&gt;</code></li>
+                <li>Replace the <code>src="..."</code> inside the <code>&lt;iframe&gt;</code> with the new URL</li>
+            </ol>
+            <div class="tip">Also update the <code>&lt;script type="application/ld+json"&gt;</code> block with your actual latitude, longitude, and address for SEO.</div>
+        </section>
+
+        <!-- 7. Business Hours -->
+        <section class="section" id="en-hours">
+            <h2>7. Business Hours</h2>
+            <h3>In the HTML</h3>
+            <p>Find the comment <code>&lt;!-- EDITABLE: Business Hours --&gt;</code> and edit each <code>&lt;div class="hours__row"&gt;</code> block. Add the class <code>hours__row--closed</code> for closed days.</p>
+
+            <h3>In the JavaScript</h3>
+            <p>Open <code>assets/js/main.js</code> and find the <code>schedule</code> object (around line 65):</p>
+            <pre><code>const schedule = {
+    0: null,                              // Sunday — Closed
+    1: { open: "07:00", close: "20:00" }, // Monday
+    2: { open: "07:00", close: "20:00" }, // Tuesday
+    ...
+    6: { open: "08:00", close: "14:00" }, // Saturday
+};</code></pre>
+            <p>Use <code>null</code> for closed days and 24-hour format <code>"HH:MM"</code>.</p>
+
+            <h3>In Schema.org</h3>
+            <p>Update the <code>openingHoursSpecification</code> array in the JSON-LD block to match your real hours.</p>
+        </section>
+
+        <!-- 8. WhatsApp -->
+        <section class="section" id="en-whatsapp">
+            <h2>8. WhatsApp Number</h2>
+            <ol>
+                <li>Open <code>index.html</code></li>
+                <li>Search for <code>5511999999999</code> (appears 2 times)</li>
+                <li>Replace with your number in the format: <code>country code + area code + number</code> (no spaces or dashes)</li>
+            </ol>
+            <div class="tip">Example for Brazil: <code>5521987654321</code></div>
+        </section>
+
+        <!-- 9. Social Media -->
+        <section class="section" id="en-social">
+            <h2>9. Social Media Links</h2>
+            <p>Find the comment <code>&lt;!-- EDITABLE: Social Media Links --&gt;</code> in <code>index.html</code> and replace each <code>href="#"</code> with your actual profile URLs (Instagram, Facebook, etc.).</p>
+        </section>
+
+        <!-- 10. SEO & Schema.org -->
+        <section class="section" id="en-seo">
+            <h2>10. SEO &amp; Schema.org</h2>
+            <ul>
+                <li><strong>Meta tags</strong> — Title, description, Open Graph and Twitter Card tags are pre-configured in the <code>&lt;head&gt;</code></li>
+                <li><strong>Semantic HTML</strong> — Uses <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>, and proper heading hierarchy</li>
+                <li><strong>Schema.org</strong> — LocalBusiness JSON-LD structured data with name, address, phone, hours, and geo coordinates</li>
+                <li><strong>Social sharing image</strong> — Add an <code>og-image.jpg</code> (1200×630px) to <code>assets/img/</code></li>
+            </ul>
+            <div class="warning">Remember to replace placeholder URLs (clinicavivabem.com.br) with your actual domain before publishing.</div>
+        </section>
+
+        <!-- 11. Performance -->
+        <section class="section" id="en-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Zero external JS dependencies — only vanilla JavaScript</li>
+                <li>CSS custom properties for efficient theming</li>
+                <li>Google Maps iframe uses <code>loading="lazy"</code></li>
+                <li>Font preconnect hints for faster Google Fonts loading</li>
+                <li>Intersection Observer for scroll-triggered animations (no scroll event polling)</li>
+                <li>Phone number input mask using lightweight vanilla JS</li>
+            </ul>
+        </section>
+
+        <!-- 12. Credits -->
+        <section class="section" id="en-credits">
+            <h2>12. Credits &amp; License</h2>
+            <table>
+                <thead><tr><th>Resource</th><th>License</th></tr></thead>
+                <tbody>
+                    <tr><td>Google Fonts (Inter)</td><td>SIL Open Font License</td></tr>
+                    <tr><td>SVG Icons (inline)</td><td>MIT / Free for commercial use</td></tr>
+                </tbody>
+            </table>
+            <p>All placeholder content (names, addresses, phone numbers) is fictional and should be replaced before publishing.</p>
+        </section>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         PORTUGUESE VERSION
+    ═══════════════════════════════════════════ -->
+    <div id="lang-pt" style="display:none;">
+
+        <header class="doc-header">
+            <div class="badge">Documentação</div>
+            <h1>VivaBem Clinic</h1>
+            <p>Template de Landing Page para Negócio Local / Clínica de Saúde — guia de personalização e referência de arquivos.</p>
+        </header>
+
+        <!-- TOC -->
+        <nav class="toc">
+            <h2>Sumário</h2>
+            <ol>
+                <li><a href="#pt-overview">Visão Geral</a></li>
+                <li><a href="#pt-structure">Estrutura de Arquivos</a></li>
+                <li><a href="#pt-tech">Tecnologias</a></li>
+                <li><a href="#pt-sections">Seções da Página</a></li>
+                <li><a href="#pt-colors">Trocar as Cores</a></li>
+                <li><a href="#pt-maps">Localização no Google Maps</a></li>
+                <li><a href="#pt-hours">Horários de Funcionamento</a></li>
+                <li><a href="#pt-whatsapp">Número do WhatsApp</a></li>
+                <li><a href="#pt-social">Links das Redes Sociais</a></li>
+                <li><a href="#pt-seo">SEO &amp; Schema.org</a></li>
+                <li><a href="#pt-performance">Performance</a></li>
+                <li><a href="#pt-credits">Créditos &amp; Licença</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Visão Geral -->
+        <section class="section" id="pt-overview">
+            <h2>1. Visão Geral</h2>
+            <p>VivaBem Clinic é um template de landing page single-page projetado para clínicas de saúde, consultórios médicos, academias e negócios locais. Possui um design limpo e moderno com seções de serviços, depoimentos, horários de funcionamento, mapa de localização e formulário de contato.</p>
+            <p>O template é totalmente responsivo, usa CSS e JavaScript puros (zero dependências), e foi construído seguindo boas práticas de acessibilidade e SEO.</p>
+        </section>
+
+        <!-- 2. Estrutura de Arquivos -->
+        <section class="section" id="pt-structure">
+            <h2>2. Estrutura de Arquivos</h2>
+            <div class="file-tree">
+                <span class="folder">vivabem-clinic/</span><br>
+                ├── index.html <span class="comment">← Página principal</span><br>
+                ├── documentation.html <span class="comment">← Este arquivo</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── style.css <span class="comment">← Todos os estilos (~1200 linhas)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── main.js <span class="comment">← Interatividade (~190 linhas)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Ícone da aba do navegador</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Imagem de compartilhamento (1200×630)</span>
+            </div>
+        </section>
+
+        <!-- 3. Tecnologias -->
+        <section class="section" id="pt-tech">
+            <h2>3. Tecnologias</h2>
+            <table>
+                <thead><tr><th>Tecnologia</th><th>Finalidade</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 Semântico</td><td>Estrutura (header, main, section, footer)</td></tr>
+                    <tr><td>CSS3 Custom Properties</td><td>Temas com variáveis CSS</td></tr>
+                    <tr><td>JavaScript Vanilla</td><td>Interatividade (zero dependências)</td></tr>
+                    <tr><td>Google Fonts (Inter)</td><td>Tipografia</td></tr>
+                    <tr><td>Schema.org JSON-LD</td><td>Dados estruturados para buscadores</td></tr>
+                    <tr><td>Nomenclatura BEM</td><td>Metodologia de classes CSS</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 4. Seções da Página -->
+        <section class="section" id="pt-sections">
+            <h2>4. Seções da Página</h2>
+            <ul>
+                <li><strong>Header</strong> — Navegação fixa com logo, links, botão CTA e menu hambúrguer mobile</li>
+                <li><strong>Hero</strong> — Banner em largura total com título, subtexto, dois botões CTA e imagem placeholder</li>
+                <li><strong>Serviços</strong> — 3 cards em colunas (Fisioterapia, Dentista, Academia) com ícones e descrições</li>
+                <li><strong>Sobre</strong> — Layout dividido com imagem placeholder, texto e destaques</li>
+                <li><strong>Depoimentos</strong> — 3 cards de avaliação de clientes com estrelas</li>
+                <li><strong>Horários</strong> — Tabela com detecção automática de aberto/fechado baseado no horário atual</li>
+                <li><strong>Localização</strong> — Iframe do Google Maps (carregamento lazy)</li>
+                <li><strong>Formulário de Contato</strong> — Nome, e-mail, telefone (com máscara), seleção de serviço e mensagem</li>
+                <li><strong>Footer</strong> — Layout 4 colunas com marca, links rápidos, serviços e contato</li>
+                <li><strong>WhatsApp Flutuante</strong> — Botão fixo que abre conversa no WhatsApp</li>
+                <li><strong>Barra CTA Fixa</strong> — Barra fixa inferior (apenas mobile) com botão "Agendar Agora"</li>
+            </ul>
+        </section>
+
+        <!-- 5. Trocar as Cores -->
+        <section class="section" id="pt-colors">
+            <h2>5. Trocar as Cores</h2>
+            <p>Abra <code>assets/css/style.css</code> e encontre o bloco <code>:root</code> no topo:</p>
+            <pre><code>:root {
+    /* ── EDITABLE: Brand Colors ── */
+    --primary: #2563eb;        /* Azul principal */
+    --primary-dark: #1d4ed8;   /* Azul hover */
+    --primary-light: #dbeafe;  /* Fundos azul claro */
+    --accent: #10b981;         /* Verde destaque */
+    --accent-dark: #059669;    /* Verde hover */
+}</code></pre>
+            <p>Altere esses valores para as cores da sua marca. Todos os botões, links e destaques serão atualizados automaticamente.</p>
+        </section>
+
+        <!-- 6. Google Maps -->
+        <section class="section" id="pt-maps">
+            <h2>6. Localização no Google Maps</h2>
+            <ol>
+                <li>Acesse <a href="https://maps.google.com" target="_blank" rel="noopener">Google Maps</a></li>
+                <li>Pesquise o endereço do seu negócio</li>
+                <li>Clique em <strong>Compartilhar</strong> → <strong>Incorporar um mapa</strong> → <strong>Copiar HTML</strong></li>
+                <li>No <code>index.html</code>, encontre o comentário <code>&lt;!-- EDITABLE: Google Maps Embed --&gt;</code></li>
+                <li>Substitua o <code>src="..."</code> dentro do <code>&lt;iframe&gt;</code> pela nova URL</li>
+            </ol>
+            <div class="tip">Atualize também o bloco <code>&lt;script type="application/ld+json"&gt;</code> com sua latitude, longitude e endereço reais para SEO.</div>
+        </section>
+
+        <!-- 7. Horários de Funcionamento -->
+        <section class="section" id="pt-hours">
+            <h2>7. Horários de Funcionamento</h2>
+            <h3>No HTML</h3>
+            <p>Encontre o comentário <code>&lt;!-- EDITABLE: Business Hours --&gt;</code> e edite cada bloco <code>&lt;div class="hours__row"&gt;</code>. Adicione a classe <code>hours__row--closed</code> para dias fechados.</p>
+
+            <h3>No JavaScript</h3>
+            <p>Abra <code>assets/js/main.js</code> e encontre o objeto <code>schedule</code> (por volta da linha 65):</p>
+            <pre><code>const schedule = {
+    0: null,                              // Domingo — Fechado
+    1: { open: "07:00", close: "20:00" }, // Segunda
+    2: { open: "07:00", close: "20:00" }, // Terça
+    ...
+    6: { open: "08:00", close: "14:00" }, // Sábado
+};</code></pre>
+            <p>Use <code>null</code> para dias fechados e formato 24 horas <code>"HH:MM"</code>.</p>
+
+            <h3>No Schema.org</h3>
+            <p>Atualize o array <code>openingHoursSpecification</code> no bloco JSON-LD com seus horários reais.</p>
+        </section>
+
+        <!-- 8. WhatsApp -->
+        <section class="section" id="pt-whatsapp">
+            <h2>8. Número do WhatsApp</h2>
+            <ol>
+                <li>Abra o <code>index.html</code></li>
+                <li>Procure por <code>5511999999999</code> (aparece 2 vezes)</li>
+                <li>Substitua pelo seu número no formato: <code>código do país + DDD + número</code> (sem espaços ou traços)</li>
+            </ol>
+            <div class="tip">Exemplo: <code>5521987654321</code></div>
+        </section>
+
+        <!-- 9. Redes Sociais -->
+        <section class="section" id="pt-social">
+            <h2>9. Links das Redes Sociais</h2>
+            <p>Encontre o comentário <code>&lt;!-- EDITABLE: Social Media Links --&gt;</code> no <code>index.html</code> e substitua cada <code>href="#"</code> pelas URLs reais dos seus perfis (Instagram, Facebook, etc.).</p>
+        </section>
+
+        <!-- 10. SEO & Schema.org -->
+        <section class="section" id="pt-seo">
+            <h2>10. SEO &amp; Schema.org</h2>
+            <ul>
+                <li><strong>Meta tags</strong> — Título, descrição, Open Graph e Twitter Card já estão configurados no <code>&lt;head&gt;</code></li>
+                <li><strong>HTML Semântico</strong> — Usa <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code> e hierarquia correta de headings</li>
+                <li><strong>Schema.org</strong> — Dados estruturados LocalBusiness em JSON-LD com nome, endereço, telefone, horários e coordenadas</li>
+                <li><strong>Imagem de compartilhamento</strong> — Adicione uma <code>og-image.jpg</code> (1200×630px) em <code>assets/img/</code></li>
+            </ul>
+            <div class="warning">Lembre-se de substituir as URLs placeholder (clinicavivabem.com.br) pelo seu domínio real antes de publicar.</div>
+        </section>
+
+        <!-- 11. Performance -->
+        <section class="section" id="pt-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Zero dependências externas de JS — apenas JavaScript vanilla</li>
+                <li>CSS custom properties para temas eficientes</li>
+                <li>Iframe do Google Maps usa <code>loading="lazy"</code></li>
+                <li>Hints de preconnect para carregamento mais rápido do Google Fonts</li>
+                <li>Intersection Observer para animações no scroll (sem polling de evento scroll)</li>
+                <li>Máscara de telefone usando JavaScript vanilla leve</li>
+            </ul>
+        </section>
+
+        <!-- 12. Créditos -->
+        <section class="section" id="pt-credits">
+            <h2>12. Créditos &amp; Licença</h2>
+            <table>
+                <thead><tr><th>Recurso</th><th>Licença</th></tr></thead>
+                <tbody>
+                    <tr><td>Google Fonts (Inter)</td><td>SIL Open Font License</td></tr>
+                    <tr><td>Ícones SVG (inline)</td><td>MIT / Livre para uso comercial</td></tr>
+                </tbody>
+            </table>
+            <p>Todo o conteúdo placeholder (nomes, endereços, telefones) é fictício e deve ser substituído antes da publicação.</p>
+        </section>
+
+    </div>
+
+</div>
+
+<script>
+    function setLang(lang) {
+        document.getElementById('lang-en').style.display = lang === 'en' ? 'block' : 'none';
+        document.getElementById('lang-pt').style.display = lang === 'pt' ? 'block' : 'none';
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+        });
+        localStorage.setItem('vivabem-doc-lang', lang);
+    }
+
+    // Restore saved preference
+    const savedLang = localStorage.getItem('vivabem-doc-lang');
+    if (savedLang) setLang(savedLang);
+</script>
+
+</body>
+</html>

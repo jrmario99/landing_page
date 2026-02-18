@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiss Design Portfolio — Documentation</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --bg-alt: #fafafa;
+            --text: #0a0a0a;
+            --text-muted: #666666;
+            --border: #e5e5e5;
+            --primary: #0a0a0a;
+            --primary-light: #f0f0f0;
+            --code-bg: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* ── Language Toggle ── */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 4px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            letter-spacing: 0.05em;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ── Layout ── */
+        .wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        .doc-header {
+            text-align: center;
+            margin-bottom: 56px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .doc-header h1 {
+            font-size: 2.4rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            letter-spacing: -0.03em;
+        }
+
+        .doc-header .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .doc-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ── TOC ── */
+        .toc {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+        }
+
+        .toc h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc;
+            padding: 0;
+        }
+
+        .toc li {
+            counter-increment: toc;
+            margin-bottom: 8px;
+        }
+
+        .toc li::before {
+            content: counter(toc, decimal-leading-zero) ".";
+            color: var(--primary);
+            font-weight: 900;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .toc a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+
+        .toc a:hover { opacity: 0.6; }
+
+        /* ── Sections ── */
+        .section {
+            margin-bottom: 48px;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+            letter-spacing: -0.02em;
+        }
+
+        .section h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 24px 0 10px;
+        }
+
+        .section p, .section li {
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .section ul, .section ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .section ul li { list-style: disc; }
+
+        /* ── Code ── */
+        code {
+            background: var(--code-bg);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+            color: var(--primary);
+        }
+
+        pre {
+            background: #0a0a0a;
+            color: #f5f5f5;
+            padding: 20px 24px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 16px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: inherit;
+        }
+
+        /* ── Tables ── */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-alt);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+        }
+
+        td { color: var(--text-muted); }
+
+        /* ── Tip / Warning ── */
+        .tip {
+            background: #f0fdf4;
+            border-left: 3px solid #0a0a0a;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #166534;
+        }
+
+        .warning {
+            background: #fffbeb;
+            border-left: 3px solid #0a0a0a;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        /* ── File Tree ── */
+        .file-tree {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            font-family: 'JetBrains Mono', 'SF Mono', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .file-tree .folder { color: var(--primary); font-weight: 700; }
+        .file-tree .comment { opacity: 0.5; }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .wrapper { padding: 40px 16px 60px; }
+            .doc-header h1 { font-size: 1.8rem; }
+            .lang-toggle { top: 12px; right: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
+</div>
+
+<div class="wrapper">
+
+    <!-- ═══════════════════════════════════════════
+         ENGLISH VERSION
+    ═══════════════════════════════════════════ -->
+    <div id="lang-en">
+
+        <header class="doc-header">
+            <div class="badge">Documentation</div>
+            <h1>Swiss Design Portfolio</h1>
+            <p>Minimalist portfolio template inspired by the Swiss/International Typographic Style. Bold typography, monochrome palette, custom cursor.</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#en-overview">Overview</a></li>
+                <li><a href="#en-structure">File Structure</a></li>
+                <li><a href="#en-tech">Tech Stack</a></li>
+                <li><a href="#en-sections">Page Sections</a></li>
+                <li><a href="#en-projects">Adding / Editing Projects</a></li>
+                <li><a href="#en-categories">Adding Categories</a></li>
+                <li><a href="#en-cursor">Custom Cursor</a></li>
+                <li><a href="#en-colors">Changing Colors &amp; Typography</a></li>
+                <li><a href="#en-social">Social Links</a></li>
+                <li><a href="#en-seo">SEO &amp; Schema.org</a></li>
+                <li><a href="#en-performance">Performance</a></li>
+                <li><a href="#en-credits">Credits &amp; License</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1 -->
+        <section class="section" id="en-overview">
+            <h2>1. Overview</h2>
+            <p>Swiss Design Portfolio is a single-page portfolio template built for designers, developers, and creatives. Inspired by the Swiss/International Typographic Style, it uses bold typography as the main visual element, a strict monochrome palette, generous whitespace, and grid-based layouts.</p>
+            <p>Key features: project filter by category, custom animated cursor (desktop), scroll-reveal animations, contact form with live validation, and full responsive design.</p>
+        </section>
+
+        <!-- 2 -->
+        <section class="section" id="en-structure">
+            <h2>2. File Structure</h2>
+            <div class="file-tree">
+                <span class="folder">swiss-design/</span><br>
+                ├── index.html <span class="comment">← Main page</span><br>
+                ├── documentation.html <span class="comment">← This file</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── style.css <span class="comment">← Layout, typography, colors</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── cursor.css <span class="comment">← Custom cursor styles</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── animations.css <span class="comment">← Scroll reveal animations</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── main.js <span class="comment">← Nav, filter, form validation</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── cursor.js <span class="comment">← Custom cursor logic</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── animations.js <span class="comment">← IntersectionObserver</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Browser tab icon</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Social sharing (1200×630)</span>
+            </div>
+        </section>
+
+        <!-- 3 -->
+        <section class="section" id="en-tech">
+            <h2>3. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 Semantic</td><td>Structure (header, main, section, article, footer)</td></tr>
+                    <tr><td>CSS3 (vanilla)</td><td>Layout, typography, animations</td></tr>
+                    <tr><td>Vanilla JavaScript</td><td>Interactivity (zero dependencies)</td></tr>
+                    <tr><td>Google Fonts (Inter)</td><td>Swiss-style sans-serif typography</td></tr>
+                    <tr><td>Schema.org JSON-LD</td><td>Structured data for search engines</td></tr>
+                    <tr><td>BEM Naming</td><td>CSS class methodology</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 4 -->
+        <section class="section" id="en-sections">
+            <h2>4. Page Sections</h2>
+            <ul>
+                <li><strong>Header</strong> — Fixed navigation with logo, links (uppercase + letter-spacing), and hamburger menu for mobile</li>
+                <li><strong>Hero</strong> — Full-viewport section with oversized typography (up to 9rem), outline text effect, subtitle, and CTA button</li>
+                <li><strong>Work/Portfolio</strong> — Filterable project grid (Design, Web, Branding) with image zoom on hover and staggered reveal</li>
+                <li><strong>Testimonials</strong> — 6 client review cards using <code>&lt;blockquote&gt;</code> with subtle border hover effect</li>
+                <li><strong>Contact</strong> — Form with floating labels, live validation (name, email, message), and submit feedback</li>
+                <li><strong>Footer</strong> — Minimal footer with copyright and social links (GitHub, LinkedIn, Instagram)</li>
+                <li><strong>Custom Cursor</strong> — Animated circle + dot cursor with hover/click states and <code>mix-blend-mode: difference</code></li>
+            </ul>
+        </section>
+
+        <!-- 5 -->
+        <section class="section" id="en-projects">
+            <h2>5. Adding / Editing Projects</h2>
+            <p>Open <code>index.html</code> and find the <code>&lt;!-- Grid --&gt;</code> section. Copy and paste this card template:</p>
+            <pre><code>&lt;article class="work__card animate-on-scroll" data-category="CATEGORY"&gt;
+  &lt;div class="work__card-img"&gt;
+    &lt;img src="assets/img/your-image.jpg"
+         alt="Short description of the project"
+         loading="lazy" width="600" height="400"&gt;
+  &lt;/div&gt;
+  &lt;div class="work__card-info"&gt;
+    &lt;h3 class="work__card-title"&gt;Project Name&lt;/h3&gt;
+    &lt;span class="work__card-tag"&gt;Category&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+            <p>Replace the placeholders:</p>
+            <ul>
+                <li><code>CATEGORY</code> — filter key (e.g. <code>design</code>, <code>web</code>, <code>branding</code>)</li>
+                <li><code>src</code> — path to the project image (recommended: 600×400, place in <code>assets/img/</code>)</li>
+                <li><code>alt</code> — descriptive text for accessibility and SEO</li>
+                <li><code>Project Name</code> — display title</li>
+                <li><code>Category</code> — visible tag label</li>
+            </ul>
+            <div class="tip">No JavaScript changes needed — the filter reads <code>data-*</code> attributes dynamically via event delegation.</div>
+        </section>
+
+        <!-- 6 -->
+        <section class="section" id="en-categories">
+            <h2>6. Adding Categories</h2>
+            <p>In the <code>.work__filters</code> section of <code>index.html</code>, add a new button:</p>
+            <pre><code>&lt;button class="work__filter" data-filter="newcategory"&gt;New Category&lt;/button&gt;</code></pre>
+            <p>Use the same <code>data-filter</code> value as the <code>data-category</code> on your project cards.</p>
+            <table>
+                <thead><tr><th>data-category</th><th>Label</th></tr></thead>
+                <tbody>
+                    <tr><td><code>design</code></td><td>Design</td></tr>
+                    <tr><td><code>web</code></td><td>Web</td></tr>
+                    <tr><td><code>branding</code></td><td>Branding</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 7 -->
+        <section class="section" id="en-cursor">
+            <h2>7. Custom Cursor</h2>
+            <p>The template features a custom animated cursor with two elements:</p>
+            <ul>
+                <li><strong>Outer circle</strong> — 40px, follows mouse with eased lag (0.12 lerp), uses <code>mix-blend-mode: difference</code></li>
+                <li><strong>Inner dot</strong> — 6px, near-instant follow (0.6 lerp)</li>
+            </ul>
+            <p>States: <strong>hover</strong> (expands to 60px over interactive elements), <strong>click</strong> (shrinks to 32px), <strong>hidden</strong> (when mouse leaves window).</p>
+            <p>Automatically disabled on touch devices via <code>@media (pointer: coarse)</code>.</p>
+            <div class="tip">To disable the custom cursor entirely, remove <code>cursor.css</code> and <code>cursor.js</code> references from <code>index.html</code>, and delete the two <code>&lt;div&gt;</code> elements with class <code>cursor</code> and <code>cursor-dot</code>.</div>
+        </section>
+
+        <!-- 8 -->
+        <section class="section" id="en-colors">
+            <h2>8. Changing Colors &amp; Typography</h2>
+            <p>The template uses a strict monochrome palette. Key values in <code>assets/css/style.css</code>:</p>
+            <pre><code>body {
+    background-color: #0a0a0a;  /* Dark background */
+    color: #f5f5f5;             /* Light text */
+}
+
+.work__card {
+    background-color: #141414;  /* Card background */
+}</code></pre>
+            <p>To switch to a light theme, swap the background and text colors. For a colored accent, add it to buttons, links, and the <code>hero__title--outline</code> stroke.</p>
+            <h3>Typography</h3>
+            <p>The template uses <strong>Inter</strong> (weights 400, 700, 900) via Google Fonts. To change the font, update the <code>&lt;link&gt;</code> tag in <code>index.html</code> and the <code>font-family</code> in <code>style.css</code>.</p>
+        </section>
+
+        <!-- 9 -->
+        <section class="section" id="en-social">
+            <h2>9. Social Links</h2>
+            <p>In the <code>&lt;footer&gt;</code> section of <code>index.html</code>, replace each <code>href="#"</code> with your actual profile URLs:</p>
+            <pre><code>&lt;a href="https://github.com/yourusername" aria-label="GitHub" class="footer__link"&gt;GitHub&lt;/a&gt;
+&lt;a href="https://linkedin.com/in/yourusername" aria-label="LinkedIn" class="footer__link"&gt;LinkedIn&lt;/a&gt;
+&lt;a href="https://instagram.com/yourusername" aria-label="Instagram" class="footer__link"&gt;Instagram&lt;/a&gt;</code></pre>
+        </section>
+
+        <!-- 10 -->
+        <section class="section" id="en-seo">
+            <h2>10. SEO &amp; Schema.org</h2>
+            <ul>
+                <li><strong>Meta tags</strong> — Title, description, Open Graph and Twitter Card tags are pre-configured in <code>&lt;head&gt;</code></li>
+                <li><strong>Semantic HTML</strong> — Uses <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;blockquote&gt;</code>, <code>&lt;footer&gt;</code></li>
+                <li><strong>Schema.org</strong> — WebSite + Person JSON-LD structured data</li>
+                <li><strong>Alt text</strong> — All project images have descriptive alt attributes</li>
+                <li><strong>Accessibility</strong> — <code>aria-label</code>, <code>aria-expanded</code>, <code>aria-live</code>, <code>aria-hidden</code></li>
+            </ul>
+            <div class="warning">Replace all placeholder URLs (<code>seusite.com</code>, <code>Seu Nome</code>) with your actual domain and name before publishing.</div>
+        </section>
+
+        <!-- 11 -->
+        <section class="section" id="en-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Zero external JS dependencies — only vanilla JavaScript</li>
+                <li>All project images use <code>loading="lazy"</code> with explicit <code>width</code>/<code>height</code></li>
+                <li>CSS split into 3 logical files (style, cursor, animations) for maintainability</li>
+                <li>Intersection Observer for scroll animations (no scroll event polling)</li>
+                <li><code>prefers-reduced-motion</code> fully respected — animations disabled for users who prefer it</li>
+                <li>Custom cursor uses <code>requestAnimationFrame</code> for smooth 60fps rendering</li>
+                <li>Font preconnect hints for faster Google Fonts loading</li>
+            </ul>
+        </section>
+
+        <!-- 12 -->
+        <section class="section" id="en-credits">
+            <h2>12. Credits &amp; License</h2>
+            <table>
+                <thead><tr><th>Resource</th><th>License</th></tr></thead>
+                <tbody>
+                    <tr><td>Google Fonts (Inter)</td><td>SIL Open Font License</td></tr>
+                    <tr><td>Placeholder images (picsum.photos)</td><td>Free for any use</td></tr>
+                </tbody>
+            </table>
+            <p>All placeholder content (names, testimonials, project descriptions) is fictional and should be replaced before publishing.</p>
+        </section>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         PORTUGUESE VERSION
+    ═══════════════════════════════════════════ -->
+    <div id="lang-pt" style="display:none;">
+
+        <header class="doc-header">
+            <div class="badge">Documentação</div>
+            <h1>Swiss Design Portfolio</h1>
+            <p>Template de portfólio minimalista inspirado no Estilo Tipográfico Internacional (Swiss Design). Tipografia bold, paleta monocromática, cursor customizado.</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Sumário</h2>
+            <ol>
+                <li><a href="#pt-overview">Visão Geral</a></li>
+                <li><a href="#pt-structure">Estrutura de Arquivos</a></li>
+                <li><a href="#pt-tech">Tecnologias</a></li>
+                <li><a href="#pt-sections">Seções da Página</a></li>
+                <li><a href="#pt-projects">Adicionar / Editar Projetos</a></li>
+                <li><a href="#pt-categories">Adicionar Categorias</a></li>
+                <li><a href="#pt-cursor">Cursor Customizado</a></li>
+                <li><a href="#pt-colors">Trocar Cores &amp; Tipografia</a></li>
+                <li><a href="#pt-social">Links Sociais</a></li>
+                <li><a href="#pt-seo">SEO &amp; Schema.org</a></li>
+                <li><a href="#pt-performance">Performance</a></li>
+                <li><a href="#pt-credits">Créditos &amp; Licença</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1 -->
+        <section class="section" id="pt-overview">
+            <h2>1. Visão Geral</h2>
+            <p>Swiss Design Portfolio é um template de portfólio single-page feito para designers, desenvolvedores e criativos. Inspirado no Estilo Tipográfico Internacional (Swiss Design), usa tipografia bold como elemento visual principal, paleta monocromática rigorosa, espaçamento generoso e layouts baseados em grid.</p>
+            <p>Recursos principais: filtro de projetos por categoria, cursor animado customizado (desktop), animações de scroll reveal, formulário de contato com validação em tempo real, e design totalmente responsivo.</p>
+        </section>
+
+        <!-- 2 -->
+        <section class="section" id="pt-structure">
+            <h2>2. Estrutura de Arquivos</h2>
+            <div class="file-tree">
+                <span class="folder">swiss-design/</span><br>
+                ├── index.html <span class="comment">← Página principal</span><br>
+                ├── documentation.html <span class="comment">← Este arquivo</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── style.css <span class="comment">← Layout, tipografia, cores</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── cursor.css <span class="comment">← Estilos do cursor</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── animations.css <span class="comment">← Animações de scroll</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── main.js <span class="comment">← Nav, filtro, validação</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── cursor.js <span class="comment">← Lógica do cursor</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── animations.js <span class="comment">← IntersectionObserver</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Ícone da aba</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Compartilhamento social (1200×630)</span>
+            </div>
+        </section>
+
+        <!-- 3 -->
+        <section class="section" id="pt-tech">
+            <h2>3. Tecnologias</h2>
+            <table>
+                <thead><tr><th>Tecnologia</th><th>Finalidade</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 Semântico</td><td>Estrutura (header, main, section, article, footer)</td></tr>
+                    <tr><td>CSS3 (vanilla)</td><td>Layout, tipografia, animações</td></tr>
+                    <tr><td>JavaScript Vanilla</td><td>Interatividade (zero dependências)</td></tr>
+                    <tr><td>Google Fonts (Inter)</td><td>Tipografia sans-serif estilo suíço</td></tr>
+                    <tr><td>Schema.org JSON-LD</td><td>Dados estruturados para buscadores</td></tr>
+                    <tr><td>Nomenclatura BEM</td><td>Metodologia de classes CSS</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 4 -->
+        <section class="section" id="pt-sections">
+            <h2>4. Seções da Página</h2>
+            <ul>
+                <li><strong>Header</strong> — Navegação fixa com logo, links (uppercase + letter-spacing) e menu hambúrguer mobile</li>
+                <li><strong>Hero</strong> — Seção full-viewport com tipografia oversized (até 9rem), efeito de texto outline, subtítulo e CTA</li>
+                <li><strong>Trabalhos</strong> — Grid de projetos filtrável (Design, Web, Branding) com zoom na imagem ao hover e reveal escalonado</li>
+                <li><strong>Depoimentos</strong> — 6 cards de avaliação usando <code>&lt;blockquote&gt;</code> com efeito sutil de borda ao hover</li>
+                <li><strong>Contato</strong> — Formulário com labels flutuantes, validação em tempo real (nome, e-mail, mensagem) e feedback de envio</li>
+                <li><strong>Footer</strong> — Footer minimalista com copyright e links sociais (GitHub, LinkedIn, Instagram)</li>
+                <li><strong>Cursor</strong> — Cursor animado com círculo + ponto, estados hover/click e <code>mix-blend-mode: difference</code></li>
+            </ul>
+        </section>
+
+        <!-- 5 -->
+        <section class="section" id="pt-projects">
+            <h2>5. Adicionar / Editar Projetos</h2>
+            <p>Abra <code>index.html</code> e encontre a seção <code>&lt;!-- Grid --&gt;</code>. Copie e cole este template de card:</p>
+            <pre><code>&lt;article class="work__card animate-on-scroll" data-category="CATEGORIA"&gt;
+  &lt;div class="work__card-img"&gt;
+    &lt;img src="assets/img/sua-imagem.jpg"
+         alt="Descrição curta do projeto"
+         loading="lazy" width="600" height="400"&gt;
+  &lt;/div&gt;
+  &lt;div class="work__card-info"&gt;
+    &lt;h3 class="work__card-title"&gt;Nome do Projeto&lt;/h3&gt;
+    &lt;span class="work__card-tag"&gt;Categoria&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></pre>
+            <p>Substitua os placeholders:</p>
+            <ul>
+                <li><code>CATEGORIA</code> — chave do filtro (ex: <code>design</code>, <code>web</code>, <code>branding</code>)</li>
+                <li><code>src</code> — caminho da imagem (recomendado: 600×400, coloque em <code>assets/img/</code>)</li>
+                <li><code>alt</code> — texto descritivo para acessibilidade e SEO</li>
+                <li><code>Nome do Projeto</code> — título de exibição</li>
+                <li><code>Categoria</code> — label visível da tag</li>
+            </ul>
+            <div class="tip">Nenhuma alteração no JavaScript é necessária — o filtro lê os atributos <code>data-*</code> dinamicamente via event delegation.</div>
+        </section>
+
+        <!-- 6 -->
+        <section class="section" id="pt-categories">
+            <h2>6. Adicionar Categorias</h2>
+            <p>Na seção <code>.work__filters</code> do <code>index.html</code>, adicione um novo botão:</p>
+            <pre><code>&lt;button class="work__filter" data-filter="novacategoria"&gt;Nova Categoria&lt;/button&gt;</code></pre>
+            <p>Use o mesmo valor de <code>data-filter</code> no <code>data-category</code> dos cards.</p>
+            <table>
+                <thead><tr><th>data-category</th><th>Label</th></tr></thead>
+                <tbody>
+                    <tr><td><code>design</code></td><td>Design</td></tr>
+                    <tr><td><code>web</code></td><td>Web</td></tr>
+                    <tr><td><code>branding</code></td><td>Branding</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 7 -->
+        <section class="section" id="pt-cursor">
+            <h2>7. Cursor Customizado</h2>
+            <p>O template possui um cursor animado com dois elementos:</p>
+            <ul>
+                <li><strong>Círculo externo</strong> — 40px, segue o mouse com atraso suave (lerp 0.12), usa <code>mix-blend-mode: difference</code></li>
+                <li><strong>Ponto interno</strong> — 6px, seguimento quase instantâneo (lerp 0.6)</li>
+            </ul>
+            <p>Estados: <strong>hover</strong> (expande para 60px sobre elementos interativos), <strong>click</strong> (encolhe para 32px), <strong>hidden</strong> (quando mouse sai da janela).</p>
+            <p>Desativado automaticamente em dispositivos touch via <code>@media (pointer: coarse)</code>.</p>
+            <div class="tip">Para desativar o cursor customizado, remova as referências de <code>cursor.css</code> e <code>cursor.js</code> do <code>index.html</code>, e delete os dois <code>&lt;div&gt;</code> com classes <code>cursor</code> e <code>cursor-dot</code>.</div>
+        </section>
+
+        <!-- 8 -->
+        <section class="section" id="pt-colors">
+            <h2>8. Trocar Cores &amp; Tipografia</h2>
+            <p>O template usa uma paleta monocromática rigorosa. Valores principais em <code>assets/css/style.css</code>:</p>
+            <pre><code>body {
+    background-color: #0a0a0a;  /* Fundo escuro */
+    color: #f5f5f5;             /* Texto claro */
+}
+
+.work__card {
+    background-color: #141414;  /* Fundo dos cards */
+}</code></pre>
+            <p>Para um tema claro, inverta as cores de fundo e texto. Para uma cor de destaque, adicione-a aos botões, links e ao stroke do <code>hero__title--outline</code>.</p>
+            <h3>Tipografia</h3>
+            <p>O template usa <strong>Inter</strong> (pesos 400, 700, 900) via Google Fonts. Para trocar a fonte, atualize a tag <code>&lt;link&gt;</code> no <code>index.html</code> e o <code>font-family</code> no <code>style.css</code>.</p>
+        </section>
+
+        <!-- 9 -->
+        <section class="section" id="pt-social">
+            <h2>9. Links Sociais</h2>
+            <p>Na seção <code>&lt;footer&gt;</code> do <code>index.html</code>, substitua cada <code>href="#"</code> pelas URLs reais dos seus perfis:</p>
+            <pre><code>&lt;a href="https://github.com/seuusuario" aria-label="GitHub" class="footer__link"&gt;GitHub&lt;/a&gt;
+&lt;a href="https://linkedin.com/in/seuusuario" aria-label="LinkedIn" class="footer__link"&gt;LinkedIn&lt;/a&gt;
+&lt;a href="https://instagram.com/seuusuario" aria-label="Instagram" class="footer__link"&gt;Instagram&lt;/a&gt;</code></pre>
+        </section>
+
+        <!-- 10 -->
+        <section class="section" id="pt-seo">
+            <h2>10. SEO &amp; Schema.org</h2>
+            <ul>
+                <li><strong>Meta tags</strong> — Título, descrição, Open Graph e Twitter Card já estão configurados no <code>&lt;head&gt;</code></li>
+                <li><strong>HTML Semântico</strong> — Usa <code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;blockquote&gt;</code>, <code>&lt;footer&gt;</code></li>
+                <li><strong>Schema.org</strong> — Dados estruturados WebSite + Person em JSON-LD</li>
+                <li><strong>Alt text</strong> — Todas as imagens de projetos têm atributos alt descritivos</li>
+                <li><strong>Acessibilidade</strong> — <code>aria-label</code>, <code>aria-expanded</code>, <code>aria-live</code>, <code>aria-hidden</code></li>
+            </ul>
+            <div class="warning">Substitua todas as URLs placeholder (<code>seusite.com</code>, <code>Seu Nome</code>) pelo seu domínio e nome reais antes de publicar.</div>
+        </section>
+
+        <!-- 11 -->
+        <section class="section" id="pt-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Zero dependências externas de JS — apenas JavaScript vanilla</li>
+                <li>Todas as imagens usam <code>loading="lazy"</code> com <code>width</code>/<code>height</code> explícitos</li>
+                <li>CSS dividido em 3 arquivos lógicos (style, cursor, animations) para manutenibilidade</li>
+                <li>Intersection Observer para animações de scroll (sem polling de evento scroll)</li>
+                <li><code>prefers-reduced-motion</code> totalmente respeitado — animações desativadas para quem preferir</li>
+                <li>Cursor customizado usa <code>requestAnimationFrame</code> para renderização suave a 60fps</li>
+                <li>Hints de preconnect para carregamento mais rápido do Google Fonts</li>
+            </ul>
+        </section>
+
+        <!-- 12 -->
+        <section class="section" id="pt-credits">
+            <h2>12. Créditos &amp; Licença</h2>
+            <table>
+                <thead><tr><th>Recurso</th><th>Licença</th></tr></thead>
+                <tbody>
+                    <tr><td>Google Fonts (Inter)</td><td>SIL Open Font License</td></tr>
+                    <tr><td>Imagens placeholder (picsum.photos)</td><td>Livre para qualquer uso</td></tr>
+                </tbody>
+            </table>
+            <p>Todo o conteúdo placeholder (nomes, depoimentos, descrições de projetos) é fictício e deve ser substituído antes da publicação.</p>
+        </section>
+
+    </div>
+
+</div>
+
+<script>
+    function setLang(lang) {
+        document.getElementById('lang-en').style.display = lang === 'en' ? 'block' : 'none';
+        document.getElementById('lang-pt').style.display = lang === 'pt' ? 'block' : 'none';
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+        });
+        localStorage.setItem('swiss-doc-lang', lang);
+    }
+
+    const savedLang = localStorage.getItem('swiss-doc-lang');
+    if (savedLang) setLang(savedLang);
+</script>
+
+</body>
+</html>

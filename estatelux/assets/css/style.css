@@ -1,0 +1,329 @@
+/* ============================================
+   ESTATELUX — Luxury Real Estate Template
+   Custom CSS (extends Tailwind v3 CDN)
+============================================ */
+
+/* ============================================
+   1. BASE
+============================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+::selection {
+    background: rgba(4, 120, 87, 0.15);
+    color: inherit;
+}
+
+.dark ::selection {
+    background: rgba(212, 160, 18, 0.2);
+}
+
+:focus-visible {
+    outline: 2px solid #047857;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.dark :focus-visible {
+    outline-color: #d4a012;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+section[id] {
+    scroll-margin-top: 100px;
+}
+
+/* ============================================
+   2. HEADER — Transparent → Solid on Scroll
+============================================ */
+#header {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+}
+
+#header.scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom-color: rgba(231, 229, 228, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.dark #header.scrolled {
+    background: rgba(12, 10, 9, 0.92);
+    border-bottom-color: rgba(41, 37, 36, 0.6);
+}
+
+/* Text color changes when scrolled */
+#header.scrolled .header-scrolled-text {
+    color: #1c1917;
+}
+
+.dark #header.scrolled .header-scrolled-text {
+    color: #ffffff;
+}
+
+#header.scrolled .header-scrolled-link {
+    color: #78716c;
+}
+
+#header.scrolled .header-scrolled-link:hover {
+    color: #1c1917;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.dark #header.scrolled .header-scrolled-link {
+    color: #a8a29e;
+}
+
+.dark #header.scrolled .header-scrolled-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   3. WHATSAPP BUTTON
+============================================ */
+.whatsapp-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #25D366;
+    animation: whatsappPulse 2s ease-out infinite;
+    z-index: -1;
+}
+
+@keyframes whatsappPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   4. SEARCH BAR (Glassmorphism)
+============================================ */
+.search-glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.search-tab.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ============================================
+   5. PRICE RANGE SLIDER
+============================================ */
+.price-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.15);
+    outline: none;
+}
+
+.price-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #d4a012;
+    border: 3px solid #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.price-range::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.price-range::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #d4a012;
+    border: 3px solid #ffffff;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   6. PROPERTY CARDS
+============================================ */
+.property-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.property-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Favorite button toggle */
+.favorite-btn.active {
+    background: #ef4444;
+    border-color: #ef4444;
+}
+
+.favorite-btn.active svg {
+    fill: white;
+}
+
+/* ============================================
+   7. MAP PINS
+============================================ */
+.map-pin-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    animation: mapPinPulse 2.5s ease-out infinite;
+    z-index: -1;
+}
+
+.dark .map-pin-pulse {
+    background: rgba(212, 160, 18, 0.2);
+}
+
+.map-pin-pulse {
+    background: rgba(4, 120, 87, 0.2);
+}
+
+@keyframes mapPinPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   8. LIGHTBOX
+============================================ */
+#lightbox {
+    transition: opacity 0.3s ease;
+}
+
+#lightbox.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ============================================
+   9. GALLERY MASONRY
+============================================ */
+.gallery-masonry {
+    min-height: 300px;
+}
+
+@media (min-width: 1024px) {
+    .gallery-masonry {
+        min-height: 450px;
+    }
+}
+
+/* ============================================
+   10. LINE CLAMP
+============================================ */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ============================================
+   11. COUNTER ANIMATION
+============================================ */
+.counter {
+    display: inline-block;
+}
+
+/* ============================================
+   12. SCROLL REVEAL
+============================================ */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   13. NEWSLETTER SUCCESS
+============================================ */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   14. PRINT STYLES
+============================================ */
+@media print {
+    #header,
+    #mobileMenu,
+    #mobileOverlay,
+    #whatsappBtn,
+    #lightbox,
+    .whatsapp-pulse,
+    .favorite-btn,
+    footer {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        color: #000;
+        background: #fff;
+    }
+
+    .property-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}

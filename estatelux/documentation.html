@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EstateLux — Documentation</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { serif: ['Playfair Display','Georgia','serif'], sans: ['Inter','system-ui','sans-serif'] },
+                    colors: {
+                        brand: { emerald:'#047857', gold:'#d4a012' },
+                        lux: { 50:'#fafafa',100:'#f5f5f4',200:'#e7e5e4',300:'#d6d3d1',400:'#a8a29e',500:'#78716c',600:'#57534e',700:'#44403c',800:'#292524',900:'#1c1917',950:'#0c0a09' },
+                        surface: { light:'#fafafa', dark:'#0c0a09' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .doc-section + .doc-section { margin-top: 3rem; }
+        code:not(pre code) { padding:0.15em 0.4em; border-radius:4px; font-size:0.875em; background:#f5f5f4; color:#047857; }
+        .dark code:not(pre code) { background:rgba(212,160,18,0.1); color:#d4a012; }
+        pre { background:#0c0a09; color:#e7e5e4; padding:1.25rem; border-radius:12px; overflow-x:auto; font-size:0.8125rem; line-height:1.7; }
+    </style>
+</head>
+<body class="bg-surface-light dark:bg-surface-dark text-lux-700 dark:text-lux-300 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-lux-950/80 backdrop-blur-xl border-b border-lux-200/60 dark:border-lux-800/60">
+        <div class="max-w-4xl mx-auto px-6 flex items-center justify-between h-16">
+            <a href="index.html" class="flex items-center gap-2">
+                <svg width="28" height="28" viewBox="0 0 48 48"><rect width="48" height="48" rx="8" class="fill-brand-emerald dark:fill-brand-gold"/><path d="M14 34V20l10-8 10 8v14H28v-8h-8v8z" fill="white"/></svg>
+                <span class="font-serif font-bold text-lg text-lux-900 dark:text-white">EstateLux</span>
+                <span class="text-lux-400 text-sm ml-1">/ Docs</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <button id="langToggle" class="px-3 py-1.5 rounded-lg text-xs font-semibold border border-lux-200 dark:border-lux-700 text-lux-600 dark:text-lux-300 hover:border-brand-emerald dark:hover:border-brand-gold hover:text-brand-emerald dark:hover:text-brand-gold transition-colors">
+                    <span id="langLabel">EN</span>
+                </button>
+                <button id="themeToggle" class="p-2 rounded-lg text-lux-500 hover:bg-lux-100 dark:hover:bg-lux-800 transition-colors">
+                    <svg id="themeIconLight" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-15.07 1.41 1.41m11.31 11.31 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41m12.73-12.73-1.41 1.41"/></svg>
+                    <svg id="themeIconDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        <div class="mb-12">
+            <h1 class="font-serif font-bold text-3xl lg:text-4xl text-lux-900 dark:text-white mb-3">Documentation</h1>
+            <p class="text-lux-500 text-lg" data-en="Complete guide to customize and deploy the EstateLux template." data-pt="Guia completo para personalizar e publicar o template EstateLux.">Complete guide to customize and deploy the EstateLux template.</p>
+        </div>
+
+        <!-- TOC -->
+        <nav class="mb-12 p-6 rounded-2xl border border-lux-200/70 dark:border-lux-800/70 bg-lux-100/50 dark:bg-lux-900/50">
+            <h2 class="font-bold text-sm uppercase tracking-wider text-lux-400 mb-4" data-en="Table of Contents" data-pt="Sumário">Table of Contents</h2>
+            <ol class="space-y-2 text-sm font-medium">
+                <li><a href="#overview" class="text-brand-emerald dark:text-brand-gold hover:underline">1. <span data-en="Overview" data-pt="Visão Geral">Overview</span></a></li>
+                <li><a href="#structure" class="text-brand-emerald dark:text-brand-gold hover:underline">2. <span data-en="File Structure" data-pt="Estrutura de Arquivos">File Structure</span></a></li>
+                <li><a href="#pages" class="text-brand-emerald dark:text-brand-gold hover:underline">3. <span data-en="Pages" data-pt="Páginas">Pages</span></a></li>
+                <li><a href="#dark-mode" class="text-brand-emerald dark:text-brand-gold hover:underline">4. <span data-en="Dark Mode Strategy" data-pt="Estratégia de Modo Escuro">Dark Mode Strategy</span></a></li>
+                <li><a href="#customization" class="text-brand-emerald dark:text-brand-gold hover:underline">5. <span data-en="Customization" data-pt="Personalização">Customization</span></a></li>
+                <li><a href="#features" class="text-brand-emerald dark:text-brand-gold hover:underline">6. <span data-en="Key Features" data-pt="Recursos Principais">Key Features</span></a></li>
+                <li><a href="#seo" class="text-brand-emerald dark:text-brand-gold hover:underline">7. <span data-en="SEO & Semantics" data-pt="SEO & Semântica">SEO & Semantics</span></a></li>
+                <li><a href="#performance" class="text-brand-emerald dark:text-brand-gold hover:underline">8. <span data-en="Performance" data-pt="Performance">Performance</span></a></li>
+                <li><a href="#credits" class="text-brand-emerald dark:text-brand-gold hover:underline">9. <span data-en="Credits" data-pt="Créditos">Credits</span></a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Overview -->
+        <section id="overview" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4" data-en="1. Overview" data-pt="1. Visão Geral">1. Overview</h2>
+            <p class="leading-relaxed mb-4" data-en="EstateLux is a premium real estate template designed with a 'Modern Luxury' aesthetic — black marble vibes, gold accents, and generous whitespace. Built for high-end property listings, it features a robust dark mode, glassmorphism search bar, interactive map pins, masonry gallery with lightbox, and a floating WhatsApp conversion button." data-pt="EstateLux é um template premium imobiliário com estética 'Luxo Moderno' — vibes de mármore preto, acentos dourados e espaço branco generoso. Projetado para listagens de alto padrão, possui modo escuro robusto, barra de busca glassmorphism, pins de mapa interativos, galeria masonry com lightbox e botão flutuante de WhatsApp para conversão.">
+                EstateLux is a premium real estate template designed with a "Modern Luxury" aesthetic — black marble vibes, gold accents, and generous whitespace. Built for high-end property listings, it features a robust dark mode, glassmorphism search bar, interactive map pins, masonry gallery with lightbox, and a floating WhatsApp conversion button.
+            </p>
+        </section>
+
+        <!-- 2. File Structure -->
+        <section id="structure" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4" data-en="2. File Structure" data-pt="2. Estrutura de Arquivos">2. File Structure</h2>
+            <pre><code>estatelux/
+├── index.html              # Homepage (hero, properties, map, about, CTA)
+├── property-detail.html    # Property detail (gallery, specs, agent sidebar)
+├── documentation.html      # This file
+└── assets/
+    ├── css/
+    │   └── style.css       # Custom styles (extends Tailwind)
+    ├── js/
+    │   └── main.js         # Theme, header, menu, lightbox, counters
+    └── img/
+        └── favicon.svg     # SVG favicon</code></pre>
+        </section>
+
+        <!-- 3. Pages -->
+        <section id="pages" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4" data-en="3. Pages" data-pt="3. Páginas">3. Pages</h2>
+
+            <h3 class="font-bold text-lg text-lux-800 dark:text-lux-100 mt-6 mb-3">index.html — Homepage</h3>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="<strong>Hero:</strong> Full-screen background image with dark gradient overlay. Glassmorphism search bar with Buy/Rent tabs, location input, type dropdown, and dual-range price slider. Animated stats counters." data-pt="<strong>Hero:</strong> Imagem de fundo full-screen com overlay gradiente escuro. Barra de busca glassmorphism com abas Comprar/Alugar, input de localização, dropdown de tipo e slider de faixa de preço. Contadores animados de estatísticas."><strong>Hero:</strong> Full-screen background image with dark gradient overlay. Glassmorphism search bar with Buy/Rent tabs, location input, type dropdown, and dual-range price slider. Animated stats counters.</li>
+                <li data-en="<strong>Featured Properties:</strong> 6 property cards in a responsive grid with image hover zoom, favorite heart button, badges (Exclusive/New), price overlay, and specs (bed/bath/sqft)." data-pt="<strong>Imóveis em Destaque:</strong> 6 cards de imóveis em grid responsivo com zoom na imagem ao hover, botão de favorito, badges (Exclusivo/Novo), preço sobreposto e especificações (quartos/banheiros/área)."><strong>Featured Properties:</strong> 6 property cards in a responsive grid with image hover zoom, favorite heart button, badges (Exclusive/New), price overlay, and specs (bed/bath/sqft).</li>
+                <li data-en="<strong>Map Section:</strong> Visual map placeholder with interactive pin markers showing property prices on hover." data-pt="<strong>Seção Mapa:</strong> Placeholder visual de mapa com marcadores interativos que exibem preços dos imóveis no hover."><strong>Map Section:</strong> Visual map placeholder with interactive pin markers showing property prices on hover.</li>
+                <li data-en="<strong>About / Trust:</strong> Company info section with features grid, CTA button, and 'As Seen In' logos (Forbes, ArchDaily, VEJA, GQ, Exame)." data-pt="<strong>Sobre / Confiança:</strong> Seção institucional com grid de diferenciais, botão CTA e logos 'Reconhecido por' (Forbes, ArchDaily, VEJA, GQ, Exame)."><strong>About / Trust:</strong> Company info section with features grid, CTA button, and "As Seen In" logos (Forbes, ArchDaily, VEJA, GQ, Exame).</li>
+                <li data-en="<strong>Newsletter CTA:</strong> Dark section with email subscription form." data-pt="<strong>Newsletter CTA:</strong> Seção escura com formulário de inscrição por e-mail."><strong>Newsletter CTA:</strong> Dark section with email subscription form.</li>
+            </ul>
+
+            <h3 class="font-bold text-lg text-lux-800 dark:text-lux-100 mt-6 mb-3">property-detail.html — <span data-en="Property Detail" data-pt="Detalhe do Imóvel">Property Detail</span></h3>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="<strong>Masonry Gallery:</strong> 5-image grid (main spanning 2x2) that opens a full-screen lightbox with prev/next, keyboard navigation, and touch swipe." data-pt="<strong>Galeria Masonry:</strong> Grid de 5 imagens (principal ocupando 2x2) que abre lightbox fullscreen com anterior/próximo, navegação por teclado e swipe touch."><strong>Masonry Gallery:</strong> 5-image grid (main spanning 2x2) that opens a full-screen lightbox with prev/next, keyboard navigation, and touch swipe.</li>
+                <li data-en="<strong>Property Info:</strong> Title, badges, location, price, IPTU/condo fees, quick specs (4 icons), description, amenities grid (6 items with icons), video tour placeholder, and map." data-pt="<strong>Info do Imóvel:</strong> Título, badges, localização, preço, IPTU/condomínio, specs rápidos (4 ícones), descrição, grid de comodidades (6 items com ícones), placeholder de tour em vídeo e mapa."><strong>Property Info:</strong> Title, badges, location, price, IPTU/condo fees, quick specs (4 icons), description, amenities grid (6 items with icons), video tour placeholder, and map.</li>
+                <li data-en="<strong>Sticky Agent Sidebar:</strong> Agent card with photo, name, CRECI, WhatsApp button, call button, and schedule visit button. Stays fixed while scrolling." data-pt="<strong>Sidebar Sticky do Corretor:</strong> Card do corretor com foto, nome, CRECI, botão WhatsApp, botão de ligação e botão de agendar visita. Fica fixo durante o scroll."><strong>Sticky Agent Sidebar:</strong> Agent card with photo, name, CRECI, WhatsApp button, call button, and schedule visit button. Stays fixed while scrolling.</li>
+            </ul>
+        </section>
+
+        <!-- 4. Dark Mode -->
+        <section id="dark-mode" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4" data-en="4. Dark Mode Strategy" data-pt="4. Estratégia de Modo Escuro">4. Dark Mode Strategy</h2>
+            <p class="leading-relaxed mb-4" data-en="EstateLux implements a dual-personality design:" data-pt="EstateLux implementa um design de dupla personalidade:">EstateLux implements a dual-personality design:</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm border-collapse">
+                    <thead><tr class="border-b border-lux-200 dark:border-lux-700">
+                        <th class="text-left py-3 pr-4 font-semibold text-lux-900 dark:text-white"></th>
+                        <th class="text-left py-3 pr-4 font-semibold text-lux-900 dark:text-white">Light Mode</th>
+                        <th class="text-left py-3 font-semibold text-lux-900 dark:text-white">Dark Mode</th>
+                    </tr></thead>
+                    <tbody class="divide-y divide-lux-100 dark:divide-lux-800">
+                        <tr><td class="py-3 pr-4 font-medium" data-en="Background" data-pt="Fundo">Background</td><td class="py-3 pr-4">Off-white (#fafafa)</td><td class="py-3">Rich black (#0c0a09)</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium" data-en="Text" data-pt="Texto">Text</td><td class="py-3 pr-4">Dark grey (#292524)</td><td class="py-3">Light (#e7e5e4)</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium" data-en="Primary CTA" data-pt="CTA Primário">Primary CTA</td><td class="py-3 pr-4">Emerald Green (#047857)</td><td class="py-3">Gold/Amber (#d4a012)</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium" data-en="Cards" data-pt="Cards">Cards</td><td class="py-3 pr-4">White (#ffffff)</td><td class="py-3">Dark (#1c1917)</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium" data-en="Accents" data-pt="Acentos">Accents</td><td class="py-3 pr-4">Emerald green (#047857)</td><td class="py-3">Gold (#d4a012)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <pre class="mt-4"><code>// Stored as:
+localStorage.setItem('estatelux-theme', 'dark' | 'light');
+
+// Respects OS preference on first visit:
+window.matchMedia('(prefers-color-scheme: dark)')</code></pre>
+        </section>
+
+        <!-- 5. Customization -->
+        <section id="customization" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4" data-en="5. Customization" data-pt="5. Personalização">5. Customization</h2>
+            <h3 class="font-bold text-lg text-lux-800 dark:text-lux-100 mt-6 mb-3" data-en="Colors" data-pt="Cores">Colors</h3>
+            <pre><code>// In tailwind.config (inside each HTML file):
+colors: {
+    brand: {
+        emerald: '#047857',      // Light mode primary
+        gold: '#d4a012',         // Dark mode primary
+    }
+}
+
+// Also update style.css where hex values appear</code></pre>
+
+            <h3 class="font-bold text-lg text-lux-800 dark:text-lux-100 mt-6 mb-3" data-en="WhatsApp Number" data-pt="Número do WhatsApp">WhatsApp Number</h3>
+            <p class="leading-relaxed" data-en="Replace <code>5511999999999</code> in all <code>wa.me</code> links with your actual WhatsApp number (country code + number, no spaces)." data-pt="Substitua <code>5511999999999</code> em todos os links <code>wa.me</code> pelo seu número real do WhatsApp (código do país + número, sem espaços).">Replace <code>5511999999999</code> in all <code>wa.me</code> links with your actual WhatsApp number.</p>
+
+            <h3 class="font-bold text-lg text-lux-800 dark:text-lux-100 mt-6 mb-3" data-en="Images" data-pt="Imagens">Images</h3>
+            <ul class="list-disc pl-6 space-y-1 text-sm">
+                <li data-en="Hero: 1920×1080px (full-width)" data-pt="Hero: 1920×1080px (largura total)">Hero: 1920×1080px</li>
+                <li data-en="Property cards: 600×450px (4:3)" data-pt="Cards de imóveis: 600×450px (4:3)">Property cards: 600×450px (4:3)</li>
+                <li data-en="Gallery main: 800×600px" data-pt="Galeria principal: 800×600px">Gallery main: 800×600px</li>
+                <li data-en="Gallery thumbs: 400×300px" data-pt="Galeria thumbs: 400×300px">Gallery thumbs: 400×300px</li>
+                <li data-en="Agent photo: 120×120px (square)" data-pt="Foto do corretor: 120×120px (quadrado)">Agent photo: 120×120px</li>
+            </ul>
+
+            <h3 class="font-bold text-lg text-lux-800 dark:text-lux-100 mt-6 mb-3" data-en="Map Integration" data-pt="Integração com Mapa">Map Integration</h3>
+            <p class="leading-relaxed" data-en="The map section uses a placeholder image. To add a real map, replace the image with a Google Maps, Mapbox, or Leaflet embed. The pin markers can be positioned using CSS absolute positioning over the map container." data-pt="A seção de mapa usa uma imagem placeholder. Para adicionar um mapa real, substitua a imagem por um embed do Google Maps, Mapbox ou Leaflet. Os marcadores podem ser posicionados usando posicionamento absoluto CSS sobre o container do mapa.">The map section uses a placeholder image. To add a real map, replace the image with a Google Maps, Mapbox, or Leaflet embed.</p>
+        </section>
+
+        <!-- 6. Key Features -->
+        <section id="features" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4" data-en="6. Key Features" data-pt="6. Recursos Principais">6. Key Features</h2>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="<strong>Floating WhatsApp Button:</strong> Fixed bottom-right, pulsing green animation. Pre-filled message via <code>wa.me</code> URL." data-pt="<strong>Botão WhatsApp Flutuante:</strong> Fixo no canto inferior direito, animação pulsante verde. Mensagem pré-preenchida via URL <code>wa.me</code>."><strong>Floating WhatsApp Button:</strong> Fixed bottom-right, pulsing green animation. Pre-filled message.</li>
+                <li data-en="<strong>Glassmorphism Search:</strong> Blur background, semi-transparent white, Buy/Rent tabs, price range slider with real-time BRL formatting." data-pt="<strong>Busca Glassmorphism:</strong> Fundo desfocado, branco semi-transparente, abas Comprar/Alugar, slider de preço com formatação BRL em tempo real."><strong>Glassmorphism Search:</strong> Blur background, Buy/Rent tabs, price range slider with real-time BRL formatting.</li>
+                <li data-en="<strong>Property Cards:</strong> Image zoom on hover, favorite toggle, badges, price overlay, responsive specs icons." data-pt="<strong>Cards de Imóveis:</strong> Zoom na imagem ao hover, toggle de favorito, badges, preço sobreposto, ícones de specs responsivos."><strong>Property Cards:</strong> Image zoom on hover, favorite toggle, badges, responsive specs.</li>
+                <li data-en="<strong>Lightbox Gallery:</strong> Full-screen with keyboard nav (arrows + ESC), touch swipe, fade transitions, counter." data-pt="<strong>Galeria Lightbox:</strong> Fullscreen com navegação por teclado (setas + ESC), swipe touch, transições fade, contador."><strong>Lightbox Gallery:</strong> Full-screen with keyboard nav, touch swipe, fade transitions.</li>
+                <li data-en="<strong>Sticky Agent Card:</strong> Remains visible as user scrolls through property details. WhatsApp, phone, and schedule buttons." data-pt="<strong>Card do Corretor Sticky:</strong> Permanece visível enquanto o usuário rola os detalhes do imóvel. Botões de WhatsApp, telefone e agendamento."><strong>Sticky Agent Card:</strong> Remains visible while scrolling. WhatsApp, phone, schedule.</li>
+                <li data-en="<strong>Animated Counters:</strong> Numbers count up with easeOutCubic easing when scrolled into view." data-pt="<strong>Contadores Animados:</strong> Números sobem com easing easeOutCubic quando entram na viewport."><strong>Animated Counters:</strong> Numbers count up with easeOutCubic when visible.</li>
+            </ul>
+        </section>
+
+        <!-- 7. SEO -->
+        <section id="seo" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4" data-en="7. SEO & Semantics" data-pt="7. SEO & Semântica">7. SEO & Semantics</h2>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li><code>&lt;article&gt;</code> — <span data-en="Property cards and detail content" data-pt="Cards de imóveis e conteúdo de detalhe">Property cards and detail content</span></li>
+                <li><code>&lt;aside&gt;</code> — <span data-en="Agent sidebar" data-pt="Sidebar do corretor">Agent sidebar</span></li>
+                <li><code>&lt;nav aria-label&gt;</code> — <span data-en="All navigation with ARIA labels" data-pt="Toda navegação com labels ARIA">All navigation with ARIA labels</span></li>
+                <li><code>&lt;header&gt; / &lt;main&gt; / &lt;footer&gt;</code> — <span data-en="Proper page landmarks" data-pt="Landmarks da página">Page landmarks</span></li>
+                <li data-en="Open Graph + Twitter Card meta tags included" data-pt="Meta tags Open Graph + Twitter Card incluídas">Open Graph + Twitter Card meta tags included</li>
+                <li data-en="All images have descriptive <code>alt</code> text" data-pt="Todas as imagens possuem texto <code>alt</code> descritivo">All images have descriptive <code>alt</code> text</li>
+                <li data-en="All buttons have <code>aria-label</code> attributes" data-pt="Todos os botões possuem atributos <code>aria-label</code>">All buttons have <code>aria-label</code> attributes</li>
+            </ul>
+        </section>
+
+        <!-- 8. Performance -->
+        <section id="performance" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4">8. Performance</h2>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="<strong>Zero dependencies</strong> — Tailwind CDN + vanilla JS only" data-pt="<strong>Zero dependências</strong> — Apenas Tailwind CDN + vanilla JS"><strong>Zero dependencies</strong> — Tailwind CDN + vanilla JS only</li>
+                <li data-en="<strong>Lazy loading</strong> — All images except hero use <code>loading='lazy'</code>" data-pt="<strong>Lazy loading</strong> — Todas as imagens exceto hero usam <code>loading='lazy'</code>"><strong>Lazy loading</strong> — All non-hero images lazy loaded</li>
+                <li data-en="<strong>Passive scroll listeners</strong> — No scroll jank" data-pt="<strong>Listeners de scroll passivos</strong> — Sem jank no scroll"><strong>Passive scroll listeners</strong></li>
+                <li data-en="<strong>Font preconnect</strong> — Google Fonts domains preconnected" data-pt="<strong>Font preconnect</strong> — Domínios do Google Fonts pré-conectados"><strong>Font preconnect</strong></li>
+                <li data-en="<strong>Staggered reveal</strong> — Cards fade in with Intersection Observer" data-pt="<strong>Reveal escalonado</strong> — Cards aparecem com Intersection Observer"><strong>Staggered scroll reveal</strong></li>
+                <li data-en="<strong>Print styles</strong> — Header, footer, WhatsApp hidden in print" data-pt="<strong>Estilos de impressão</strong> — Header, footer, WhatsApp ocultos na impressão"><strong>Print styles</strong> included</li>
+            </ul>
+        </section>
+
+        <!-- 9. Credits -->
+        <section id="credits" class="doc-section">
+            <h2 class="font-serif font-bold text-2xl text-lux-900 dark:text-white mb-4" data-en="9. Credits" data-pt="9. Créditos">9. Credits</h2>
+            <ul class="list-disc pl-6 space-y-2">
+                <li><a href="https://tailwindcss.com" class="text-brand-emerald dark:text-brand-gold hover:underline" target="_blank">Tailwind CSS</a> — Utility-first CSS</li>
+                <li><a href="https://fonts.google.com" class="text-brand-emerald dark:text-brand-gold hover:underline" target="_blank">Google Fonts</a> — Playfair Display, Inter</li>
+                <li><a href="https://unsplash.com" class="text-brand-emerald dark:text-brand-gold hover:underline" target="_blank">Unsplash</a> — Demo images</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="border-t border-lux-200/60 dark:border-lux-800/60 mt-16">
+        <div class="max-w-4xl mx-auto px-6 py-8 text-center">
+            <p class="text-xs text-lux-400">&copy; 2026 EstateLux. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIconLight = document.getElementById('themeIconLight');
+        const themeIconDark = document.getElementById('themeIconDark');
+        const html = document.documentElement;
+        function getTheme() { return localStorage.getItem('estatelux-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+        function applyTheme(t) { html.classList.toggle('dark', t==='dark'); if(themeIconLight)themeIconLight.classList.toggle('hidden',t==='dark'); if(themeIconDark)themeIconDark.classList.toggle('hidden',t!=='dark'); localStorage.setItem('estatelux-theme',t); }
+        applyTheme(getTheme());
+        if(themeToggle) themeToggle.addEventListener('click',()=>applyTheme(html.classList.contains('dark')?'light':'dark'));
+
+        // Language
+        const langToggle = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
+        let currentLang = localStorage.getItem('estatelux-doc-lang') || 'en';
+
+        function applyLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('estatelux-doc-lang', lang);
+            if (langLabel) langLabel.textContent = lang.toUpperCase();
+            document.querySelectorAll('[data-en][data-pt]').forEach(el => {
+                el.innerHTML = el.getAttribute(`data-${lang}`);
+            });
+        }
+
+        applyLang(currentLang);
+
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                applyLang(currentLang === 'en' ? 'pt' : 'en');
+            });
+        }
+    </script>
+</body>
+</html>

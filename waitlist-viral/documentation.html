@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waitlist Viral — Documentation</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #0a0a0b; --bg-alt: #141416; --text: #e4e4e7; --text-muted: #a1a1aa;
+            --border: #222228; --primary: #a855f7; --primary-light: rgba(168,85,247,0.1);
+            --code-bg: #1a1a1e;
+        }
+        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px; }
+
+        .lang-toggle { position: fixed; top: 20px; right: 20px; z-index: 100; display: flex; gap: 4px; background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 4px; box-shadow: 0 2px 12px rgba(0,0,0,0.4); }
+        .lang-btn { padding: 6px 14px; border: none; background: transparent; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 700; color: var(--text-muted); transition: all 0.2s; }
+        .lang-btn.active { background: var(--primary); color: #fff; }
+
+        .wrapper { max-width: 860px; margin: 0 auto; padding: 60px 24px 80px; }
+        .doc-header { text-align: center; margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+        .doc-header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+        .doc-header .badge { display: inline-block; background: var(--primary-light); color: var(--primary); font-size: 13px; font-weight: 700; padding: 4px 14px; border-radius: 20px; margin-bottom: 16px; }
+        .doc-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .toc { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; margin-bottom: 48px; }
+        .toc h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 16px; }
+        .toc ol { list-style: none; counter-reset: toc; padding: 0; }
+        .toc li { counter-increment: toc; margin-bottom: 8px; }
+        .toc li::before { content: counter(toc, decimal-leading-zero) "."; color: var(--primary); font-weight: 700; margin-right: 10px; font-size: 14px; }
+        .toc a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 15px; }
+        .toc a:hover { color: var(--primary); }
+
+        .section { margin-bottom: 48px; }
+        .section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-light); }
+        .section h3 { font-size: 1.1rem; font-weight: 600; margin: 24px 0 10px; }
+        .section p, .section li { color: var(--text-muted); margin-bottom: 10px; }
+        .section ul, .section ol { padding-left: 24px; margin-bottom: 16px; }
+        .section ul li { list-style: disc; }
+
+        code { background: var(--code-bg); padding: 2px 7px; border-radius: 4px; font-size: 0.9em; font-family: 'SF Mono', monospace; color: var(--primary); }
+        pre { background: var(--bg-alt); color: var(--text); padding: 20px 24px; border-radius: 10px; overflow-x: auto; margin: 16px 0; font-size: 14px; line-height: 1.6; border: 1px solid var(--border); }
+        pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+        th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg-alt); font-weight: 600; color: var(--text); }
+        td { color: var(--text-muted); }
+
+        .tip { background: rgba(168,85,247,0.06); border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #c4b5fd; }
+        .warning { background: rgba(251,191,36,0.06); border-left: 4px solid #fbbf24; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #fcd34d; }
+
+        .file-tree { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; font-family: 'SF Mono', monospace; font-size: 14px; line-height: 1.8; color: var(--text-muted); }
+        .file-tree .folder { color: var(--primary); font-weight: 600; }
+        .file-tree .comment { opacity: 0.5; }
+
+        @media (max-width: 640px) { .wrapper { padding: 40px 16px 60px; } .doc-header h1 { font-size: 1.6rem; } .lang-toggle { top: 12px; right: 12px; } }
+    </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
+</div>
+
+<div class="wrapper">
+
+    <!-- ENGLISH -->
+    <div id="lang-en">
+        <header class="doc-header">
+            <div class="badge">Documentation</div>
+            <h1>Waitlist Viral</h1>
+            <p>Ultra-minimalist coming soon / waitlist page with progress bar, email capture, social sharing, and viral growth mechanics.</p>
+        </header>
+
+        <nav class="toc"><h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#en-overview">Overview</a></li>
+                <li><a href="#en-structure">File Structure</a></li>
+                <li><a href="#en-tech">Tech Stack</a></li>
+                <li><a href="#en-features">Features</a></li>
+                <li><a href="#en-config">Configuration (script.js)</a></li>
+                <li><a href="#en-email">Email Service Integration</a></li>
+                <li><a href="#en-copy">Editing Text &amp; Copy</a></li>
+                <li><a href="#en-colors">Changing Colors</a></li>
+                <li><a href="#en-sharing">Social Sharing</a></li>
+                <li><a href="#en-seo">SEO &amp; Meta Tags</a></li>
+                <li><a href="#en-performance">Performance</a></li>
+                <li><a href="#en-credits">Credits &amp; License</a></li>
+            </ol>
+        </nav>
+
+        <section class="section" id="en-overview">
+            <h2>1. Overview</h2>
+            <p>Waitlist Viral is a single-page coming soon / pre-launch landing page designed to capture emails and encourage viral sharing. It features an animated particle background, progress bar with subscriber count, email form with validation, and social share buttons (WhatsApp, Twitter/X, Telegram, Copy Link).</p>
+        </section>
+
+        <section class="section" id="en-structure">
+            <h2>2. File Structure</h2>
+            <div class="file-tree">
+                <span class="folder">waitlist-viral/</span><br>
+                ├── index.html <span class="comment">← Main page</span><br>
+                ├── documentation.html <span class="comment">← This file</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── style.css <span class="comment">← All styles (particles, form, progress)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── script.js <span class="comment">← Form logic, progress, sharing</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Browser tab icon</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Social sharing (1200×630)</span>
+            </div>
+        </section>
+
+        <section class="section" id="en-tech">
+            <h2>3. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 Semantic</td><td>Structure (main, section, form, footer)</td></tr>
+                    <tr><td>CSS3 + Custom Properties</td><td>Styling, particles animation, dark theme</td></tr>
+                    <tr><td>Vanilla JavaScript</td><td>Form validation, progress bar, sharing</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section" id="en-features">
+            <h2>4. Features</h2>
+            <ul>
+                <li><strong>Animated Particles</strong> — CSS-only floating particles background</li>
+                <li><strong>Progress Bar</strong> — Visual subscriber count with goal tracking</li>
+                <li><strong>Email Form</strong> — Validation, loading state, success message</li>
+                <li><strong>Social Sharing</strong> — WhatsApp, Twitter/X, Telegram, Copy Link buttons</li>
+                <li><strong>Viral Mechanics</strong> — After signup, prompts sharing to "unlock access faster"</li>
+                <li><strong>Accessibility</strong> — aria-label, aria-live, role attributes throughout</li>
+            </ul>
+        </section>
+
+        <section class="section" id="en-config">
+            <h2>5. Configuration (script.js)</h2>
+            <p>Open <code>assets/js/script.js</code> and edit the <code>CONFIG</code> object at the top:</p>
+            <pre><code>const CONFIG = {
+  currentSubscribers: 847,     // Current count shown
+  goalSubscribers: 1000,       // Goal number
+  siteUrl: 'https://seusite.com',
+  shareText: 'Algo incrível está chegando!...',
+  simulateSubmit: true,        // Set false for real backend
+};</code></pre>
+            <div class="tip">Set <code>simulateSubmit: false</code> when you connect a real email service (Mailchimp, ConvertKit, etc.).</div>
+        </section>
+
+        <section class="section" id="en-email">
+            <h2>6. Email Service Integration</h2>
+            <p>The template supports integration with:</p>
+            <ul>
+                <li><strong>Mailchimp</strong> — JSONP integration via embedded form URL</li>
+                <li><strong>ConvertKit</strong> — Fetch API to ConvertKit forms endpoint</li>
+                <li><strong>Custom API</strong> — POST request to any endpoint</li>
+            </ul>
+            <p>Replace the <code>submitEmail()</code> function in <code>script.js</code> with the integration code for your chosen service. The function receives the validated email and should call <code>showSuccess(email)</code> on success or <code>showError(msg)</code> on failure.</p>
+        </section>
+
+        <section class="section" id="en-copy">
+            <h2>7. Editing Text &amp; Copy</h2>
+            <p>All text is in <code>index.html</code>. Key elements:</p>
+            <ul>
+                <li><strong>Badge</strong> — "Pré-lançamento" text in <code>.badge</code></li>
+                <li><strong>Headline</strong> — <code>&lt;h1 class="hero-title"&gt;</code> with gradient text</li>
+                <li><strong>Subtitle</strong> — <code>&lt;p class="subtitle"&gt;</code></li>
+                <li><strong>Progress label</strong> — "Comunidade crescendo" in <code>.progress-label</code></li>
+                <li><strong>CTA button</strong> — "Quero participar" in <code>.btn-text</code></li>
+                <li><strong>Success message</strong> — In <code>#successMessage</code></li>
+            </ul>
+        </section>
+
+        <section class="section" id="en-colors">
+            <h2>8. Changing Colors</h2>
+            <p>Edit CSS variables in <code>assets/css/style.css</code> at <code>:root</code>:</p>
+            <pre><code>:root {
+  --bg: #0a0a0b;        /* Page background */
+  --surface: #141416;   /* Card/form background */
+  --border: #222228;    /* Border color */
+  --accent: #a855f7;    /* Primary purple accent */
+  --accent-glow: ...;   /* Glow effects */
+}</code></pre>
+        </section>
+
+        <section class="section" id="en-sharing">
+            <h2>9. Social Sharing</h2>
+            <p>Share buttons appear after successful email signup. The share text and URL are configured in the <code>CONFIG</code> object in <code>script.js</code>. Links are generated dynamically for WhatsApp, Twitter/X, and Telegram.</p>
+        </section>
+
+        <section class="section" id="en-seo">
+            <h2>10. SEO &amp; Meta Tags</h2>
+            <ul>
+                <li><strong>Open Graph</strong> — og:title, og:description, og:image</li>
+                <li><strong>Twitter Card</strong> — summary_large_image</li>
+                <li><strong>Schema.org</strong> — WebPage JSON-LD</li>
+                <li><strong>Semantic HTML</strong> — <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;form&gt;</code>, <code>&lt;footer&gt;</code></li>
+            </ul>
+            <div class="warning">Replace all placeholder URLs (seusite.com, Sua Empresa) with your real data before publishing.</div>
+        </section>
+
+        <section class="section" id="en-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Zero external dependencies — pure CSS + vanilla JS</li>
+                <li>CSS-only particle animation (no canvas/JS overhead)</li>
+                <li>Minimal file size (~8KB HTML, lightweight CSS/JS)</li>
+                <li>No images by default — pure CSS design</li>
+            </ul>
+        </section>
+
+        <section class="section" id="en-credits">
+            <h2>12. Credits &amp; License</h2>
+            <table>
+                <thead><tr><th>Resource</th><th>License</th></tr></thead>
+                <tbody>
+                    <tr><td>System fonts stack</td><td>Free / Built-in</td></tr>
+                    <tr><td>SVG icons (inline)</td><td>MIT / Free for commercial use</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- PORTUGUESE -->
+    <div id="lang-pt" style="display:none;">
+        <header class="doc-header">
+            <div class="badge">Documentação</div>
+            <h1>Waitlist Viral</h1>
+            <p>Página de "em breve" / waitlist ultra-minimalista com barra de progresso, captura de e-mail, compartilhamento social e mecânicas de crescimento viral.</p>
+        </header>
+
+        <nav class="toc"><h2>Sumário</h2>
+            <ol>
+                <li><a href="#pt-overview">Visão Geral</a></li>
+                <li><a href="#pt-structure">Estrutura de Arquivos</a></li>
+                <li><a href="#pt-tech">Tecnologias</a></li>
+                <li><a href="#pt-features">Recursos</a></li>
+                <li><a href="#pt-config">Configuração (script.js)</a></li>
+                <li><a href="#pt-email">Integração com Serviço de E-mail</a></li>
+                <li><a href="#pt-copy">Editando Textos</a></li>
+                <li><a href="#pt-colors">Trocar as Cores</a></li>
+                <li><a href="#pt-sharing">Compartilhamento Social</a></li>
+                <li><a href="#pt-seo">SEO &amp; Meta Tags</a></li>
+                <li><a href="#pt-performance">Performance</a></li>
+                <li><a href="#pt-credits">Créditos &amp; Licença</a></li>
+            </ol>
+        </nav>
+
+        <section class="section" id="pt-overview">
+            <h2>1. Visão Geral</h2>
+            <p>Waitlist Viral é uma landing page single-page de pré-lançamento projetada para capturar e-mails e incentivar compartilhamento viral. Possui fundo animado com partículas CSS, barra de progresso com contagem de inscritos, formulário de e-mail com validação, e botões de compartilhamento social (WhatsApp, Twitter/X, Telegram, Copiar Link).</p>
+        </section>
+
+        <section class="section" id="pt-structure">
+            <h2>2. Estrutura de Arquivos</h2>
+            <div class="file-tree">
+                <span class="folder">waitlist-viral/</span><br>
+                ├── index.html <span class="comment">← Página principal</span><br>
+                ├── documentation.html <span class="comment">← Este arquivo</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── style.css <span class="comment">← Estilos (partículas, form, progresso)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── script.js <span class="comment">← Lógica do form, progresso, sharing</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Ícone da aba</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Compartilhamento social (1200×630)</span>
+            </div>
+        </section>
+
+        <section class="section" id="pt-tech">
+            <h2>3. Tecnologias</h2>
+            <table>
+                <thead><tr><th>Tecnologia</th><th>Finalidade</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 Semântico</td><td>Estrutura (main, section, form, footer)</td></tr>
+                    <tr><td>CSS3 + Custom Properties</td><td>Estilização, animação de partículas, tema dark</td></tr>
+                    <tr><td>JavaScript Vanilla</td><td>Validação de form, barra de progresso, sharing</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section" id="pt-features">
+            <h2>4. Recursos</h2>
+            <ul>
+                <li><strong>Partículas Animadas</strong> — Fundo de partículas flutuantes apenas com CSS</li>
+                <li><strong>Barra de Progresso</strong> — Contagem visual de inscritos com meta</li>
+                <li><strong>Formulário de E-mail</strong> — Validação, estado de loading, mensagem de sucesso</li>
+                <li><strong>Compartilhamento Social</strong> — Botões WhatsApp, Twitter/X, Telegram, Copiar Link</li>
+                <li><strong>Mecânica Viral</strong> — Após inscrição, incentiva compartilhamento para "desbloquear acesso mais rápido"</li>
+                <li><strong>Acessibilidade</strong> — aria-label, aria-live, role em todo o template</li>
+            </ul>
+        </section>
+
+        <section class="section" id="pt-config">
+            <h2>5. Configuração (script.js)</h2>
+            <p>Abra <code>assets/js/script.js</code> e edite o objeto <code>CONFIG</code> no topo:</p>
+            <pre><code>const CONFIG = {
+  currentSubscribers: 847,     // Contagem atual exibida
+  goalSubscribers: 1000,       // Número da meta
+  siteUrl: 'https://seusite.com',
+  shareText: 'Algo incrível está chegando!...',
+  simulateSubmit: true,        // Coloque false para backend real
+};</code></pre>
+            <div class="tip">Defina <code>simulateSubmit: false</code> ao conectar um serviço real de e-mail (Mailchimp, ConvertKit, etc.).</div>
+        </section>
+
+        <section class="section" id="pt-email">
+            <h2>6. Integração com Serviço de E-mail</h2>
+            <p>O template suporta integração com:</p>
+            <ul>
+                <li><strong>Mailchimp</strong> — Integração JSONP via URL do formulário embedded</li>
+                <li><strong>ConvertKit</strong> — Fetch API para endpoint de formulários</li>
+                <li><strong>API Customizada</strong> — Requisição POST para qualquer endpoint</li>
+            </ul>
+            <p>Substitua a função <code>submitEmail()</code> no <code>script.js</code> pelo código de integração do seu serviço. A função recebe o e-mail validado e deve chamar <code>showSuccess(email)</code> em caso de sucesso ou <code>showError(msg)</code> em caso de falha.</p>
+        </section>
+
+        <section class="section" id="pt-copy">
+            <h2>7. Editando Textos</h2>
+            <p>Todo o texto está no <code>index.html</code>. Elementos principais:</p>
+            <ul>
+                <li><strong>Badge</strong> — Texto "Pré-lançamento" em <code>.badge</code></li>
+                <li><strong>Título</strong> — <code>&lt;h1 class="hero-title"&gt;</code> com texto gradiente</li>
+                <li><strong>Subtítulo</strong> — <code>&lt;p class="subtitle"&gt;</code></li>
+                <li><strong>Label do progresso</strong> — "Comunidade crescendo" em <code>.progress-label</code></li>
+                <li><strong>Botão CTA</strong> — "Quero participar" em <code>.btn-text</code></li>
+                <li><strong>Mensagem de sucesso</strong> — Em <code>#successMessage</code></li>
+            </ul>
+        </section>
+
+        <section class="section" id="pt-colors">
+            <h2>8. Trocar as Cores</h2>
+            <p>Edite as variáveis CSS em <code>assets/css/style.css</code> no <code>:root</code>:</p>
+            <pre><code>:root {
+  --bg: #0a0a0b;        /* Fundo da página */
+  --surface: #141416;   /* Fundo de cards/form */
+  --border: #222228;    /* Cor das bordas */
+  --accent: #a855f7;    /* Destaque roxo principal */
+  --accent-glow: ...;   /* Efeitos de brilho */
+}</code></pre>
+        </section>
+
+        <section class="section" id="pt-sharing">
+            <h2>9. Compartilhamento Social</h2>
+            <p>Os botões de compartilhamento aparecem após inscrição bem-sucedida. O texto e URL de compartilhamento são configurados no objeto <code>CONFIG</code> em <code>script.js</code>. Links são gerados dinamicamente para WhatsApp, Twitter/X e Telegram.</p>
+        </section>
+
+        <section class="section" id="pt-seo">
+            <h2>10. SEO &amp; Meta Tags</h2>
+            <ul>
+                <li><strong>Open Graph</strong> — og:title, og:description, og:image</li>
+                <li><strong>Twitter Card</strong> — summary_large_image</li>
+                <li><strong>Schema.org</strong> — WebPage JSON-LD</li>
+                <li><strong>HTML Semântico</strong> — <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;form&gt;</code>, <code>&lt;footer&gt;</code></li>
+            </ul>
+            <div class="warning">Substitua todas as URLs placeholder (seusite.com, Sua Empresa) pelos seus dados reais antes de publicar.</div>
+        </section>
+
+        <section class="section" id="pt-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Zero dependências externas — CSS puro + JS vanilla</li>
+                <li>Animação de partículas apenas com CSS (sem overhead de canvas/JS)</li>
+                <li>Tamanho mínimo (~8KB HTML, CSS/JS leves)</li>
+                <li>Sem imagens por padrão — design 100% CSS</li>
+            </ul>
+        </section>
+
+        <section class="section" id="pt-credits">
+            <h2>12. Créditos &amp; Licença</h2>
+            <table>
+                <thead><tr><th>Recurso</th><th>Licença</th></tr></thead>
+                <tbody>
+                    <tr><td>Stack de fontes do sistema</td><td>Livre / Nativas</td></tr>
+                    <tr><td>Ícones SVG (inline)</td><td>MIT / Livre para uso comercial</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+</div>
+
+<script>
+    function setLang(lang) {
+        document.getElementById('lang-en').style.display = lang === 'en' ? 'block' : 'none';
+        document.getElementById('lang-pt').style.display = lang === 'pt' ? 'block' : 'none';
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+        });
+        localStorage.setItem('waitlist-doc-lang', lang);
+    }
+    const savedLang = localStorage.getItem('waitlist-doc-lang');
+    if (savedLang) setLang(savedLang);
+</script>
+
+</body>
+</html>

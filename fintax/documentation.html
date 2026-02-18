@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTax — Documentation / Documentação</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --blue: #2563eb; --green: #16a34a; --gray-50: #f9fafb; --gray-200: #e5e7eb; --gray-400: #9ca3af; --gray-600: #4b5563; --gray-800: #1f2937; --gray-900: #111827; }
+        body { font-family: 'Inter', sans-serif; color: var(--gray-600); background: var(--gray-50); line-height: 1.7; }
+        .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+        .doc-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); }
+        .doc-header__inner { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+        .doc-logo { display: flex; align-items: center; gap: 8px; font-weight: 800; color: var(--gray-900); }
+        .doc-logo strong { color: var(--blue); }
+        .doc-logo__icon { width: 28px; height: 28px; background: var(--blue); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .doc-logo__icon svg { width: 14px; height: 14px; }
+        .doc-sub { font-size: 0.75rem; color: var(--gray-400); font-weight: 500; }
+
+        .lang-btns { display: flex; gap: 6px; }
+        .lang-btn { padding: 5px 14px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; border: none; cursor: pointer; transition: 0.2s; }
+        .lang-btn.active { background: var(--blue); color: white; }
+        .lang-btn:not(.active) { background: var(--gray-200); color: var(--gray-600); }
+
+        main { padding: 48px 0 80px; }
+        h1 { font-size: 2rem; font-weight: 800; color: var(--gray-900); margin-bottom: 8px; }
+        .lead { font-size: 1rem; color: var(--gray-400); margin-bottom: 48px; }
+        h2 { font-size: 1.4rem; font-weight: 700; color: var(--gray-900); margin-bottom: 16px; padding-top: 8px; border-top: 2px solid var(--gray-200); }
+        p, li { font-size: 0.9rem; margin-bottom: 8px; }
+        ul, ol { padding-left: 20px; margin-bottom: 16px; }
+        section { margin-bottom: 48px; }
+        code { background: var(--gray-900); color: #e5e7eb; font-size: 0.8rem; padding: 2px 8px; border-radius: 4px; }
+        pre { background: var(--gray-900); color: #e5e7eb; padding: 20px 24px; border-radius: 12px; font-size: 0.8rem; line-height: 1.8; overflow-x: auto; margin: 12px 0 16px; }
+        .c { color: #6b7280; } .g { color: #4ade80; } .b { color: #60a5fa; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 12px 0 16px; }
+        th { text-align: left; padding: 10px 12px; background: var(--gray-50); font-weight: 600; color: var(--gray-900); border-bottom: 2px solid var(--gray-200); }
+        td { padding: 10px 12px; border-bottom: 1px solid var(--gray-200); }
+        .toc { background: white; border: 1px solid var(--gray-200); border-radius: 12px; padding: 28px 32px; margin-bottom: 48px; }
+        .toc h2 { border: none; padding-top: 0; font-size: 0.7rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .toc ol { counter-reset: toc; padding-left: 0; }
+        .toc li { counter-increment: toc; list-style: none; padding: 3px 0; }
+        .toc li::before { content: counter(toc) ". "; font-weight: 600; color: var(--blue); }
+        .toc a { color: var(--gray-900); font-weight: 500; } .toc a:hover { color: var(--blue); }
+        .hidden { display: none; }
+        footer { border-top: 1px solid var(--gray-200); padding: 20px 0; text-align: center; font-size: 0.75rem; color: var(--gray-400); }
+    </style>
+</head>
+<body>
+    <header class="doc-header">
+        <div class="container doc-header__inner">
+            <div class="doc-logo">
+                <div class="doc-logo__icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                Fin<strong>Tax</strong> <span class="doc-sub">Docs</span>
+            </div>
+            <div class="lang-btns">
+                <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">EN</button>
+                <button class="lang-btn" onclick="switchLang('pt')" id="btnPt">PT</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- ========== ENGLISH ========== -->
+        <div id="lang-en">
+            <h1>FinTax Documentation</h1>
+            <p class="lead">Complete guide to customizing your accountant & financial consultant landing page.</p>
+
+            <div class="toc">
+                <h2>Table of Contents</h2>
+                <ol>
+                    <li><a href="#en-1">File Structure</a></li>
+                    <li><a href="#en-2">Colors &amp; Branding</a></li>
+                    <li><a href="#en-3">Navbar &amp; Client Login</a></li>
+                    <li><a href="#en-4">Hero Section</a></li>
+                    <li><a href="#en-5">Services Grid</a></li>
+                    <li><a href="#en-6">Tax Calculator (Hook)</a></li>
+                    <li><a href="#en-7">Process Timeline</a></li>
+                    <li><a href="#en-8">Pricing Tables</a></li>
+                    <li><a href="#en-9">Blog / News</a></li>
+                    <li><a href="#en-10">Footer &amp; Security Badges</a></li>
+                    <li><a href="#en-11">Image Sizes</a></li>
+                </ol>
+            </div>
+
+            <section id="en-1">
+                <h2>1. File Structure</h2>
+                <pre>
+fintax/
+├── index.html              <span class="c">← Main page</span>
+├── documentation.html      <span class="c">← This file</span>
+└── assets/
+    ├── css/style.css       <span class="c">← All styles (CSS variables)</span>
+    ├── js/main.js          <span class="c">← Calculator, timeline, reveal</span>
+    └── img/
+        ├── favicon.svg
+        └── <span class="c">(your images)</span>
+                </pre>
+            </section>
+
+            <section id="en-2">
+                <h2>2. Colors &amp; Branding</h2>
+                <p>Open <code>assets/css/style.css</code> and edit the <code>:root</code> variables at the top:</p>
+                <pre>
+<span class="c">/* Primary Blue */</span>
+--blue-600: <span class="b">#2563eb</span>;
+
+<span class="c">/* Green (money/success) */</span>
+--green-600: <span class="g">#16a34a</span>;
+                </pre>
+                <p>All components using <code>--blue-*</code> and <code>--green-*</code> will update accordingly.</p>
+            </section>
+
+            <section id="en-3">
+                <h2>3. Navbar &amp; Client Login</h2>
+                <ul>
+                    <li>The <strong>"Área do Cliente"</strong> button is in <code>navbar__actions</code> — replace <code>href="#"</code> with your actual login URL</li>
+                    <li>The navbar is fixed with blur backdrop and gains shadow on scroll</li>
+                    <li>Mobile menu slides open below the navbar</li>
+                </ul>
+            </section>
+
+            <section id="en-4">
+                <h2>4. Hero Section</h2>
+                <ul>
+                    <li>Replace the image placeholder with a photo of a professional (recommended: <strong>600×700px</strong>)</li>
+                    <li>The <strong>mini bar charts</strong> are pure CSS — edit the <code>--h</code> values to change bar heights</li>
+                    <li>The floating "38% savings" card animates with CSS — edit text in <code>hero__float-card</code></li>
+                    <li>The green badge ("Vagas limitadas") has a pulsing dot animation</li>
+                </ul>
+            </section>
+
+            <section id="en-5">
+                <h2>5. Services Grid</h2>
+                <p>Each service uses a different color icon. To change an icon's SVG, replace the content inside <code>service-box__icon</code>. Color classes available:</p>
+                <pre>
+service-box__icon--blue
+service-box__icon--green
+service-box__icon--purple
+service-box__icon--amber
+service-box__icon--rose
+service-box__icon--cyan
+                </pre>
+            </section>
+
+            <section id="en-6">
+                <h2>6. Tax Calculator (Hook)</h2>
+                <p>This is the <strong>key conversion element</strong>. The calculator uses simplified tax rates for demonstration.</p>
+                <p><strong>To customize the tax logic:</strong></p>
+                <ol>
+                    <li>Open <code>assets/js/main.js</code></li>
+                    <li>Find the comment <code>// EDITABLE: Tax calculation logic</code></li>
+                    <li>Replace the rate values with your actual formulas</li>
+                </ol>
+                <pre>
+<span class="c">// Current simplified rates:</span>
+simples:   <span class="g">12%</span>
+presumido: <span class="g">16%</span>
+real:      <span class="g">25%</span>
+naosei:    <span class="g">15%</span>
+
+<span class="c">// Optimized = current × 0.65 (~35% savings)</span>
+<span class="c">// Replace these with your real formulas</span>
+                </pre>
+                <p>The result includes animated comparison bars and a CTA to the pricing section.</p>
+            </section>
+
+            <section id="en-7">
+                <h2>7. Process Timeline</h2>
+                <p>The timeline has a <strong>"draw-on-scroll"</strong> effect: a gradient line fills as the user scrolls, and markers turn blue when reached. This is handled automatically by the Intersection Observer in <code>main.js</code>.</p>
+                <p>To add a step, duplicate a <code>timeline__item</code> block and update the number and content.</p>
+            </section>
+
+            <section id="en-8">
+                <h2>8. Pricing Tables</h2>
+                <ul>
+                    <li>3 cards: Starter, Professional (featured), Enterprise</li>
+                    <li>The middle card has a <code>pricing-card--featured</code> class for the blue highlight</li>
+                    <li>Each feature uses <code>class="included"</code> or <code>class="excluded"</code> for checkmark/X styling</li>
+                    <li>Edit prices, features, and CTA links directly in the HTML</li>
+                </ul>
+            </section>
+
+            <section id="en-9">
+                <h2>9. Blog / News</h2>
+                <p>3 article cards with image placeholder, category badge, date, title, and excerpt. Replace with real content and link each card's <code>&lt;a href&gt;</code> to actual blog posts.</p>
+            </section>
+
+            <section id="en-10">
+                <h2>10. Footer &amp; Security Badges</h2>
+                <ul>
+                    <li>4 columns: Brand, Quick Links, Services, Contact</li>
+                    <li>Security badges (SSL, LGPD, CRC) are in <code>footer__badges</code> — add or remove as needed</li>
+                    <li>Update all links and contact information in the HTML</li>
+                </ul>
+            </section>
+
+            <section id="en-11">
+                <h2>11. Image Sizes</h2>
+                <table>
+                    <thead><tr><th>Location</th><th>Size</th><th>Format</th></tr></thead>
+                    <tbody>
+                        <tr><td>Hero Professional Photo</td><td>600 × 700px</td><td>WebP / PNG</td></tr>
+                        <tr><td>Blog Post Images</td><td>640 × 360px</td><td>WebP / JPG</td></tr>
+                        <tr><td>OG Image</td><td>1200 × 630px</td><td>JPG</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- ========== PORTUGUÊS ========== -->
+        <div id="lang-pt" class="hidden">
+            <h1>Documentação FinTax</h1>
+            <p class="lead">Guia completo para personalizar sua landing page de contabilidade e consultoria financeira.</p>
+
+            <div class="toc">
+                <h2>Índice</h2>
+                <ol>
+                    <li><a href="#pt-1">Estrutura de Arquivos</a></li>
+                    <li><a href="#pt-2">Cores e Marca</a></li>
+                    <li><a href="#pt-3">Navbar e Login do Cliente</a></li>
+                    <li><a href="#pt-4">Seção Hero</a></li>
+                    <li><a href="#pt-5">Grid de Serviços</a></li>
+                    <li><a href="#pt-6">Calculadora de Impostos (Hook)</a></li>
+                    <li><a href="#pt-7">Timeline de Processo</a></li>
+                    <li><a href="#pt-8">Tabelas de Preços</a></li>
+                    <li><a href="#pt-9">Blog / Notícias</a></li>
+                    <li><a href="#pt-10">Footer e Selos de Segurança</a></li>
+                    <li><a href="#pt-11">Tamanho das Imagens</a></li>
+                </ol>
+            </div>
+
+            <section id="pt-1">
+                <h2>1. Estrutura de Arquivos</h2>
+                <pre>
+fintax/
+├── index.html              <span class="c">← Página principal</span>
+├── documentation.html      <span class="c">← Este arquivo</span>
+└── assets/
+    ├── css/style.css       <span class="c">← Todos os estilos (variáveis CSS)</span>
+    ├── js/main.js          <span class="c">← Calculadora, timeline, animações</span>
+    └── img/
+        ├── favicon.svg
+        └── <span class="c">(suas imagens)</span>
+                </pre>
+            </section>
+
+            <section id="pt-2">
+                <h2>2. Cores e Marca</h2>
+                <p>Abra <code>assets/css/style.css</code> e edite as variáveis <code>:root</code> no topo:</p>
+                <pre>
+<span class="c">/* Azul principal */</span>
+--blue-600: <span class="b">#2563eb</span>;
+
+<span class="c">/* Verde (dinheiro/sucesso) */</span>
+--green-600: <span class="g">#16a34a</span>;
+                </pre>
+            </section>
+
+            <section id="pt-3">
+                <h2>3. Navbar e Login do Cliente</h2>
+                <ul>
+                    <li>O botão <strong>"Área do Cliente"</strong> está em <code>navbar__actions</code> — substitua <code>href="#"</code> pela URL real do login</li>
+                    <li>A navbar é fixa com backdrop blur e ganha sombra ao rolar</li>
+                    <li>O menu mobile desliza abaixo da navbar</li>
+                </ul>
+            </section>
+
+            <section id="pt-4">
+                <h2>4. Seção Hero</h2>
+                <ul>
+                    <li>Substitua o placeholder pela foto de um profissional (recomendado: <strong>600×700px</strong>)</li>
+                    <li>Os <strong>mini gráficos de barra</strong> são CSS puro — edite os valores <code>--h</code> para alterar as alturas</li>
+                    <li>O card flutuante "38% economia" anima com CSS — edite o texto em <code>hero__float-card</code></li>
+                    <li>O badge verde ("Vagas limitadas") tem uma animação de pulso</li>
+                </ul>
+            </section>
+
+            <section id="pt-5">
+                <h2>5. Grid de Serviços</h2>
+                <p>Cada serviço usa um ícone de cor diferente. Para trocar um ícone SVG, substitua o conteúdo dentro de <code>service-box__icon</code>. Classes de cor disponíveis:</p>
+                <pre>
+service-box__icon--blue
+service-box__icon--green
+service-box__icon--purple
+service-box__icon--amber
+service-box__icon--rose
+service-box__icon--cyan
+                </pre>
+            </section>
+
+            <section id="pt-6">
+                <h2>6. Calculadora de Impostos (Hook)</h2>
+                <p>Este é o <strong>elemento-chave de conversão</strong>. A calculadora usa alíquotas simplificadas para demonstração.</p>
+                <p><strong>Para personalizar a lógica fiscal:</strong></p>
+                <ol>
+                    <li>Abra <code>assets/js/main.js</code></li>
+                    <li>Encontre o comentário <code>// EDITABLE: Tax calculation logic</code></li>
+                    <li>Substitua os valores de alíquota pelas suas fórmulas reais</li>
+                </ol>
+                <pre>
+<span class="c">// Alíquotas simplificadas atuais:</span>
+simples:   <span class="g">12%</span>
+presumido: <span class="g">16%</span>
+real:      <span class="g">25%</span>
+naosei:    <span class="g">15%</span>
+
+<span class="c">// Otimizado = atual × 0.65 (~35% economia)</span>
+<span class="c">// Substitua por suas fórmulas reais</span>
+                </pre>
+                <p>O resultado inclui barras de comparação animadas e um CTA para a seção de preços.</p>
+            </section>
+
+            <section id="pt-7">
+                <h2>7. Timeline de Processo</h2>
+                <p>A timeline tem efeito de <strong>"desenho ao rolar"</strong>: uma linha gradiente preenche conforme o usuário rola, e os marcadores ficam azuis quando atingidos. Tudo é gerenciado automaticamente pelo Intersection Observer no <code>main.js</code>.</p>
+                <p>Para adicionar um passo, duplique um bloco <code>timeline__item</code> e atualize o número e o conteúdo.</p>
+            </section>
+
+            <section id="pt-8">
+                <h2>8. Tabelas de Preços</h2>
+                <ul>
+                    <li>3 cards: Starter, Professional (destaque), Enterprise</li>
+                    <li>O card do meio tem a classe <code>pricing-card--featured</code> para o destaque azul</li>
+                    <li>Cada feature usa <code>class="included"</code> ou <code>class="excluded"</code> para estilo de check/X</li>
+                    <li>Edite preços, funcionalidades e links CTA diretamente no HTML</li>
+                </ul>
+            </section>
+
+            <section id="pt-9">
+                <h2>9. Blog / Notícias</h2>
+                <p>3 cards de artigo com placeholder de imagem, badge de categoria, data, título e resumo. Substitua pelo conteúdo real e vincule cada <code>&lt;a href&gt;</code> ao post real do blog.</p>
+            </section>
+
+            <section id="pt-10">
+                <h2>10. Footer e Selos de Segurança</h2>
+                <ul>
+                    <li>4 colunas: Marca, Links Rápidos, Serviços, Contato</li>
+                    <li>Selos de segurança (SSL, LGPD, CRC) estão em <code>footer__badges</code> — adicione ou remova conforme necessário</li>
+                    <li>Atualize todos os links e informações de contato no HTML</li>
+                </ul>
+            </section>
+
+            <section id="pt-11">
+                <h2>11. Tamanho das Imagens</h2>
+                <table>
+                    <thead><tr><th>Local</th><th>Tamanho</th><th>Formato</th></tr></thead>
+                    <tbody>
+                        <tr><td>Foto Profissional (Hero)</td><td>600 × 700px</td><td>WebP / PNG</td></tr>
+                        <tr><td>Imagens do Blog</td><td>640 × 360px</td><td>WebP / JPG</td></tr>
+                        <tr><td>Imagem OG</td><td>1200 × 630px</td><td>JPG</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <footer><div class="container"><p>&copy; 2026 FinTax Template — Documentation</p></div></footer>
+
+    <script>
+        function switchLang(lang) {
+            localStorage.setItem('fintax-doc-lang', lang);
+            document.getElementById('lang-en').classList.toggle('hidden', lang !== 'en');
+            document.getElementById('lang-pt').classList.toggle('hidden', lang !== 'pt');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            document.getElementById('btnPt').classList.toggle('active', lang === 'pt');
+        }
+
+        switchLang(localStorage.getItem('fintax-doc-lang') || 'en');
+    </script>
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Academy — Documentation / Documentação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+        .lang-pt { display: none; }
+        .show-pt .lang-en { display: none; }
+        .show-pt .lang-pt { display: block; }
+        pre { background: #0c2340; color: #e2e8f0; padding: 1rem; border-radius: 12px; overflow-x: auto; font-size: 0.85rem; line-height: 1.7; }
+        code { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+        .toc a { transition: color 0.2s; }
+        .toc a:hover { color: #d4a012; }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">&larr; Back to Template</a>
+            <div class="flex items-center gap-3">
+                <span class="text-xs text-gray-400">Language:</span>
+                <button onclick="setLang('en')" id="langEn" class="px-3 py-1 text-xs font-bold rounded-lg bg-gray-900 text-white transition-all">EN</button>
+                <button onclick="setLang('pt')" id="langPt" class="px-3 py-1 text-xs font-bold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all">PT</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+
+        <!-- Title -->
+        <div class="mb-12">
+            <div class="inline-block bg-yellow-50 text-yellow-700 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4 border border-yellow-200">Lumina Academy</div>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-3">
+                <span class="lang-en">Documentation</span>
+                <span class="lang-pt">Documentação</span>
+            </h1>
+            <p class="text-lg text-gray-500">
+                <span class="lang-en">Premium School Landing Page — Enrollment-Focused</span>
+                <span class="lang-pt">Landing Page Escolar Premium — Foco em Matrículas</span>
+            </p>
+        </div>
+
+        <!-- TOC -->
+        <nav class="toc bg-gray-50 rounded-2xl p-6 mb-12 border border-gray-100">
+            <h2 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">
+                <span class="lang-en">Table of Contents</span>
+                <span class="lang-pt">Índice</span>
+            </h2>
+            <ol class="space-y-1 text-sm text-gray-600 list-decimal list-inside">
+                <li><a href="#overview" class="lang-en">Overview & Features</a><a href="#overview" class="lang-pt">Visão Geral & Recursos</a></li>
+                <li><a href="#structure" class="lang-en">File Structure</a><a href="#structure" class="lang-pt">Estrutura de Arquivos</a></li>
+                <li><a href="#colors" class="lang-en">Color Customization (Tailwind Config)</a><a href="#colors" class="lang-pt">Personalização de Cores (Tailwind Config)</a></li>
+                <li><a href="#sections" class="lang-en">Sections Guide</a><a href="#sections" class="lang-pt">Guia de Seções</a></li>
+                <li><a href="#form" class="lang-en">Visit Form</a><a href="#form" class="lang-pt">Formulário de Visita</a></li>
+                <li><a href="#aos" class="lang-en">AOS Animations</a><a href="#aos" class="lang-pt">Animações AOS</a></li>
+                <li><a href="#tech" class="lang-en">Tech Stack</a><a href="#tech" class="lang-pt">Stack Tecnológica</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Overview -->
+        <section id="overview" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">1. Overview & Features</span>
+                <span class="lang-pt">1. Visão Geral & Recursos</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p><strong>Lumina Academy</strong> is a premium, enrollment-focused landing page for private schools (K-12). Built with <strong>Tailwind CSS v3 CDN</strong>, <strong>AOS</strong> (Animate on Scroll), and <strong>vanilla JavaScript</strong>.</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Top Bar</strong> — Urgency strip ("Enrollment Open 2026") with ping animation and portal link</li>
+                    <li><strong>Off-Canvas Mobile Menu</strong> — Slides from right with overlay, ESC close</li>
+                    <li><strong>Hero with Image Mask</strong> — Organic morphing shape (CSS animation), decorative floating elements</li>
+                    <li><strong>Academic Segments</strong> — 3 hover-lift cards (Infantil/Fundamental/Médio) with distinct color coding</li>
+                    <li><strong>Bento Grid Differentials</strong> — Mosaic layout (Bilingual, Robotics, Security, Sports)</li>
+                    <li><strong>Animated Counters</strong> — Numbers count up with easeOutCubic when scrolled into view</li>
+                    <li><strong>Virtual Tour Preview</strong> — Wide panoramic placeholder with centered play button</li>
+                    <li><strong>News Carousel</strong> — Horizontal scroll with prev/next buttons and touch swipe</li>
+                    <li><strong>Testimonials</strong> — Parent/student quotes with star ratings, 3-column grid</li>
+                    <li><strong>Visit Form</strong> — Open on page (not modal): Name, Email, Phone (masked), Segment select, with validation</li>
+                    <li><strong>Footer</strong> — Map, partner logos (Google/Cambridge/LEGO/Apple), quick links</li>
+                    <li><strong>AOS Animations</strong> — Smooth reveal on scroll for all major sections</li>
+                </ul>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p><strong>Lumina Academy</strong> é uma landing page premium focada em captação de matrículas para escolas particulares (Infantil ao Médio). Construída com <strong>Tailwind CSS v3 CDN</strong>, <strong>AOS</strong> (Animate on Scroll) e <strong>JavaScript puro</strong>.</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Top Bar</strong> — Faixa de urgência ("Matrículas Abertas 2026") com animação ping e link do portal</li>
+                    <li><strong>Menu Mobile Off-Canvas</strong> — Desliza da direita com overlay, fecha com ESC</li>
+                    <li><strong>Hero com Image Mask</strong> — Forma orgânica com morphing (animação CSS), elementos decorativos flutuantes</li>
+                    <li><strong>Segmentos Acadêmicos</strong> — 3 cards com hover-lift (Infantil/Fundamental/Médio) com cores distintas</li>
+                    <li><strong>Bento Grid Diferenciais</strong> — Layout mosaico (Bilíngue, Robótica, Segurança, Esportes)</li>
+                    <li><strong>Contadores Animados</strong> — Números contam com easeOutCubic ao entrar na viewport</li>
+                    <li><strong>Preview Tour Virtual</strong> — Placeholder panorâmico largo com botão play centralizado</li>
+                    <li><strong>Carrossel de Notícias</strong> — Scroll horizontal com botões prev/next e swipe touch</li>
+                    <li><strong>Depoimentos</strong> — Citações de pais/alunos com estrelas, grid de 3 colunas</li>
+                    <li><strong>Formulário de Visita</strong> — Aberto na página: Nome, Email, Telefone (máscara), Select de segmento, com validação</li>
+                    <li><strong>Rodapé</strong> — Mapa, logos de parceiros (Google/Cambridge/LEGO/Apple), links rápidos</li>
+                    <li><strong>Animações AOS</strong> — Reveal suave no scroll para todas as seções principais</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. File Structure -->
+        <section id="structure" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">2. File Structure</span>
+                <span class="lang-pt">2. Estrutura de Arquivos</span>
+            </h2>
+            <pre><code>lumina/
+├── index.html              # Homepage (all sections)
+├── documentation.html      # This file
+└── assets/
+    ├── css/
+    │   └── style.css       # Custom animations & overrides
+    ├── js/
+    │   └── main.js         # Menu, counters, carousel, form
+    └── img/
+        └── favicon.svg     # Badge/torch icon</code></pre>
+        </section>
+
+        <!-- 3. Color Customization -->
+        <section id="colors" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">3. Color Customization (Tailwind Config)</span>
+                <span class="lang-pt">3. Personalização de Cores (Tailwind Config)</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p>All colors are defined in the <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">tailwind.config</code> object inside <code>index.html</code> (lines 55-100):</p>
+                <pre><code>tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: {     // Primary: Trust, professionalism
+          50: '#eef2f7',  // Light backgrounds
+          900: '#0c2340', // Main brand color
+          950: '#061529', // Footer
+        },
+        mustard: {  // Accent: Creativity, future
+          400: '#efc025', // Hover states
+          500: '#d4a012', // CTAs, buttons, badges
+          600: '#b8830e', // Darker accent
+        },
+        child: { ... },  // Ed. Infantil (purple)
+        fund:  { ... },  // Fundamental (green)
+        high:  { ... },  // Ensino Médio (blue)
+      }
+    }
+  }
+}</code></pre>
+                <h3 class="font-bold text-gray-900 mt-6 mb-2">To change the school's brand colors:</h3>
+                <ol class="list-decimal list-inside space-y-2 ml-4">
+                    <li>Open <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">index.html</code> and find the <code>&lt;script&gt;</code> block with <code>tailwind.config</code></li>
+                    <li>Replace <code>navy</code> color values with your primary brand color (generate a palette at <a href="https://uicolors.app" class="text-yellow-600 underline" target="_blank">uicolors.app</a>)</li>
+                    <li>Replace <code>mustard</code> color values with your accent/CTA color</li>
+                    <li>Optionally update the segment colors (<code>child</code>, <code>fund</code>, <code>high</code>) to match your school's palette</li>
+                    <li>Update the SVG icons in the header logo and favicon with your new colors</li>
+                    <li>Update the focus ring color in <code>style.css</code> (search for <code>#d4a012</code>)</li>
+                </ol>
+                <p class="bg-yellow-50 p-4 rounded-xl border border-yellow-200 text-yellow-800 text-sm mt-4"><strong>Tip:</strong> All Tailwind utility classes use these color tokens (e.g., <code>bg-navy-900</code>, <code>text-mustard-500</code>), so changing the config automatically updates the entire page.</p>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p>Todas as cores são definidas no objeto <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">tailwind.config</code> dentro do <code>index.html</code> (linhas 55-100):</p>
+                <pre><code>tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        navy: {     // Primária: Confiança, profissionalismo
+          50: '#eef2f7',  // Fundos claros
+          900: '#0c2340', // Cor principal da marca
+          950: '#061529', // Footer
+        },
+        mustard: {  // Destaque: Criatividade, futuro
+          400: '#efc025', // Estados hover
+          500: '#d4a012', // CTAs, botões, badges
+          600: '#b8830e', // Destaque mais escuro
+        },
+        child: { ... },  // Ed. Infantil (roxo)
+        fund:  { ... },  // Fundamental (verde)
+        high:  { ... },  // Ensino Médio (azul)
+      }
+    }
+  }
+}</code></pre>
+                <h3 class="font-bold text-gray-900 mt-6 mb-2">Para mudar as cores da escola:</h3>
+                <ol class="list-decimal list-inside space-y-2 ml-4">
+                    <li>Abra <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">index.html</code> e encontre o bloco <code>&lt;script&gt;</code> com <code>tailwind.config</code></li>
+                    <li>Substitua os valores de <code>navy</code> pela sua cor primária (gere uma paleta em <a href="https://uicolors.app" class="text-yellow-600 underline" target="_blank">uicolors.app</a>)</li>
+                    <li>Substitua os valores de <code>mustard</code> pela sua cor de destaque/CTA</li>
+                    <li>Opcionalmente, atualize as cores dos segmentos (<code>child</code>, <code>fund</code>, <code>high</code>) para combinar com a paleta da escola</li>
+                    <li>Atualize os ícones SVG no logo do header e favicon com as novas cores</li>
+                    <li>Atualize a cor do focus ring no <code>style.css</code> (procure por <code>#d4a012</code>)</li>
+                </ol>
+                <p class="bg-yellow-50 p-4 rounded-xl border border-yellow-200 text-yellow-800 text-sm mt-4"><strong>Dica:</strong> Todas as classes utilitárias do Tailwind usam esses tokens de cor (ex: <code>bg-navy-900</code>, <code>text-mustard-500</code>), então mudar a config atualiza automaticamente toda a página.</p>
+            </div>
+        </section>
+
+        <!-- 4. Sections Guide -->
+        <section id="sections" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">4. Sections Guide</span>
+                <span class="lang-pt">4. Guia de Seções</span>
+            </h2>
+            <div class="lang-en space-y-4 text-gray-600">
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Top Bar</h3>
+                    <p class="text-sm">Mustard background urgency strip with pulsing dot, "Enrollment Open 2026", "Schedule Visit" button, and portal login link. Edit text directly in HTML.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Hero (Emotional Split)</h3>
+                    <p class="text-sm">Two-column: inspiring text + organic shape image mask with CSS morphing animation. Floating decorative elements and a "100% Approval" badge. Wave separator at bottom.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Academic Segments</h3>
+                    <p class="text-sm">3 cards — Ed. Infantil (purple), Fundamental (green), Ensino Médio (blue). Each has icon, age range badge, features list, hover-lift effect.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Bento Grid (Differentials)</h3>
+                    <p class="text-sm">Mosaic layout: Bilingual program (large, 2×2), Robotics, Security 24h, Sports (wide). Gradient backgrounds with icons.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Stats Counter</h3>
+                    <p class="text-sm">4 animated numbers: 25+ Years, 100% Approval, 2000+ Students, 180+ Teachers. Count up with easeOutCubic when scrolled into view (Intersection Observer).</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Virtual Tour</h3>
+                    <p class="text-sm">Wide 21:9 panoramic placeholder with centered play button. "360° Tour" live badge in corner. Replace background with real panoramic image.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">News Carousel</h3>
+                    <p class="text-sm">5 news/event cards in horizontal scroll. Prev/Next buttons, touch swipe support, responsive card widths. Edit cards directly in HTML.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Testimonials</h3>
+                    <p class="text-sm">3 parent/student testimonials with star ratings, initials avatar, name and segment reference. 3-column grid.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Visit Form (CTA)</h3>
+                    <p class="text-sm">Open form with 4 fields: Name, Email, Phone (auto-masked), Segment (select). Client-side validation with error highlighting and success animation.</p>
+                </div>
+            </div>
+            <div class="lang-pt space-y-4 text-gray-600">
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Top Bar</h3>
+                    <p class="text-sm">Faixa de urgência em mostarda com dot pulsante, "Matrículas Abertas 2026", botão "Agendar Visita" e link do portal. Edite o texto diretamente no HTML.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Hero (Split Emocional)</h3>
+                    <p class="text-sm">Duas colunas: texto inspirador + máscara de imagem orgânica com animação morphing CSS. Elementos decorativos flutuantes e badge "100% Aprovação". Separador wave no fundo.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Segmentos Acadêmicos</h3>
+                    <p class="text-sm">3 cards — Ed. Infantil (roxo), Fundamental (verde), Ensino Médio (azul). Cada um com ícone, badge de faixa etária, lista de features, efeito hover-lift.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Bento Grid (Diferenciais)</h3>
+                    <p class="text-sm">Layout mosaico: Programa Bilíngue (grande, 2×2), Robótica, Segurança 24h, Esportes (largo). Fundos em gradiente com ícones.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Contadores</h3>
+                    <p class="text-sm">4 números animados: 25+ Anos, 100% Aprovação, 2000+ Alunos, 180+ Professores. Contagem com easeOutCubic ao entrar na viewport (Intersection Observer).</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Tour Virtual</h3>
+                    <p class="text-sm">Placeholder panorâmico 21:9 com botão play centralizado. Badge "Tour 360°" com ponto vermelho pulsante. Substitua o fundo por imagem panorâmica real.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Carrossel de Notícias</h3>
+                    <p class="text-sm">5 cards de notícias/eventos em scroll horizontal. Botões Prev/Next, suporte a swipe, larguras responsivas. Edite os cards diretamente no HTML.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Depoimentos</h3>
+                    <p class="text-sm">3 depoimentos de pais/alunos com estrelas, avatar com iniciais, nome e referência de segmento. Grid de 3 colunas.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Formulário de Visita (CTA)</h3>
+                    <p class="text-sm">Formulário aberto com 4 campos: Nome, Email, Telefone (máscara automática), Segmento (select). Validação client-side com destaque de erros e animação de sucesso.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Form -->
+        <section id="form" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">5. Visit Form</span>
+                <span class="lang-pt">5. Formulário de Visita</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p>The form includes client-side validation:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Name</strong> — Required, minimum 3 characters</li>
+                    <li><strong>Email</strong> — Required, validated with regex</li>
+                    <li><strong>Phone</strong> — Auto-masked as <code>(11) 9 0000-0000</code>, minimum 10 digits</li>
+                    <li><strong>Segment</strong> — Required, must select an option</li>
+                </ul>
+                <p>On success, the submit button hides and a success message appears with animation. The form currently simulates an API call (1.5s delay). To connect to a real backend:</p>
+                <pre><code>// In main.js, replace the setTimeout block with:
+fetch('/api/visit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        name: name.value,
+        email: email.value,
+        phone: phone.value,
+        segment: segment.value
+    })
+}).then(res => {
+    if (res.ok) {
+        // Show success
+    }
+});</code></pre>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p>O formulário inclui validação client-side:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Nome</strong> — Obrigatório, mínimo 3 caracteres</li>
+                    <li><strong>Email</strong> — Obrigatório, validado com regex</li>
+                    <li><strong>Telefone</strong> — Máscara automática <code>(11) 9 0000-0000</code>, mínimo 10 dígitos</li>
+                    <li><strong>Segmento</strong> — Obrigatório, deve selecionar uma opção</li>
+                </ul>
+                <p>No sucesso, o botão de envio esconde e uma mensagem de sucesso aparece com animação. O formulário atualmente simula uma chamada de API (1.5s de delay). Para conectar a um backend real, substitua o bloco <code>setTimeout</code> no <code>main.js</code> por um <code>fetch()</code>.</p>
+            </div>
+        </section>
+
+        <!-- 6. AOS -->
+        <section id="aos" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">6. AOS Animations</span>
+                <span class="lang-pt">6. Animações AOS</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p>The template uses <a href="https://michalsnik.github.io/aos/" class="text-yellow-600 underline" target="_blank">AOS (Animate On Scroll)</a> v2.3.4 via CDN.</p>
+                <p>Default config in <code>main.js</code>:</p>
+                <pre><code>AOS.init({
+    duration: 700,       // Animation duration (ms)
+    easing: 'ease-out-cubic',
+    once: true,          // Only animate once
+    offset: 60,          // Trigger offset (px)
+});</code></pre>
+                <p>Common attributes used in HTML:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><code>data-aos="fade-up"</code> — Fade in from bottom</li>
+                    <li><code>data-aos="fade-right"</code> / <code>"fade-left"</code> — Horizontal fade</li>
+                    <li><code>data-aos="zoom-in"</code> — Scale up</li>
+                    <li><code>data-aos-delay="200"</code> — Stagger delay (ms)</li>
+                    <li><code>data-aos-duration="800"</code> — Override duration</li>
+                </ul>
+                <p>To disable animations, remove <code>data-aos</code> attributes or don't load the AOS library.</p>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p>O template usa <a href="https://michalsnik.github.io/aos/" class="text-yellow-600 underline" target="_blank">AOS (Animate On Scroll)</a> v2.3.4 via CDN.</p>
+                <p>Configuração padrão no <code>main.js</code>:</p>
+                <pre><code>AOS.init({
+    duration: 700,       // Duração da animação (ms)
+    easing: 'ease-out-cubic',
+    once: true,          // Animar apenas uma vez
+    offset: 60,          // Offset de trigger (px)
+});</code></pre>
+                <p>Para desabilitar animações, remova os atributos <code>data-aos</code> ou não carregue a biblioteca AOS.</p>
+            </div>
+        </section>
+
+        <!-- 7. Tech Stack -->
+        <section id="tech" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">7. Tech Stack</span>
+                <span class="lang-pt">7. Stack Tecnológica</span>
+            </h2>
+            <table class="w-full text-sm border-collapse">
+                <thead><tr class="border-b border-gray-200 text-left">
+                    <th class="py-2 pr-4 font-bold">Technology</th><th class="py-2 font-bold">Details</th>
+                </tr></thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr><td class="py-2 pr-4 font-medium">Tailwind CSS v3</td><td class="py-2">CDN — no build step</td></tr>
+                    <tr><td class="py-2 pr-4 font-medium">AOS v2.3.4</td><td class="py-2">Animate On Scroll library (CDN)</td></tr>
+                    <tr><td class="py-2 pr-4 font-medium">Vanilla JavaScript</td><td class="py-2">No frameworks or dependencies</td></tr>
+                    <tr><td class="py-2 pr-4 font-medium">Plus Jakarta Sans</td><td class="py-2">Google Fonts, weight 300–800</td></tr>
+                    <tr><td class="py-2 pr-4 font-medium">Inline SVG Icons</td><td class="py-2">No icon library needed</td></tr>
+                    <tr><td class="py-2 pr-4 font-medium">Intersection Observer</td><td class="py-2">Counter animation trigger</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-gray-100 py-6">
+        <p class="text-center text-xs text-gray-400">Lumina Academy Template — Documentation</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            document.body.classList.toggle('show-pt', lang === 'pt');
+            document.getElementById('langEn').className = lang === 'en'
+                ? 'px-3 py-1 text-xs font-bold rounded-lg bg-gray-900 text-white transition-all'
+                : 'px-3 py-1 text-xs font-bold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all';
+            document.getElementById('langPt').className = lang === 'pt'
+                ? 'px-3 py-1 text-xs font-bold rounded-lg bg-gray-900 text-white transition-all'
+                : 'px-3 py-1 text-xs font-bold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Landing Page — Documentation</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Lora', Georgia, serif; background: #faf8f5; color: #2d2d2d; line-height: 1.8; }
+        .lang-pt { display: none; }
+        .show-pt .lang-en { display: none; }
+        .show-pt .lang-pt { display: block; }
+        a { color: #9b59b6; }
+        a:hover { color: #7d3c98; }
+        header { position: sticky; top: 0; z-index: 50; background: rgba(250,248,245,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #e8e4df; }
+        header .inner { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        header a.back { font-size: 0.85rem; color: #888; text-decoration: none; }
+        header a.back:hover { color: #2d2d2d; }
+        .lang-btns { display: flex; gap: 6px; }
+        .lang-btn { padding: 4px 12px; font-size: 0.75rem; font-weight: 700; font-family: 'Lora', serif; border: 1px solid #d4cfc9; border-radius: 8px; background: transparent; color: #888; cursor: pointer; transition: all 0.2s; }
+        .lang-btn.active { background: #1a1a2e; color: #fff; border-color: #1a1a2e; }
+        main { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 800; color: #1a1a2e; margin-bottom: 0.5rem; }
+        .subtitle { color: #888; font-size: 1rem; margin-bottom: 3rem; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #1a1a2e; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid #e8e4df; }
+        h3 { font-size: 1.1rem; font-weight: 600; color: #1a1a2e; margin: 1.5rem 0 0.5rem; }
+        p, li { color: #555; font-size: 0.95rem; }
+        ul, ol { padding-left: 1.5rem; margin: 0.5rem 0; }
+        li { margin: 0.3rem 0; }
+        pre { background: #1a1a2e; color: #e2b0ff; padding: 1rem 1.25rem; border-radius: 10px; overflow-x: auto; font-size: 0.82rem; line-height: 1.7; margin: 1rem 0; }
+        code { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; background: #f0ece7; padding: 2px 6px; border-radius: 4px; color: #9b59b6; }
+        pre code { background: none; padding: 0; color: inherit; }
+        .toc { background: #f5f2ee; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem; }
+        .toc h2 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: #999; border: none; margin: 0 0 0.75rem; padding: 0; }
+        .toc ol { list-style: none; padding: 0; }
+        .toc li { margin: 0.4rem 0; }
+        .toc a { text-decoration: none; font-size: 0.9rem; color: #9b59b6; }
+        .toc a:hover { text-decoration: underline; }
+        footer { border-top: 1px solid #e8e4df; padding: 2rem 0; text-align: center; font-size: 0.75rem; color: #aaa; }
+        @media (max-width: 640px) { h1 { font-size: 1.7rem; } main { padding: 2rem 1rem; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="inner">
+            <a href="index.html" class="back">&larr; Back to Page</a>
+            <div class="lang-btns">
+                <button class="lang-btn active" onclick="switchLang('en')" id="btnEn">EN</button>
+                <button class="lang-btn" onclick="switchLang('pt')" id="btnPt">PT</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Personal Landing Page</h1>
+        <p class="subtitle lang-en">Complete guide to customize and deploy your personal link-in-bio page.</p>
+        <p class="subtitle lang-pt">Guia completo para personalizar e publicar sua página pessoal de links.</p>
+
+        <!-- TOC -->
+        <nav class="toc">
+            <h2 class="lang-en">Table of Contents</h2>
+            <h2 class="lang-pt">Sumario</h2>
+            <ol>
+                <li><a href="#overview"><span class="lang-en">1. Overview</span><span class="lang-pt">1. Visao Geral</span></a></li>
+                <li><a href="#structure"><span class="lang-en">2. File Structure</span><span class="lang-pt">2. Estrutura de Arquivos</span></a></li>
+                <li><a href="#tech"><span class="lang-en">3. Tech Stack</span><span class="lang-pt">3. Stack Tecnica</span></a></li>
+                <li><a href="#sections"><span class="lang-en">4. Page Sections</span><span class="lang-pt">4. Secoes da Pagina</span></a></li>
+                <li><a href="#profile"><span class="lang-en">5. Editing Profile</span><span class="lang-pt">5. Editando o Perfil</span></a></li>
+                <li><a href="#links"><span class="lang-en">6. Managing Links</span><span class="lang-pt">6. Gerenciando Links</span></a></li>
+                <li><a href="#newsletter"><span class="lang-en">7. Newsletter Form</span><span class="lang-pt">7. Formulario Newsletter</span></a></li>
+                <li><a href="#dark-mode"><span class="lang-en">8. Dark Mode</span><span class="lang-pt">8. Modo Escuro</span></a></li>
+                <li><a href="#colors"><span class="lang-en">9. Colors & Typography</span><span class="lang-pt">9. Cores & Tipografia</span></a></li>
+                <li><a href="#seo"><span class="lang-en">10. SEO</span><span class="lang-pt">10. SEO</span></a></li>
+                <li><a href="#performance"><span class="lang-en">11. Performance</span><span class="lang-pt">11. Performance</span></a></li>
+                <li><a href="#credits"><span class="lang-en">12. Credits</span><span class="lang-pt">12. Creditos</span></a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Overview -->
+        <section id="overview">
+            <h2><span class="lang-en">1. Overview</span><span class="lang-pt">1. Visao Geral</span></h2>
+            <div class="lang-en">
+                <p>A minimal, elegant link-in-bio landing page template. Features a profile card, customizable link list, newsletter signup form, and dark/light mode toggle. Built with pure CSS and vanilla JavaScript — zero dependencies.</p>
+            </div>
+            <div class="lang-pt">
+                <p>Um template minimalista e elegante de landing page link-in-bio. Inclui card de perfil, lista de links personalizavel, formulario de newsletter e alternancia de modo escuro/claro. Construido com CSS puro e JavaScript vanilla — zero dependencias.</p>
+            </div>
+        </section>
+
+        <!-- 2. File Structure -->
+        <section id="structure">
+            <h2><span class="lang-en">2. File Structure</span><span class="lang-pt">2. Estrutura de Arquivos</span></h2>
+<pre><code>personal-landing-page/
+├── index.html
+├── documentation.html
+└── assets/
+    ├── css/
+    │   └── style.css
+    ├── js/
+    │   └── script.js
+    └── img/
+        ├── favicon.svg
+        └── og-image.jpg (1200x630)</code></pre>
+        </section>
+
+        <!-- 3. Tech Stack -->
+        <section id="tech">
+            <h2><span class="lang-en">3. Tech Stack</span><span class="lang-pt">3. Stack Tecnica</span></h2>
+            <div class="lang-en">
+                <ul>
+                    <li><strong>HTML5</strong> — Semantic markup with ARIA labels</li>
+                    <li><strong>CSS3</strong> — Custom properties, CSS transitions, responsive design</li>
+                    <li><strong>JavaScript</strong> — Vanilla JS, no frameworks or libraries</li>
+                    <li><strong>Fonts</strong> — Playfair Display (headings) + Lora (body) via Google Fonts</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <ul>
+                    <li><strong>HTML5</strong> — Marcacao semantica com atributos ARIA</li>
+                    <li><strong>CSS3</strong> — Variaveis CSS, transicoes, design responsivo</li>
+                    <li><strong>JavaScript</strong> — JS vanilla, sem frameworks ou bibliotecas</li>
+                    <li><strong>Fontes</strong> — Playfair Display (titulos) + Lora (corpo) via Google Fonts</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4. Page Sections -->
+        <section id="sections">
+            <h2><span class="lang-en">4. Page Sections</span><span class="lang-pt">4. Secoes da Pagina</span></h2>
+            <div class="lang-en">
+                <ul>
+                    <li><strong>Theme Toggle</strong> — Dark/light mode button (top-right)</li>
+                    <li><strong>Profile Card</strong> — Avatar, name, tagline, and location</li>
+                    <li><strong>External Links</strong> — Clickable link list (website, blog, social media)</li>
+                    <li><strong>Newsletter</strong> — Email signup form with client-side validation</li>
+                    <li><strong>Footer</strong> — Simple credit line</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <ul>
+                    <li><strong>Alternador de Tema</strong> — Botao modo escuro/claro (canto superior direito)</li>
+                    <li><strong>Card de Perfil</strong> — Avatar, nome, descricao e localizacao</li>
+                    <li><strong>Links Externos</strong> — Lista de links clicaveis (site, blog, redes sociais)</li>
+                    <li><strong>Newsletter</strong> — Formulario de email com validacao client-side</li>
+                    <li><strong>Footer</strong> — Linha de credito simples</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. Editing Profile -->
+        <section id="profile">
+            <h2><span class="lang-en">5. Editing Profile</span><span class="lang-pt">5. Editando o Perfil</span></h2>
+            <div class="lang-en">
+                <p>In <code>index.html</code>, find the <code>.profile-card</code> section:</p>
+                <ul>
+                    <li><strong>Avatar</strong> — Replace the <code>.avatar-fallback</code> initials or uncomment the <code>&lt;img&gt;</code> tag</li>
+                    <li><strong>Name</strong> — Edit the <code>&lt;h1&gt;</code> text</li>
+                    <li><strong>Tagline</strong> — Edit the <code>.profile-tagline</code> paragraph</li>
+                    <li><strong>Location</strong> — Edit the <code>.profile-location</code> text</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <p>No <code>index.html</code>, encontre a secao <code>.profile-card</code>:</p>
+                <ul>
+                    <li><strong>Avatar</strong> — Substitua as iniciais em <code>.avatar-fallback</code> ou descomente a tag <code>&lt;img&gt;</code></li>
+                    <li><strong>Nome</strong> — Edite o texto do <code>&lt;h1&gt;</code></li>
+                    <li><strong>Descricao</strong> — Edite o paragrafo <code>.profile-tagline</code></li>
+                    <li><strong>Localizacao</strong> — Edite o texto em <code>.profile-location</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 6. Managing Links -->
+        <section id="links">
+            <h2><span class="lang-en">6. Managing Links</span><span class="lang-pt">6. Gerenciando Links</span></h2>
+            <div class="lang-en">
+                <p>Each link is an <code>&lt;a class="link-item"&gt;</code> element inside <code>.links-section</code>. To add a new link, duplicate an existing one and change the <code>href</code>, icon SVG, and label text.</p>
+<pre><code>&lt;a href="https://your-url.com" class="link-item" target="_blank" rel="noopener noreferrer"&gt;
+  &lt;svg ...&gt;...&lt;/svg&gt;
+  &lt;span&gt;Link Label&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+            </div>
+            <div class="lang-pt">
+                <p>Cada link e um elemento <code>&lt;a class="link-item"&gt;</code> dentro de <code>.links-section</code>. Para adicionar um novo link, duplique um existente e altere o <code>href</code>, o SVG do icone e o texto do label.</p>
+<pre><code>&lt;a href="https://sua-url.com" class="link-item" target="_blank" rel="noopener noreferrer"&gt;
+  &lt;svg ...&gt;...&lt;/svg&gt;
+  &lt;span&gt;Texto do Link&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- 7. Newsletter Form -->
+        <section id="newsletter">
+            <h2><span class="lang-en">7. Newsletter Form</span><span class="lang-pt">7. Formulario Newsletter</span></h2>
+            <div class="lang-en">
+                <p>The form uses client-side validation via <code>script.js</code>. To connect it to a real service (Mailchimp, ConvertKit, etc.), update the form's <code>action</code> attribute or add your API integration in the <code>handleSubmit</code> function inside <code>assets/js/script.js</code>.</p>
+            </div>
+            <div class="lang-pt">
+                <p>O formulario usa validacao client-side via <code>script.js</code>. Para conectar a um servico real (Mailchimp, ConvertKit, etc.), atualize o atributo <code>action</code> do formulario ou adicione sua integracao de API na funcao <code>handleSubmit</code> em <code>assets/js/script.js</code>.</p>
+            </div>
+        </section>
+
+        <!-- 8. Dark Mode -->
+        <section id="dark-mode">
+            <h2><span class="lang-en">8. Dark Mode</span><span class="lang-pt">8. Modo Escuro</span></h2>
+            <div class="lang-en">
+                <p>Theme preference is saved to <code>localStorage</code> (key: <code>theme</code>) and respects the OS <code>prefers-color-scheme</code> on first visit. The toggle button switches between sun and moon icons.</p>
+            </div>
+            <div class="lang-pt">
+                <p>A preferencia de tema e salva no <code>localStorage</code> (chave: <code>theme</code>) e respeita o <code>prefers-color-scheme</code> do sistema na primeira visita. O botao alterna entre icones de sol e lua.</p>
+            </div>
+        </section>
+
+        <!-- 9. Colors & Typography -->
+        <section id="colors">
+            <h2><span class="lang-en">9. Colors & Typography</span><span class="lang-pt">9. Cores & Tipografia</span></h2>
+            <div class="lang-en">
+                <p>All colors are defined as CSS custom properties in <code>assets/css/style.css</code> under <code>:root</code>. Edit these values to match your brand:</p>
+<pre><code>:root {
+  --bg: #faf8f5;
+  --text: #2d2d2d;
+  --accent: #9b59b6;
+  /* ... dark mode overrides in [data-theme="dark"] */
+}</code></pre>
+                <p><strong>Fonts:</strong> Playfair Display (headings) and Lora (body text). Change them in the Google Fonts <code>&lt;link&gt;</code> tag and the CSS <code>font-family</code> declarations.</p>
+            </div>
+            <div class="lang-pt">
+                <p>Todas as cores sao definidas como variaveis CSS em <code>assets/css/style.css</code> sob <code>:root</code>. Edite esses valores para combinar com sua marca:</p>
+<pre><code>:root {
+  --bg: #faf8f5;
+  --text: #2d2d2d;
+  --accent: #9b59b6;
+  /* ... overrides modo escuro em [data-theme="dark"] */
+}</code></pre>
+                <p><strong>Fontes:</strong> Playfair Display (titulos) e Lora (corpo). Altere na tag <code>&lt;link&gt;</code> do Google Fonts e nas declaracoes <code>font-family</code> do CSS.</p>
+            </div>
+        </section>
+
+        <!-- 10. SEO -->
+        <section id="seo">
+            <h2><span class="lang-en">10. SEO</span><span class="lang-pt">10. SEO</span></h2>
+            <div class="lang-en">
+                <ul>
+                    <li><strong>Open Graph</strong> — og:title, og:description, og:image configured</li>
+                    <li><strong>Twitter Card</strong> — summary_large_image with title, description, image</li>
+                    <li><strong>Schema.org</strong> — Person JSON-LD structured data</li>
+                    <li><strong>Robots</strong> — index, follow</li>
+                    <li><strong>Favicon</strong> — SVG format at <code>assets/img/favicon.svg</code></li>
+                    <li><strong>og-image</strong> — Replace <code>assets/img/og-image.jpg</code> (1200x630px)</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <ul>
+                    <li><strong>Open Graph</strong> — og:title, og:description, og:image configurados</li>
+                    <li><strong>Twitter Card</strong> — summary_large_image com titulo, descricao, imagem</li>
+                    <li><strong>Schema.org</strong> — Dados estruturados Person JSON-LD</li>
+                    <li><strong>Robots</strong> — index, follow</li>
+                    <li><strong>Favicon</strong> — Formato SVG em <code>assets/img/favicon.svg</code></li>
+                    <li><strong>og-image</strong> — Substitua <code>assets/img/og-image.jpg</code> (1200x630px)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 11. Performance -->
+        <section id="performance">
+            <h2><span class="lang-en">11. Performance</span><span class="lang-pt">11. Performance</span></h2>
+            <div class="lang-en">
+                <ul>
+                    <li>Zero JavaScript frameworks — pure vanilla JS</li>
+                    <li>Minimal CSS — single stylesheet, no utility framework</li>
+                    <li>Google Fonts with <code>preconnect</code> for faster loading</li>
+                    <li>Inline SVG icons — no icon library requests</li>
+                    <li>Semantic HTML with ARIA attributes for accessibility</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <ul>
+                    <li>Zero frameworks JavaScript — JS vanilla puro</li>
+                    <li>CSS minimo — uma unica folha de estilo, sem framework utilitario</li>
+                    <li>Google Fonts com <code>preconnect</code> para carregamento rapido</li>
+                    <li>Icones SVG inline — sem requisicoes de biblioteca de icones</li>
+                    <li>HTML semantico com atributos ARIA para acessibilidade</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 12. Credits -->
+        <section id="credits">
+            <h2><span class="lang-en">12. Credits</span><span class="lang-pt">12. Creditos</span></h2>
+            <div class="lang-en">
+                <ul>
+                    <li><strong>Fonts</strong> — <a href="https://fonts.google.com/specimen/Playfair+Display" target="_blank" rel="noopener">Playfair Display</a> & <a href="https://fonts.google.com/specimen/Lora" target="_blank" rel="noopener">Lora</a></li>
+                    <li><strong>Icons</strong> — Feather Icons (inline SVG)</li>
+                </ul>
+            </div>
+            <div class="lang-pt">
+                <ul>
+                    <li><strong>Fontes</strong> — <a href="https://fonts.google.com/specimen/Playfair+Display" target="_blank" rel="noopener">Playfair Display</a> & <a href="https://fonts.google.com/specimen/Lora" target="_blank" rel="noopener">Lora</a></li>
+                    <li><strong>Icones</strong> — Feather Icons (SVG inline)</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Personal Landing Page. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            localStorage.setItem('personal-doc-lang', lang);
+            document.body.classList.toggle('show-pt', lang === 'pt');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            document.getElementById('btnPt').classList.toggle('active', lang === 'pt');
+        }
+
+        switchLang(localStorage.getItem('personal-doc-lang') || 'en');
+    </script>
+</body>
+</html>

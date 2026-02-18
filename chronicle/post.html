@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="O Guia Definitivo de Performance em JavaScript — Aprenda as técnicas avançadas que os melhores engenheiros utilizam.">
+    <meta name="author" content="Marina Alves">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="O Guia Definitivo de Performance em JavaScript — Chronicle">
+    <meta property="og:description" content="Aprenda as técnicas avançadas que os melhores engenheiros utilizam para otimizar aplicações JavaScript.">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+    <meta property="article:published_time" content="2026-02-15">
+    <meta property="article:author" content="Marina Alves">
+    <meta property="article:section" content="JavaScript">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="O Guia Definitivo de Performance em JavaScript — Chronicle">
+    <meta name="twitter:description" content="Aprenda as técnicas avançadas que os melhores engenheiros utilizam para otimizar aplicações JavaScript.">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "O Guia Definitivo de Performance em JavaScript",
+        "description": "Aprenda as técnicas avançadas que os melhores engenheiros utilizam para otimizar aplicações JavaScript.",
+        "image": "https://yoursite.com/assets/img/og-image.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "Marina Alves"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Chronicle",
+            "logo": "https://yoursite.com/assets/img/favicon.svg"
+        },
+        "datePublished": "2026-02-15"
+    }
+    </script>
+
+    <title>O Guia Definitivo de Performance em JavaScript — Chronicle</title>
+
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Merriweather:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        ink: {
+                            50: '#f8f9fa', 100: '#f1f3f5', 200: '#e9ecef', 300: '#dee2e6',
+                            400: '#adb5bd', 500: '#868e96', 600: '#495057', 700: '#343a40',
+                            800: '#212529', 900: '#121416', 950: '#0a0b0d',
+                        },
+                        accent: { DEFAULT: '#6366f1', light: '#818cf8', dark: '#4f46e5' },
+                        surface: { light: '#ffffff', dark: '#0f1117', 'dark-alt': '#161922' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="bg-surface-light dark:bg-surface-dark text-ink-800 dark:text-ink-200 font-serif antialiased transition-colors duration-300">
+
+    <!-- Reading Progress Bar -->
+    <div id="readingProgress" class="fixed top-0 left-0 w-0 h-[3px] bg-gradient-to-r from-accent to-purple-500 z-[100] transition-[width] duration-150 ease-out"></div>
+
+    <!-- ============================================
+         HEADER (Simplified for Article)
+    ============================================ -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-surface-dark/80 backdrop-blur-xl border-b border-ink-200/60 dark:border-ink-800/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-14 lg:h-16">
+                <!-- Back + Logo -->
+                <div class="flex items-center gap-3">
+                    <a href="index.html" class="p-2 -ml-2 rounded-lg text-ink-400 hover:text-ink-700 dark:hover:text-white hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors" aria-label="Voltar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </a>
+                    <a href="index.html" class="flex items-center gap-2">
+                        <svg width="24" height="24" viewBox="0 0 48 48" class="text-accent">
+                            <rect width="48" height="48" rx="10" fill="currentColor"/>
+                            <path d="M14 14h8v20h-8zM26 14h8v12h-8z" fill="white"/>
+                            <rect x="26" y="30" width="8" height="4" rx="2" fill="white" opacity="0.5"/>
+                        </svg>
+                        <span class="font-sans font-bold text-lg tracking-tight text-ink-900 dark:text-white hidden sm:block">Chronicle</span>
+                    </a>
+                </div>
+
+                <!-- Article Info (hidden on mobile) -->
+                <div id="articleHeaderInfo" class="hidden lg:flex items-center gap-3 opacity-0 translate-y-2 transition-all duration-300">
+                    <span class="font-sans text-sm text-ink-500 dark:text-ink-400 truncate max-w-xs">O Guia Definitivo de Performance em JavaScript</span>
+                    <span class="text-ink-300">|</span>
+                    <span id="headerReadTime" class="font-sans text-xs text-ink-400">12 min</span>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-2">
+                    <button id="themeToggle" class="p-2.5 rounded-xl text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors" aria-label="Alternar tema escuro">
+                        <svg id="themeIconLight" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                        <svg id="themeIconDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
+                    <!-- Share button (mobile) -->
+                    <button id="shareBtn" class="lg:hidden p-2.5 rounded-xl text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors" aria-label="Compartilhar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================
+         FLOATING SHARE BUTTONS (Desktop)
+    ============================================ -->
+    <aside id="shareFloat" class="hidden lg:flex fixed left-[max(1rem,calc(50%-640px))] top-1/2 -translate-y-1/2 z-40 flex-col gap-3 opacity-0 transition-opacity duration-500" aria-label="Compartilhar artigo">
+        <button onclick="shareTwitter()" class="share-btn p-3 rounded-xl bg-white dark:bg-surface-dark-alt border border-ink-200/70 dark:border-ink-800/70 text-ink-500 hover:text-[#1da1f2] hover:border-[#1da1f2]/30 shadow-sm hover:shadow-md transition-all" aria-label="Compartilhar no Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </button>
+        <button onclick="shareLinkedIn()" class="share-btn p-3 rounded-xl bg-white dark:bg-surface-dark-alt border border-ink-200/70 dark:border-ink-800/70 text-ink-500 hover:text-[#0077b5] hover:border-[#0077b5]/30 shadow-sm hover:shadow-md transition-all" aria-label="Compartilhar no LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </button>
+        <button onclick="copyLink()" class="share-btn p-3 rounded-xl bg-white dark:bg-surface-dark-alt border border-ink-200/70 dark:border-ink-800/70 text-ink-500 hover:text-accent hover:border-accent/30 shadow-sm hover:shadow-md transition-all" aria-label="Copiar link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+        <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="share-btn p-3 rounded-xl bg-white dark:bg-surface-dark-alt border border-ink-200/70 dark:border-ink-800/70 text-ink-500 hover:text-accent hover:border-accent/30 shadow-sm hover:shadow-md transition-all" aria-label="Voltar ao topo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m18 15-6-6-6 6"/></svg>
+        </button>
+    </aside>
+
+    <main>
+        <!-- ============================================
+             ARTICLE HEADER
+        ============================================ -->
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">
+            <!-- Breadcrumb -->
+            <nav class="flex items-center gap-2 font-sans text-sm text-ink-400 mb-6" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-accent transition-colors">Home</a>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                <a href="category.html" class="hover:text-accent transition-colors">JavaScript</a>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                <span class="text-ink-600 dark:text-ink-300 truncate">Performance</span>
+            </nav>
+
+            <!-- Category + Date -->
+            <div class="flex items-center gap-3 font-sans text-sm mb-4">
+                <a href="category.html" class="px-2.5 py-1 rounded-md bg-indigo-50 dark:bg-indigo-900/30 text-accent font-semibold text-xs uppercase tracking-wider">JavaScript</a>
+                <time datetime="2026-02-15" class="text-ink-400">15 de Fevereiro, 2026</time>
+                <span class="text-ink-300 dark:text-ink-600">&middot;</span>
+                <span class="text-ink-400">Atualizado há 2 dias</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="font-sans font-extrabold text-3xl sm:text-4xl lg:text-[2.75rem] text-ink-900 dark:text-white leading-[1.15] mb-6">
+                O Guia Definitivo de Performance em JavaScript: Da Teoria à Prática
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-lg lg:text-xl text-ink-500 dark:text-ink-400 leading-relaxed mb-8">
+                Aprenda as técnicas avançadas que os melhores engenheiros utilizam para otimizar aplicações JavaScript. De lazy loading a web workers, cobrimos tudo que você precisa saber.
+            </p>
+
+            <!-- Author + Meta -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-ink-200/60 dark:border-ink-800/60">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-white font-sans font-bold text-sm">MA</div>
+                    <div class="font-sans">
+                        <p class="font-semibold text-sm text-ink-800 dark:text-ink-200">Marina Alves</p>
+                        <p class="text-xs text-ink-400">Engenheira de Software Sr. &middot; <a href="#" class="text-accent hover:underline">@marinaalves</a></p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 font-sans text-sm text-ink-400">
+                    <span class="flex items-center gap-1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        12 min de leitura
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                        3.2k views
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             FEATURED IMAGE
+        ============================================ -->
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <figure>
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop" alt="Desenvolvedor codificando em tela escura" class="w-full aspect-[2/1] object-cover rounded-2xl lg:rounded-3xl" loading="eager">
+                <figcaption class="text-center font-sans text-xs text-ink-400 mt-3">Foto por <a href="#" class="text-accent hover:underline">Unsplash</a> — Otimização de código em tempo real</figcaption>
+            </figure>
+        </div>
+
+        <!-- ============================================
+             ARTICLE CONTENT
+        ============================================ -->
+        <article id="articleContent" class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+
+            <div class="prose-chronicle">
+
+                <p class="lead">
+                    Performance em JavaScript não é luxo — é uma necessidade. Em um mundo onde cada milissegundo conta,
+                    entender como otimizar suas aplicações pode ser a diferença entre reter ou perder um usuário.
+                    Neste guia, vamos explorar técnicas comprovadas, do básico ao avançado.
+                </p>
+
+                <h2 id="entendendo-o-event-loop">1. Entendendo o Event Loop</h2>
+
+                <p>
+                    O Event Loop é o coração do JavaScript. Antes de otimizar qualquer coisa, é fundamental entender
+                    como a linguagem processa tarefas síncronas e assíncronas. O modelo de concorrência do JavaScript
+                    é baseado em um <em>event loop</em>, que é responsável por executar código, coletar e processar eventos.
+                </p>
+
+                <p>
+                    Quando falamos de performance, a maioria dos gargalos está na <strong>main thread</strong>.
+                    Se bloquearmos essa thread com operações pesadas, a UI congela e a experiência do usuário sofre drasticamente.
+                </p>
+
+                <blockquote>
+                    <p>"Premature optimization is the root of all evil. But knowing when to optimize is the root of all good engineering."</p>
+                    <cite>— Adaptado de Donald Knuth</cite>
+                </blockquote>
+
+                <h2 id="lazy-loading">2. Lazy Loading Estratégico</h2>
+
+                <p>
+                    Lazy loading vai além de imagens. Podemos aplicar o conceito a módulos, componentes e até dados.
+                    A ideia é simples: <strong>carregar apenas o que é necessário, quando é necessário</strong>.
+                </p>
+
+                <!-- Code Block -->
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-400/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-400/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-400/80"></span>
+                        </div>
+                        <span class="code-lang">javascript</span>
+                        <button class="copy-btn" data-copy="code-1" aria-label="Copiar código">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            <span>Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="code-content" id="code-1"><code>// Dynamic import para code-splitting
+const loadEditor = async () => {
+  const { Editor } = await import('./components/Editor.js');
+  return new Editor({ theme: 'dark' });
+};
+
+// Intersection Observer para lazy loading
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      loadComponent(entry.target.dataset.component);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { rootMargin: '200px' });</code></pre>
+                </div>
+
+                <h2 id="web-workers">3. Web Workers para Processamento Pesado</h2>
+
+                <p>
+                    Web Workers permitem executar scripts em background threads, sem bloquear a interface.
+                    São ideais para processamento de dados, cálculos complexos e operações que levam mais
+                    de <strong>50ms</strong> (o limite para manter 60fps).
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-400/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-400/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-400/80"></span>
+                        </div>
+                        <span class="code-lang">javascript</span>
+                        <button class="copy-btn" data-copy="code-2" aria-label="Copiar código">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            <span>Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="code-content" id="code-2"><code>// worker.js
+self.onmessage = function(e) {
+  const result = heavyComputation(e.data);
+  self.postMessage(result);
+};
+
+function heavyComputation(data) {
+  // Processamento intensivo aqui...
+  return data.map(item => ({
+    ...item,
+    score: calculateScore(item),
+    rank: determineRank(item)
+  }));
+}
+
+// main.js
+const worker = new Worker('worker.js');
+worker.postMessage(largeDataset);
+worker.onmessage = (e) => {
+  renderResults(e.data); // UI permanece responsiva
+};</code></pre>
+                </div>
+
+                <h2 id="memorization">4. Memoização e Caching Inteligente</h2>
+
+                <p>
+                    Memoização é a técnica de armazenar os resultados de chamadas de função caras e retornar
+                    o resultado em cache quando as mesmas entradas ocorrem novamente.
+                </p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-400/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-400/80"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-400/80"></span>
+                        </div>
+                        <span class="code-lang">javascript</span>
+                        <button class="copy-btn" data-copy="code-3" aria-label="Copiar código">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            <span>Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="code-content" id="code-3"><code>// Memoização genérica com Map (suporta objetos como key)
+function memoize(fn) {
+  const cache = new Map();
+
+  return function(...args) {
+    const key = JSON.stringify(args);
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+
+    const result = fn.apply(this, args);
+    cache.set(key, result);
+
+    // Limitar tamanho do cache (LRU simples)
+    if (cache.size > 100) {
+      const firstKey = cache.keys().next().value;
+      cache.delete(firstKey);
+    }
+
+    return result;
+  };
+}</code></pre>
+                </div>
+
+                <!-- Info callout -->
+                <div class="callout callout-info">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    </div>
+                    <div>
+                        <p class="callout-title">Dica de Performance</p>
+                        <p>Use o <code>WeakMap</code> quando os keys forem objetos que podem ser garbage collected. Isso previne memory leaks em aplicações de longa duração.</p>
+                    </div>
+                </div>
+
+                <h2 id="dom-optimization">5. Otimização de DOM</h2>
+
+                <p>
+                    Manipulações de DOM são uma das operações mais caras em JavaScript. Cada mudança pode
+                    disparar reflow e repaint, afetando drasticamente a performance. Aqui estão as melhores
+                    práticas para minimizar o impacto.
+                </p>
+
+                <h3>Batch DOM Updates</h3>
+
+                <p>
+                    Agrupe múltiplas mudanças de DOM usando <code>DocumentFragment</code> ou
+                    <code>requestAnimationFrame</code>. Nunca leia e escreva no DOM alternadamente —
+                    isso causa o chamado <em>layout thrashing</em>.
+                </p>
+
+                <!-- Warning callout -->
+                <div class="callout callout-warning">
+                    <div class="callout-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                    </div>
+                    <div>
+                        <p class="callout-title">Cuidado com Layout Thrashing</p>
+                        <p>Evite ler propriedades como <code>offsetHeight</code>, <code>scrollTop</code> ou <code>getBoundingClientRect()</code> entre escritas no DOM. Cada leitura força o browser a recalcular o layout.</p>
+                    </div>
+                </div>
+
+                <h2 id="conclusao">Conclusão</h2>
+
+                <p>
+                    Performance em JavaScript é um campo vasto, mas os princípios são claros:
+                    <strong>meça antes de otimizar</strong>, entenda o event loop, minimize manipulações de DOM
+                    e delegue trabalho pesado para workers. Com essas técnicas, suas aplicações serão significativamente
+                    mais rápidas e seus usuários mais felizes.
+                </p>
+
+                <p>
+                    Na próxima parte desta série, vamos explorar <em>Performance em React</em> —
+                    useMemo, useCallback, React.lazy e técnicas de rendering optimization.
+                </p>
+
+                <!-- Tags -->
+                <div class="article-tags">
+                    <a href="category.html" class="tag">JavaScript</a>
+                    <a href="category.html" class="tag">Performance</a>
+                    <a href="category.html" class="tag">Web Workers</a>
+                    <a href="category.html" class="tag">Otimização</a>
+                    <a href="category.html" class="tag">Frontend</a>
+                </div>
+
+            </div>
+
+            <!-- ============================================
+                 AUTHOR BIO
+            ============================================ -->
+            <div class="mt-12 p-6 lg:p-8 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-ink-50/50 dark:bg-surface-dark-alt">
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent to-purple-500 flex items-center justify-center text-white font-sans font-bold text-xl shrink-0">MA</div>
+                    <div>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                            <h3 class="font-sans font-bold text-lg text-ink-900 dark:text-white">Marina Alves</h3>
+                            <a href="#" class="font-sans text-sm text-accent hover:underline">@marinaalves</a>
+                        </div>
+                        <p class="text-sm text-ink-500 dark:text-ink-400 leading-relaxed mb-4">
+                            Engenheira de Software Sr. com foco em performance web e arquitetura frontend.
+                            Contribuidora open-source e palestrante em conferências de tecnologia.
+                            Escreve sobre JavaScript, React e boas práticas de engenharia.
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <a href="#" class="font-sans text-xs font-semibold px-4 py-2 rounded-lg bg-accent text-white hover:bg-accent-dark transition-colors">Seguir</a>
+                            <a href="#" class="font-sans text-xs font-semibold px-4 py-2 rounded-lg border border-ink-200 dark:border-ink-700 text-ink-600 dark:text-ink-300 hover:border-accent hover:text-accent transition-colors">Ver perfil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================
+                 READ NEXT
+            ============================================ -->
+            <section class="mt-16">
+                <h2 class="font-sans font-bold text-xl text-ink-900 dark:text-white mb-8">Continue Lendo</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Related 1 -->
+                    <article class="group">
+                        <a href="post.html" class="block">
+                            <div class="relative aspect-[16/10] rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=260&fit=crop" alt="React hooks" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="flex items-center gap-2 font-sans mb-2">
+                                <span class="px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">React</span>
+                                <span class="text-xs text-ink-400">8 min</span>
+                            </div>
+                            <h3 class="font-sans font-bold text-base text-ink-900 dark:text-white leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                                React Server Components: O Futuro da Renderização Web
+                            </h3>
+                        </a>
+                    </article>
+
+                    <!-- Related 2 -->
+                    <article class="group">
+                        <a href="post.html" class="block">
+                            <div class="relative aspect-[16/10] rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=260&fit=crop" alt="Código CSS" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="flex items-center gap-2 font-sans mb-2">
+                                <span class="px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400">CSS</span>
+                                <span class="text-xs text-ink-400">5 min</span>
+                            </div>
+                            <h3 class="font-sans font-bold text-base text-ink-900 dark:text-white leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                                CSS Container Queries: Responsive Design Modular
+                            </h3>
+                        </a>
+                    </article>
+
+                    <!-- Related 3 -->
+                    <article class="group">
+                        <a href="post.html" class="block">
+                            <div class="relative aspect-[16/10] rounded-xl overflow-hidden mb-4">
+                                <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=400&h=260&fit=crop" alt="Inteligência artificial" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                            </div>
+                            <div class="flex items-center gap-2 font-sans mb-2">
+                                <span class="px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider bg-violet-50 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400">IA & ML</span>
+                                <span class="text-xs text-ink-400">15 min</span>
+                            </div>
+                            <h3 class="font-sans font-bold text-base text-ink-900 dark:text-white leading-snug group-hover:text-accent transition-colors line-clamp-2">
+                                LLMs em Produção: Arquitetando Sistemas com IA
+                            </h3>
+                        </a>
+                    </article>
+
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
+    <footer class="border-t border-ink-200/60 dark:border-ink-800/60 bg-ink-50/50 dark:bg-surface-dark-alt/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <svg width="24" height="24" viewBox="0 0 48 48" class="text-accent">
+                        <rect width="48" height="48" rx="10" fill="currentColor"/>
+                        <path d="M14 14h8v20h-8zM26 14h8v12h-8z" fill="white"/>
+                        <rect x="26" y="30" width="8" height="4" rx="2" fill="white" opacity="0.5"/>
+                    </svg>
+                    <span class="font-sans font-bold text-lg text-ink-900 dark:text-white">Chronicle</span>
+                </div>
+                <p class="font-sans text-xs text-ink-400">&copy; 2026 Chronicle. Todos os direitos reservados.</p>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="text-ink-400 hover:text-ink-700 dark:hover:text-white transition-colors" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" class="text-ink-400 hover:text-ink-700 dark:hover:text-white transition-colors" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+                    <a href="#" class="text-ink-400 hover:text-ink-700 dark:hover:text-white transition-colors" aria-label="RSS"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Share functions
+        function shareTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank', 'width=550,height=420');
+        }
+        function shareLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank', 'width=550,height=420');
+        }
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                const btn = document.querySelector('[aria-label="Copiar link"]');
+                if (btn) {
+                    btn.classList.add('text-green-500', 'border-green-500/30');
+                    setTimeout(() => btn.classList.remove('text-green-500', 'border-green-500/30'), 2000);
+                }
+            });
+        }
+    </script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

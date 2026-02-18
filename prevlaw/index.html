@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dr. José Alves — Advogado Previdenciário. O INSS negou seu benefício? Lutamos pelo seu direito. Consulta gratuita.">
+    <meta name="keywords" content="advogado previdenciário, INSS, aposentadoria, auxílio doença, BPC LOAS, pensão por morte, revisão benefício">
+    <meta name="author" content="Dr. José Alves — Advocacia Previdenciária">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.drjosealves.com.br/">
+    <meta property="og:title" content="Dr. José Alves — O INSS Negou Seu Benefício? Podemos Ajudar.">
+    <meta property="og:description" content="Advogado especialista em Direito Previdenciário. Mais de 15 anos lutando pelos direitos de aposentados e segurados do INSS.">
+    <meta property="og:image" content="assets/img/banner.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dr. José Alves — O INSS Negou Seu Benefício? Podemos Ajudar.">
+    <meta name="twitter:description" content="Advogado especialista em Direito Previdenciário. Mais de 15 anos lutando pelos direitos de aposentados e segurados do INSS.">
+    <meta name="twitter:image" content="assets/img/banner.png">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Attorney",
+        "name": "Dr. José Alves",
+        "description": "Advogado especialista em Direito Previdenciário.",
+        "url": "https://www.drjosealves.com.br",
+        "telephone": "+55-11-98000-0000",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Rua da Consolação, 500 — Sala 42",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "postalCode": "01302-000",
+            "addressCountry": "BR"
+        },
+        "areaServed": "BR",
+        "priceRange": "Consulta Gratuita"
+    }
+    </script>
+
+    <title>Dr. José Alves — Advogado Previdenciário | Consulta Gratuita</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50:  '#f0f4f8',
+                            100: '#d9e2ec',
+                            200: '#bcccdc',
+                            300: '#9fb3c8',
+                            400: '#829ab1',
+                            500: '#627d98',
+                            600: '#486581',
+                            700: '#334e68',
+                            800: '#243b53',
+                            900: '#102a43',
+                            950: '#0a1929',
+                        },
+                        warm: {
+                            50:  '#fff8f1',
+                            100: '#feecdc',
+                            200: '#fcd9bd',
+                            300: '#fdba8c',
+                            400: '#ff8a4c',
+                            500: '#e8732a',
+                            600: '#cc5d15',
+                            700: '#a5480d',
+                            800: '#7e3510',
+                            900: '#632a0f',
+                        },
+                        gold: {
+                            400: '#d4a843',
+                            500: '#c49a38',
+                            600: '#a67c2a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    fontSize: {
+                        'accessible': ['1.125rem', { lineHeight: '1.8' }],
+                    },
+                    minHeight: {
+                        'touch': '48px',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-sans text-navy-700 bg-white antialiased transition-colors duration-300">
+
+    <!-- ============================================
+         ACCESSIBILITY WIDGET (Top)
+    ============================================ -->
+    <div id="a11yBar" class="bg-navy-950 text-white" role="toolbar" aria-label="Ferramentas de acessibilidade">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-11 text-sm">
+            <span class="hidden sm:inline text-navy-300 text-xs">Acessibilidade:</span>
+            <div class="flex items-center gap-2 flex-wrap">
+                <button id="btnFontDecrease" class="a11y-btn" aria-label="Diminuir tamanho da fonte" title="Diminuir fonte">A-</button>
+                <button id="btnFontReset" class="a11y-btn" aria-label="Tamanho de fonte padrão" title="Fonte padrão">A</button>
+                <button id="btnFontIncrease" class="a11y-btn" aria-label="Aumentar tamanho da fonte" title="Aumentar fonte">A+</button>
+                <div class="w-px h-5 bg-navy-700 mx-1"></div>
+                <button id="btnContrast" class="a11y-btn" aria-label="Ativar alto contraste" title="Alto contraste">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2a10 10 0 0 1 0 20z"/></svg>
+                    <span class="hidden sm:inline ml-1">Contraste</span>
+                </button>
+            </div>
+            <div class="hidden md:flex items-center gap-4 text-xs text-navy-300">
+                <!-- EDITABLE: Phone number -->
+                <a href="tel:+5511980000000" class="flex items-center gap-1 hover:text-warm-400 transition-colors">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    (11) 98000-0000
+                </a>
+                <a href="mailto:contato@drjosealves.com.br" class="flex items-center gap-1 hover:text-warm-400 transition-colors">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    contato@drjosealves.com.br
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         NAVBAR
+    ============================================ -->
+    <header id="navbar" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-navy-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3" aria-label="Página inicial">
+                <div class="w-11 h-11 bg-navy-900 rounded-xl flex items-center justify-center">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <span class="block text-lg font-extrabold text-navy-900 leading-tight">Dr. José Alves</span>
+                    <span class="block text-[0.65rem] font-medium text-navy-400 uppercase tracking-wider">Advocacia Previdenciária</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-7" aria-label="Navegação principal">
+                <a href="#quiz" class="nav-link text-sm font-semibold text-navy-600 hover:text-warm-600 transition-colors">Verificar Direito</a>
+                <a href="#areas" class="nav-link text-sm font-semibold text-navy-600 hover:text-warm-600 transition-colors">Áreas de Atuação</a>
+                <a href="#about" class="nav-link text-sm font-semibold text-navy-600 hover:text-warm-600 transition-colors">Sobre</a>
+                <a href="#testimonials" class="nav-link text-sm font-semibold text-navy-600 hover:text-warm-600 transition-colors">Depoimentos</a>
+                <a href="#faq" class="nav-link text-sm font-semibold text-navy-600 hover:text-warm-600 transition-colors">Dúvidas</a>
+            </nav>
+
+            <!-- CTA -->
+            <!-- EDITABLE: WhatsApp link -->
+            <a href="https://wa.me/5511980000000?text=Olá Dr. José! Gostaria de analisar meu caso." target="_blank" rel="noopener"
+               class="hidden lg:inline-flex items-center gap-2 bg-green-600 text-white font-bold text-sm px-6 min-h-touch rounded-xl hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/25 transition-all duration-300" style="line-height: 48px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Falar no WhatsApp
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button id="menuToggle" class="lg:hidden w-12 h-12 flex flex-col items-center justify-center gap-1.5 rounded-xl hover:bg-navy-50 transition-colors" aria-label="Abrir menu">
+                <span class="mobile-bar block w-6 h-0.5 bg-navy-800 rounded transition-all duration-300"></span>
+                <span class="mobile-bar block w-6 h-0.5 bg-navy-800 rounded transition-all duration-300"></span>
+                <span class="mobile-bar block w-4 h-0.5 bg-navy-800 rounded transition-all duration-300 self-end mr-3"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden bg-white border-t border-navy-100 overflow-hidden max-h-0 transition-all duration-300">
+            <div class="px-4 py-4 space-y-1">
+                <a href="#quiz" class="block py-3 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl">Verificar Meu Direito</a>
+                <a href="#areas" class="block py-3 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl">Áreas de Atuação</a>
+                <a href="#about" class="block py-3 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl">Sobre o Dr. José</a>
+                <a href="#testimonials" class="block py-3 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl">Depoimentos</a>
+                <a href="#faq" class="block py-3 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl">Dúvidas Frequentes</a>
+                <a href="tel:+5511980000000" class="block py-3 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl">
+                    <span class="flex items-center gap-2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        Ligar: (11) 98000-0000
+                    </span>
+                </a>
+                <!-- EDITABLE: WhatsApp link -->
+                <a href="https://wa.me/5511980000000?text=Olá Dr. José! Gostaria de analisar meu caso." target="_blank" rel="noopener"
+                   class="flex items-center justify-center gap-2 bg-green-600 text-white font-bold text-base min-h-touch rounded-xl mt-2 hover:bg-green-700 transition-all" style="padding: 14px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+    <!-- ============================================
+         HERO SECTION (Humanizada)
+    ============================================ -->
+    <section id="hero" class="relative overflow-hidden bg-gradient-to-br from-navy-50 via-white to-warm-50">
+        <div class="max-w-7xl mx-auto px-4 py-16 lg:py-24">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+                <!-- Left: Content -->
+                <div class="text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-warm-100 text-warm-700 text-sm font-semibold px-4 py-2 rounded-full mb-6 border border-warm-200">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Mais de 2.000 clientes atendidos
+                    </div>
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 leading-tight mb-6">
+                        O INSS <span class="text-warm-500">negou</span> seu benefício?<br>
+                        <span class="text-navy-800">Dr. José Alves luta pelo seu direito.</span>
+                    </h1>
+
+                    <p class="text-lg text-navy-500 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Especialista em Direito Previdenciário há mais de 15 anos. Analisamos seu caso <strong class="text-navy-700">gratuitamente</strong> e lutamos para garantir o benefício que você merece.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
+                        <!-- EDITABLE: WhatsApp link -->
+                        <a href="https://wa.me/5511980000000?text=Olá Dr. José! Gostaria de analisar meu caso gratuitamente." target="_blank" rel="noopener"
+                           class="inline-flex items-center justify-center gap-3 bg-green-600 text-white font-bold text-lg px-8 py-4 min-h-touch rounded-2xl hover:bg-green-700 hover:shadow-xl hover:shadow-green-600/25 transition-all duration-300">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            Analisar Meu Caso Grátis
+                        </a>
+                        <a href="tel:+5511980000000"
+                           class="inline-flex items-center justify-center gap-2 border-2 border-navy-200 text-navy-700 font-semibold text-lg px-8 py-4 min-h-touch rounded-2xl hover:border-navy-400 hover:bg-navy-50 transition-all duration-300">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Ligar Agora
+                        </a>
+                    </div>
+
+                    <!-- Trust row -->
+                    <div class="flex flex-wrap gap-6 justify-center lg:justify-start text-sm text-navy-400">
+                        <div class="flex items-center gap-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <span>Consulta 100% Gratuita</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <span>Sigilo Garantido</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            <span>Atendimento Online</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Photo -->
+                <div class="flex justify-center lg:justify-end">
+                    <div class="relative">
+                        <img src="assets/img/josealves.png" alt="Dr. José Alves — Advogado Previdenciário sorrindo" class="relative z-10 max-w-sm lg:max-w-md w-full h-auto rounded-3xl shadow-2xl shadow-navy-900/10" width="400" height="500" loading="eager">
+                        <!-- Decorative -->
+                        <div class="absolute -top-4 -right-4 w-32 h-32 bg-warm-200 rounded-3xl -z-0 opacity-60"></div>
+                        <div class="absolute -bottom-4 -left-4 w-24 h-24 bg-navy-100 rounded-2xl -z-0 opacity-60"></div>
+                        <!-- OAB badge -->
+                        <div class="absolute bottom-4 left-4 z-20 bg-white rounded-2xl shadow-lg shadow-navy-900/10 p-4 border border-navy-100">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-navy-900 rounded-xl flex items-center justify-center">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold text-navy-900">OAB/SP 000.000</p>
+                                    <p class="text-[0.65rem] text-navy-400">15+ anos de experiência</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         QUIZ DE ELEGIBILIDADE (The Hook)
+    ============================================ -->
+    <section id="quiz" class="py-20 lg:py-28 bg-navy-950 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-12">
+                <span class="inline-block bg-warm-500/20 text-warm-400 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-warm-500/30 mb-4">Descubra Seu Direito</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-4">Qual é a sua situação?</h2>
+                <p class="text-lg text-navy-300">Selecione abaixo e descubra se você tem direito a um benefício do INSS.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="quizOptions">
+                <button class="quiz-option group" data-situation="Aposentadoria por Idade/Tempo">
+                    <div class="quiz-option__icon bg-blue-500/10 text-blue-400 group-hover:bg-blue-500 group-hover:text-white">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <span class="quiz-option__text">Aposentadoria</span>
+                    <span class="quiz-option__sub">Por idade ou tempo de contribuição</span>
+                </button>
+
+                <button class="quiz-option group" data-situation="Auxílio Doença / Auxílio Acidentário">
+                    <div class="quiz-option__icon bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500 group-hover:text-white">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <span class="quiz-option__text">Auxílio Doença</span>
+                    <span class="quiz-option__sub">Incapacidade temporária ou permanente</span>
+                </button>
+
+                <button class="quiz-option group" data-situation="BPC/LOAS">
+                    <div class="quiz-option__icon bg-violet-500/10 text-violet-400 group-hover:bg-violet-500 group-hover:text-white">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <span class="quiz-option__text">BPC / LOAS</span>
+                    <span class="quiz-option__sub">Benefício assistencial para idosos e PcD</span>
+                </button>
+
+                <button class="quiz-option group" data-situation="Pensão por Morte">
+                    <div class="quiz-option__icon bg-rose-500/10 text-rose-400 group-hover:bg-rose-500 group-hover:text-white">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                    </div>
+                    <span class="quiz-option__text">Pensão por Morte</span>
+                    <span class="quiz-option__sub">Para dependentes de segurado falecido</span>
+                </button>
+
+                <button class="quiz-option group" data-situation="Revisão de Benefício">
+                    <div class="quiz-option__icon bg-amber-500/10 text-amber-400 group-hover:bg-amber-500 group-hover:text-white">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <span class="quiz-option__text">Revisão de Benefício</span>
+                    <span class="quiz-option__sub">Vida toda, teto, buraco negro</span>
+                </button>
+
+                <button class="quiz-option group" data-situation="Outra situação">
+                    <div class="quiz-option__icon bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    </div>
+                    <span class="quiz-option__text">Outra Situação</span>
+                    <span class="quiz-option__sub">Não sei ao certo, preciso de orientação</span>
+                </button>
+            </div>
+
+            <p class="text-center text-sm text-navy-400 mt-8">
+                Ao selecionar, você será direcionado ao WhatsApp para uma <strong class="text-white">análise gratuita</strong> e sem compromisso.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ÁREAS DE ATUAÇÃO (Cards)
+    ============================================ -->
+    <section id="areas" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="inline-block bg-navy-50 text-navy-600 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-4">Áreas de Atuação</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 leading-tight mb-4">Especialista em <span class="text-warm-500">Direito Previdenciário</span></h2>
+                <p class="text-navy-500">Atuamos em todas as áreas do Direito Previdenciário, sempre buscando o melhor resultado para você.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="area-card group p-7 bg-white border border-navy-100 rounded-2xl hover:border-warm-200 hover:shadow-xl hover:shadow-warm-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-navy-50 text-navy-600 flex items-center justify-center mb-5 group-hover:bg-warm-500 group-hover:text-white transition-all duration-300">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2">Planejamento Previdenciário</h3>
+                    <p class="text-sm text-navy-500 leading-relaxed">Análise completa do seu histórico contributivo para garantir a melhor aposentadoria possível.</p>
+                </div>
+
+                <div class="area-card group p-7 bg-white border border-navy-100 rounded-2xl hover:border-warm-200 hover:shadow-xl hover:shadow-warm-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-navy-50 text-navy-600 flex items-center justify-center mb-5 group-hover:bg-warm-500 group-hover:text-white transition-all duration-300">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2">Pensão por Morte</h3>
+                    <p class="text-sm text-navy-500 leading-relaxed">Garantimos os direitos de dependentes de segurados falecidos junto ao INSS.</p>
+                </div>
+
+                <div class="area-card group p-7 bg-white border border-navy-100 rounded-2xl hover:border-warm-200 hover:shadow-xl hover:shadow-warm-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-navy-50 text-navy-600 flex items-center justify-center mb-5 group-hover:bg-warm-500 group-hover:text-white transition-all duration-300">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2">Revisão da Vida Toda</h3>
+                    <p class="text-sm text-navy-500 leading-relaxed">Recálculo do benefício considerando todas as contribuições, inclusive anteriores a 1994.</p>
+                </div>
+
+                <div class="area-card group p-7 bg-white border border-navy-100 rounded-2xl hover:border-warm-200 hover:shadow-xl hover:shadow-warm-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-navy-50 text-navy-600 flex items-center justify-center mb-5 group-hover:bg-warm-500 group-hover:text-white transition-all duration-300">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2">Auxílio Doença e Invalidez</h3>
+                    <p class="text-sm text-navy-500 leading-relaxed">Defesa em casos de negativa ou cessação indevida de benefícios por incapacidade.</p>
+                </div>
+
+                <div class="area-card group p-7 bg-white border border-navy-100 rounded-2xl hover:border-warm-200 hover:shadow-xl hover:shadow-warm-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-navy-50 text-navy-600 flex items-center justify-center mb-5 group-hover:bg-warm-500 group-hover:text-white transition-all duration-300">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2">BPC / LOAS</h3>
+                    <p class="text-sm text-navy-500 leading-relaxed">Benefício assistencial de um salário mínimo para idosos e pessoas com deficiência.</p>
+                </div>
+
+                <div class="area-card group p-7 bg-white border border-navy-100 rounded-2xl hover:border-warm-200 hover:shadow-xl hover:shadow-warm-500/5 hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-2xl bg-navy-50 text-navy-600 flex items-center justify-center mb-5 group-hover:bg-warm-500 group-hover:text-white transition-all duration-300">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-navy-900 mb-2">Aposentadoria Especial</h3>
+                    <p class="text-sm text-navy-500 leading-relaxed">Para trabalhadores expostos a agentes nocivos à saúde (insalubridade/periculosidade).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SOBRE O DR. JOSÉ ALVES
+    ============================================ -->
+    <section id="about" class="py-20 lg:py-28 bg-navy-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Image -->
+                <div class="relative">
+                    <img src="assets/img/banner.png" alt="Dr. José Alves atendendo um cliente em seu escritório" class="w-full rounded-3xl shadow-lg" width="600" height="400" loading="lazy">
+                    <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-warm-200 rounded-3xl -z-10 opacity-50"></div>
+                </div>
+
+                <!-- Content -->
+                <div>
+                    <span class="inline-block bg-navy-100 text-navy-600 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-6">Sobre o Advogado</span>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 leading-tight mb-6">
+                        Mais de 15 anos <span class="text-warm-500">lutando</span> pelos seus direitos
+                    </h2>
+                    <p class="text-navy-500 mb-4 leading-relaxed text-accessible">
+                        O Dr. José Alves é advogado especialista em Direito Previdenciário, inscrito na OAB/SP sob o número 000.000. Com mais de 15 anos de experiência, já ajudou milhares de segurados do INSS a conquistarem seus benefícios.
+                    </p>
+                    <p class="text-navy-500 mb-8 leading-relaxed text-accessible">
+                        Seu escritório é referência no atendimento humanizado, especialmente com idosos e pessoas com dificuldade de locomoção, oferecendo atendimento presencial e online em todo o Brasil.
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="bg-white rounded-2xl p-5 border border-navy-100">
+                            <p class="text-2xl font-extrabold text-navy-900">2.000+</p>
+                            <p class="text-sm text-navy-400">Clientes atendidos</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 border border-navy-100">
+                            <p class="text-2xl font-extrabold text-navy-900">95%</p>
+                            <p class="text-sm text-navy-400">Taxa de êxito</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 border border-navy-100">
+                            <p class="text-2xl font-extrabold text-navy-900">15+</p>
+                            <p class="text-sm text-navy-400">Anos de experiência</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-5 border border-navy-100">
+                            <p class="text-2xl font-extrabold text-navy-900">Todo BR</p>
+                            <p class="text-sm text-navy-400">Atendimento nacional</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 bg-white rounded-2xl p-5 border border-navy-100">
+                        <div class="w-12 h-12 bg-navy-900 rounded-xl flex items-center justify-center shrink-0">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold text-navy-900">Inscrição OAB/SP 000.000</p>
+                            <p class="text-xs text-navy-400">Especialista em Direito Previdenciário — Certificado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         DEPOIMENTOS (Carrossel)
+    ============================================ -->
+    <section id="testimonials" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="inline-block bg-warm-100 text-warm-700 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-warm-200 mb-4">Depoimentos Reais</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 leading-tight mb-4">Quem já passou por aqui <span class="text-warm-500">recomenda</span></h2>
+                <p class="text-navy-500">Veja o que nossos clientes dizem sobre o atendimento do Dr. José Alves.</p>
+            </div>
+
+            <!-- Carousel -->
+            <div class="relative" id="carousel">
+                <div class="overflow-hidden rounded-2xl">
+                    <div class="carousel-track flex transition-transform duration-500 ease-in-out" id="carouselTrack">
+
+                        <div class="carousel-slide min-w-full px-4">
+                            <div class="bg-navy-50 rounded-2xl p-8 lg:p-10 max-w-3xl mx-auto border border-navy-100">
+                                <div class="flex items-center gap-1 text-warm-500 text-lg mb-4" aria-label="5 estrelas">★★★★★</div>
+                                <blockquote class="text-lg text-navy-700 leading-relaxed mb-6 italic">
+                                    "O Dr. José foi um anjo na minha vida. Minha aposentadoria tinha sido negada duas vezes. Ele analisou tudo, encontrou os erros e em poucos meses conseguiu o benefício. Deus abençoe!"
+                                </blockquote>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-14 h-14 rounded-full bg-warm-200 text-warm-700 flex items-center justify-center font-bold text-lg">DM</div>
+                                    <div>
+                                        <p class="font-bold text-navy-900">Dona Maria, 67 anos</p>
+                                        <p class="text-sm text-navy-400">Aposentadoria por Idade — São Paulo/SP</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide min-w-full px-4">
+                            <div class="bg-navy-50 rounded-2xl p-8 lg:p-10 max-w-3xl mx-auto border border-navy-100">
+                                <div class="flex items-center gap-1 text-warm-500 text-lg mb-4" aria-label="5 estrelas">★★★★★</div>
+                                <blockquote class="text-lg text-navy-700 leading-relaxed mb-6 italic">
+                                    "Eu nem sabia que tinha direito ao BPC. O Dr. José me explicou tudo com muita paciência, como se eu fosse da família. Hoje recebo meu benefício todo mês. Muito grato!"
+                                </blockquote>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-14 h-14 rounded-full bg-navy-200 text-navy-600 flex items-center justify-center font-bold text-lg">SJ</div>
+                                    <div>
+                                        <p class="font-bold text-navy-900">Sr. João, 72 anos</p>
+                                        <p class="text-sm text-navy-400">BPC/LOAS — Campinas/SP</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide min-w-full px-4">
+                            <div class="bg-navy-50 rounded-2xl p-8 lg:p-10 max-w-3xl mx-auto border border-navy-100">
+                                <div class="flex items-center gap-1 text-warm-500 text-lg mb-4" aria-label="5 estrelas">★★★★★</div>
+                                <blockquote class="text-lg text-navy-700 leading-relaxed mb-6 italic">
+                                    "Depois que meu marido faleceu, fiquei perdida. O escritório do Dr. José cuidou de tudo da pensão por morte. Atendimento humano de verdade, sem aquela frieza de outros escritórios."
+                                </blockquote>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-14 h-14 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center font-bold text-lg">DA</div>
+                                    <div>
+                                        <p class="font-bold text-navy-900">Dona Aparecida, 58 anos</p>
+                                        <p class="text-sm text-navy-400">Pensão por Morte — Santos/SP</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide min-w-full px-4">
+                            <div class="bg-navy-50 rounded-2xl p-8 lg:p-10 max-w-3xl mx-auto border border-navy-100">
+                                <div class="flex items-center gap-1 text-warm-500 text-lg mb-4" aria-label="5 estrelas">★★★★★</div>
+                                <blockquote class="text-lg text-navy-700 leading-relaxed mb-6 italic">
+                                    "Estava recebendo um auxílio doença muito baixo. O Dr. José entrou com a revisão e conseguiu um aumento de quase 40%. Recomendo para todo mundo!"
+                                </blockquote>
+                                <div class="flex items-center gap-4">
+                                    <div class="w-14 h-14 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg">SC</div>
+                                    <div>
+                                        <p class="font-bold text-navy-900">Sr. Carlos, 55 anos</p>
+                                        <p class="text-sm text-navy-400">Revisão de Auxílio Doença — Guarulhos/SP</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="flex items-center justify-center gap-4 mt-8">
+                    <button id="carouselPrev" class="w-12 h-12 min-h-touch rounded-full border-2 border-navy-200 text-navy-500 flex items-center justify-center hover:bg-navy-50 transition-all" aria-label="Depoimento anterior">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <div class="flex gap-2" id="carouselDots"></div>
+                    <button id="carouselNext" class="w-12 h-12 min-h-touch rounded-full border-2 border-navy-200 text-navy-500 flex items-center justify-center hover:bg-navy-50 transition-all" aria-label="Próximo depoimento">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FAQ (Accordion)
+    ============================================ -->
+    <section id="faq" class="py-20 lg:py-28 bg-navy-50">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-navy-100 text-navy-600 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-4">Dúvidas Frequentes</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 leading-tight mb-4">Perguntas <span class="text-warm-500">comuns</span></h2>
+            </div>
+
+            <div class="space-y-3" id="faqList">
+                <div class="accordion bg-white rounded-2xl border border-navy-100 overflow-hidden">
+                    <button class="accordion__trigger w-full flex items-center justify-between p-6 text-left min-h-touch" aria-expanded="false">
+                        <span class="text-base font-bold text-navy-800 pr-4">Quanto custa a consulta inicial?</span>
+                        <div class="accordion__icon w-8 h-8 min-w-[2rem] rounded-full bg-navy-50 flex items-center justify-center transition-all duration-300">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </button>
+                    <div class="accordion__content px-6 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-navy-500 leading-relaxed text-accessible">A primeira consulta é <strong class="text-navy-700">100% gratuita e sem compromisso</strong>. Analisamos seu caso, explicamos seus direitos e só cobramos honorários se você decidir nos contratar — e, em muitos casos, somente após o êxito da ação.</p>
+                    </div>
+                </div>
+
+                <div class="accordion bg-white rounded-2xl border border-navy-100 overflow-hidden">
+                    <button class="accordion__trigger w-full flex items-center justify-between p-6 text-left min-h-touch" aria-expanded="false">
+                        <span class="text-base font-bold text-navy-800 pr-4">Preciso pagar antes de ter resultado?</span>
+                        <div class="accordion__icon w-8 h-8 min-w-[2rem] rounded-full bg-navy-50 flex items-center justify-center transition-all duration-300">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </button>
+                    <div class="accordion__content px-6 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-navy-500 leading-relaxed text-accessible">Na maioria dos casos, trabalhamos com <strong class="text-navy-700">honorários condicionados ao êxito</strong> (ad exitum). Isso significa que você só paga se ganharmos a causa. Explicamos todos os detalhes na consulta gratuita.</p>
+                    </div>
+                </div>
+
+                <div class="accordion bg-white rounded-2xl border border-navy-100 overflow-hidden">
+                    <button class="accordion__trigger w-full flex items-center justify-between p-6 text-left min-h-touch" aria-expanded="false">
+                        <span class="text-base font-bold text-navy-800 pr-4">Demora muito para ter resultado?</span>
+                        <div class="accordion__icon w-8 h-8 min-w-[2rem] rounded-full bg-navy-50 flex items-center justify-center transition-all duration-300">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </button>
+                    <div class="accordion__content px-6 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-navy-500 leading-relaxed text-accessible">Os prazos variam conforme o tipo de ação. Recursos administrativos no INSS levam em média <strong class="text-navy-700">45 a 90 dias</strong>. Ações judiciais podem levar de 6 meses a 2 anos, dependendo da complexidade. Na consulta, damos uma estimativa realista para o seu caso.</p>
+                    </div>
+                </div>
+
+                <div class="accordion bg-white rounded-2xl border border-navy-100 overflow-hidden">
+                    <button class="accordion__trigger w-full flex items-center justify-between p-6 text-left min-h-touch" aria-expanded="false">
+                        <span class="text-base font-bold text-navy-800 pr-4">Como funciona o atendimento online?</span>
+                        <div class="accordion__icon w-8 h-8 min-w-[2rem] rounded-full bg-navy-50 flex items-center justify-center transition-all duration-300">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </button>
+                    <div class="accordion__content px-6 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-navy-500 leading-relaxed text-accessible">Atendemos em <strong class="text-navy-700">todo o Brasil</strong> por videochamada e WhatsApp. Você envia seus documentos pelo celular, fazemos a análise e cuidamos de tudo. Não precisa se deslocar — é simples, seguro e prático.</p>
+                    </div>
+                </div>
+
+                <div class="accordion bg-white rounded-2xl border border-navy-100 overflow-hidden">
+                    <button class="accordion__trigger w-full flex items-center justify-between p-6 text-left min-h-touch" aria-expanded="false">
+                        <span class="text-base font-bold text-navy-800 pr-4">Quais documentos preciso ter?</span>
+                        <div class="accordion__icon w-8 h-8 min-w-[2rem] rounded-full bg-navy-50 flex items-center justify-center transition-all duration-300">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                        </div>
+                    </button>
+                    <div class="accordion__content px-6 max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-navy-500 leading-relaxed text-accessible">Para a primeira análise, basta ter em mãos: <strong class="text-navy-700">RG, CPF, carteira de trabalho e carta de negativa do INSS</strong> (se tiver). Na consulta gratuita, orientamos sobre todos os documentos necessários para o seu caso específico.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ============================================
+         FOOTER COMPLETO
+    ============================================ -->
+    <footer id="footer" class="bg-navy-950 text-navy-400 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+                <!-- Brand -->
+                <div>
+                    <a href="#" class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-navy-800 rounded-xl flex items-center justify-center">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div>
+                            <span class="block text-base font-extrabold text-white">Dr. José Alves</span>
+                            <span class="block text-[0.6rem] text-navy-500 uppercase tracking-wider">Advocacia Previdenciária</span>
+                        </div>
+                    </a>
+                    <p class="text-sm leading-relaxed mb-4">Especialista em Direito Previdenciário. Mais de 15 anos lutando pelos seus direitos junto ao INSS.</p>
+                    <p class="text-xs text-navy-500">OAB/SP 000.000</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Navegação</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#hero" class="hover:text-warm-400 transition-colors">Início</a></li>
+                        <li><a href="#quiz" class="hover:text-warm-400 transition-colors">Verificar Direito</a></li>
+                        <li><a href="#areas" class="hover:text-warm-400 transition-colors">Áreas de Atuação</a></li>
+                        <li><a href="#about" class="hover:text-warm-400 transition-colors">Sobre</a></li>
+                        <li><a href="#testimonials" class="hover:text-warm-400 transition-colors">Depoimentos</a></li>
+                        <li><a href="#faq" class="hover:text-warm-400 transition-colors">Dúvidas</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Contato</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="tel:+5511980000000" class="hover:text-warm-400 transition-colors">(11) 98000-0000</a></li>
+                        <li><a href="mailto:contato@drjosealves.com.br" class="hover:text-warm-400 transition-colors">contato@drjosealves.com.br</a></li>
+                        <li>Rua da Consolação, 500<br>Sala 42 — São Paulo/SP</li>
+                        <li>CEP: 01302-000</li>
+                    </ul>
+                </div>
+
+                <!-- Map -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Localização</h4>
+                    <!-- EDITABLE: Google Maps Embed -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0!2d-46.66!3d-23.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1spt-BR!2sbr"
+                        width="100%" height="160" style="border:0; border-radius: 12px; opacity: 0.8;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="Localização do escritório"></iframe>
+                    <!-- END EDITABLE -->
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+                <p>&copy; 2026 Dr. José Alves — Advocacia Previdenciária. Todos os direitos reservados.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition-colors">Política de Privacidade</a>
+                    <a href="#" class="hover:text-white transition-colors">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         STICKY FOOTER (Mobile Only) — WhatsApp
+    ============================================ -->
+    <!-- EDITABLE: WhatsApp link -->
+    <div id="stickyFooter" class="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 p-3 translate-y-full transition-transform duration-300">
+        <a href="https://wa.me/5511980000000?text=Olá Dr. José! Gostaria de analisar meu caso." target="_blank" rel="noopener"
+           class="flex items-center justify-center gap-3 bg-green-600 text-white font-bold text-lg w-full py-4 min-h-touch rounded-2xl hover:bg-green-700 transition-all shadow-lg shadow-green-600/20">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Falar no WhatsApp
+        </a>
+    </div>
+
+    <!-- JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

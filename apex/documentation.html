@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex — Documentation / Documentação</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-block {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 20px 24px;
+            font-family: 'Fira Code', 'Cascadia Code', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+        .code-block .comment { color: #64748b; }
+        .code-block .string { color: #34d399; }
+        .code-block .keyword { color: #818cf8; }
+        .code-block .tag { color: #f472b6; }
+        .code-block .attr { color: #fbbf24; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-700 antialiased">
+
+    <!-- Language Switcher -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-4xl mx-auto px-6 flex items-center justify-between h-16">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polygon points="12 2 22 20 2 20"/></svg>
+                </div>
+                <span class="font-extrabold text-gray-900">Apex <span class="text-sm font-medium text-gray-400">Docs</span></span>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="switchLang('en')" id="btnEn" class="px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white transition-all">EN</button>
+                <button onclick="switchLang('pt')" id="btnPt" class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all">PT</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-16">
+
+        <!-- ============== ENGLISH ============== -->
+        <div id="lang-en">
+
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Apex Documentation</h1>
+            <p class="text-lg text-gray-500 mb-12">Complete guide for customizing your Apex corporate template.</p>
+
+            <!-- Table of Contents -->
+            <nav class="bg-white rounded-2xl border border-gray-200 p-8 mb-12">
+                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Table of Contents</h2>
+                <ol class="space-y-2 text-sm list-decimal list-inside">
+                    <li><a href="#en-structure" class="text-blue-600 hover:underline">File Structure</a></li>
+                    <li><a href="#en-colors" class="text-blue-600 hover:underline">Changing Colors (Brand)</a></li>
+                    <li><a href="#en-navbar" class="text-blue-600 hover:underline">Navbar & Mega Menu</a></li>
+                    <li><a href="#en-hero" class="text-blue-600 hover:underline">Hero Slider</a></li>
+                    <li><a href="#en-services" class="text-blue-600 hover:underline">Services Section</a></li>
+                    <li><a href="#en-counters" class="text-blue-600 hover:underline">Fun Facts (Counters)</a></li>
+                    <li><a href="#en-portfolio" class="text-blue-600 hover:underline">Portfolio Filter</a></li>
+                    <li><a href="#en-parallax" class="text-blue-600 hover:underline">CTA Parallax</a></li>
+                    <li><a href="#en-footer" class="text-blue-600 hover:underline">Footer & Newsletter</a></li>
+                    <li><a href="#en-images" class="text-blue-600 hover:underline">Replacing Images</a></li>
+                    <li><a href="#en-deploy" class="text-blue-600 hover:underline">Deployment</a></li>
+                </ol>
+            </nav>
+
+            <!-- 1. File Structure -->
+            <section id="en-structure" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">1. File Structure</h2>
+                <div class="code-block">
+<span class="comment">apex/</span>
+├── index.html              <span class="comment">← Main page</span>
+├── documentation.html      <span class="comment">← This file</span>
+└── assets/
+    ├── css/
+    │   └── style.css       <span class="comment">← Custom styles (extends Tailwind)</span>
+    ├── js/
+    │   └── main.js         <span class="comment">← All interactivity (Vanilla JS)</span>
+    └── img/
+        ├── favicon.svg     <span class="comment">← Browser tab icon</span>
+        └── <span class="comment">(add your images here)</span>
+                </div>
+            </section>
+
+            <!-- 2. Changing Colors -->
+            <section id="en-colors" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Changing Colors (Brand)</h2>
+                <p class="mb-4">Open <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">index.html</code> and find the Tailwind config script near the top:</p>
+                <div class="code-block">
+<span class="tag">&lt;script&gt;</span>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          apex: {
+            <span class="attr">500</span>: <span class="string">'#3478ff'</span>,   <span class="comment">// Main brand color</span>
+            <span class="attr">600</span>: <span class="string">'#1b57f5'</span>,   <span class="comment">// Buttons, links</span>
+            <span class="attr">700</span>: <span class="string">'#1443e1'</span>,   <span class="comment">// Hover states</span>
+          }
+        }
+      }
+    }
+  }
+<span class="tag">&lt;/script&gt;</span>
+                </div>
+                <p class="mt-4">Replace the hex values (<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">#3478ff</code>) with your own brand colors. All components using <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">apex-*</code> classes will update automatically.</p>
+            </section>
+
+            <!-- 3. Navbar -->
+            <section id="en-navbar" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">3. Navbar & Mega Menu</h2>
+                <p class="mb-4">The navbar is transparent on the hero section and becomes solid white on scroll. To modify the mega menu links:</p>
+                <ul class="list-disc list-inside space-y-2 mb-4">
+                    <li>Find <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">id="megaMenu"</code> in <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">index.html</code></li>
+                    <li>Each column contains <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">&lt;a class="mega-link"&gt;</code> blocks — edit the text and <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">href</code></li>
+                    <li>The promo banner is the 3rd column — change the text and link</li>
+                </ul>
+            </section>
+
+            <!-- 4. Hero Slider -->
+            <section id="en-hero" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">4. Hero Slider</h2>
+                <p class="mb-4">The slider has 3 slides with auto-play (5 second interval). To customize:</p>
+                <ul class="list-disc list-inside space-y-2 mb-4">
+                    <li>Find each <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">&lt;div class="hero-slide"&gt;</code> block</li>
+                    <li>Edit headings, paragraphs, and button text/links</li>
+                    <li>Replace image placeholders with real images</li>
+                    <li>To add/remove slides, duplicate or delete a <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">hero-slide</code> block and update the <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">data-index</code> and dots</li>
+                </ul>
+                <p>To change auto-play speed, edit <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">main.js</code> line with <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">setInterval(nextSlide, 5000)</code> — value is in milliseconds.</p>
+            </section>
+
+            <!-- 5. Services -->
+            <section id="en-services" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">5. Services Section</h2>
+                <p class="mb-4">Each service card uses Lucide icons. To change an icon:</p>
+                <div class="code-block">
+<span class="comment">&lt;!-- Replace the icon name in data-lucide --&gt;</span>
+<span class="tag">&lt;i</span> <span class="attr">data-lucide</span>=<span class="string">"pen-tool"</span> <span class="keyword">class</span>=<span class="string">"w-6 h-6"</span><span class="tag">&gt;&lt;/i&gt;</span>
+
+<span class="comment">&lt;!-- Browse icons at: https://lucide.dev/icons --&gt;</span>
+                </div>
+                <p class="mt-4">The "lift" hover effect (moves up 5px + colored shadow) is handled by Tailwind classes: <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">hover:-translate-y-1.5 hover:shadow-xl</code></p>
+            </section>
+
+            <!-- 6. Counters -->
+            <section id="en-counters" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Fun Facts (Counters)</h2>
+                <p class="mb-4">Counters animate when the section enters the viewport using Intersection Observer. To change values:</p>
+                <div class="code-block">
+<span class="tag">&lt;span</span> <span class="keyword">class</span>=<span class="string">"counter"</span> <span class="attr">data-target</span>=<span class="string">"350"</span><span class="tag">&gt;</span>0<span class="tag">&lt;/span&gt;</span>
+
+<span class="comment">&lt;!-- Change data-target to your desired number --&gt;</span>
+                </div>
+            </section>
+
+            <!-- 7. Portfolio -->
+            <section id="en-portfolio" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">7. Portfolio Filter</h2>
+                <p class="mb-4">Portfolio items are filtered by category. To add a new item:</p>
+                <div class="code-block">
+<span class="tag">&lt;div</span> <span class="keyword">class</span>=<span class="string">"portfolio-item group"</span> <span class="attr">data-category</span>=<span class="string">"design"</span><span class="tag">&gt;</span>
+  <span class="comment">&lt;!-- Your content here --&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- data-category must match one of the filter button data-filter values --&gt;</span>
+                </div>
+                <p class="mt-4">To add a new category, add a filter button:</p>
+                <div class="code-block">
+<span class="tag">&lt;button</span> <span class="keyword">class</span>=<span class="string">"filter-btn"</span> <span class="attr">data-filter</span>=<span class="string">"branding"</span><span class="tag">&gt;</span>Branding<span class="tag">&lt;/button&gt;</span>
+                </div>
+            </section>
+
+            <!-- 8. Parallax -->
+            <section id="en-parallax" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">8. CTA Parallax</h2>
+                <p class="mb-4">The parallax effect is a subtle vertical movement of the background. To use a real background image instead of the gradient:</p>
+                <div class="code-block">
+<span class="comment">&lt;!-- In index.html, find id="parallaxBg" and add: --&gt;</span>
+<span class="keyword">style</span>=<span class="string">"background-image: url('assets/img/cta-bg.jpg'); background-size: cover; background-position: center;"</span>
+                </div>
+            </section>
+
+            <!-- 9. Footer -->
+            <section id="en-footer" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">9. Footer & Newsletter</h2>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Edit the 4 footer columns directly in the HTML</li>
+                    <li>Social links: replace <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">href="#"</code> with your actual profile URLs</li>
+                    <li>Newsletter form: currently logs to console — connect to your email service (Mailchimp, ConvertKit, etc.) by replacing the submit handler in <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">main.js</code></li>
+                </ul>
+            </section>
+
+            <!-- 10. Images -->
+            <section id="en-images" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">10. Replacing Images</h2>
+                <p class="mb-4">All image placeholders include recommended dimensions:</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="text-left p-3 font-semibold rounded-tl-lg">Location</th>
+                                <th class="text-left p-3 font-semibold">Recommended Size</th>
+                                <th class="text-left p-3 font-semibold rounded-tr-lg">Format</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100"><td class="p-3">Hero Slides</td><td class="p-3">840 x 720px</td><td class="p-3">WebP / PNG</td></tr>
+                            <tr class="border-b border-gray-100"><td class="p-3">About Image</td><td class="p-3">640 x 800px</td><td class="p-3">WebP / JPG</td></tr>
+                            <tr class="border-b border-gray-100"><td class="p-3">Portfolio Items</td><td class="p-3">640 x 480px</td><td class="p-3">WebP / JPG</td></tr>
+                            <tr><td class="p-3">OG Image</td><td class="p-3">1200 x 630px</td><td class="p-3">JPG</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 11. Deploy -->
+            <section id="en-deploy" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">11. Deployment</h2>
+                <p class="mb-4">This template uses Tailwind CSS via CDN for quick preview. For production:</p>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Install Tailwind CSS locally: <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">npm install tailwindcss</code></li>
+                    <li>Create a <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">tailwind.config.js</code> with the color definitions from the CDN script</li>
+                    <li>Build a minified CSS file for optimal performance</li>
+                    <li>Upload all files to your hosting (Netlify, Vercel, shared hosting, etc.)</li>
+                </ol>
+            </section>
+
+        </div>
+
+        <!-- ============== PORTUGUÊS ============== -->
+        <div id="lang-pt" class="hidden">
+
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Documentação Apex</h1>
+            <p class="text-lg text-gray-500 mb-12">Guia completo para personalizar seu template corporativo Apex.</p>
+
+            <!-- Índice -->
+            <nav class="bg-white rounded-2xl border border-gray-200 p-8 mb-12">
+                <h2 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Índice</h2>
+                <ol class="space-y-2 text-sm list-decimal list-inside">
+                    <li><a href="#pt-structure" class="text-blue-600 hover:underline">Estrutura de Arquivos</a></li>
+                    <li><a href="#pt-colors" class="text-blue-600 hover:underline">Trocar Cores (Marca)</a></li>
+                    <li><a href="#pt-navbar" class="text-blue-600 hover:underline">Navbar e Mega Menu</a></li>
+                    <li><a href="#pt-hero" class="text-blue-600 hover:underline">Hero Slider</a></li>
+                    <li><a href="#pt-services" class="text-blue-600 hover:underline">Seção de Serviços</a></li>
+                    <li><a href="#pt-counters" class="text-blue-600 hover:underline">Fun Facts (Contadores)</a></li>
+                    <li><a href="#pt-portfolio" class="text-blue-600 hover:underline">Portfólio com Filtro</a></li>
+                    <li><a href="#pt-parallax" class="text-blue-600 hover:underline">CTA Parallax</a></li>
+                    <li><a href="#pt-footer" class="text-blue-600 hover:underline">Footer e Newsletter</a></li>
+                    <li><a href="#pt-images" class="text-blue-600 hover:underline">Substituir Imagens</a></li>
+                    <li><a href="#pt-deploy" class="text-blue-600 hover:underline">Publicação</a></li>
+                </ol>
+            </nav>
+
+            <!-- 1. Estrutura -->
+            <section id="pt-structure" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Estrutura de Arquivos</h2>
+                <div class="code-block">
+<span class="comment">apex/</span>
+├── index.html              <span class="comment">← Página principal</span>
+├── documentation.html      <span class="comment">← Este arquivo</span>
+└── assets/
+    ├── css/
+    │   └── style.css       <span class="comment">← Estilos customizados (complementa Tailwind)</span>
+    ├── js/
+    │   └── main.js         <span class="comment">← Toda a interatividade (Vanilla JS)</span>
+    └── img/
+        ├── favicon.svg     <span class="comment">← Ícone da aba</span>
+        └── <span class="comment">(adicione suas imagens aqui)</span>
+                </div>
+            </section>
+
+            <!-- 2. Cores -->
+            <section id="pt-colors" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Trocar Cores (Marca)</h2>
+                <p class="mb-4">Abra <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">index.html</code> e encontre o script de configuração do Tailwind no topo:</p>
+                <div class="code-block">
+<span class="tag">&lt;script&gt;</span>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          apex: {
+            <span class="attr">500</span>: <span class="string">'#3478ff'</span>,   <span class="comment">// Cor principal</span>
+            <span class="attr">600</span>: <span class="string">'#1b57f5'</span>,   <span class="comment">// Botões, links</span>
+            <span class="attr">700</span>: <span class="string">'#1443e1'</span>,   <span class="comment">// Estados hover</span>
+          }
+        }
+      }
+    }
+  }
+<span class="tag">&lt;/script&gt;</span>
+                </div>
+                <p class="mt-4">Substitua os valores hex (<code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">#3478ff</code>) pelas cores da sua marca. Todos os componentes usando classes <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">apex-*</code> serão atualizados automaticamente.</p>
+            </section>
+
+            <!-- 3. Navbar -->
+            <section id="pt-navbar" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">3. Navbar e Mega Menu</h2>
+                <p class="mb-4">A navbar é transparente no hero e fica branca ao rolar. Para modificar os links do mega menu:</p>
+                <ul class="list-disc list-inside space-y-2 mb-4">
+                    <li>Encontre <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">id="megaMenu"</code> no <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">index.html</code></li>
+                    <li>Cada coluna contém blocos <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">&lt;a class="mega-link"&gt;</code> — edite o texto e o <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">href</code></li>
+                    <li>O banner promocional é a 3ª coluna — altere o texto e o link</li>
+                </ul>
+            </section>
+
+            <!-- 4. Hero -->
+            <section id="pt-hero" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">4. Hero Slider</h2>
+                <p class="mb-4">O slider tem 3 slides com autoplay (5 segundos). Para personalizar:</p>
+                <ul class="list-disc list-inside space-y-2 mb-4">
+                    <li>Encontre cada bloco <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">&lt;div class="hero-slide"&gt;</code></li>
+                    <li>Edite títulos, parágrafos e textos/links dos botões</li>
+                    <li>Substitua os placeholders de imagem por imagens reais</li>
+                    <li>Para adicionar/remover slides, duplique ou delete um bloco <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">hero-slide</code> e atualize o <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">data-index</code> e os dots</li>
+                </ul>
+                <p>Para alterar a velocidade, edite no <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">main.js</code> a linha <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">setInterval(nextSlide, 5000)</code> — valor em milissegundos.</p>
+            </section>
+
+            <!-- 5. Serviços -->
+            <section id="pt-services" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">5. Seção de Serviços</h2>
+                <p class="mb-4">Cada card usa ícones Lucide. Para trocar um ícone:</p>
+                <div class="code-block">
+<span class="comment">&lt;!-- Troque o nome do ícone em data-lucide --&gt;</span>
+<span class="tag">&lt;i</span> <span class="attr">data-lucide</span>=<span class="string">"pen-tool"</span> <span class="keyword">class</span>=<span class="string">"w-6 h-6"</span><span class="tag">&gt;&lt;/i&gt;</span>
+
+<span class="comment">&lt;!-- Catálogo de ícones: https://lucide.dev/icons --&gt;</span>
+                </div>
+                <p class="mt-4">O efeito "lift" no hover (sobe 5px + sombra colorida) é feito pelas classes Tailwind: <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">hover:-translate-y-1.5 hover:shadow-xl</code></p>
+            </section>
+
+            <!-- 6. Contadores -->
+            <section id="pt-counters" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">6. Fun Facts (Contadores)</h2>
+                <p class="mb-4">Os contadores animam quando a seção entra na viewport (Intersection Observer). Para trocar valores:</p>
+                <div class="code-block">
+<span class="tag">&lt;span</span> <span class="keyword">class</span>=<span class="string">"counter"</span> <span class="attr">data-target</span>=<span class="string">"350"</span><span class="tag">&gt;</span>0<span class="tag">&lt;/span&gt;</span>
+
+<span class="comment">&lt;!-- Altere data-target para o número desejado --&gt;</span>
+                </div>
+            </section>
+
+            <!-- 7. Portfólio -->
+            <section id="pt-portfolio" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">7. Portfólio com Filtro</h2>
+                <p class="mb-4">Os itens do portfólio são filtrados por categoria. Para adicionar um novo item:</p>
+                <div class="code-block">
+<span class="tag">&lt;div</span> <span class="keyword">class</span>=<span class="string">"portfolio-item group"</span> <span class="attr">data-category</span>=<span class="string">"design"</span><span class="tag">&gt;</span>
+  <span class="comment">&lt;!-- Seu conteúdo aqui --&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="comment">&lt;!-- data-category deve corresponder ao data-filter de um botão --&gt;</span>
+                </div>
+                <p class="mt-4">Para adicionar uma nova categoria, crie um botão de filtro:</p>
+                <div class="code-block">
+<span class="tag">&lt;button</span> <span class="keyword">class</span>=<span class="string">"filter-btn"</span> <span class="attr">data-filter</span>=<span class="string">"branding"</span><span class="tag">&gt;</span>Branding<span class="tag">&lt;/button&gt;</span>
+                </div>
+            </section>
+
+            <!-- 8. Parallax -->
+            <section id="pt-parallax" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">8. CTA Parallax</h2>
+                <p class="mb-4">O efeito parallax é um movimento vertical sutil do fundo. Para usar uma imagem real ao invés do gradiente:</p>
+                <div class="code-block">
+<span class="comment">&lt;!-- No index.html, encontre id="parallaxBg" e adicione: --&gt;</span>
+<span class="keyword">style</span>=<span class="string">"background-image: url('assets/img/cta-bg.jpg'); background-size: cover; background-position: center;"</span>
+                </div>
+            </section>
+
+            <!-- 9. Footer -->
+            <section id="pt-footer" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">9. Footer e Newsletter</h2>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Edite as 4 colunas do footer diretamente no HTML</li>
+                    <li>Links sociais: substitua <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">href="#"</code> pelas URLs reais dos seus perfis</li>
+                    <li>Newsletter: atualmente faz log no console — conecte ao seu serviço de email (Mailchimp, ConvertKit, etc.) substituindo o handler de submit no <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">main.js</code></li>
+                </ul>
+            </section>
+
+            <!-- 10. Imagens -->
+            <section id="pt-images" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">10. Substituir Imagens</h2>
+                <p class="mb-4">Todos os placeholders incluem dimensões recomendadas:</p>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="text-left p-3 font-semibold rounded-tl-lg">Local</th>
+                                <th class="text-left p-3 font-semibold">Tamanho Recomendado</th>
+                                <th class="text-left p-3 font-semibold rounded-tr-lg">Formato</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100"><td class="p-3">Hero Slides</td><td class="p-3">840 x 720px</td><td class="p-3">WebP / PNG</td></tr>
+                            <tr class="border-b border-gray-100"><td class="p-3">Imagem About</td><td class="p-3">640 x 800px</td><td class="p-3">WebP / JPG</td></tr>
+                            <tr class="border-b border-gray-100"><td class="p-3">Itens do Portfólio</td><td class="p-3">640 x 480px</td><td class="p-3">WebP / JPG</td></tr>
+                            <tr><td class="p-3">Imagem OG</td><td class="p-3">1200 x 630px</td><td class="p-3">JPG</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 11. Deploy -->
+            <section id="pt-deploy" class="mb-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">11. Publicação</h2>
+                <p class="mb-4">Este template usa Tailwind CSS via CDN para preview rápido. Para produção:</p>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Instale o Tailwind CSS localmente: <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">npm install tailwindcss</code></li>
+                    <li>Crie um <code class="bg-gray-100 px-2 py-1 rounded text-sm font-mono">tailwind.config.js</code> com as definições de cores do script CDN</li>
+                    <li>Gere um CSS minificado para melhor performance</li>
+                    <li>Faça upload de todos os arquivos para seu hosting (Netlify, Vercel, hospedagem compartilhada, etc.)</li>
+                </ol>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 py-8 text-center text-sm text-gray-400">
+        <p>&copy; 2026 Apex Template — Documentation</p>
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            document.getElementById('lang-en').classList.toggle('hidden', lang !== 'en');
+            document.getElementById('lang-pt').classList.toggle('hidden', lang !== 'pt');
+
+            const btnEn = document.getElementById('btnEn');
+            const btnPt = document.getElementById('btnPt');
+
+            if (lang === 'en') {
+                btnEn.className = 'px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white transition-all';
+                btnPt.className = 'px-4 py-2 text-sm font-semibold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all';
+            } else {
+                btnPt.className = 'px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white transition-all';
+                btnEn.className = 'px-4 py-2 text-sm font-semibold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all';
+            }
+        }
+    </script>
+</body>
+</html>

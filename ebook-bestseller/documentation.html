@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Book Bestseller — Documentation</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --bg-alt: #f9f9f9;
+            --text: #1a1a1a;
+            --text-muted: #4a4a4a;
+            --border: #e5e5e5;
+            --primary: #DC2626;
+            --primary-light: #fef2f2;
+            --code-bg: #f5f5f5;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 4px;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .lang-btn {
+            padding: 6px 14px;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+
+        .doc-header {
+            text-align: center;
+            margin-bottom: 56px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .doc-header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+        .doc-header .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .doc-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .toc {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+        }
+        .toc h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 16px; }
+        .toc ol { list-style: none; counter-reset: toc; padding: 0; }
+        .toc li { counter-increment: toc; margin-bottom: 8px; }
+        .toc li::before { content: counter(toc, decimal-leading-zero) "."; color: var(--primary); font-weight: 700; margin-right: 10px; font-size: 14px; }
+        .toc a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 15px; transition: color 0.2s; }
+        .toc a:hover { color: var(--primary); }
+
+        .section { margin-bottom: 48px; }
+        .section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-light); }
+        .section h3 { font-size: 1.1rem; font-weight: 600; margin: 24px 0 10px; }
+        .section p, .section li { color: var(--text-muted); margin-bottom: 10px; }
+        .section ul, .section ol { padding-left: 24px; margin-bottom: 16px; }
+        .section ul li { list-style: disc; }
+
+        code {
+            background: var(--code-bg);
+            padding: 2px 7px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: var(--primary);
+        }
+
+        pre {
+            background: #1a1a1a;
+            color: #e5e5e5;
+            padding: 20px 24px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 16px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+        th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg-alt); font-weight: 600; }
+        td { color: var(--text-muted); }
+
+        .tip {
+            background: #f0fdf4;
+            border-left: 4px solid #16a34a;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #166534;
+        }
+        .warning {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+            font-size: 14px;
+            color: #92400e;
+        }
+
+        .file-tree {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            font-family: 'SF Mono', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+        .file-tree .folder { color: var(--primary); font-weight: 600; }
+        .file-tree .comment { opacity: 0.5; }
+
+        @media (max-width: 640px) {
+            .wrapper { padding: 40px 16px 60px; }
+            .doc-header h1 { font-size: 1.6rem; }
+            .lang-toggle { top: 12px; right: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
+</div>
+
+<div class="wrapper">
+
+    <!-- ═══════════════════════════════════════════
+         ENGLISH
+    ═══════════════════════════════════════════ -->
+    <div id="lang-en">
+
+        <header class="doc-header">
+            <div class="badge">Documentation</div>
+            <h1>E-Book Bestseller</h1>
+            <p>High-converting e-book / digital product sales page template with countdown timer, 3D book cover, testimonials, and FAQ accordion.</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#en-overview">Overview</a></li>
+                <li><a href="#en-structure">File Structure</a></li>
+                <li><a href="#en-tech">Tech Stack</a></li>
+                <li><a href="#en-sections">Page Sections</a></li>
+                <li><a href="#en-copy">Editing Sales Copy</a></li>
+                <li><a href="#en-images">Replacing Images</a></li>
+                <li><a href="#en-countdown">Countdown Timer</a></li>
+                <li><a href="#en-buy">Buy Button &amp; Payment Link</a></li>
+                <li><a href="#en-colors">Changing Colors</a></li>
+                <li><a href="#en-seo">SEO &amp; Meta Tags</a></li>
+                <li><a href="#en-performance">Performance</a></li>
+                <li><a href="#en-credits">Credits &amp; License</a></li>
+            </ol>
+        </nav>
+
+        <section class="section" id="en-overview">
+            <h2>1. Overview</h2>
+            <p>E-Book Bestseller is a single-page sales landing page designed to sell e-books, digital courses, and info products. It follows proven direct-response copywriting structure: urgency bar, hero with 3D book cover, pain/problem agitation, chapter outline, social proof, bonuses, pricing with anchor, guarantee, FAQ, and final CTA.</p>
+            <p>Built with Tailwind CSS and vanilla JavaScript. Zero dependencies beyond the Tailwind CDN.</p>
+        </section>
+
+        <section class="section" id="en-structure">
+            <h2>2. File Structure</h2>
+            <div class="file-tree">
+                <span class="folder">ebook-bestseller/</span><br>
+                ├── index.html <span class="comment">← Sales page</span><br>
+                ├── documentation.html <span class="comment">← This file</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── style.css <span class="comment">← Custom styles (3D book, animations)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── script.js <span class="comment">← Countdown timer, FAQ accordion</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Browser tab icon</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Social sharing (1200×630)</span>
+            </div>
+        </section>
+
+        <section class="section" id="en-tech">
+            <h2>3. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 Semantic</td><td>Page structure</td></tr>
+                    <tr><td>Tailwind CSS v3 (CDN)</td><td>Utility-first styling</td></tr>
+                    <tr><td>Vanilla JavaScript</td><td>Countdown timer, FAQ accordion</td></tr>
+                    <tr><td>CSS 3D Transforms</td><td>Book cover perspective effect</td></tr>
+                    <tr><td>Schema.org JSON-LD</td><td>Book structured data</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section" id="en-sections">
+            <h2>4. Page Sections</h2>
+            <ul>
+                <li><strong>Urgency Bar</strong> — Fixed top bar with countdown timer and "offer ends" message</li>
+                <li><strong>Hero</strong> — Headline, subheadline, 3D book cover with CSS perspective, dual CTA buttons</li>
+                <li><strong>Pain/Problem</strong> — Agitation section highlighting the reader's struggles</li>
+                <li><strong>What You'll Learn</strong> — Chapter-by-chapter checklist with checkmarks</li>
+                <li><strong>Testimonials</strong> — 3 client review cards with star ratings and author info</li>
+                <li><strong>Author Bio</strong> — "Meet the Author" section with photo placeholder and credentials</li>
+                <li><strong>Bonuses</strong> — 3 bonus cards with value anchoring (e.g., "Value: $47")</li>
+                <li><strong>Pricing</strong> — Price anchor (original vs. sale), buy button, feature list, and countdown</li>
+                <li><strong>Guarantee</strong> — 30-day money-back guarantee with shield icon</li>
+                <li><strong>FAQ</strong> — Accordion-style questions with expand/collapse</li>
+                <li><strong>Final CTA</strong> — Last call to action section with urgency</li>
+                <li><strong>Footer</strong> — Copyright, privacy, terms, contact links</li>
+            </ul>
+        </section>
+
+        <section class="section" id="en-copy">
+            <h2>5. Editing Sales Copy</h2>
+            <h3>Headlines</h3>
+            <p>The main headline is in the <code>&lt;h1&gt;</code> tag in the Hero section. Keep the <code>&lt;span class="text-cta-red"&gt;</code> wrapper around words you want highlighted in red.</p>
+            <h3>Chapters</h3>
+            <p>Each chapter is a <code>&lt;li&gt;</code> item in the "What You'll Learn" section. Copy a block to add more chapters.</p>
+            <h3>Testimonials</h3>
+            <p>Each testimonial is inside a <code>&lt;blockquote&gt;</code> tag. Edit the quote, name, and title.</p>
+            <h3>Pricing</h3>
+            <p>Find the pricing section and edit the original price (<code>line-through</code>) and sale price. Update the buy button text to match.</p>
+        </section>
+
+        <section class="section" id="en-images">
+            <h2>6. Replacing Images</h2>
+            <h3>Book Cover</h3>
+            <p>Find the comment <code>&lt;!-- REPLACE: Swap this placeholder with your actual book cover image --&gt;</code> and replace the placeholder <code>&lt;div&gt;</code> with:</p>
+            <pre><code>&lt;img src="assets/img/book-cover.png"
+     alt="Your book title"
+     class="w-[280px] md:w-[320px] rounded-r-lg shadow-2xl"&gt;</code></pre>
+            <h3>Author Photo</h3>
+            <p>Find <code>&lt;!-- REPLACE: Add your author photo --&gt;</code> and replace the SVG with:</p>
+            <pre><code>&lt;img src="assets/img/author.jpg"
+     alt="Author name"
+     class="w-40 h-40 rounded-full object-cover shadow-lg"&gt;</code></pre>
+        </section>
+
+        <section class="section" id="en-countdown">
+            <h2>7. Countdown Timer</h2>
+            <p>Open <code>assets/js/script.js</code> and find this line near the top:</p>
+            <pre><code>const COUNTDOWN_DEADLINE = '2026-03-20T23:59:59';</code></pre>
+            <p>Change the date to your desired deadline. Format: <code>YYYY-MM-DDTHH:MM:SS</code>.</p>
+            <div class="tip">The timer displays in DD:HH:MM:SS format and shows "EXPIRED" when the deadline passes.</div>
+        </section>
+
+        <section class="section" id="en-buy">
+            <h2>8. Buy Button &amp; Payment Link</h2>
+            <p>Find the buy button and replace <code>href="#"</code> with your payment link:</p>
+            <pre><code>&lt;a href="https://your-payment-provider.com/checkout" id="buy-btn" class="..."&gt;
+  BUY NOW — Only $27 &amp;rarr;
+&lt;/a&gt;</code></pre>
+            <p>Supported platforms: Hotmart, Gumroad, Stripe, PayPal, Kiwify, Eduzz.</p>
+        </section>
+
+        <section class="section" id="en-colors">
+            <h2>9. Changing Colors</h2>
+            <p>Edit the Tailwind config in <code>index.html</code>:</p>
+            <pre><code>colors: {
+  cta: {
+    red: '#DC2626',        // CTA buttons
+    'red-hover': '#B91C1C',
+    green: '#16A34A',      // Secondary CTA
+    'green-hover': '#15803D',
+  },
+  brand: {
+    dark: '#1A1A1A',       // Text color
+    muted: '#4A4A4A',      // Secondary text
+    light: '#F9F9F9',      // Section backgrounds
+    accent: '#FEF3C7',     // Bonus card backgrounds
+  }
+}</code></pre>
+        </section>
+
+        <section class="section" id="en-seo">
+            <h2>10. SEO &amp; Meta Tags</h2>
+            <ul>
+                <li><strong>Open Graph</strong> — og:title, og:description, og:image pre-configured</li>
+                <li><strong>Twitter Card</strong> — summary_large_image with title, description, image</li>
+                <li><strong>Schema.org</strong> — Book JSON-LD with name, description, author</li>
+                <li><strong>Semantic HTML</strong> — Uses <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;blockquote&gt;</code>, <code>&lt;footer&gt;</code></li>
+            </ul>
+            <div class="warning">Replace all placeholder content (title, description, author name, URLs) with your real data before publishing.</div>
+        </section>
+
+        <section class="section" id="en-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Minimal custom CSS — Tailwind handles most styling</li>
+                <li>Vanilla JavaScript (zero dependencies)</li>
+                <li>CSS 3D transforms use GPU acceleration</li>
+                <li>Font preconnect hints for faster loading</li>
+                <li>No external images by default (uses CSS placeholders)</li>
+            </ul>
+        </section>
+
+        <section class="section" id="en-credits">
+            <h2>12. Credits &amp; License</h2>
+            <table>
+                <thead><tr><th>Resource</th><th>License</th></tr></thead>
+                <tbody>
+                    <tr><td>Tailwind CSS</td><td>MIT License</td></tr>
+                    <tr><td>System fonts stack</td><td>Free / Built-in</td></tr>
+                </tbody>
+            </table>
+            <p>All placeholder content is fictional and should be replaced before publishing.</p>
+        </section>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════
+         PORTUGUESE
+    ═══════════════════════════════════════════ -->
+    <div id="lang-pt" style="display:none;">
+
+        <header class="doc-header">
+            <div class="badge">Documentação</div>
+            <h1>E-Book Bestseller</h1>
+            <p>Template de página de vendas de alta conversão para e-books e produtos digitais com countdown, capa 3D, depoimentos e FAQ accordion.</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Sumário</h2>
+            <ol>
+                <li><a href="#pt-overview">Visão Geral</a></li>
+                <li><a href="#pt-structure">Estrutura de Arquivos</a></li>
+                <li><a href="#pt-tech">Tecnologias</a></li>
+                <li><a href="#pt-sections">Seções da Página</a></li>
+                <li><a href="#pt-copy">Editando o Texto de Vendas</a></li>
+                <li><a href="#pt-images">Substituindo Imagens</a></li>
+                <li><a href="#pt-countdown">Cronômetro Regressivo</a></li>
+                <li><a href="#pt-buy">Botão de Compra &amp; Link de Pagamento</a></li>
+                <li><a href="#pt-colors">Trocar as Cores</a></li>
+                <li><a href="#pt-seo">SEO &amp; Meta Tags</a></li>
+                <li><a href="#pt-performance">Performance</a></li>
+                <li><a href="#pt-credits">Créditos &amp; Licença</a></li>
+            </ol>
+        </nav>
+
+        <section class="section" id="pt-overview">
+            <h2>1. Visão Geral</h2>
+            <p>E-Book Bestseller é uma landing page single-page de vendas projetada para vender e-books, cursos digitais e infoprodutos. Segue a estrutura comprovada de copywriting de resposta direta: barra de urgência, hero com capa 3D, agitação do problema, outline de capítulos, prova social, bônus, precificação com âncora, garantia, FAQ e CTA final.</p>
+            <p>Construído com Tailwind CSS e JavaScript vanilla. Zero dependências além do CDN do Tailwind.</p>
+        </section>
+
+        <section class="section" id="pt-structure">
+            <h2>2. Estrutura de Arquivos</h2>
+            <div class="file-tree">
+                <span class="folder">ebook-bestseller/</span><br>
+                ├── index.html <span class="comment">← Página de vendas</span><br>
+                ├── documentation.html <span class="comment">← Este arquivo</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── style.css <span class="comment">← Estilos (capa 3D, animações)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── script.js <span class="comment">← Countdown, FAQ accordion</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Ícone da aba</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Compartilhamento social (1200×630)</span>
+            </div>
+        </section>
+
+        <section class="section" id="pt-tech">
+            <h2>3. Tecnologias</h2>
+            <table>
+                <thead><tr><th>Tecnologia</th><th>Finalidade</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 Semântico</td><td>Estrutura da página</td></tr>
+                    <tr><td>Tailwind CSS v3 (CDN)</td><td>Estilização utility-first</td></tr>
+                    <tr><td>JavaScript Vanilla</td><td>Countdown, FAQ accordion</td></tr>
+                    <tr><td>CSS 3D Transforms</td><td>Efeito de perspectiva da capa</td></tr>
+                    <tr><td>Schema.org JSON-LD</td><td>Dados estruturados Book</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section" id="pt-sections">
+            <h2>4. Seções da Página</h2>
+            <ul>
+                <li><strong>Barra de Urgência</strong> — Barra fixa no topo com countdown e mensagem de oferta</li>
+                <li><strong>Hero</strong> — Título, subtítulo, capa 3D do livro com perspectiva CSS, dois CTAs</li>
+                <li><strong>Problema</strong> — Seção de agitação destacando as dificuldades do leitor</li>
+                <li><strong>O Que Você Vai Aprender</strong> — Checklist capítulo por capítulo</li>
+                <li><strong>Depoimentos</strong> — 3 cards de avaliação com estrelas</li>
+                <li><strong>Sobre o Autor</strong> — Seção com foto placeholder e credenciais</li>
+                <li><strong>Bônus</strong> — 3 cards de bônus com ancoragem de valor</li>
+                <li><strong>Preço</strong> — Âncora de preço (original vs. promocional), botão de compra, lista de features</li>
+                <li><strong>Garantia</strong> — Garantia de 30 dias com ícone de escudo</li>
+                <li><strong>FAQ</strong> — Perguntas em accordion com expand/collapse</li>
+                <li><strong>CTA Final</strong> — Última chamada para ação com urgência</li>
+                <li><strong>Footer</strong> — Copyright, privacidade, termos, contato</li>
+            </ul>
+        </section>
+
+        <section class="section" id="pt-copy">
+            <h2>5. Editando o Texto de Vendas</h2>
+            <h3>Títulos</h3>
+            <p>O título principal está na tag <code>&lt;h1&gt;</code> na seção Hero. Mantenha o <code>&lt;span class="text-cta-red"&gt;</code> em volta das palavras que quer destacar em vermelho.</p>
+            <h3>Capítulos</h3>
+            <p>Cada capítulo é um <code>&lt;li&gt;</code> na seção "O Que Você Vai Aprender". Copie um bloco para adicionar mais.</p>
+            <h3>Depoimentos</h3>
+            <p>Cada depoimento está dentro de uma tag <code>&lt;blockquote&gt;</code>. Edite a citação, nome e cargo.</p>
+            <h3>Preço</h3>
+            <p>Encontre a seção de preço e edite o preço original (<code>line-through</code>) e o promocional. Atualize o texto do botão.</p>
+        </section>
+
+        <section class="section" id="pt-images">
+            <h2>6. Substituindo Imagens</h2>
+            <h3>Capa do Livro</h3>
+            <p>Encontre o comentário <code>&lt;!-- REPLACE: Swap this placeholder --&gt;</code> e substitua o <code>&lt;div&gt;</code> placeholder por:</p>
+            <pre><code>&lt;img src="assets/img/book-cover.png"
+     alt="Título do seu livro"
+     class="w-[280px] md:w-[320px] rounded-r-lg shadow-2xl"&gt;</code></pre>
+            <h3>Foto do Autor</h3>
+            <p>Encontre <code>&lt;!-- REPLACE: Add your author photo --&gt;</code> e substitua o SVG por:</p>
+            <pre><code>&lt;img src="assets/img/author.jpg"
+     alt="Nome do autor"
+     class="w-40 h-40 rounded-full object-cover shadow-lg"&gt;</code></pre>
+        </section>
+
+        <section class="section" id="pt-countdown">
+            <h2>7. Cronômetro Regressivo</h2>
+            <p>Abra <code>assets/js/script.js</code> e encontre esta linha no topo:</p>
+            <pre><code>const COUNTDOWN_DEADLINE = '2026-03-20T23:59:59';</code></pre>
+            <p>Altere a data para seu prazo. Formato: <code>YYYY-MM-DDTHH:MM:SS</code>.</p>
+            <div class="tip">O timer exibe no formato DD:HH:MM:SS e mostra "EXPIRED" quando o prazo expira.</div>
+        </section>
+
+        <section class="section" id="pt-buy">
+            <h2>8. Botão de Compra &amp; Link de Pagamento</h2>
+            <p>Encontre o botão de compra e substitua <code>href="#"</code> pelo seu link de pagamento:</p>
+            <pre><code>&lt;a href="https://seu-checkout.com/produto" id="buy-btn" class="..."&gt;
+  COMPRAR AGORA — Apenas R$47 &amp;rarr;
+&lt;/a&gt;</code></pre>
+            <p>Plataformas suportadas: Hotmart, Kiwify, Eduzz, Monetizze, Gumroad, Stripe, PayPal.</p>
+        </section>
+
+        <section class="section" id="pt-colors">
+            <h2>9. Trocar as Cores</h2>
+            <p>Edite o config do Tailwind no <code>index.html</code>:</p>
+            <pre><code>colors: {
+  cta: {
+    red: '#DC2626',        // Botões CTA
+    'red-hover': '#B91C1C',
+    green: '#16A34A',      // CTA secundário
+    'green-hover': '#15803D',
+  },
+  brand: {
+    dark: '#1A1A1A',       // Cor do texto
+    muted: '#4A4A4A',      // Texto secundário
+    light: '#F9F9F9',      // Fundo das seções
+    accent: '#FEF3C7',     // Fundo dos cards de bônus
+  }
+}</code></pre>
+        </section>
+
+        <section class="section" id="pt-seo">
+            <h2>10. SEO &amp; Meta Tags</h2>
+            <ul>
+                <li><strong>Open Graph</strong> — og:title, og:description, og:image pré-configurados</li>
+                <li><strong>Twitter Card</strong> — summary_large_image com título, descrição, imagem</li>
+                <li><strong>Schema.org</strong> — JSON-LD Book com nome, descrição, autor</li>
+                <li><strong>HTML Semântico</strong> — Usa <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;blockquote&gt;</code>, <code>&lt;footer&gt;</code></li>
+            </ul>
+            <div class="warning">Substitua todo o conteúdo placeholder (título, descrição, nome do autor, URLs) pelos seus dados reais antes de publicar.</div>
+        </section>
+
+        <section class="section" id="pt-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>CSS customizado mínimo — Tailwind cuida da maior parte</li>
+                <li>JavaScript vanilla (zero dependências)</li>
+                <li>Transforms 3D com aceleração de GPU</li>
+                <li>Hints de preconnect para carregamento mais rápido</li>
+                <li>Sem imagens externas por padrão (usa placeholders CSS)</li>
+            </ul>
+        </section>
+
+        <section class="section" id="pt-credits">
+            <h2>12. Créditos &amp; Licença</h2>
+            <table>
+                <thead><tr><th>Recurso</th><th>Licença</th></tr></thead>
+                <tbody>
+                    <tr><td>Tailwind CSS</td><td>MIT License</td></tr>
+                    <tr><td>Stack de fontes do sistema</td><td>Livre / Nativas</td></tr>
+                </tbody>
+            </table>
+            <p>Todo o conteúdo placeholder é fictício e deve ser substituído antes da publicação.</p>
+        </section>
+
+    </div>
+
+</div>
+
+<script>
+    function setLang(lang) {
+        document.getElementById('lang-en').style.display = lang === 'en' ? 'block' : 'none';
+        document.getElementById('lang-pt').style.display = lang === 'pt' ? 'block' : 'none';
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+        });
+        localStorage.setItem('ebook-doc-lang', lang);
+    }
+
+    const savedLang = localStorage.getItem('ebook-doc-lang');
+    if (savedLang) setLang(savedLang);
+</script>
+
+</body>
+</html>

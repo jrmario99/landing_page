@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio — Projetos Criativos &amp; Desenvolvimento</title>
+  <meta name="description" content="Portfólio de projetos criativos. Design, desenvolvimento web, branding e mais. Veja meus trabalhos e entre em contato.">
+  <meta name="author" content="Seu Nome">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://seusite.com/">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Portfólio — Projetos Criativos &amp; Desenvolvimento">
+  <meta property="og:description" content="Portfólio de projetos criativos. Design, desenvolvimento web, branding e mais.">
+  <meta property="og:url" content="https://seusite.com/">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Portfólio — Projetos Criativos &amp; Desenvolvimento">
+  <meta name="twitter:description" content="Portfólio de projetos criativos. Design, desenvolvimento web, branding e mais.">
+  <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Portfólio",
+    "url": "https://seusite.com/",
+    "description": "Portfólio de projetos criativos e desenvolvimento web.",
+    "author": {
+      "@type": "Person",
+      "name": "Seu Nome"
+    }
+  }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/cursor.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- Header / Nav -->
+  <header class="header">
+    <nav class="nav container">
+      <a href="#" class="nav__logo">Portfolio.</a>
+      <ul class="nav__list">
+        <li><a href="#work" class="nav__link">Trabalhos</a></li>
+        <li><a href="#testimonials" class="nav__link">Depoimentos</a></li>
+        <li><a href="#contact" class="nav__link">Contato</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <h1 class="hero__title animate-on-scroll">
+          Criando<br>
+          <span class="hero__title--outline">Experiências</span><br>
+          Digitais
+        </h1>
+        <p class="hero__subtitle animate-on-scroll">
+          Design &amp; desenvolvimento com foco em resultados.
+        </p>
+        <a href="#work" class="hero__cta animate-on-scroll">Ver Projetos</a>
+      </div>
+    </section>
+
+    <!-- Portfolio / Work -->
+    <section class="work" id="work">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Trabalhos</h2>
+
+        <!-- Filters -->
+        <div class="work__filters animate-on-scroll">
+          <button class="work__filter active" data-filter="all">Todos</button>
+          <button class="work__filter" data-filter="design">Design</button>
+          <button class="work__filter" data-filter="web">Web</button>
+          <button class="work__filter" data-filter="branding">Branding</button>
+        </div>
+
+        <!-- Grid -->
+        <div class="work__grid">
+          <!-- Project 1 -->
+          <article class="work__card animate-on-scroll" data-category="design">
+            <div class="work__card-img">
+              <img src="https://picsum.photos/seed/proj1/600/400" alt="Redesign de aplicativo mobile para plataforma de streaming" loading="lazy" width="600" height="400">
+            </div>
+            <div class="work__card-info">
+              <h3 class="work__card-title">App Redesign</h3>
+              <span class="work__card-tag">Design</span>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="work__card animate-on-scroll" data-category="web">
+            <div class="work__card-img">
+              <img src="https://picsum.photos/seed/proj2/600/400" alt="Plataforma e-commerce completa com painel administrativo" loading="lazy" width="600" height="400">
+            </div>
+            <div class="work__card-info">
+              <h3 class="work__card-title">E-commerce Platform</h3>
+              <span class="work__card-tag">Web</span>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="work__card animate-on-scroll" data-category="branding">
+            <div class="work__card-img">
+              <img src="https://picsum.photos/seed/proj3/600/400" alt="Identidade visual completa para startup de tecnologia" loading="lazy" width="600" height="400">
+            </div>
+            <div class="work__card-info">
+              <h3 class="work__card-title">Brand Identity</h3>
+              <span class="work__card-tag">Branding</span>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="work__card animate-on-scroll" data-category="design">
+            <div class="work__card-img">
+              <img src="https://picsum.photos/seed/proj4/600/400" alt="Dashboard analytics com visualização de dados interativa" loading="lazy" width="600" height="400">
+            </div>
+            <div class="work__card-info">
+              <h3 class="work__card-title">Dashboard UI</h3>
+              <span class="work__card-tag">Design</span>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="work__card animate-on-scroll" data-category="web">
+            <div class="work__card-img">
+              <img src="https://picsum.photos/seed/proj5/600/400" alt="Website institucional com blog integrado e CMS" loading="lazy" width="600" height="400">
+            </div>
+            <div class="work__card-info">
+              <h3 class="work__card-title">Corporate Website</h3>
+              <span class="work__card-tag">Web</span>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="work__card animate-on-scroll" data-category="branding">
+            <div class="work__card-img">
+              <img src="https://picsum.photos/seed/proj6/600/400" alt="Sistema de design e guia de marca para empresa SaaS" loading="lazy" width="600" height="400">
+            </div>
+            <div class="work__card-info">
+              <h3 class="work__card-title">Design System</h3>
+              <span class="work__card-tag">Branding</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Depoimentos</h2>
+
+        <div class="testimonials__grid">
+          <blockquote class="testimonial-card animate-on-scroll">
+            <p class="testimonial-card__text">"Trabalho excepcional. Entregou além das expectativas com atenção a cada detalhe do projeto."</p>
+            <footer class="testimonial-card__author">
+              <strong>Ana Silva</strong>
+              <span>CEO, TechStart</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card animate-on-scroll">
+            <p class="testimonial-card__text">"Profissional incrível. O redesign do nosso site aumentou as conversões em 40%."</p>
+            <footer class="testimonial-card__author">
+              <strong>Carlos Mendes</strong>
+              <span>Diretor, AgênciaX</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card animate-on-scroll">
+            <p class="testimonial-card__text">"Comunicação clara, prazos cumpridos e resultado final impecável. Recomendo sem hesitar."</p>
+            <footer class="testimonial-card__author">
+              <strong>Juliana Costa</strong>
+              <span>Fundadora, BrandCo</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card animate-on-scroll">
+            <p class="testimonial-card__text">"Transformou nossa visão em realidade. O nível de criatividade e técnica é impressionante."</p>
+            <footer class="testimonial-card__author">
+              <strong>Ricardo Alves</strong>
+              <span>CTO, DevHub</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card animate-on-scroll">
+            <p class="testimonial-card__text">"A melhor decisão que tomamos foi contratar esse profissional. Resultado excelente."</p>
+            <footer class="testimonial-card__author">
+              <strong>Mariana Lopes</strong>
+              <span>Marketing, StartupY</span>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial-card animate-on-scroll">
+            <p class="testimonial-card__text">"Design moderno e funcional. Nossos clientes elogiam a nova experiência constantemente."</p>
+            <footer class="testimonial-card__author">
+              <strong>Pedro Santos</strong>
+              <span>Diretor Criativo, StudioZ</span>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Contato</h2>
+        <p class="contact__subtitle animate-on-scroll">Tem um projeto em mente? Vamos conversar.</p>
+
+        <form class="contact__form animate-on-scroll" id="contact-form" action="#" method="POST" novalidate>
+          <div class="contact__field">
+            <input type="text" id="name" name="name" required placeholder=" " autocomplete="name">
+            <label for="name">Nome</label>
+            <span class="contact__error" aria-live="polite"></span>
+          </div>
+
+          <div class="contact__field">
+            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email">
+            <label for="email">E-mail</label>
+            <span class="contact__error" aria-live="polite"></span>
+          </div>
+
+          <div class="contact__field">
+            <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+            <label for="message">Mensagem</label>
+            <span class="contact__error" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="contact__submit">Enviar Mensagem</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <span class="footer__copy">&copy; 2026 Portfolio. Todos os direitos reservados.</span>
+        <div class="footer__links">
+          <a href="#" aria-label="GitHub" class="footer__link">GitHub</a>
+          <a href="#" aria-label="LinkedIn" class="footer__link">LinkedIn</a>
+          <a href="#" aria-label="Instagram" class="footer__link">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/cursor.js"></script>
+  <script src="assets/js/animations.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

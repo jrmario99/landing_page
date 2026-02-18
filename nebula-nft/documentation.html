@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NebulaNFT — Documentation</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #0a0a1a; --bg-alt: #111128; --text: #e2e8f0; --text-muted: #94a3b8;
+            --border: rgba(255,255,255,0.08); --primary: #00f0ff; --primary-light: rgba(0,240,255,0.08);
+            --code-bg: #1a1a3e;
+        }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px; }
+
+        .lang-toggle {
+            position: fixed; top: 20px; right: 20px; z-index: 100; display: flex; gap: 4px;
+            background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 4px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        }
+        .lang-btn {
+            padding: 6px 14px; border: none; background: transparent; border-radius: 6px; cursor: pointer;
+            font-size: 13px; font-weight: 700; color: var(--text-muted); transition: all 0.2s;
+        }
+        .lang-btn.active { background: var(--primary); color: #0a0a1a; }
+
+        .wrapper { max-width: 860px; margin: 0 auto; padding: 60px 24px 80px; }
+        .doc-header { text-align: center; margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--border); }
+        .doc-header h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+        .doc-header .badge {
+            display: inline-block; background: var(--primary-light); color: var(--primary);
+            font-size: 13px; font-weight: 700; padding: 4px 14px; border-radius: 20px; margin-bottom: 16px;
+        }
+        .doc-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+
+        .toc { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; margin-bottom: 48px; }
+        .toc h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 16px; }
+        .toc ol { list-style: none; counter-reset: toc; padding: 0; }
+        .toc li { counter-increment: toc; margin-bottom: 8px; }
+        .toc li::before { content: counter(toc, decimal-leading-zero) "."; color: var(--primary); font-weight: 700; margin-right: 10px; font-size: 14px; }
+        .toc a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 15px; transition: color 0.2s; }
+        .toc a:hover { color: var(--primary); }
+
+        .section { margin-bottom: 48px; }
+        .section h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--primary-light); }
+        .section h3 { font-size: 1.1rem; font-weight: 600; margin: 24px 0 10px; }
+        .section p, .section li { color: var(--text-muted); margin-bottom: 10px; }
+        .section ul, .section ol { padding-left: 24px; margin-bottom: 16px; }
+        .section ul li { list-style: disc; }
+
+        code { background: var(--code-bg); padding: 2px 7px; border-radius: 4px; font-size: 0.9em; font-family: 'SF Mono', monospace; color: var(--primary); }
+        pre { background: var(--bg-alt); color: var(--text); padding: 20px 24px; border-radius: 10px; overflow-x: auto; margin: 16px 0; font-size: 14px; line-height: 1.6; border: 1px solid var(--border); }
+        pre code { background: none; color: inherit; padding: 0; font-size: inherit; }
+
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+        th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); }
+        th { background: var(--bg-alt); font-weight: 600; color: var(--text); }
+        td { color: var(--text-muted); }
+
+        .tip { background: rgba(0,240,255,0.05); border-left: 4px solid var(--primary); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #67e8f9; }
+        .warning { background: rgba(236,72,153,0.05); border-left: 4px solid #ec4899; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 14px; color: #f9a8d4; }
+
+        .file-tree { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; font-family: 'SF Mono', monospace; font-size: 14px; line-height: 1.8; color: var(--text-muted); }
+        .file-tree .folder { color: var(--primary); font-weight: 600; }
+        .file-tree .comment { opacity: 0.5; }
+
+        @media (max-width: 640px) { .wrapper { padding: 40px 16px 60px; } .doc-header h1 { font-size: 1.6rem; } .lang-toggle { top: 12px; right: 12px; } }
+    </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('pt')">PT</button>
+</div>
+
+<div class="wrapper">
+
+    <!-- ENGLISH -->
+    <div id="lang-en">
+        <header class="doc-header">
+            <div class="badge">Documentation</div>
+            <h1>NebulaNFT</h1>
+            <p>Web3 / NFT collection landing page with starfield animation, glassmorphism cards, interactive roadmap, team section, and wallet connect modal.</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#en-overview">Overview</a></li>
+                <li><a href="#en-structure">File Structure</a></li>
+                <li><a href="#en-tech">Tech Stack</a></li>
+                <li><a href="#en-sections">Page Sections</a></li>
+                <li><a href="#en-roadmap">Customizing the Roadmap</a></li>
+                <li><a href="#en-team">Customizing the Team</a></li>
+                <li><a href="#en-faq">Customizing the FAQ</a></li>
+                <li><a href="#en-colors">Changing Colors</a></li>
+                <li><a href="#en-branding">Changing Project Name &amp; Stats</a></li>
+                <li><a href="#en-seo">SEO &amp; Meta Tags</a></li>
+                <li><a href="#en-performance">Performance</a></li>
+                <li><a href="#en-credits">Credits &amp; License</a></li>
+            </ol>
+        </nav>
+
+        <section class="section" id="en-overview">
+            <h2>1. Overview</h2>
+            <p>NebulaNFT is a single-page landing page for NFT collections, Web3 projects, and blockchain communities. Features a full-screen animated starfield canvas, glassmorphism UI, animated roadmap timeline, team grid, FAQ accordion, and a wallet connect modal.</p>
+            <p>Built with Tailwind CSS and vanilla JavaScript. The starfield is rendered on a <code>&lt;canvas&gt;</code> element for smooth 60fps animation.</p>
+        </section>
+
+        <section class="section" id="en-structure">
+            <h2>2. File Structure</h2>
+            <div class="file-tree">
+                <span class="folder">nebula-nft/</span><br>
+                ├── index.html <span class="comment">← Main page</span><br>
+                ├── documentation.html <span class="comment">← This file</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── style.css <span class="comment">← Custom styles (glassmorphism, gradients, animations)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── script.js <span class="comment">← Starfield, roadmap, FAQ, wallet modal</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Browser tab icon</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Social sharing (1200×630)</span>
+            </div>
+        </section>
+
+        <section class="section" id="en-tech">
+            <h2>3. Tech Stack</h2>
+            <table>
+                <thead><tr><th>Technology</th><th>Purpose</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 + Canvas</td><td>Structure + starfield animation</td></tr>
+                    <tr><td>Tailwind CSS v3 (CDN)</td><td>Utility-first styling</td></tr>
+                    <tr><td>Vanilla JavaScript</td><td>Starfield, accordion, modals</td></tr>
+                    <tr><td>Google Fonts (Inter, Space Grotesk)</td><td>Typography</td></tr>
+                    <tr><td>Schema.org JSON-LD</td><td>Structured data</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section" id="en-sections">
+            <h2>4. Page Sections</h2>
+            <ul>
+                <li><strong>Starfield Canvas</strong> — Full-screen animated star background rendered on <code>&lt;canvas&gt;</code></li>
+                <li><strong>Navbar</strong> — Glassmorphism fixed nav with logo, links, and "Connect Wallet" CTA</li>
+                <li><strong>Hero</strong> — Large headline with holographic gradient text, stats (NFTs, Holders, Floor Price), dual CTA buttons</li>
+                <li><strong>About</strong> — 3-column feature grid with glassmorphism cards and gradient icons</li>
+                <li><strong>Roadmap</strong> — Vertical timeline with alternating left/right phases, animated dots, and progress line</li>
+                <li><strong>Team</strong> — 4-member grid with avatar initials, gradient rings, name/role, and social links</li>
+                <li><strong>FAQ</strong> — Accordion with expand/collapse animation</li>
+                <li><strong>CTA</strong> — Final call to action with gradient background</li>
+                <li><strong>Footer</strong> — Logo, nav links, social icons, copyright</li>
+                <li><strong>Wallet Modal</strong> — Overlay modal with MetaMask, WalletConnect, Coinbase, Phantom options</li>
+            </ul>
+        </section>
+
+        <section class="section" id="en-roadmap">
+            <h2>5. Customizing the Roadmap</h2>
+            <p>Each phase is a <code>.roadmap-item</code> div with <code>data-phase</code> attribute. Edit the label, title, and milestone <code>&lt;li&gt;</code> items.</p>
+            <h3>Adding a New Phase</h3>
+            <ol>
+                <li>Copy an existing <code>.roadmap-item</code> block</li>
+                <li>Update <code>data-phase</code> to the next number</li>
+                <li>Choose side: odd phases = left, even phases = right</li>
+                <li>Pick a dot color: <code>bg-holo-cyan</code>, <code>bg-holo-purple</code>, <code>bg-holo-pink</code>, or <code>bg-holo-blue</code></li>
+            </ol>
+            <div class="tip">The connecting line and scroll animations adjust automatically — no JS changes needed.</div>
+        </section>
+
+        <section class="section" id="en-team">
+            <h2>6. Customizing the Team</h2>
+            <p>Team members are in <code>&lt;section id="team"&gt;</code>. Each member is a <code>.glass-card</code>. Edit the avatar letter, name, role, gradient colors (<code>from-holo-*</code> / <code>to-holo-*</code>), and social link URLs.</p>
+            <p>To add a member, copy an existing card and adjust the grid columns (e.g., <code>md:grid-cols-5</code>).</p>
+        </section>
+
+        <section class="section" id="en-faq">
+            <h2>7. Customizing the FAQ</h2>
+            <p>Each FAQ entry is a <code>.faq-item</code> div. Edit the question in <code>.faq-toggle span</code> and the answer in <code>.faq-content p</code>. To add entries, copy a block — accordion behavior is applied automatically.</p>
+        </section>
+
+        <section class="section" id="en-colors">
+            <h2>8. Changing Colors</h2>
+            <p>Colors are defined in two places:</p>
+            <h3>Tailwind Config (index.html)</h3>
+            <pre><code>colors: {
+  nebula: { 900: '#0a0a1a', 800: '#111128', ... },
+  holo: {
+    cyan: '#00f0ff',    // Primary accent
+    purple: '#a855f7',  // Secondary
+    pink: '#ec4899',    // Tertiary
+    blue: '#3b82f6',    // Quaternary
+  }
+}</code></pre>
+            <h3>CSS Gradients (style.css)</h3>
+            <p>Update gradient values in <code>.holo-text</code>, <code>.btn-holo</code>, and <code>.timeline-line</code> classes to match.</p>
+        </section>
+
+        <section class="section" id="en-branding">
+            <h2>9. Changing Project Name &amp; Stats</h2>
+            <p>Search for <code>NebulaNFT</code> and <code>Nebula</code> in <code>index.html</code> to replace all instances (title, navbar, footer, FAQ, CTA).</p>
+            <p>Hero stats (<code>10K</code>, <code>3.2K</code>, <code>42 ETH</code>) are plain text — search and replace directly.</p>
+        </section>
+
+        <section class="section" id="en-seo">
+            <h2>10. SEO &amp; Meta Tags</h2>
+            <ul>
+                <li><strong>Open Graph</strong> — og:title, og:description, og:image pre-configured</li>
+                <li><strong>Twitter Card</strong> — summary_large_image with title, description, image</li>
+                <li><strong>Schema.org</strong> — WebSite JSON-LD structured data</li>
+                <li><strong>Semantic HTML</strong> — Uses <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;footer&gt;</code></li>
+            </ul>
+            <div class="warning">Replace all placeholder URLs (nebulanft.com) with your actual domain before publishing.</div>
+        </section>
+
+        <section class="section" id="en-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Starfield uses <code>&lt;canvas&gt;</code> with <code>requestAnimationFrame</code> for smooth 60fps</li>
+                <li>Vanilla JavaScript — zero dependencies</li>
+                <li>Intersection Observer for scroll-triggered roadmap animations</li>
+                <li>Glassmorphism via <code>backdrop-filter: blur()</code> with GPU acceleration</li>
+                <li>Font preconnect hints for faster Google Fonts loading</li>
+            </ul>
+        </section>
+
+        <section class="section" id="en-credits">
+            <h2>12. Credits &amp; License</h2>
+            <table>
+                <thead><tr><th>Resource</th><th>License</th></tr></thead>
+                <tbody>
+                    <tr><td>Tailwind CSS</td><td>MIT License</td></tr>
+                    <tr><td>Google Fonts (Inter, Space Grotesk)</td><td>SIL Open Font License</td></tr>
+                </tbody>
+            </table>
+            <p>All placeholder content is fictional. Replace before publishing.</p>
+        </section>
+    </div>
+
+    <!-- PORTUGUESE -->
+    <div id="lang-pt" style="display:none;">
+        <header class="doc-header">
+            <div class="badge">Documentação</div>
+            <h1>NebulaNFT</h1>
+            <p>Landing page Web3 / coleção NFT com animação de estrelas, cards glassmorphism, roadmap interativo, seção de equipe e modal de conexão de carteira.</p>
+        </header>
+
+        <nav class="toc">
+            <h2>Sumário</h2>
+            <ol>
+                <li><a href="#pt-overview">Visão Geral</a></li>
+                <li><a href="#pt-structure">Estrutura de Arquivos</a></li>
+                <li><a href="#pt-tech">Tecnologias</a></li>
+                <li><a href="#pt-sections">Seções da Página</a></li>
+                <li><a href="#pt-roadmap">Personalizar o Roadmap</a></li>
+                <li><a href="#pt-team">Personalizar a Equipe</a></li>
+                <li><a href="#pt-faq">Personalizar o FAQ</a></li>
+                <li><a href="#pt-colors">Trocar as Cores</a></li>
+                <li><a href="#pt-branding">Trocar Nome do Projeto &amp; Stats</a></li>
+                <li><a href="#pt-seo">SEO &amp; Meta Tags</a></li>
+                <li><a href="#pt-performance">Performance</a></li>
+                <li><a href="#pt-credits">Créditos &amp; Licença</a></li>
+            </ol>
+        </nav>
+
+        <section class="section" id="pt-overview">
+            <h2>1. Visão Geral</h2>
+            <p>NebulaNFT é uma landing page single-page para coleções NFT, projetos Web3 e comunidades blockchain. Possui campo de estrelas animado em canvas, UI glassmorphism, timeline de roadmap animada, grid de equipe, FAQ accordion e modal de conexão de carteira.</p>
+            <p>Construído com Tailwind CSS e JavaScript vanilla. O starfield é renderizado em <code>&lt;canvas&gt;</code> para animação suave a 60fps.</p>
+        </section>
+
+        <section class="section" id="pt-structure">
+            <h2>2. Estrutura de Arquivos</h2>
+            <div class="file-tree">
+                <span class="folder">nebula-nft/</span><br>
+                ├── index.html <span class="comment">← Página principal</span><br>
+                ├── documentation.html <span class="comment">← Este arquivo</span><br>
+                └── <span class="folder">assets/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">css/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── style.css <span class="comment">← Estilos (glassmorphism, gradientes, animações)</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;├── <span class="folder">js/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── script.js <span class="comment">← Starfield, roadmap, FAQ, wallet modal</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;└── <span class="folder">img/</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── favicon.svg <span class="comment">← Ícone da aba</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── og-image.jpg <span class="comment">← Compartilhamento social (1200×630)</span>
+            </div>
+        </section>
+
+        <section class="section" id="pt-tech">
+            <h2>3. Tecnologias</h2>
+            <table>
+                <thead><tr><th>Tecnologia</th><th>Finalidade</th></tr></thead>
+                <tbody>
+                    <tr><td>HTML5 + Canvas</td><td>Estrutura + animação starfield</td></tr>
+                    <tr><td>Tailwind CSS v3 (CDN)</td><td>Estilização utility-first</td></tr>
+                    <tr><td>JavaScript Vanilla</td><td>Starfield, accordion, modais</td></tr>
+                    <tr><td>Google Fonts (Inter, Space Grotesk)</td><td>Tipografia</td></tr>
+                    <tr><td>Schema.org JSON-LD</td><td>Dados estruturados</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="section" id="pt-sections">
+            <h2>4. Seções da Página</h2>
+            <ul>
+                <li><strong>Starfield Canvas</strong> — Fundo animado de estrelas em tela cheia renderizado em <code>&lt;canvas&gt;</code></li>
+                <li><strong>Navbar</strong> — Nav fixa glassmorphism com logo, links e botão "Connect Wallet"</li>
+                <li><strong>Hero</strong> — Título com gradiente holográfico, stats (NFTs, Holders, Floor Price), dois CTAs</li>
+                <li><strong>About</strong> — Grid 3 colunas com cards glassmorphism e ícones gradiente</li>
+                <li><strong>Roadmap</strong> — Timeline vertical com fases alternando esquerda/direita, dots animados e linha de progresso</li>
+                <li><strong>Team</strong> — Grid de 4 membros com iniciais, anéis gradiente, nome/cargo e links sociais</li>
+                <li><strong>FAQ</strong> — Accordion com animação expand/collapse</li>
+                <li><strong>CTA</strong> — Chamada final com fundo gradiente</li>
+                <li><strong>Footer</strong> — Logo, links, ícones sociais, copyright</li>
+                <li><strong>Wallet Modal</strong> — Modal overlay com opções MetaMask, WalletConnect, Coinbase, Phantom</li>
+            </ul>
+        </section>
+
+        <section class="section" id="pt-roadmap">
+            <h2>5. Personalizar o Roadmap</h2>
+            <p>Cada fase é um <code>.roadmap-item</code> com atributo <code>data-phase</code>. Edite o label, título e itens <code>&lt;li&gt;</code>.</p>
+            <h3>Adicionar Nova Fase</h3>
+            <ol>
+                <li>Copie um bloco <code>.roadmap-item</code> existente</li>
+                <li>Atualize <code>data-phase</code> para o próximo número</li>
+                <li>Escolha o lado: fases ímpares = esquerda, pares = direita</li>
+                <li>Escolha cor do dot: <code>bg-holo-cyan</code>, <code>bg-holo-purple</code>, <code>bg-holo-pink</code> ou <code>bg-holo-blue</code></li>
+            </ol>
+            <div class="tip">A linha conectora e animações de scroll se ajustam automaticamente — sem mudanças no JS.</div>
+        </section>
+
+        <section class="section" id="pt-team">
+            <h2>6. Personalizar a Equipe</h2>
+            <p>Os membros estão em <code>&lt;section id="team"&gt;</code>. Cada membro é um <code>.glass-card</code>. Edite a letra do avatar, nome, cargo, cores do gradiente (<code>from-holo-*</code> / <code>to-holo-*</code>) e URLs dos links sociais.</p>
+            <p>Para adicionar um membro, copie um card existente e ajuste as colunas do grid (ex: <code>md:grid-cols-5</code>).</p>
+        </section>
+
+        <section class="section" id="pt-faq">
+            <h2>7. Personalizar o FAQ</h2>
+            <p>Cada entrada é um <code>.faq-item</code>. Edite a pergunta em <code>.faq-toggle span</code> e a resposta em <code>.faq-content p</code>. Para adicionar, copie um bloco — o comportamento do accordion é aplicado automaticamente.</p>
+        </section>
+
+        <section class="section" id="pt-colors">
+            <h2>8. Trocar as Cores</h2>
+            <p>As cores são definidas em dois lugares:</p>
+            <h3>Tailwind Config (index.html)</h3>
+            <pre><code>colors: {
+  nebula: { 900: '#0a0a1a', 800: '#111128', ... },
+  holo: {
+    cyan: '#00f0ff',    // Destaque principal
+    purple: '#a855f7',  // Secundário
+    pink: '#ec4899',    // Terciário
+    blue: '#3b82f6',    // Quaternário
+  }
+}</code></pre>
+            <h3>Gradientes CSS (style.css)</h3>
+            <p>Atualize os valores de gradiente em <code>.holo-text</code>, <code>.btn-holo</code> e <code>.timeline-line</code> para combinar.</p>
+        </section>
+
+        <section class="section" id="pt-branding">
+            <h2>9. Trocar Nome do Projeto &amp; Stats</h2>
+            <p>Procure por <code>NebulaNFT</code> e <code>Nebula</code> no <code>index.html</code> para substituir todas as ocorrências (title, navbar, footer, FAQ, CTA).</p>
+            <p>Stats do hero (<code>10K</code>, <code>3.2K</code>, <code>42 ETH</code>) são texto puro — busque e substitua diretamente.</p>
+        </section>
+
+        <section class="section" id="pt-seo">
+            <h2>10. SEO &amp; Meta Tags</h2>
+            <ul>
+                <li><strong>Open Graph</strong> — og:title, og:description, og:image pré-configurados</li>
+                <li><strong>Twitter Card</strong> — summary_large_image com título, descrição, imagem</li>
+                <li><strong>Schema.org</strong> — JSON-LD WebSite</li>
+                <li><strong>HTML Semântico</strong> — Usa <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;footer&gt;</code></li>
+            </ul>
+            <div class="warning">Substitua todas as URLs placeholder (nebulanft.com) pelo seu domínio real antes de publicar.</div>
+        </section>
+
+        <section class="section" id="pt-performance">
+            <h2>11. Performance</h2>
+            <ul>
+                <li>Starfield usa <code>&lt;canvas&gt;</code> com <code>requestAnimationFrame</code> para 60fps suave</li>
+                <li>JavaScript vanilla — zero dependências</li>
+                <li>Intersection Observer para animações de scroll do roadmap</li>
+                <li>Glassmorphism via <code>backdrop-filter: blur()</code> com aceleração de GPU</li>
+                <li>Hints de preconnect para carregamento mais rápido do Google Fonts</li>
+            </ul>
+        </section>
+
+        <section class="section" id="pt-credits">
+            <h2>12. Créditos &amp; Licença</h2>
+            <table>
+                <thead><tr><th>Recurso</th><th>Licença</th></tr></thead>
+                <tbody>
+                    <tr><td>Tailwind CSS</td><td>MIT License</td></tr>
+                    <tr><td>Google Fonts (Inter, Space Grotesk)</td><td>SIL Open Font License</td></tr>
+                </tbody>
+            </table>
+            <p>Todo o conteúdo placeholder é fictício. Substitua antes de publicar.</p>
+        </section>
+    </div>
+
+</div>
+
+<script>
+    function setLang(lang) {
+        document.getElementById('lang-en').style.display = lang === 'en' ? 'block' : 'none';
+        document.getElementById('lang-pt').style.display = lang === 'pt' ? 'block' : 'none';
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+        });
+        localStorage.setItem('nebula-doc-lang', lang);
+    }
+    const savedLang = localStorage.getItem('nebula-doc-lang');
+    if (savedLang) setLang(savedLang);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ShopFlow — Loja virtual de moda e tecnologia. Frete grátis acima de R$ 200. As melhores marcas com os melhores preços.">
+    <meta name="keywords" content="loja virtual, moda, tecnologia, roupas, acessórios, eletrônicos, shop online">
+    <meta name="author" content="ShopFlow">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ShopFlow — Moda & Tech com Frete Grátis">
+    <meta property="og:description" content="As melhores marcas de moda e tecnologia. Frete grátis acima de R$ 200.">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ShopFlow — Moda & Tech com Frete Grátis">
+    <meta name="twitter:description" content="As melhores marcas de moda e tecnologia. Frete grátis acima de R$ 200.">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "name": "ShopFlow",
+        "url": "https://yoursite.com/",
+        "description": "Loja virtual de moda e tecnologia. Frete grátis acima de R$ 200.",
+        "logo": "https://yoursite.com/assets/img/favicon.svg",
+        "image": "https://yoursite.com/assets/img/og-image.jpg"
+    }
+    </script>
+
+    <title>ShopFlow — Moda & Tech | Frete Grátis acima de R$ 200</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shop: {
+                            50:  '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        },
+                        accent: {
+                            50:  '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        },
+                        sale: {
+                            500: '#ef4444',
+                            600: '#dc2626',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/ecommerce.css">
+</head>
+<body class="font-sans text-shop-700 bg-white antialiased">
+
+    <!-- ============================================
+         PROMO BAR (Top Strip)
+    ============================================ -->
+    <div id="promoBar" class="bg-shop-900 text-white text-center text-xs sm:text-sm font-medium py-2.5 px-4 relative">
+        <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            <!-- EDITABLE: Promo text -->
+            <span><strong>FRETE GRÁTIS</strong> em compras acima de <strong>R$ 200</strong> &nbsp;|&nbsp; Use o cupom <strong class="text-accent-400">SHOP10</strong> e ganhe 10% OFF</span>
+        </div>
+        <button id="closePromo" class="absolute right-3 top-1/2 -translate-y-1/2 w-7 h-7 flex items-center justify-center text-white/60 hover:text-white transition-colors" aria-label="Fechar barra promocional">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+    </div>
+
+    <!-- ============================================
+         HEADER
+    ============================================ -->
+    <header id="header" class="sticky top-0 z-40 bg-white border-b border-shop-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16 lg:h-20 gap-4">
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-shop-50 transition-colors" aria-label="Abrir menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 shrink-0" aria-label="ShopFlow Home">
+                    <div class="w-9 h-9 bg-shop-900 rounded-lg flex items-center justify-center">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"><path d="M6 6h15l-1.5 9H7.5z"/><circle cx="10" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+                    </div>
+                    <span class="text-xl font-extrabold text-shop-900 tracking-tight">Shop<span class="text-accent-500">Flow</span></span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex items-center gap-1" aria-label="Navegação principal">
+                    <a href="#" class="px-4 py-2 text-sm font-semibold text-shop-900 hover:text-accent-600 transition-colors rounded-lg hover:bg-shop-50">Início</a>
+                    <div class="nav-dropdown relative group">
+                        <button class="px-4 py-2 text-sm font-semibold text-shop-600 hover:text-shop-900 transition-colors rounded-lg hover:bg-shop-50 flex items-center gap-1">
+                            Categorias
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="nav-dropdown__menu absolute top-full left-0 mt-1 bg-white rounded-xl shadow-xl shadow-shop-900/10 border border-shop-100 py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <a href="#" class="block px-4 py-2.5 text-sm text-shop-600 hover:bg-shop-50 hover:text-shop-900">Masculino</a>
+                            <a href="#" class="block px-4 py-2.5 text-sm text-shop-600 hover:bg-shop-50 hover:text-shop-900">Feminino</a>
+                            <a href="#" class="block px-4 py-2.5 text-sm text-shop-600 hover:bg-shop-50 hover:text-shop-900">Eletrônicos</a>
+                            <a href="#" class="block px-4 py-2.5 text-sm text-shop-600 hover:bg-shop-50 hover:text-shop-900">Acessórios</a>
+                            <a href="#" class="block px-4 py-2.5 text-sm text-shop-600 hover:bg-shop-50 hover:text-shop-900">Calçados</a>
+                        </div>
+                    </div>
+                    <a href="#featured" class="px-4 py-2 text-sm font-semibold text-shop-600 hover:text-shop-900 transition-colors rounded-lg hover:bg-shop-50">Destaques</a>
+                    <a href="#deal" class="px-4 py-2 text-sm font-semibold text-sale-500 hover:text-sale-600 transition-colors rounded-lg hover:bg-red-50">Ofertas</a>
+                </nav>
+
+                <!-- Search Bar (Desktop) -->
+                <div class="hidden lg:flex flex-1 max-w-md relative" id="searchWrapper">
+                    <input type="search" id="searchInput" placeholder="Buscar produtos, marcas..." class="w-full h-11 pl-11 pr-4 bg-shop-50 border border-shop-200 rounded-xl text-sm text-shop-800 placeholder:text-shop-400 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-accent-400 transition-all" autocomplete="off">
+                    <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 text-shop-400 pointer-events-none" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <!-- Search Suggestions -->
+                    <div id="searchSuggestions" class="search-suggestions absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl shadow-shop-900/10 border border-shop-100 py-2 hidden z-50">
+                        <p class="px-4 py-1.5 text-xs font-bold text-shop-400 uppercase tracking-wider">Sugestões</p>
+                        <a href="#" class="search-suggestion flex items-center gap-3 px-4 py-2.5 hover:bg-shop-50 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-shop-300"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+                            <span class="text-sm text-shop-600">Camiseta Básica Algodão</span>
+                        </a>
+                        <a href="#" class="search-suggestion flex items-center gap-3 px-4 py-2.5 hover:bg-shop-50 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-shop-300"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+                            <span class="text-sm text-shop-600">Fone Bluetooth TWS</span>
+                        </a>
+                        <a href="#" class="search-suggestion flex items-center gap-3 px-4 py-2.5 hover:bg-shop-50 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-shop-300"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+                            <span class="text-sm text-shop-600">Tênis Running Pro</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Action Icons -->
+                <div class="flex items-center gap-1">
+                    <!-- Mobile Search -->
+                    <button id="mobileSearchBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-shop-50 transition-colors" aria-label="Buscar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </button>
+                    <!-- Account -->
+                    <a href="#" class="hidden sm:flex w-10 h-10 items-center justify-center rounded-xl hover:bg-shop-50 transition-colors text-shop-600 hover:text-shop-900" aria-label="Minha conta">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </a>
+                    <!-- Wishlist -->
+                    <button class="hidden sm:flex w-10 h-10 items-center justify-center rounded-xl hover:bg-shop-50 transition-colors text-shop-600 hover:text-shop-900 relative" aria-label="Favoritos">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                        <span id="wishlistBadge" class="header-badge absolute -top-0.5 -right-0.5 w-5 h-5 bg-sale-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center hidden">0</span>
+                    </button>
+                    <!-- Cart -->
+                    <button id="cartToggle" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-shop-50 transition-colors text-shop-600 hover:text-shop-900 relative" aria-label="Abrir carrinho">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        <span id="cartBadge" class="header-badge absolute -top-0.5 -right-0.5 w-5 h-5 bg-accent-500 text-shop-900 text-[10px] font-bold rounded-full flex items-center justify-center">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Search Overlay -->
+        <div id="mobileSearch" class="lg:hidden bg-white border-b border-shop-100 px-4 py-3 hidden">
+            <div class="relative">
+                <input type="search" placeholder="Buscar produtos..." class="w-full h-11 pl-11 pr-4 bg-shop-50 border border-shop-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent-400">
+                <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 text-shop-400" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+        </div>
+    </header>
+
+    <main>
+    <!-- ============================================
+         MOBILE MENU (Slide-in)
+    ============================================ -->
+    <div id="mobileMenuOverlay" class="fixed inset-0 bg-black/50 z-50 opacity-0 invisible transition-all duration-300"></div>
+    <div id="mobileMenu" class="fixed top-0 left-0 bottom-0 w-[300px] max-w-[85vw] bg-white z-50 -translate-x-full transition-transform duration-300 overflow-y-auto">
+        <div class="p-5">
+            <div class="flex items-center justify-between mb-8">
+                <span class="text-lg font-extrabold text-shop-900">Shop<span class="text-accent-500">Flow</span></span>
+                <button id="mobileMenuClose" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-shop-50" aria-label="Fechar menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <nav class="space-y-1">
+                <a href="#" class="block py-3 px-4 text-base font-semibold text-shop-900 hover:bg-shop-50 rounded-xl">Início</a>
+                <a href="#categories" class="block py-3 px-4 text-base font-semibold text-shop-700 hover:bg-shop-50 rounded-xl">Categorias</a>
+                <a href="#featured" class="block py-3 px-4 text-base font-semibold text-shop-700 hover:bg-shop-50 rounded-xl">Destaques</a>
+                <a href="#deal" class="block py-3 px-4 text-base font-semibold text-sale-500 hover:bg-red-50 rounded-xl">Ofertas</a>
+                <div class="border-t border-shop-100 my-4"></div>
+                <a href="#" class="flex items-center gap-3 py-3 px-4 text-base text-shop-600 hover:bg-shop-50 rounded-xl">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Minha Conta
+                </a>
+                <a href="#" class="flex items-center gap-3 py-3 px-4 text-base text-shop-600 hover:bg-shop-50 rounded-xl">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                    Favoritos
+                </a>
+                <a href="#" class="flex items-center gap-3 py-3 px-4 text-base text-shop-600 hover:bg-shop-50 rounded-xl">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    Rastrear Pedido
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- ============================================
+         CART SIDEBAR (Off-Canvas Right)
+    ============================================ -->
+    <div id="cartOverlay" class="fixed inset-0 bg-black/50 z-50 opacity-0 invisible transition-all duration-300"></div>
+    <aside id="cartSidebar" class="fixed top-0 right-0 bottom-0 w-[400px] max-w-[90vw] bg-white z-50 translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+        <!-- Cart Header -->
+        <div class="flex items-center justify-between p-5 border-b border-shop-100">
+            <div class="flex items-center gap-2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span class="font-bold text-shop-900">Meu Carrinho</span>
+                <span id="cartCount" class="text-sm text-shop-400">(0)</span>
+            </div>
+            <button id="cartClose" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-shop-50 transition-colors" aria-label="Fechar carrinho">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <!-- Cart Items -->
+        <div id="cartItems" class="flex-1 overflow-y-auto p-5">
+            <!-- Empty state -->
+            <div id="cartEmpty" class="flex flex-col items-center justify-center h-full text-center">
+                <div class="w-20 h-20 bg-shop-50 rounded-full flex items-center justify-center mb-4">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-shop-300"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                </div>
+                <p class="font-bold text-shop-800 mb-1">Carrinho vazio</p>
+                <p class="text-sm text-shop-400 mb-5">Adicione produtos para começar.</p>
+                <button onclick="ShopFlow.closeCart()" class="text-sm font-semibold text-accent-600 hover:text-accent-700 underline underline-offset-4">Continuar comprando</button>
+            </div>
+            <!-- Items injected by JS here -->
+        </div>
+
+        <!-- Cart Footer -->
+        <div id="cartFooter" class="border-t border-shop-100 p-5 space-y-3 hidden">
+            <div class="flex items-center justify-between">
+                <span class="text-shop-500">Subtotal:</span>
+                <span id="cartSubtotal" class="text-lg font-bold text-shop-900">R$ 0</span>
+            </div>
+            <p class="text-xs text-shop-400">Frete calculado no checkout.</p>
+            <button class="w-full bg-shop-900 text-white font-bold text-sm py-4 rounded-xl hover:bg-shop-800 transition-all hover:shadow-lg">
+                Finalizar Compra
+            </button>
+            <button onclick="ShopFlow.closeCart()" class="w-full text-sm font-semibold text-shop-500 hover:text-shop-700 py-2 transition-colors">
+                Continuar Comprando
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================
+         QUICK VIEW MODAL
+    ============================================ -->
+    <div id="quickViewOverlay" class="fixed inset-0 bg-black/60 z-50 opacity-0 invisible transition-all duration-300 flex items-center justify-center p-4">
+        <div id="quickViewModal" class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto scale-95 opacity-0 transition-all duration-300">
+            <div class="relative">
+                <button onclick="ShopFlow.closeQuickView()" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-md hover:bg-white transition-colors" aria-label="Fechar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+                <div class="grid md:grid-cols-2">
+                    <!-- Image -->
+                    <div class="bg-shop-50 aspect-square flex items-center justify-center p-8 rounded-tl-2xl md:rounded-bl-2xl">
+                        <div id="qvImage" class="w-full h-full bg-shop-100 rounded-xl flex items-center justify-center">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-shop-300"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                        </div>
+                    </div>
+                    <!-- Info -->
+                    <div class="p-6 lg:p-8 flex flex-col">
+                        <span id="qvBadge" class="inline-flex self-start bg-accent-100 text-accent-700 text-xs font-bold px-3 py-1 rounded-full mb-3">New</span>
+                        <h3 id="qvName" class="text-xl font-bold text-shop-900 mb-2">Nome do Produto</h3>
+                        <div class="flex items-center gap-1 mb-3">
+                            <div class="flex text-accent-400 text-sm">★★★★★</div>
+                            <span id="qvReviews" class="text-xs text-shop-400">(0 avaliações)</span>
+                        </div>
+                        <div class="flex items-baseline gap-3 mb-4">
+                            <span id="qvPrice" class="text-2xl font-extrabold text-shop-900">R$ 0</span>
+                            <span id="qvOldPrice" class="text-base text-shop-400 line-through hidden">R$ 0</span>
+                        </div>
+                        <p id="qvDesc" class="text-sm text-shop-500 leading-relaxed mb-6 flex-1">Descrição do produto...</p>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-2">
+                                <label for="qvQty" class="text-sm font-semibold text-shop-600">Qtd:</label>
+                                <div class="flex items-center border border-shop-200 rounded-lg overflow-hidden">
+                                    <button onclick="ShopFlow.qvQty(-1)" class="w-9 h-9 flex items-center justify-center text-shop-500 hover:bg-shop-50 transition-colors">-</button>
+                                    <span id="qvQty" class="w-10 text-center text-sm font-bold text-shop-800">1</span>
+                                    <button onclick="ShopFlow.qvQty(1)" class="w-9 h-9 flex items-center justify-center text-shop-500 hover:bg-shop-50 transition-colors">+</button>
+                                </div>
+                            </div>
+                            <button id="qvAddToCart" class="w-full bg-shop-900 text-white font-bold text-sm py-4 rounded-xl hover:bg-shop-800 transition-all hover:shadow-lg flex items-center justify-center gap-2">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                                Adicionar ao Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HERO CAROUSEL
+    ============================================ -->
+    <section id="hero" class="relative overflow-hidden">
+        <div id="heroTrack" class="hero-track flex transition-transform duration-700 ease-in-out">
+            <!-- Slide 1 -->
+            <div class="hero-slide min-w-full relative">
+                <div class="bg-gradient-to-r from-shop-900 via-shop-800 to-shop-700 min-h-[480px] lg:min-h-[600px] flex items-center">
+                    <div class="max-w-7xl mx-auto px-4 w-full">
+                        <div class="max-w-lg">
+                            <span class="inline-block bg-accent-400 text-shop-900 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-5">Coleção 2026</span>
+                            <h2 class="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-5">Nova Coleção<br><span class="text-accent-400">Primavera Verão</span></h2>
+                            <p class="text-lg text-shop-300 mb-8 leading-relaxed">Estilo, conforto e tecnologia. Descubra as tendências que vão dominar a temporada.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#featured" class="inline-flex items-center gap-2 bg-white text-shop-900 font-bold text-sm px-7 py-4 rounded-xl hover:bg-shop-50 transition-all hover:shadow-lg">
+                                    Explorar Agora
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                                </a>
+                                <a href="#deal" class="inline-flex items-center gap-2 border-2 border-white/30 text-white font-semibold text-sm px-7 py-4 rounded-xl hover:border-white/60 hover:bg-white/10 transition-all">Ver Ofertas</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative circles -->
+                    <div class="absolute right-0 top-0 w-96 h-96 bg-accent-500/10 rounded-full -translate-y-1/3 translate-x-1/3 hidden lg:block"></div>
+                    <div class="absolute right-20 bottom-0 w-64 h-64 bg-accent-400/5 rounded-full translate-y-1/3 hidden lg:block"></div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide min-w-full relative">
+                <div class="bg-gradient-to-r from-amber-900 via-amber-800 to-amber-700 min-h-[480px] lg:min-h-[600px] flex items-center">
+                    <div class="max-w-7xl mx-auto px-4 w-full">
+                        <div class="max-w-lg">
+                            <span class="inline-block bg-white text-amber-900 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-5">Até 50% OFF</span>
+                            <h2 class="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-5">Tech Week<br><span class="text-amber-300">Eletrônicos</span></h2>
+                            <p class="text-lg text-amber-200 mb-8 leading-relaxed">Fones, smartwatches e acessórios com descontos imperdíveis.</p>
+                            <a href="#deal" class="inline-flex items-center gap-2 bg-white text-amber-900 font-bold text-sm px-7 py-4 rounded-xl hover:bg-amber-50 transition-all hover:shadow-lg">
+                                Ver Ofertas
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide min-w-full relative">
+                <div class="bg-gradient-to-r from-rose-900 via-rose-800 to-pink-700 min-h-[480px] lg:min-h-[600px] flex items-center">
+                    <div class="max-w-7xl mx-auto px-4 w-full">
+                        <div class="max-w-lg">
+                            <span class="inline-block bg-rose-300 text-rose-900 text-xs font-bold uppercase tracking-wider px-4 py-1.5 rounded-full mb-5">Frete Grátis</span>
+                            <h2 class="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-white leading-tight mb-5">Moda Feminina<br><span class="text-rose-300">Exclusiva</span></h2>
+                            <p class="text-lg text-rose-200 mb-8 leading-relaxed">Peças únicas com qualidade premium. Frete grátis em todas as compras acima de R$ 200.</p>
+                            <a href="#categories" class="inline-flex items-center gap-2 bg-white text-rose-900 font-bold text-sm px-7 py-4 rounded-xl hover:bg-rose-50 transition-all hover:shadow-lg">
+                                Conferir Coleção
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Controls -->
+        <button id="heroPrev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-white/30 transition-all z-10" aria-label="Slide anterior">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button id="heroNext" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-white/30 transition-all z-10" aria-label="Próximo slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <!-- Hero Dots -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="heroDots"></div>
+    </section>
+
+    <!-- ============================================
+         CATEGORIES BENTO GRID
+    ============================================ -->
+    <section id="categories" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl lg:text-4xl font-extrabold text-shop-900 mb-3">Explore por <span class="text-accent-600">Categoria</span></h2>
+                <p class="text-shop-500">Encontre exatamente o que você procura.</p>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 auto-rows-[180px] lg:auto-rows-[200px]">
+                <!-- Large - Masculino -->
+                <a href="#" class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-shop-800 to-shop-900 row-span-2 col-span-1 lg:col-span-2">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
+                    <div class="absolute inset-0 bg-shop-700/30 group-hover:bg-shop-700/10 transition-all duration-500 z-10"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-5 lg:p-7 z-20">
+                        <span class="text-xs font-bold uppercase tracking-wider text-accent-400 mb-1 block">Tendências</span>
+                        <h3 class="text-xl lg:text-2xl font-extrabold text-white mb-1">Masculino</h3>
+                        <p class="text-sm text-white/70 hidden lg:block">Camisetas, calças, jaquetas e mais</p>
+                        <span class="inline-flex items-center gap-1 text-sm font-semibold text-white mt-3 group-hover:gap-2 transition-all">
+                            Explorar <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Feminino -->
+                <a href="#" class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-rose-600 to-rose-800">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-5 z-20">
+                        <h3 class="text-lg font-extrabold text-white">Feminino</h3>
+                        <span class="text-xs text-white/70">+500 peças</span>
+                    </div>
+                </a>
+
+                <!-- Acessórios -->
+                <a href="#" class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500 to-amber-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-5 z-20">
+                        <h3 class="text-lg font-extrabold text-white">Acessórios</h3>
+                        <span class="text-xs text-white/70">Relógios, bolsas</span>
+                    </div>
+                </a>
+
+                <!-- Eletrônicos -->
+                <a href="#" class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-5 z-20">
+                        <h3 class="text-lg font-extrabold text-white">Eletrônicos</h3>
+                        <span class="text-xs text-white/70">Fones, smartwatches</span>
+                    </div>
+                </a>
+
+                <!-- Calçados -->
+                <a href="#" class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-600 to-emerald-800">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-4 lg:p-5 z-20">
+                        <h3 class="text-lg font-extrabold text-white">Calçados</h3>
+                        <span class="text-xs text-white/70">Tênis, botas, sandálias</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FEATURED PRODUCTS (Tabs)
+    ============================================ -->
+    <section id="featured" class="py-16 lg:py-24 bg-shop-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+                <div>
+                    <h2 class="text-2xl lg:text-4xl font-extrabold text-shop-900 mb-2">Produtos em <span class="text-accent-600">Destaque</span></h2>
+                    <p class="text-shop-500">Curadoria especial da nossa equipe.</p>
+                </div>
+                <!-- Tabs -->
+                <div class="flex gap-1 bg-white rounded-xl p-1 border border-shop-200 self-start" id="productTabs" role="tablist">
+                    <button class="product-tab active px-4 py-2 text-sm font-semibold rounded-lg transition-all" role="tab" data-tab="new" aria-selected="true">Novidades</button>
+                    <button class="product-tab px-4 py-2 text-sm font-semibold rounded-lg transition-all" role="tab" data-tab="best" aria-selected="false">Mais Vendidos</button>
+                    <button class="product-tab px-4 py-2 text-sm font-semibold rounded-lg transition-all" role="tab" data-tab="sale" aria-selected="false">Ofertas</button>
+                </div>
+            </div>
+
+            <!-- Product Grids (one per tab) -->
+            <!-- EDITABLE: Product data defined in store.js -->
+            <div id="productGrid" class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                <!-- Products injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         DEAL OF THE DAY
+    ============================================ -->
+    <section id="deal" class="py-16 lg:py-24 bg-shop-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                <!-- Left: Product -->
+                <div class="bg-white/5 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 flex items-center justify-center aspect-square max-h-[500px]">
+                    <div class="text-center">
+                        <div class="w-48 h-48 lg:w-64 lg:h-64 mx-auto bg-white/10 rounded-2xl flex items-center justify-center mb-6">
+                            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" class="text-white/40"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                        </div>
+                        <span class="text-xs text-accent-400 font-bold uppercase tracking-wider">Placeholder para imagem real</span>
+                    </div>
+                </div>
+
+                <!-- Right: Info + Countdown -->
+                <div>
+                    <span class="inline-flex items-center gap-2 bg-sale-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-6">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                        Oferta do Dia
+                    </span>
+                    <!-- EDITABLE: Deal product name -->
+                    <h3 class="text-3xl lg:text-4xl font-extrabold text-white mb-3">Fone Bluetooth<br>Elite Pro Max</h3>
+                    <p class="text-lg text-shop-300 mb-6 leading-relaxed">Cancelamento de ruído ativo, 40h de bateria. O melhor fone da categoria por um preço inacreditável.</p>
+
+                    <div class="flex items-baseline gap-4 mb-8">
+                        <span class="text-4xl font-extrabold text-accent-400">R$ 199</span>
+                        <span class="text-xl text-shop-500 line-through">R$ 399</span>
+                        <span class="bg-sale-500 text-white text-sm font-bold px-3 py-1 rounded-full">-50%</span>
+                    </div>
+
+                    <!-- Countdown -->
+                    <p class="text-sm text-shop-400 mb-3 uppercase tracking-wider font-bold">Oferta termina em:</p>
+                    <div class="flex gap-3 mb-8" id="countdown">
+                        <div class="countdown-unit bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 text-center min-w-[70px] border border-white/10">
+                            <span id="countHours" class="block text-2xl lg:text-3xl font-extrabold text-white">00</span>
+                            <span class="text-[10px] text-shop-400 uppercase tracking-wider">Horas</span>
+                        </div>
+                        <div class="countdown-unit bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 text-center min-w-[70px] border border-white/10">
+                            <span id="countMinutes" class="block text-2xl lg:text-3xl font-extrabold text-white">00</span>
+                            <span class="text-[10px] text-shop-400 uppercase tracking-wider">Min</span>
+                        </div>
+                        <div class="countdown-unit bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 text-center min-w-[70px] border border-white/10">
+                            <span id="countSeconds" class="block text-2xl lg:text-3xl font-extrabold text-white">00</span>
+                            <span class="text-[10px] text-shop-400 uppercase tracking-wider">Seg</span>
+                        </div>
+                    </div>
+
+                    <button class="deal-add-btn inline-flex items-center gap-2 bg-accent-500 text-shop-900 font-bold text-base px-8 py-4 rounded-xl hover:bg-accent-400 transition-all hover:shadow-lg hover:shadow-accent-500/25"
+                            data-id="deal-1" data-name="Fone Bluetooth Elite Pro Max" data-price="199">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                        Adicionar ao Carrinho
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TRUST / BENEFITS BAR
+    ============================================ -->
+    <section class="py-12 bg-white border-y border-shop-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+                <div class="flex items-center gap-4 text-center lg:text-left flex-col lg:flex-row">
+                    <div class="w-12 h-12 bg-shop-50 rounded-xl flex items-center justify-center shrink-0">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-shop-600"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-shop-900">Frete Grátis</p>
+                        <p class="text-xs text-shop-400">Acima de R$ 200</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 text-center lg:text-left flex-col lg:flex-row">
+                    <div class="w-12 h-12 bg-shop-50 rounded-xl flex items-center justify-center shrink-0">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-shop-600"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-shop-900">Compra Segura</p>
+                        <p class="text-xs text-shop-400">Dados criptografados</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 text-center lg:text-left flex-col lg:flex-row">
+                    <div class="w-12 h-12 bg-shop-50 rounded-xl flex items-center justify-center shrink-0">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-shop-600"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-shop-900">Troca Gratuita</p>
+                        <p class="text-xs text-shop-400">30 dias para trocar</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 text-center lg:text-left flex-col lg:flex-row">
+                    <div class="w-12 h-12 bg-shop-50 rounded-xl flex items-center justify-center shrink-0">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-shop-600"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.11 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-shop-900">Suporte 24/7</p>
+                        <p class="text-xs text-shop-400">WhatsApp e chat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         INSTAGRAM FEED
+    ============================================ -->
+    <section id="instagram" class="py-16 lg:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl lg:text-3xl font-extrabold text-shop-900 mb-2">Siga <span class="text-accent-600">@shopflow</span></h2>
+                <p class="text-shop-500">Compartilhe seu estilo com a hashtag <strong class="text-shop-700">#MeuShopFlow</strong></p>
+            </div>
+
+            <div class="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-3">
+                <a href="#" class="insta-card group aspect-square rounded-xl overflow-hidden bg-shop-100 relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-400/30 to-pink-500/30"></div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+                    </div>
+                </a>
+                <a href="#" class="insta-card group aspect-square rounded-xl overflow-hidden bg-shop-200 relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-400/30 to-purple-500/30"></div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+                    </div>
+                </a>
+                <a href="#" class="insta-card group aspect-square rounded-xl overflow-hidden bg-shop-100 relative">
+                    <div class="absolute inset-0 bg-gradient-to-br from-amber-300/30 to-orange-500/30"></div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+                    </div>
+                </a>
+                <a href="#" class="insta-card group aspect-square rounded-xl overflow-hidden bg-shop-200 relative hidden lg:block">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-400/30 to-teal-500/30"></div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+                    </div>
+                </a>
+                <a href="#" class="insta-card group aspect-square rounded-xl overflow-hidden bg-shop-100 relative hidden lg:block">
+                    <div class="absolute inset-0 bg-gradient-to-br from-rose-400/30 to-red-500/30"></div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+                    </div>
+                </a>
+                <a href="#" class="insta-card group aspect-square rounded-xl overflow-hidden bg-shop-200 relative hidden lg:block">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-400/30 to-blue-500/30"></div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white" class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="white" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="white" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="white"/></svg>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ============================================
+         NEWSLETTER + FOOTER
+    ============================================ -->
+    <footer class="bg-shop-950 text-shop-400">
+        <!-- Newsletter -->
+        <div class="border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 py-14">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h3 class="text-2xl lg:text-3xl font-extrabold text-white mb-3">Receba ofertas exclusivas</h3>
+                    <p class="text-shop-400 mb-7">Cadastre-se e ganhe <strong class="text-accent-400">15% OFF</strong> na primeira compra.</p>
+                    <form class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto" onsubmit="return false;">
+                        <input type="email" placeholder="Seu melhor e-mail" class="flex-1 h-14 px-5 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-shop-500 focus:outline-none focus:ring-2 focus:ring-accent-400 focus:border-accent-400 text-sm transition-all">
+                        <button type="submit" class="h-14 px-8 bg-accent-500 text-shop-900 font-bold text-sm rounded-xl hover:bg-accent-400 transition-all hover:shadow-lg hover:shadow-accent-500/20 whitespace-nowrap">
+                            Quero o Desconto
+                        </button>
+                    </form>
+                    <p class="text-xs text-shop-500 mt-3">Sem spam. Cancelamento a qualquer momento.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Content -->
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="grid grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-white/10">
+                <!-- Brand -->
+                <div class="col-span-2 lg:col-span-1">
+                    <a href="#" class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-shop-800 rounded-lg flex items-center justify-center">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.5"><path d="M6 6h15l-1.5 9H7.5z"/><circle cx="10" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+                        </div>
+                        <span class="text-lg font-extrabold text-white">Shop<span class="text-accent-500">Flow</span></span>
+                    </a>
+                    <p class="text-sm leading-relaxed">Moda e tecnologia com os melhores preços e entrega rápida para todo o Brasil.</p>
+                </div>
+
+                <!-- Institucional -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Institucional</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Sobre Nós</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Nossas Lojas</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Trabalhe Conosco</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Help -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Ajuda</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Trocas e Devoluções</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Rastrear Pedido</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Guia de Tamanhos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Políticas</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacidade</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Redes Sociais</h4>
+                    <div class="flex gap-2">
+                        <a href="#" class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="TikTok">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 0-5.78 2.92 2.92 0 0 1 .88.14V9.01a6.1 6.1 0 0 0-.88-.07 6.34 6.34 0 0 0 0 12.68 6.34 6.34 0 0 0 6.34-6.34V9.42a8.16 8.16 0 0 0 4.77 1.53V7.52a4.85 4.85 0 0 1-1.01-.83z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods + Copyright -->
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <p class="text-xs">&copy; 2026 ShopFlow. Todos os direitos reservados. CNPJ: 00.000.000/0001-00</p>
+                <!-- Payment icons (SVG representations) -->
+                <div class="flex items-center gap-3">
+                    <span class="text-xs text-shop-500 mr-1">Pagamento:</span>
+                    <!-- Visa -->
+                    <div class="payment-icon w-10 h-7 bg-white/10 rounded flex items-center justify-center text-[9px] font-bold text-white/70 border border-white/10">VISA</div>
+                    <!-- Mastercard -->
+                    <div class="payment-icon w-10 h-7 bg-white/10 rounded flex items-center justify-center text-[9px] font-bold text-white/70 border border-white/10">MC</div>
+                    <!-- PIX -->
+                    <div class="payment-icon w-10 h-7 bg-white/10 rounded flex items-center justify-center text-[9px] font-bold text-accent-400/80 border border-white/10">PIX</div>
+                    <!-- Boleto -->
+                    <div class="payment-icon w-10 h-7 bg-white/10 rounded flex items-center justify-center text-[9px] font-bold text-white/70 border border-white/10">BOL</div>
+                    <!-- Amex -->
+                    <div class="payment-icon w-10 h-7 bg-white/10 rounded flex items-center justify-center text-[9px] font-bold text-white/70 border border-white/10">AMEX</div>
+                    <!-- Elo -->
+                    <div class="payment-icon w-10 h-7 bg-white/10 rounded flex items-center justify-center text-[9px] font-bold text-white/70 border border-white/10">ELO</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         MOBILE BOTTOM BAR
+    ============================================ -->
+    <nav id="mobileBottomBar" class="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white border-t border-shop-100 safe-area-bottom">
+        <div class="grid grid-cols-5 h-16">
+            <a href="#" class="bottom-bar-item flex flex-col items-center justify-center gap-0.5 text-shop-600 active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                <span class="text-[10px] font-semibold">Início</span>
+            </a>
+            <a href="#categories" class="bottom-bar-item flex flex-col items-center justify-center gap-0.5 text-shop-400">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                <span class="text-[10px] font-medium">Categorias</span>
+            </a>
+            <a href="#deal" class="bottom-bar-item flex flex-col items-center justify-center gap-0.5 text-sale-500">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span class="text-[10px] font-semibold">Ofertas</span>
+            </a>
+            <button class="bottom-bar-item flex flex-col items-center justify-center gap-0.5 text-shop-400 relative" aria-label="Favoritos">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <span class="text-[10px] font-medium">Favoritos</span>
+            </button>
+            <button id="mobileCartBtn" class="bottom-bar-item flex flex-col items-center justify-center gap-0.5 text-shop-400 relative" aria-label="Carrinho">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span class="text-[10px] font-medium">Carrinho</span>
+                <span id="mobileCartBadge" class="absolute top-1 right-1/2 translate-x-5 w-4 h-4 bg-accent-500 text-shop-900 text-[9px] font-bold rounded-full flex items-center justify-center hidden">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Bottom bar spacer for mobile -->
+    <div class="h-16 lg:hidden"></div>
+
+    <!-- JS -->
+    <script src="assets/js/store.js"></script>
+</body>
+</html>

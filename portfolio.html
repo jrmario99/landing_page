@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Templates Premium — 20 landing pages profissionais prontas para uso. Institucionais, SaaS, E-commerce, Criativos e mais.">
+    <meta name="author" content="Mario Braz Dev">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Template Collection — 20 Premium Landing Pages">
+    <meta property="og:description" content="Portfólio de 20 templates premium para projetos web modernos. 100% responsivos, prontos para deploy.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Template Collection — 20 Premium Landing Pages">
+    <meta name="twitter:description" content="Portfólio de 20 templates premium para projetos web modernos. 100% responsivos, prontos para deploy.">
+
+    <title>Template Collection — Mario Braz Dev</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body { background: #08090d; }
+        .text-gradient {
+            background: linear-gradient(135deg, #6366f1, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .card-glass {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-glass:hover {
+            border-color: rgba(255,255,255,0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5);
+        }
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+        .filter-btn.active {
+            background: rgba(99,102,241,0.15);
+            color: #818cf8;
+            border-color: rgba(99,102,241,0.3);
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: none;
+        }
+        ::selection { background: #6366f1; color: white; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="font-sans antialiased text-white min-h-screen">
+
+    <!-- ============================================
+         NAVBAR
+    ============================================ -->
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-[#08090d]/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="font-bold text-lg tracking-tight">
+                Mario<span class="text-indigo-400">Braz</span>.dev
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="#templates" class="text-sm text-gray-400 hover:text-white transition-colors hidden sm:block">Templates</a>
+                <a href="hotmart.html" class="text-sm bg-gradient-to-r from-indigo-500 to-cyan-500 text-white px-4 py-2 rounded-full font-medium hover:opacity-90 transition-opacity">
+                    Comprar Pack
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+    <!-- ============================================
+         HERO
+    ============================================ -->
+    <section class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-gradient-radial pointer-events-none z-0" style="background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);"></div>
+
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-gray-300 mb-8 fade-up">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                20 templates disponíveis
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 fade-up">
+                <span class="text-gradient">Template</span><br>
+                <span class="bg-gradient-to-b from-white to-white/40 bg-clip-text text-transparent">Collection</span>
+            </h1>
+
+            <p class="text-lg text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed fade-up">
+                Landing pages premium, profissionais e prontas para uso.
+                Cada template com documentação bilíngue, SEO otimizado e design responsivo.
+            </p>
+
+            <div class="flex items-center justify-center gap-8 text-sm text-gray-500 mb-12 fade-up">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="layers" class="w-4 h-4 text-indigo-400"></i>
+                    <span>20 Templates</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="smartphone" class="w-4 h-4 text-cyan-400"></i>
+                    <span>100% Responsivo</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="rocket" class="w-4 h-4 text-emerald-400"></i>
+                    <span>Ready to Deploy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TEMPLATES GRID
+    ============================================ -->
+    <section id="templates" class="pb-24" x-data="{
+        search: '',
+        activeFilter: 'all',
+        templates: [
+            { name: 'Apex', folder: 'apex', desc: 'Premium Corporate Template', category: 'saas', gradient: 'from-blue-500 to-blue-700', icon: 'building-2' },
+            { name: 'AppFlow', folder: 'appflow', desc: 'Mobile App Landing Page', category: 'saas', gradient: 'from-blue-400 to-blue-600', icon: 'smartphone' },
+            { name: 'Chronicle', folder: 'chronicle', desc: 'Tech Blog & Magazine', category: 'creative', gradient: 'from-indigo-500 to-violet-500', icon: 'newspaper' },
+            { name: 'MasterClass Elite', folder: 'curso-online', desc: 'Curso Online & Educação Digital', category: 'special', gradient: 'from-blue-900 to-amber-600', icon: 'graduation-cap' },
+            { name: 'The Ultimate Guide', folder: 'ebook-bestseller', desc: 'E-book & Digital Product', category: 'ecommerce', gradient: 'from-amber-500 to-red-500', icon: 'book-open' },
+            { name: 'EstateLux', folder: 'estatelux', desc: 'Luxury Real Estate', category: 'institutional', gradient: 'from-emerald-600 to-amber-500', icon: 'home' },
+            { name: 'FinTax', folder: 'fintax', desc: 'Contabilidade & Consultoria', category: 'institutional', gradient: 'from-blue-600 to-green-500', icon: 'calculator' },
+            { name: 'LexCorp', folder: 'lexcorp', desc: 'Advocacia & Escritório Jurídico', category: 'institutional', gradient: 'from-blue-800 to-amber-500', icon: 'scale' },
+            { name: 'Lumina Academy', folder: 'lumina', desc: 'Escola Bilíngue & Educação', category: 'institutional', gradient: 'from-blue-700 to-violet-500', icon: 'school' },
+            { name: 'NebulaNFT', folder: 'nebula-nft', desc: 'NFT & Metaverse Collection', category: 'creative', gradient: 'from-cyan-400 to-purple-500', icon: 'hexagon' },
+            { name: 'NeonMind AI', folder: 'neonmind-ai', desc: 'AI Content Generation Platform', category: 'saas', gradient: 'from-purple-500 to-cyan-400', icon: 'brain' },
+            { name: 'NexusAdmin', folder: 'nexus-admin', desc: 'Admin Dashboard Template', category: 'saas', gradient: 'from-indigo-500 to-cyan-500', icon: 'layout-dashboard' },
+            { name: 'Novus', folder: 'novus', desc: 'Modern SaaS & App Template', category: 'saas', gradient: 'from-indigo-500 to-cyan-400', icon: 'zap' },
+            { name: 'Personal Page', folder: 'personal-landing-page', desc: 'Links & Portfolio Pessoal', category: 'creative', gradient: 'from-orange-400 to-amber-600', icon: 'user' },
+            { name: 'PrevLaw', folder: 'prevlaw', desc: 'Advogado Previdenciário', category: 'institutional', gradient: 'from-slate-500 to-orange-500', icon: 'gavel' },
+            { name: 'SaaS Bento', folder: 'saas-bento', desc: 'Bento-Grid SaaS Landing', category: 'saas', gradient: 'from-indigo-400 to-indigo-600', icon: 'grid-3x3' },
+            { name: 'ShopFlow', folder: 'shopflow', desc: 'E-commerce Moda & Tech', category: 'ecommerce', gradient: 'from-amber-400 to-amber-600', icon: 'shopping-bag' },
+            { name: 'Swiss Design', folder: 'swiss-design', desc: 'Portfólio Criativo Minimalista', category: 'creative', gradient: 'from-gray-700 to-red-500', icon: 'palette' },
+            { name: 'Viva Bem', folder: 'vivabem-clinic', desc: 'Clínica de Saúde & Bem-Estar', category: 'institutional', gradient: 'from-blue-500 to-blue-700', icon: 'heart-pulse' },
+            { name: 'Waitlist Viral', folder: 'waitlist-viral', desc: 'Coming Soon & Waitlist Page', category: 'special', gradient: 'from-indigo-500 to-pink-500', icon: 'clock' }
+        ],
+        categories: [
+            { key: 'all', label: 'Todos', count: 20 },
+            { key: 'institutional', label: 'Institucional', count: 6 },
+            { key: 'saas', label: 'SaaS & Tech', count: 6 },
+            { key: 'creative', label: 'Criativo', count: 4 },
+            { key: 'ecommerce', label: 'E-commerce', count: 2 },
+            { key: 'special', label: 'Especial', count: 2 }
+        ],
+        get filtered() {
+            return this.templates.filter(t => {
+                const matchCat = this.activeFilter === 'all' || t.category === this.activeFilter;
+                const matchSearch = !this.search || t.name.toLowerCase().includes(this.search.toLowerCase()) || t.desc.toLowerCase().includes(this.search.toLowerCase());
+                return matchCat && matchSearch;
+            });
+        }
+    }">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <!-- Search + Filters -->
+            <div class="mb-10 space-y-6 fade-up">
+                <!-- Search -->
+                <div class="relative max-w-md mx-auto">
+                    <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+                    <input
+                        type="text"
+                        x-model="search"
+                        placeholder="Buscar template..."
+                        class="w-full pl-11 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-sm text-white placeholder:text-gray-600 outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                    >
+                </div>
+
+                <!-- Filter Pills -->
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                    <template x-for="cat in categories" :key="cat.key">
+                        <button
+                            @click="activeFilter = cat.key"
+                            :class="activeFilter === cat.key ? 'active' : ''"
+                            class="filter-btn px-4 py-2 rounded-full border border-white/10 text-sm text-gray-400 hover:text-white hover:border-white/20"
+                        >
+                            <span x-text="cat.label"></span>
+                            <span class="ml-1.5 text-xs opacity-50" x-text="'(' + cat.count + ')'"></span>
+                        </button>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <template x-for="t in filtered" :key="t.folder">
+                    <div
+                        x-show="true"
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-95"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        class="card-glass rounded-2xl overflow-hidden group"
+                    >
+                        <!-- Gradient Header -->
+                        <div class="h-40 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-br opacity-80 group-hover:opacity-100 transition-opacity" :class="t.gradient"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:scale-110 transition-transform duration-300">
+                                    <i :data-lucide="t.icon" class="w-7 h-7 text-white"></i>
+                                </div>
+                            </div>
+                            <!-- Category Badge -->
+                            <div class="absolute top-3 right-3">
+                                <span class="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-black/40 backdrop-blur-sm text-white/80 border border-white/10"
+                                    x-text="categories.find(c => c.key === t.category)?.label || t.category"></span>
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-5">
+                            <h3 class="text-lg font-bold text-white mb-1" x-text="t.name"></h3>
+                            <p class="text-sm text-gray-500 mb-5 line-clamp-1" x-text="t.desc"></p>
+
+                            <!-- Action Buttons -->
+                            <div class="flex items-center gap-2">
+                                <a :href="t.folder + '/index.html'" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-all">
+                                    <i data-lucide="eye" class="w-4 h-4"></i>
+                                    Preview
+                                </a>
+                                <a :href="t.folder + '/documentation.html'" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition-all">
+                                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                                    Docs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Empty State -->
+            <div x-show="filtered.length === 0" x-transition class="text-center py-20">
+                <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="search-x" class="w-8 h-8 text-gray-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-white mb-1">Nenhum template encontrado</h3>
+                <p class="text-sm text-gray-500">Tente outro termo de busca ou filtro.</p>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
+    <footer class="border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-gray-500 text-sm">
+                    &copy; 2025 Mario Braz Dev. Todos os direitos reservados.
+                </div>
+
+             <!--  <a href="hotmart.html" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-cyan-500 text-white font-semibold text-sm rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-indigo-500/20">
+                    <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                    Comprar Pack Completo
+                </a>--> 
+
+                <div class="flex items-center gap-4 text-gray-500">
+                    <a href="#" class="hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    <a href="#" class="hover:text-white transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         SCRIPTS
+    ============================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Lucide Icons Init
+            lucide.createIcons();
+
+            // Re-init icons when Alpine renders templates
+            const observer = new MutationObserver(() => lucide.createIcons());
+            const grid = document.querySelector('#templates');
+            if (grid) observer.observe(grid, { childList: true, subtree: true });
+
+            // Fade-in on scroll
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+        });
+    </script>
+</body>
+</html>

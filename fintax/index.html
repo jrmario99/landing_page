@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FinTax — Contabilidade e Consultoria Financeira. Pague menos impostos legalmente. Especialistas em IR, BPO Financeiro e Planejamento Tributário.">
+    <meta name="keywords" content="contabilidade, contador, consultoria financeira, imposto de renda, BPO financeiro, planejamento tributário, economia fiscal">
+    <meta name="author" content="FinTax Contabilidade">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.fintax.com.br/">
+    <meta property="og:title" content="FinTax — Pague Menos Impostos Legalmente">
+    <meta property="og:description" content="Contabilidade inteligente e consultoria financeira para empresas e profissionais. Economize até 40% em impostos.">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FinTax — Pague Menos Impostos Legalmente">
+    <meta name="twitter:description" content="Contabilidade inteligente e consultoria financeira. Economize até 40% em impostos.">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AccountingService",
+        "name": "FinTax Contabilidade",
+        "description": "Contabilidade, consultoria financeira e planejamento tributário.",
+        "url": "https://www.fintax.com.br",
+        "telephone": "+55-11-4000-0000",
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Faria Lima, 2000 — Sala 801",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "postalCode": "01451-000",
+            "addressCountry": "BR"
+        }
+    }
+    </script>
+
+    <title>FinTax — Pague Menos Impostos Legalmente</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- ============================================
+         1. NAVBAR
+    ============================================ -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar__inner">
+            <a href="#" class="navbar__logo">
+                <div class="navbar__logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <span>Fin<strong>Tax</strong></span>
+            </a>
+
+            <nav class="navbar__nav" id="nav">
+                <a href="#services" class="navbar__link">Serviços</a>
+                <a href="#calculator" class="navbar__link">Simulador</a>
+                <a href="#process" class="navbar__link">Como Funciona</a>
+                <a href="#pricing" class="navbar__link">Planos</a>
+                <a href="#blog" class="navbar__link">Blog</a>
+            </nav>
+
+            <div class="navbar__actions">
+                <a href="#" class="btn btn--ghost navbar__login">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Área do Cliente
+                </a>
+                <a href="#pricing" class="btn btn--primary navbar__cta">Começar Agora</a>
+            </div>
+
+            <button class="navbar__toggle" id="menuToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#services" class="mobile-menu__link">Serviços</a>
+            <a href="#calculator" class="mobile-menu__link">Simulador</a>
+            <a href="#process" class="mobile-menu__link">Como Funciona</a>
+            <a href="#pricing" class="mobile-menu__link">Planos</a>
+            <a href="#blog" class="mobile-menu__link">Blog</a>
+            <hr class="mobile-menu__divider">
+            <a href="#" class="mobile-menu__link">Área do Cliente</a>
+            <a href="#pricing" class="btn btn--primary btn--full">Começar Agora</a>
+        </div>
+    </header>
+
+    <main>
+
+    <!-- ============================================
+         2. HERO SECTION
+    ============================================ -->
+    <section class="hero" id="hero">
+        <div class="container hero__inner">
+            <div class="hero__content">
+                <span class="hero__badge">
+                    <span class="hero__badge-dot"></span>
+                    Vagas limitadas para IR 2026
+                </span>
+                <h1 class="hero__title">Pague <span class="text-green">menos impostos</span> legalmente</h1>
+                <p class="hero__text">Contabilidade inteligente e planejamento tributário que já economizou mais de <strong>R$ 12 milhões</strong> para nossos clientes. Descubra quanto você pode economizar.</p>
+                <div class="hero__actions">
+                    <a href="#calculator" class="btn btn--primary btn--lg">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
+                        Simular Economia
+                    </a>
+                    <a href="#process" class="btn btn--outline btn--lg">Como Funciona</a>
+                </div>
+
+                <!-- Mini Chart CSS Pure -->
+                <div class="hero__stats">
+                    <div class="hero__stat">
+                        <div class="mini-chart">
+                            <div class="mini-chart__bar" style="--h: 40%"></div>
+                            <div class="mini-chart__bar" style="--h: 55%"></div>
+                            <div class="mini-chart__bar" style="--h: 45%"></div>
+                            <div class="mini-chart__bar" style="--h: 70%"></div>
+                            <div class="mini-chart__bar mini-chart__bar--accent" style="--h: 90%"></div>
+                        </div>
+                        <div>
+                            <strong>R$ 12M+</strong>
+                            <span>Economia gerada</span>
+                        </div>
+                    </div>
+                    <div class="hero__stat">
+                        <div class="mini-chart mini-chart--green">
+                            <div class="mini-chart__bar" style="--h: 50%"></div>
+                            <div class="mini-chart__bar" style="--h: 65%"></div>
+                            <div class="mini-chart__bar" style="--h: 75%"></div>
+                            <div class="mini-chart__bar" style="--h: 60%"></div>
+                            <div class="mini-chart__bar mini-chart__bar--accent" style="--h: 95%"></div>
+                        </div>
+                        <div>
+                            <strong>850+</strong>
+                            <span>Clientes ativos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero__visual">
+                <div class="hero__image-placeholder">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    <span>Foto do Profissional<br><small>Substitua (600×700px)</small></span>
+                </div>
+                <!-- Floating Card -->
+                <div class="hero__float-card">
+                    <div class="hero__float-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <div>
+                        <span class="hero__float-label">Economia média</span>
+                        <strong class="hero__float-value">38%</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         3. SERVICES (Icon Box Grid)
+    ============================================ -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Nossos Serviços</span>
+                <h2 class="section-title">Soluções contábeis <span class="text-green">completas</span> para seu negócio</h2>
+                <p class="section-sub">Atendemos empresas de todos os portes com expertise tributária e tecnologia de ponta.</p>
+            </div>
+
+            <div class="services__grid">
+                <article class="service-box reveal-up">
+                    <div class="service-box__icon service-box__icon--blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </div>
+                    <h3>Imposto de Renda</h3>
+                    <p>Declaração completa para pessoa física e jurídica. Otimização de deduções e restituição máxima.</p>
+                </article>
+
+                <article class="service-box reveal-up">
+                    <div class="service-box__icon service-box__icon--green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <h3>Planejamento Tributário</h3>
+                    <p>Análise do melhor regime fiscal para sua empresa. Economia legal de impostos comprovada.</p>
+                </article>
+
+                <article class="service-box reveal-up">
+                    <div class="service-box__icon service-box__icon--purple">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <h3>BPO Financeiro</h3>
+                    <p>Terceirize seu financeiro conosco. Contas a pagar, receber, conciliação e relatórios gerenciais.</p>
+                </article>
+
+                <article class="service-box reveal-up">
+                    <div class="service-box__icon service-box__icon--amber">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                    </div>
+                    <h3>Consultoria Financeira</h3>
+                    <p>Análise de indicadores, DRE, fluxo de caixa e planejamento financeiro estratégico.</p>
+                </article>
+
+                <article class="service-box reveal-up">
+                    <div class="service-box__icon service-box__icon--rose">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                    </div>
+                    <h3>Abertura de Empresa</h3>
+                    <p>Constituição de CNPJ, escolha do regime tributário e toda a burocracia resolvida para você.</p>
+                </article>
+
+                <article class="service-box reveal-up">
+                    <div class="service-box__icon service-box__icon--cyan">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>Compliance Fiscal</h3>
+                    <p>Mantenha sua empresa em dia com todas as obrigações acessórias e evite multas.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         4. TAX CALCULATOR (Hook)
+    ============================================ -->
+    <section class="calculator" id="calculator">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag section-tag--dark">Simulador Gratuito</span>
+                <h2 class="section-title section-title--light">Descubra quanto você pode <span class="text-green">economizar</span></h2>
+                <p class="section-sub section-sub--light">Simule agora e veja uma estimativa da sua economia fiscal com nosso planejamento tributário.</p>
+            </div>
+
+            <div class="calculator__card">
+                <div class="calculator__inputs">
+                    <h3 class="calculator__card-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="10" y2="10"/><line x1="14" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="10" y2="14"/><line x1="14" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="10" y2="18"/><line x1="14" y1="18" x2="16" y2="18"/></svg>
+                        Calculadora de Economia
+                    </h3>
+
+                    <div class="form-group">
+                        <label for="calc-revenue">Faturamento Mensal (R$)</label>
+                        <input type="text" id="calc-revenue" placeholder="Ex: 50.000" inputmode="numeric">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calc-profit">Margem de Lucro (%)</label>
+                        <input type="text" id="calc-profit" placeholder="Ex: 30" inputmode="numeric" max="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="calc-regime">Regime Atual</label>
+                        <select id="calc-regime">
+                            <option value="simples">Simples Nacional</option>
+                            <option value="presumido">Lucro Presumido</option>
+                            <option value="real">Lucro Real</option>
+                            <option value="naosei">Não sei</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn--primary btn--lg btn--full" id="calcBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        Calcular Economia
+                    </button>
+                </div>
+
+                <div class="calculator__result" id="calcResult">
+                    <div class="calculator__empty">
+                        <!-- CSS Pure Animated Chart -->
+                        <div class="css-chart">
+                            <div class="css-chart__bar" style="--h: 70%; --color: var(--blue-100)"></div>
+                            <div class="css-chart__bar" style="--h: 85%; --color: var(--blue-200)"></div>
+                            <div class="css-chart__bar" style="--h: 55%; --color: var(--green-100)"></div>
+                            <div class="css-chart__bar" style="--h: 95%; --color: var(--green-200)"></div>
+                        </div>
+                        <p>Preencha os dados ao lado e clique em <strong>"Calcular"</strong> para ver sua estimativa.</p>
+                    </div>
+
+                    <!-- Result (hidden by default, shown by JS) -->
+                    <div class="calculator__result-data" id="calcResultData" style="display:none;">
+                        <div class="calculator__result-header">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            <h4>Resultado da Simulação</h4>
+                        </div>
+
+                        <div class="calculator__result-grid">
+                            <div class="calc-stat">
+                                <span class="calc-stat__label">Imposto Atual (est.)</span>
+                                <span class="calc-stat__value" id="resultCurrentTax">—</span>
+                            </div>
+                            <div class="calc-stat">
+                                <span class="calc-stat__label">Imposto Otimizado (est.)</span>
+                                <span class="calc-stat__value calc-stat__value--green" id="resultOptimizedTax">—</span>
+                            </div>
+                            <div class="calc-stat calc-stat--highlight">
+                                <span class="calc-stat__label">Economia Estimada/Mês</span>
+                                <span class="calc-stat__value calc-stat__value--big" id="resultSavings">—</span>
+                            </div>
+                            <div class="calc-stat calc-stat--highlight">
+                                <span class="calc-stat__label">Economia Estimada/Ano</span>
+                                <span class="calc-stat__value calc-stat__value--big calc-stat__value--green" id="resultSavingsYear">—</span>
+                            </div>
+                        </div>
+
+                        <!-- Visual Bar Comparison -->
+                        <div class="calc-compare">
+                            <div class="calc-compare__item">
+                                <div class="calc-compare__bar-wrap">
+                                    <div class="calc-compare__bar calc-compare__bar--current" id="barCurrent"></div>
+                                </div>
+                                <span>Atual</span>
+                            </div>
+                            <div class="calc-compare__item">
+                                <div class="calc-compare__bar-wrap">
+                                    <div class="calc-compare__bar calc-compare__bar--optimized" id="barOptimized"></div>
+                                </div>
+                                <span>Otimizado</span>
+                            </div>
+                        </div>
+
+                        <p class="calculator__disclaimer">* Valores estimados para fins ilustrativos. A economia real depende de análise detalhada.</p>
+
+                        <a href="#pricing" class="btn btn--primary btn--lg btn--full">Quero Economizar — Ver Planos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         5. PROCESS TIMELINE
+    ============================================ -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Como Funciona</span>
+                <h2 class="section-title">Do diagnóstico ao <span class="text-green">resultado</span> em 3 passos</h2>
+                <p class="section-sub">Um processo simples e transparente, sem surpresas.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline__line"></div>
+
+                <div class="timeline__item reveal-up">
+                    <div class="timeline__marker">
+                        <span>1</span>
+                    </div>
+                    <div class="timeline__content">
+                        <div class="timeline__icon timeline__icon--blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </div>
+                        <h3>Diagnóstico Fiscal</h3>
+                        <p>Analisamos toda a sua situação tributária atual, identificando oportunidades de economia e possíveis riscos fiscais.</p>
+                        <span class="timeline__duration">1-2 dias úteis</span>
+                    </div>
+                </div>
+
+                <div class="timeline__item timeline__item--right reveal-up">
+                    <div class="timeline__marker">
+                        <span>2</span>
+                    </div>
+                    <div class="timeline__content">
+                        <div class="timeline__icon timeline__icon--green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                        </div>
+                        <h3>Plano Personalizado</h3>
+                        <p>Elaboramos um planejamento tributário sob medida, com projeções de economia e recomendações claras.</p>
+                        <span class="timeline__duration">3-5 dias úteis</span>
+                    </div>
+                </div>
+
+                <div class="timeline__item reveal-up">
+                    <div class="timeline__marker">
+                        <span>3</span>
+                    </div>
+                    <div class="timeline__content">
+                        <div class="timeline__icon timeline__icon--amber">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <h3>Execução e Resultados</h3>
+                        <p>Implementamos todas as mudanças e acompanhamos os resultados mês a mês com relatórios transparentes.</p>
+                        <span class="timeline__duration">Acompanhamento contínuo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         6. PRICING TABLES
+    ============================================ -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Planos e Preços</span>
+                <h2 class="section-title">Escolha o plano <span class="text-green">ideal</span> para você</h2>
+                <p class="section-sub">Todos os planos incluem suporte via chat e acesso à área do cliente.</p>
+            </div>
+
+            <div class="pricing__grid">
+                <!-- Starter -->
+                <div class="pricing-card reveal-up">
+                    <div class="pricing-card__header">
+                        <h3>Starter</h3>
+                        <p>Para MEI e autônomos</p>
+                    </div>
+                    <div class="pricing-card__price">
+                        <span class="pricing-card__currency">R$</span>
+                        <span class="pricing-card__amount">149</span>
+                        <span class="pricing-card__period">/mês</span>
+                    </div>
+                    <ul class="pricing-card__features">
+                        <li class="included">Contabilidade MEI completa</li>
+                        <li class="included">Declaração anual</li>
+                        <li class="included">Emissão de notas fiscais</li>
+                        <li class="included">Suporte via chat</li>
+                        <li class="excluded">BPO Financeiro</li>
+                        <li class="excluded">Consultoria tributária</li>
+                        <li class="excluded">Reuniões mensais</li>
+                    </ul>
+                    <a href="#" class="btn btn--outline btn--full">Escolher Starter</a>
+                </div>
+
+                <!-- Professional -->
+                <div class="pricing-card pricing-card--featured reveal-up">
+                    <div class="pricing-card__badge">Mais Popular</div>
+                    <div class="pricing-card__header">
+                        <h3>Professional</h3>
+                        <p>Para ME e pequenas empresas</p>
+                    </div>
+                    <div class="pricing-card__price">
+                        <span class="pricing-card__currency">R$</span>
+                        <span class="pricing-card__amount">399</span>
+                        <span class="pricing-card__period">/mês</span>
+                    </div>
+                    <ul class="pricing-card__features">
+                        <li class="included">Contabilidade completa</li>
+                        <li class="included">Planejamento tributário</li>
+                        <li class="included">Folha de pagamento (até 5)</li>
+                        <li class="included">BPO Financeiro básico</li>
+                        <li class="included">Suporte prioritário</li>
+                        <li class="included">Reuniões mensais</li>
+                        <li class="excluded">Consultoria estratégica</li>
+                    </ul>
+                    <a href="#" class="btn btn--primary btn--full">Escolher Professional</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card reveal-up">
+                    <div class="pricing-card__header">
+                        <h3>Enterprise</h3>
+                        <p>Para médias e grandes empresas</p>
+                    </div>
+                    <div class="pricing-card__price">
+                        <span class="pricing-card__currency">R$</span>
+                        <span class="pricing-card__amount">899</span>
+                        <span class="pricing-card__period">/mês</span>
+                    </div>
+                    <ul class="pricing-card__features">
+                        <li class="included">Tudo do Professional</li>
+                        <li class="included">Consultoria estratégica</li>
+                        <li class="included">BPO Financeiro completo</li>
+                        <li class="included">Folha ilimitada</li>
+                        <li class="included">Controller dedicado</li>
+                        <li class="included">Relatórios gerenciais</li>
+                        <li class="included">Reuniões semanais</li>
+                    </ul>
+                    <a href="#" class="btn btn--outline btn--full">Escolher Enterprise</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         7. BLOG / NEWS
+    ============================================ -->
+    <section class="blog" id="blog">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Blog e Notícias</span>
+                <h2 class="section-title">Fique por dentro do mundo <span class="text-green">fiscal</span></h2>
+                <p class="section-sub">Dicas, novidades e conteúdo relevante para a saúde financeira do seu negócio.</p>
+            </div>
+
+            <div class="blog__grid">
+                <article class="blog-card reveal-up">
+                    <div class="blog-card__image">
+                        <div class="blog-card__placeholder">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        </div>
+                        <span class="blog-card__category">Imposto de Renda</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <time class="blog-card__date">12 Fev 2026</time>
+                        <h3><a href="#">IR 2026: Confira as principais mudanças e o novo prazo de entrega</a></h3>
+                        <p>Saiba o que mudou nas regras do Imposto de Renda este ano e como isso afeta sua declaração.</p>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal-up">
+                    <div class="blog-card__image">
+                        <div class="blog-card__placeholder">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        </div>
+                        <span class="blog-card__category">Planejamento</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <time class="blog-card__date">05 Fev 2026</time>
+                        <h3><a href="#">Simples Nacional ou Lucro Presumido: qual é o melhor para sua empresa?</a></h3>
+                        <p>Comparativo detalhado entre os dois regimes tributários mais usados por pequenas empresas.</p>
+                    </div>
+                </article>
+
+                <article class="blog-card reveal-up">
+                    <div class="blog-card__image">
+                        <div class="blog-card__placeholder">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        </div>
+                        <span class="blog-card__category">BPO Financeiro</span>
+                    </div>
+                    <div class="blog-card__body">
+                        <time class="blog-card__date">28 Jan 2026</time>
+                        <h3><a href="#">5 sinais de que sua empresa precisa de um BPO Financeiro urgente</a></h3>
+                        <p>Descubra quando é hora de terceirizar a gestão financeira e ganhar tempo para focar no seu negócio.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ============================================
+         8. FOOTER
+    ============================================ -->
+    <footer class="footer" id="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <a href="#" class="navbar__logo">
+                    <div class="navbar__logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    </div>
+                    <span>Fin<strong>Tax</strong></span>
+                </a>
+                <p>Contabilidade inteligente e consultoria financeira para quem quer crescer pagando menos impostos — legalmente.</p>
+
+                <!-- Security Badges -->
+                <div class="footer__badges">
+                    <div class="footer__badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>SSL Seguro</span>
+                    </div>
+                    <div class="footer__badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        <span>LGPD</span>
+                    </div>
+                    <div class="footer__badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        <span>CRC Ativo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer__links">
+                <h4>Links Rápidos</h4>
+                <a href="#services">Serviços</a>
+                <a href="#calculator">Simulador</a>
+                <a href="#process">Como Funciona</a>
+                <a href="#pricing">Planos</a>
+                <a href="#blog">Blog</a>
+            </div>
+
+            <div class="footer__links">
+                <h4>Serviços</h4>
+                <a href="#services">Imposto de Renda</a>
+                <a href="#services">Planejamento Tributário</a>
+                <a href="#services">BPO Financeiro</a>
+                <a href="#services">Consultoria</a>
+                <a href="#services">Abertura de Empresa</a>
+            </div>
+
+            <div class="footer__links">
+                <h4>Contato</h4>
+                <a href="tel:+551140000000">(11) 4000-0000</a>
+                <a href="mailto:contato@fintax.com.br">contato@fintax.com.br</a>
+                <a href="#">Av. Faria Lima, 2000</a>
+                <a href="#">São Paulo — SP</a>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+            <div class="container footer__bottom-inner">
+                <p>&copy; 2026 FinTax Contabilidade. Todos os direitos reservados.</p>
+                <div class="footer__bottom-links">
+                    <a href="#">Política de Privacidade</a>
+                    <a href="#">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

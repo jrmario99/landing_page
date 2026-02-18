@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lumina Academy — Escola particular bilíngue referência em excelência acadêmica. Educação Infantil, Ensino Fundamental e Médio. Matrículas abertas 2026.">
+    <meta name="keywords" content="escola particular, bilíngue, ensino fundamental, ensino médio, educação infantil, matrícula escola, Lumina Academy">
+    <meta name="author" content="Lumina Academy">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lumina Academy — Preparando Seu Filho Para o Mundo">
+    <meta property="og:description" content="Escola bilíngue com 25 anos de história. 100% de aprovação no vestibular. Agende uma visita.">
+    <meta property="og:image" content="assets/img/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lumina Academy — Preparando Seu Filho Para o Mundo">
+    <meta name="twitter:description" content="Escola bilíngue com 25 anos de história. 100% de aprovação no vestibular. Agende uma visita.">
+    <meta name="twitter:image" content="assets/img/og-image.jpg">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "School",
+        "name": "Lumina Academy",
+        "description": "Escola particular bilíngue — Educação Infantil, Ensino Fundamental e Médio.",
+        "url": "https://www.luminaacademy.edu.br",
+        "telephone": "+55-11-3000-0000",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. da Educação, 1200",
+            "addressLocality": "São Paulo",
+            "addressRegion": "SP",
+            "postalCode": "04500-000",
+            "addressCountry": "BR"
+        }
+    }
+    </script>
+
+    <title>Lumina Academy — Escola Bilíngue | Matrículas Abertas 2026</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <!-- Tailwind CSS v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50:  '#eef2f7',
+                            100: '#d5dde8',
+                            200: '#adbbd1',
+                            300: '#8599ba',
+                            400: '#5d77a3',
+                            500: '#3a5a8a',
+                            600: '#274170',
+                            700: '#1a3058',
+                            800: '#0f2040',
+                            900: '#0c2340',
+                            950: '#061529',
+                        },
+                        mustard: {
+                            50:  '#fef9e7',
+                            100: '#fdf0c2',
+                            200: '#fbe38a',
+                            300: '#f7d24d',
+                            400: '#efc025',
+                            500: '#d4a012',
+                            600: '#b8830e',
+                            700: '#936410',
+                            800: '#7a5014',
+                            900: '#684217',
+                        },
+                        child: {
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                        },
+                        fund: {
+                            400: '#34d399',
+                            500: '#10b981',
+                        },
+                        high: {
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="font-sans text-navy-700 bg-white antialiased">
+
+    <!-- ============================================
+         TOP BAR (Urgency)
+    ============================================ -->
+    <div id="topBar" class="bg-mustard-500 text-navy-900">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-11 text-sm">
+            <div class="flex items-center gap-2 font-bold">
+                <span class="inline-flex items-center gap-1.5">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-navy-900/40"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-navy-900"></span>
+                    </span>
+                    <!-- EDITABLE: Enrollment text -->
+                    Matrículas Abertas 2026
+                </span>
+                <a href="#visit" class="hidden sm:inline-flex items-center gap-1 bg-navy-900 text-mustard-400 text-xs font-bold px-3 py-1 rounded-full hover:bg-navy-800 transition-all ml-2">
+                    Agendar Visita
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+            </div>
+            <!-- EDITABLE: Portal link -->
+            <a href="#" class="hidden md:flex items-center gap-1.5 text-navy-800 hover:text-navy-900 transition-colors font-semibold">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                Portal do Aluno / Pais
+            </a>
+        </div>
+    </div>
+
+    <!-- ============================================
+         NAVBAR
+    ============================================ -->
+    <header id="navbar" class="sticky top-0 z-40 bg-white/95 backdrop-blur-xl border-b border-navy-100/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 shrink-0" aria-label="Lumina Academy Home">
+                <div class="w-11 h-11 bg-navy-900 rounded-xl flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-mustard-500/20 to-transparent"></div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="relative z-10">
+                        <circle cx="12" cy="10" r="5" stroke="#d4a012" stroke-width="2"/>
+                        <path d="M9 10l2 2 4-4.5" stroke="#d4a012" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M8 18h8M10 21h4M12 15v3" stroke="#d4a012" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="block text-lg font-extrabold text-navy-900 leading-tight tracking-tight">Lumina</span>
+                    <span class="block text-[0.6rem] font-semibold text-mustard-600 uppercase tracking-[0.2em]">Academy</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-1" aria-label="Navegação principal">
+                <a href="#segments" class="nav-link px-4 py-2 text-sm font-semibold text-navy-600 hover:text-navy-900 hover:bg-navy-50 rounded-lg transition-all">A Escola</a>
+                <a href="#segments" class="nav-link px-4 py-2 text-sm font-semibold text-navy-600 hover:text-navy-900 hover:bg-navy-50 rounded-lg transition-all">Segmentos</a>
+                <a href="#differentials" class="nav-link px-4 py-2 text-sm font-semibold text-navy-600 hover:text-navy-900 hover:bg-navy-50 rounded-lg transition-all">Diferenciais</a>
+                <a href="#news" class="nav-link px-4 py-2 text-sm font-semibold text-navy-600 hover:text-navy-900 hover:bg-navy-50 rounded-lg transition-all">Notícias</a>
+                <a href="#testimonials" class="nav-link px-4 py-2 text-sm font-semibold text-navy-600 hover:text-navy-900 hover:bg-navy-50 rounded-lg transition-all">Depoimentos</a>
+            </nav>
+
+            <!-- CTA + Mobile Toggle -->
+            <div class="flex items-center gap-3">
+                <a href="#visit" class="hidden sm:inline-flex items-center gap-2 bg-mustard-500 text-navy-900 font-bold text-sm px-6 py-3 rounded-xl hover:bg-mustard-400 hover:shadow-lg hover:shadow-mustard-500/25 transition-all duration-300">
+                    Quero Matricular
+                </a>
+                <button id="menuToggle" class="lg:hidden w-11 h-11 flex items-center justify-center rounded-xl hover:bg-navy-50 transition-colors" aria-label="Abrir menu" aria-expanded="false">
+                    <svg id="menuIconOpen" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-navy-800"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    <svg id="menuIconClose" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-navy-800 hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+    <!-- ============================================
+         MOBILE MENU (Off-Canvas Right)
+    ============================================ -->
+    <div id="mobileOverlay" class="fixed inset-0 bg-black/50 z-50 opacity-0 invisible transition-all duration-300"></div>
+    <div id="mobileMenu" class="fixed top-0 right-0 bottom-0 w-[320px] max-w-[85vw] bg-white z-50 translate-x-full transition-transform duration-300 overflow-y-auto shadow-2xl">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-8">
+                <span class="text-lg font-extrabold text-navy-900">Lumina <span class="text-mustard-500">Academy</span></span>
+                <button id="mobileClose" class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-navy-50 transition-colors" aria-label="Fechar menu">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <nav class="space-y-1 mb-8">
+                <a href="#segments" class="mobile-link block py-3.5 px-4 text-base font-semibold text-navy-800 hover:bg-navy-50 rounded-xl transition-all">A Escola</a>
+                <a href="#segments" class="mobile-link block py-3.5 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl transition-all">Segmentos</a>
+                <a href="#differentials" class="mobile-link block py-3.5 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl transition-all">Diferenciais</a>
+                <a href="#news" class="mobile-link block py-3.5 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl transition-all">Notícias</a>
+                <a href="#testimonials" class="mobile-link block py-3.5 px-4 text-base font-semibold text-navy-700 hover:bg-navy-50 rounded-xl transition-all">Depoimentos</a>
+            </nav>
+            <a href="#visit" class="mobile-link flex items-center justify-center gap-2 bg-mustard-500 text-navy-900 font-bold text-base w-full py-4 rounded-xl hover:bg-mustard-400 transition-all">
+                Quero Matricular
+            </a>
+            <div class="mt-6 pt-6 border-t border-navy-100">
+                <a href="#" class="flex items-center gap-2 text-sm text-navy-500 hover:text-navy-700 py-2 transition-colors">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    Portal do Aluno / Pais
+                </a>
+                <a href="tel:+551130000000" class="flex items-center gap-2 text-sm text-navy-500 hover:text-navy-700 py-2 transition-colors">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    (11) 3000-0000
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         HERO SECTION (Emotional Split)
+    ============================================ -->
+    <section id="hero" class="relative overflow-hidden bg-gradient-to-br from-navy-50 via-white to-mustard-50/30">
+        <div class="max-w-7xl mx-auto px-4 py-16 lg:py-28">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left: Text -->
+                <div data-aos="fade-right" data-aos-duration="800">
+                    <div class="inline-flex items-center gap-2 bg-mustard-100 text-mustard-700 text-sm font-bold px-4 py-2 rounded-full border border-mustard-200 mb-6">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Referência em educação bilíngue
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy-900 leading-[1.1] mb-6">
+                        Preparando seu filho para o
+                        <span class="text-mustard-500 relative">
+                            mundo
+                            <svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none"><path d="M2 8 C50 2, 150 2, 198 8" stroke="#d4a012" stroke-width="3" stroke-linecap="round" opacity="0.4"/></svg>
+                        </span>
+                    </h1>
+
+                    <p class="text-lg lg:text-xl text-navy-500 mb-8 max-w-lg leading-relaxed">
+                        Há 25 anos formando cidadãos bilíngues, criativos e preparados. Da Educação Infantil ao Ensino Médio com <strong class="text-navy-700">100% de aprovação</strong> no vestibular.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 mb-10">
+                        <a href="#visit" class="inline-flex items-center gap-2 bg-mustard-500 text-navy-900 font-bold text-base px-8 py-4 rounded-2xl hover:bg-mustard-400 hover:shadow-xl hover:shadow-mustard-500/25 transition-all duration-300">
+                            Agendar Visita Gratuita
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </a>
+                        <a href="#tour" class="inline-flex items-center gap-2 border-2 border-navy-200 text-navy-700 font-semibold text-base px-8 py-4 rounded-2xl hover:border-navy-400 hover:bg-navy-50 transition-all duration-300">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                            Galeria de Fotos
+                        </a>
+                    </div>
+
+                    <!-- Trust badges -->
+                    <div class="flex flex-wrap items-center gap-6 text-xs text-navy-400 font-semibold uppercase tracking-wider">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-navy-100 rounded-lg flex items-center justify-center">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-navy-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <span>Seg. 24h</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-navy-100 rounded-lg flex items-center justify-center">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-navy-500"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+                            </div>
+                            <span>Cambridge</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-navy-100 rounded-lg flex items-center justify-center">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-navy-500"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                            </div>
+                            <span>Google Edu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Image Mask -->
+                <div class="flex justify-center lg:justify-end" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <div class="relative">
+                        <!-- Organic shape mask -->
+                        <div class="hero-mask w-80 h-80 sm:w-96 sm:h-96 lg:w-[440px] lg:h-[440px] rounded-[60%_40%_50%_50%/50%_60%_40%_50%] overflow-hidden bg-gradient-to-br from-navy-200 to-mustard-200 relative">
+                            <!-- Placeholder for student photo -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="text-center">
+                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-navy-400/50 mx-auto mb-2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                    <p class="text-xs text-navy-400/60 font-medium px-8">Substitua por foto de alunos</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Decorative elements -->
+                        <div class="absolute -top-4 -left-4 w-20 h-20 bg-mustard-200/60 rounded-full -z-10 animate-float"></div>
+                        <div class="absolute -bottom-6 -right-6 w-28 h-28 bg-navy-100 rounded-2xl -z-10 animate-float-delay"></div>
+                        <!-- Stats badge -->
+                        <div class="absolute -bottom-2 -left-6 z-10 bg-white rounded-2xl shadow-xl shadow-navy-900/10 p-4 border border-navy-100" data-aos="fade-up" data-aos-delay="600">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-mustard-100 rounded-xl flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d4a012" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-lg font-extrabold text-navy-900">100%</p>
+                                    <p class="text-xs text-navy-400">Aprovação Vestibular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Wave -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1440 60" fill="none" class="w-full"><path d="M0 60V20C360 0 720 40 1080 20C1260 10 1380 15 1440 20V60H0Z" fill="white"/></svg>
+        </div>
+    </section>
+
+    <!-- ============================================
+         ACADEMIC SEGMENTS (3 Cards)
+    ============================================ -->
+    <section id="segments" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="inline-block bg-navy-50 text-navy-600 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-4">Segmentos de Ensino</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 leading-tight mb-4">Uma jornada completa de <span class="text-mustard-500">aprendizado</span></h2>
+                <p class="text-navy-500 text-lg">Cada fase com metodologia própria, respeitando o ritmo e as necessidades do seu filho.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Educação Infantil -->
+                <div class="segment-card group bg-white rounded-3xl border border-navy-100 p-8 hover:border-child-400/30 hover:shadow-2xl hover:shadow-child-500/10 transition-all duration-500" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-16 h-16 bg-gradient-to-br from-child-400/20 to-child-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-child-500"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                    </div>
+                    <div class="inline-block bg-child-400/10 text-child-500 text-xs font-bold px-3 py-1 rounded-full mb-4">2 a 5 anos</div>
+                    <h3 class="text-xl font-extrabold text-navy-900 mb-3">Educação Infantil</h3>
+                    <p class="text-navy-500 text-sm leading-relaxed mb-6">Aprendizado lúdico e bilíngue com foco no desenvolvimento socioemocional, motor e cognitivo. Ambiente seguro e acolhedor.</p>
+                    <ul class="space-y-2 text-sm text-navy-600">
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>Imersão bilíngue diária</li>
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>Turmas com máx. 15 alunos</li>
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>Musicalização e artes</li>
+                    </ul>
+                </div>
+
+                <!-- Ensino Fundamental -->
+                <div class="segment-card group bg-white rounded-3xl border border-navy-100 p-8 hover:border-fund-400/30 hover:shadow-2xl hover:shadow-fund-500/10 transition-all duration-500" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-fund-400/20 to-fund-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-fund-500"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    </div>
+                    <div class="inline-block bg-fund-400/10 text-fund-500 text-xs font-bold px-3 py-1 rounded-full mb-4">6 a 14 anos</div>
+                    <h3 class="text-xl font-extrabold text-navy-900 mb-3">Ensino Fundamental</h3>
+                    <p class="text-navy-500 text-sm leading-relaxed mb-6">Base sólida de conhecimento com projetos interdisciplinares, robótica e programa bilíngue certificado por Cambridge.</p>
+                    <ul class="space-y-2 text-sm text-navy-600">
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>Certificação Cambridge</li>
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>Robótica e programação</li>
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>Esportes e cultura</li>
+                    </ul>
+                </div>
+
+                <!-- Ensino Médio -->
+                <div class="segment-card group bg-white rounded-3xl border border-navy-100 p-8 hover:border-high-400/30 hover:shadow-2xl hover:shadow-high-500/10 transition-all duration-500" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-high-400/20 to-high-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-high-500"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 12 3 12 0v-5"/></svg>
+                    </div>
+                    <div class="inline-block bg-high-400/10 text-high-500 text-xs font-bold px-3 py-1 rounded-full mb-4">15 a 17 anos</div>
+                    <h3 class="text-xl font-extrabold text-navy-900 mb-3">Ensino Médio</h3>
+                    <p class="text-navy-500 text-sm leading-relaxed mb-6">Preparação de excelência para vestibulares e ENEM. Orientação vocacional personalizada e simulados semanais.</p>
+                    <ul class="space-y-2 text-sm text-navy-600">
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>100% aprovação vestibular</li>
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>Simulados e mentoria</li>
+                        <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2"><path d="m8 12 3 3 5-6"/></svg>Preparação ENEM intensiva</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         WHY CHOOSE LUMINA (Bento Grid)
+    ============================================ -->
+    <section id="differentials" class="py-20 lg:py-28 bg-navy-50/50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="inline-block bg-mustard-100 text-mustard-700 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-mustard-200 mb-4">Por Que Nos Escolher</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 leading-tight mb-4">Diferenciais que fazem a <span class="text-mustard-500">diferença</span></h2>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 auto-rows-[180px] lg:auto-rows-[200px]">
+                <!-- Bilíngue (large) -->
+                <div class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-navy-800 to-navy-900 col-span-2 row-span-2 p-8 flex flex-col justify-end" data-aos="fade-up">
+                    <div class="absolute top-6 right-6 w-16 h-16 bg-mustard-500/10 rounded-2xl flex items-center justify-center">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4a012" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <span class="inline-flex self-start bg-mustard-500 text-navy-900 text-xs font-bold px-3 py-1 rounded-full mb-3">Diferencial #1</span>
+                    <h3 class="text-2xl lg:text-3xl font-extrabold text-white mb-2">Programa Bilíngue</h3>
+                    <p class="text-navy-300 text-sm leading-relaxed max-w-xs">Certificação Cambridge integrada. Aulas diárias em inglês desde a Educação Infantil.</p>
+                </div>
+
+                <!-- Robótica -->
+                <div class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-blue-600 to-blue-700 p-6 flex flex-col justify-end" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/></svg>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-white mb-1">Robótica & Code</h3>
+                    <p class="text-white/70 text-xs leading-relaxed">Laboratório STEM completo</p>
+                </div>
+
+                <!-- Segurança -->
+                <div class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-600 to-emerald-700 p-6 flex flex-col justify-end" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-white mb-1">Segurança 24h</h3>
+                    <p class="text-white/70 text-xs leading-relaxed">CFTV e controle de acesso</p>
+                </div>
+
+                <!-- Esportes -->
+                <div class="bento-card group relative rounded-2xl overflow-hidden bg-gradient-to-br from-amber-500 to-amber-600 p-6 flex flex-col justify-end col-span-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-4 right-4 w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-white mb-1">Esportes de Alto Nível</h3>
+                    <p class="text-white/80 text-xs leading-relaxed">Quadra poliesportiva, piscina semiolímpica, judô, ballet e futebol.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         STATS COUNTER
+    ============================================ -->
+    <section id="stats" class="py-16 bg-navy-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div class="text-center" data-aos="fade-up">
+                    <p class="text-4xl lg:text-5xl font-extrabold text-mustard-400 mb-1">
+                        <span class="counter" data-target="25">0</span>+
+                    </p>
+                    <p class="text-sm text-navy-300 font-medium">Anos de História</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-4xl lg:text-5xl font-extrabold text-mustard-400 mb-1">
+                        <span class="counter" data-target="100">0</span>%
+                    </p>
+                    <p class="text-sm text-navy-300 font-medium">Aprovação Vestibular</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <p class="text-4xl lg:text-5xl font-extrabold text-mustard-400 mb-1">
+                        <span class="counter" data-target="2000">0</span>+
+                    </p>
+                    <p class="text-sm text-navy-300 font-medium">Alunos Matriculados</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-4xl lg:text-5xl font-extrabold text-mustard-400 mb-1">
+                        <span class="counter" data-target="180">0</span>+
+                    </p>
+                    <p class="text-sm text-navy-300 font-medium">Professores Especialistas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         GALERIA DE FOTOS (Carousel)
+    ============================================ -->
+    <section id="tour" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-12" data-aos="fade-up">
+                <span class="inline-block bg-navy-50 text-navy-600 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-4">Conheça Nossa Estrutura</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 leading-tight mb-4">Nossa <span class="text-mustard-500">escola</span> por dentro</h2>
+                <p class="text-navy-500">Laboratórios modernos, quadras esportivas, biblioteca, espaços maker e muito mais.</p>
+            </div>
+
+            <!-- Photo Gallery Carousel -->
+            <div class="relative" data-aos="fade-up" data-aos-delay="100">
+                <div class="overflow-hidden rounded-3xl" id="galleryWrapper">
+                    <div class="gallery-track flex transition-transform duration-600 ease-in-out" id="galleryTrack">
+                        <!-- EDITABLE: Substitua os placeholders por fotos reais da escola -->
+                        <!-- Slide 1 -->
+                        <div class="gallery-slide min-w-full">
+                            <div class="aspect-[16/7] bg-gradient-to-br from-navy-100 to-navy-200 flex items-center justify-center relative">
+                                <div class="text-center">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-navy-300 mx-auto mb-2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                                    <p class="text-sm text-navy-400/70 font-medium">Fachada da Escola</p>
+                                </div>
+                                <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5">
+                                    <p class="text-sm font-bold text-navy-900">Fachada Principal</p>
+                                    <p class="text-xs text-navy-500">Entrada e recepção</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 2 -->
+                        <div class="gallery-slide min-w-full">
+                            <div class="aspect-[16/7] bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative">
+                                <div class="text-center">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-blue-300 mx-auto mb-2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/></svg>
+                                    <p class="text-sm text-blue-400/70 font-medium">Laboratório de Robótica</p>
+                                </div>
+                                <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5">
+                                    <p class="text-sm font-bold text-navy-900">Laboratório STEM</p>
+                                    <p class="text-xs text-navy-500">Robótica e programação</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 3 -->
+                        <div class="gallery-slide min-w-full">
+                            <div class="aspect-[16/7] bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center relative">
+                                <div class="text-center">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-emerald-300 mx-auto mb-2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><circle cx="12" cy="12" r="4"/></svg>
+                                    <p class="text-sm text-emerald-400/70 font-medium">Quadra Poliesportiva</p>
+                                </div>
+                                <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5">
+                                    <p class="text-sm font-bold text-navy-900">Quadra Poliesportiva</p>
+                                    <p class="text-xs text-navy-500">Esportes e recreação</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 4 -->
+                        <div class="gallery-slide min-w-full">
+                            <div class="aspect-[16/7] bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center relative">
+                                <div class="text-center">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-amber-300 mx-auto mb-2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                    <p class="text-sm text-amber-400/70 font-medium">Biblioteca</p>
+                                </div>
+                                <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5">
+                                    <p class="text-sm font-bold text-navy-900">Biblioteca</p>
+                                    <p class="text-xs text-navy-500">+10.000 títulos</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="gallery-slide min-w-full">
+                            <div class="aspect-[16/7] bg-gradient-to-br from-violet-100 to-violet-200 flex items-center justify-center relative">
+                                <div class="text-center">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-violet-300 mx-auto mb-2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                                    <p class="text-sm text-violet-400/70 font-medium">Área de Recreação Infantil</p>
+                                </div>
+                                <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5">
+                                    <p class="text-sm font-bold text-navy-900">Playground</p>
+                                    <p class="text-xs text-navy-500">Educação Infantil</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 6 -->
+                        <div class="gallery-slide min-w-full">
+                            <div class="aspect-[16/7] bg-gradient-to-br from-cyan-100 to-cyan-200 flex items-center justify-center relative">
+                                <div class="text-center">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-cyan-300 mx-auto mb-2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                                    <p class="text-sm text-cyan-400/70 font-medium">Piscina Semiolímpica</p>
+                                </div>
+                                <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5">
+                                    <p class="text-sm font-bold text-navy-900">Piscina</p>
+                                    <p class="text-xs text-navy-500">Semiolímpica aquecida</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Controls -->
+                <button id="galleryPrev" class="absolute left-3 lg:-left-5 top-1/2 -translate-y-1/2 w-11 h-11 lg:w-12 lg:h-12 bg-white/90 backdrop-blur-sm text-navy-700 rounded-full flex items-center justify-center shadow-lg shadow-navy-900/10 hover:bg-white hover:shadow-xl transition-all z-10 border border-navy-100" aria-label="Foto anterior">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button id="galleryNext" class="absolute right-3 lg:-right-5 top-1/2 -translate-y-1/2 w-11 h-11 lg:w-12 lg:h-12 bg-white/90 backdrop-blur-sm text-navy-700 rounded-full flex items-center justify-center shadow-lg shadow-navy-900/10 hover:bg-white hover:shadow-xl transition-all z-10 border border-navy-100" aria-label="Próxima foto">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+
+                <!-- Gallery Dots + Counter -->
+                <div class="flex items-center justify-center gap-4 mt-6">
+                    <div class="flex gap-2" id="galleryDots"></div>
+                    <span id="galleryCounter" class="text-sm font-semibold text-navy-400">1 / 6</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         NEWS & EVENTS (Carousel)
+    ============================================ -->
+    <section id="news" class="py-20 lg:py-28 bg-navy-50/50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12" data-aos="fade-up">
+                <div>
+                    <span class="inline-block bg-mustard-100 text-mustard-700 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-mustard-200 mb-4">Fique por Dentro</span>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900">Notícias & <span class="text-mustard-500">Eventos</span></h2>
+                </div>
+                <div class="flex gap-2">
+                    <button id="newsPrev" class="w-11 h-11 rounded-full border-2 border-navy-200 text-navy-500 flex items-center justify-center hover:bg-navy-100 transition-all" aria-label="Notícia anterior">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button id="newsNext" class="w-11 h-11 rounded-full border-2 border-navy-200 text-navy-500 flex items-center justify-center hover:bg-navy-100 transition-all" aria-label="Próxima notícia">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- News Carousel -->
+            <div class="overflow-hidden" id="newsCarousel">
+                <div class="news-track flex gap-6 transition-transform duration-500" id="newsTrack">
+                    <!-- Card 1 -->
+                    <article class="news-card min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] bg-white rounded-2xl border border-navy-100 overflow-hidden flex-shrink-0 hover:shadow-xl hover:shadow-navy-900/5 transition-all duration-300">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-navy-100 to-navy-200 flex items-center justify-center relative">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-navy-300"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                            <span class="absolute top-3 left-3 bg-mustard-500 text-navy-900 text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Evento</span>
+                        </div>
+                        <div class="p-5">
+                            <time class="text-xs text-navy-400 font-medium">15 Mar 2026</time>
+                            <h3 class="text-base font-bold text-navy-900 mt-2 mb-2 line-clamp-2">Feira de Ciências 2026 — Inscrições Abertas</h3>
+                            <p class="text-sm text-navy-500 line-clamp-2">Alunos do Fundamental e Médio já podem inscrever seus projetos para a maior feira de ciências da escola.</p>
+                        </div>
+                    </article>
+                    <!-- Card 2 -->
+                    <article class="news-card min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] bg-white rounded-2xl border border-navy-100 overflow-hidden flex-shrink-0 hover:shadow-xl hover:shadow-navy-900/5 transition-all duration-300">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center relative">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-emerald-300"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                            <span class="absolute top-3 left-3 bg-emerald-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Conquista</span>
+                        </div>
+                        <div class="p-5">
+                            <time class="text-xs text-navy-400 font-medium">08 Mar 2026</time>
+                            <h3 class="text-base font-bold text-navy-900 mt-2 mb-2 line-clamp-2">Alunos conquistam ouro na Olimpíada de Robótica</h3>
+                            <p class="text-sm text-navy-500 line-clamp-2">Equipe Lumina Bots levou medalha de ouro na fase estadual da Olimpíada Brasileira de Robótica.</p>
+                        </div>
+                    </article>
+                    <!-- Card 3 -->
+                    <article class="news-card min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] bg-white rounded-2xl border border-navy-100 overflow-hidden flex-shrink-0 hover:shadow-xl hover:shadow-navy-900/5 transition-all duration-300">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center relative">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-blue-300"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                            <span class="absolute top-3 left-3 bg-blue-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Novidade</span>
+                        </div>
+                        <div class="p-5">
+                            <time class="text-xs text-navy-400 font-medium">01 Mar 2026</time>
+                            <h3 class="text-base font-bold text-navy-900 mt-2 mb-2 line-clamp-2">Novo laboratório de Inteligência Artificial inaugurado</h3>
+                            <p class="text-sm text-navy-500 line-clamp-2">Alunos do Ensino Médio terão acesso a ferramentas de IA para projetos práticos e pesquisa.</p>
+                        </div>
+                    </article>
+                    <!-- Card 4 -->
+                    <article class="news-card min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] bg-white rounded-2xl border border-navy-100 overflow-hidden flex-shrink-0 hover:shadow-xl hover:shadow-navy-900/5 transition-all duration-300">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center relative">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-rose-300"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                            <span class="absolute top-3 left-3 bg-rose-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Cultural</span>
+                        </div>
+                        <div class="p-5">
+                            <time class="text-xs text-navy-400 font-medium">22 Fev 2026</time>
+                            <h3 class="text-base font-bold text-navy-900 mt-2 mb-2 line-clamp-2">Festival de Artes — Mostra de talentos dos alunos</h3>
+                            <p class="text-sm text-navy-500 line-clamp-2">Teatro, dança e música: confira os destaques do festival cultural que emocionou as famílias.</p>
+                        </div>
+                    </article>
+                    <!-- Card 5 -->
+                    <article class="news-card min-w-[300px] sm:min-w-[340px] lg:min-w-[380px] bg-white rounded-2xl border border-navy-100 overflow-hidden flex-shrink-0 hover:shadow-xl hover:shadow-navy-900/5 transition-all duration-300">
+                        <div class="aspect-[16/10] bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center relative">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-amber-300"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                            <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-md uppercase">Matrícula</span>
+                        </div>
+                        <div class="p-5">
+                            <time class="text-xs text-navy-400 font-medium">10 Fev 2026</time>
+                            <h3 class="text-base font-bold text-navy-900 mt-2 mb-2 line-clamp-2">Matrículas abertas — vagas limitadas para 2026</h3>
+                            <p class="text-sm text-navy-500 line-clamp-2">Garanta a vaga do seu filho. Condições especiais para irmãos e ex-alunos.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TESTIMONIALS (Parents & Students)
+    ============================================ -->
+    <section id="testimonials" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <span class="inline-block bg-navy-50 text-navy-600 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-4">Depoimentos</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-navy-900 leading-tight mb-4">O que as <span class="text-mustard-500">famílias</span> dizem</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-2xl border border-navy-100 p-7 hover:shadow-xl hover:shadow-navy-900/5 transition-all duration-300" data-aos="fade-up">
+                    <div class="flex items-center gap-1 text-mustard-500 text-sm mb-4">★★★★★</div>
+                    <blockquote class="text-navy-600 text-sm leading-relaxed mb-6 italic">
+                        "A Lumina transformou a relação da minha filha com o aprendizado. Ela ama ir para a escola, fala inglês naturalmente e está sempre empolgada com os projetos. Melhor decisão que tomamos."
+                    </blockquote>
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-child-400/20 text-child-500 flex items-center justify-center font-bold text-sm">RF</div>
+                        <div>
+                            <p class="text-sm font-bold text-navy-900">Renata Ferreira</p>
+                            <p class="text-xs text-navy-400">Mãe da Sofia — Ed. Infantil</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-2xl border border-navy-100 p-7 hover:shadow-xl hover:shadow-navy-900/5 transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-1 text-mustard-500 text-sm mb-4">★★★★★</div>
+                    <blockquote class="text-navy-600 text-sm leading-relaxed mb-6 italic">
+                        "Meu filho entrou no Ensino Médio sem saber o que queria. A orientação vocacional da Lumina foi fundamental. Passou em 3 universidades federais! Gratidão eterna."
+                    </blockquote>
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-high-400/20 text-high-500 flex items-center justify-center font-bold text-sm">MC</div>
+                        <div>
+                            <p class="text-sm font-bold text-navy-900">Marcos Costa</p>
+                            <p class="text-xs text-navy-400">Pai do Pedro — Ensino Médio</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-2xl border border-navy-100 p-7 hover:shadow-xl hover:shadow-navy-900/5 transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-1 text-mustard-500 text-sm mb-4">★★★★★</div>
+                    <blockquote class="text-navy-600 text-sm leading-relaxed mb-6 italic">
+                        "O programa de robótica despertou uma paixão no Lucas que nem imaginávamos. Ele participou de competições nacionais e ganhou confiança. A escola realmente forma cidadãos completos."
+                    </blockquote>
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-full bg-fund-400/20 text-fund-500 flex items-center justify-center font-bold text-sm">AS</div>
+                        <div>
+                            <p class="text-sm font-bold text-navy-900">Ana Silva</p>
+                            <p class="text-xs text-navy-400">Mãe do Lucas — Ens. Fundamental</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CTA — SCHEDULE VISIT (Form)
+    ============================================ -->
+    <section id="visit" class="py-20 lg:py-28 bg-navy-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 32px 32px;"></div>
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left: Copy -->
+                <div data-aos="fade-right">
+                    <span class="inline-flex items-center gap-2 bg-mustard-500/20 text-mustard-400 text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-full border border-mustard-500/20 mb-6">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Agende sua visita
+                    </span>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-6">
+                        Venha conhecer a<br><span class="text-mustard-400">Lumina Academy</span>
+                    </h2>
+                    <p class="text-lg text-navy-300 mb-8 leading-relaxed">
+                        Agende uma visita guiada gratuita. Conheça nossa estrutura, converse com coordenadores e descubra por que somos a melhor escolha para o futuro do seu filho.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3 text-navy-300">
+                            <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4a012" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </div>
+                            <span>(11) 3000-0000</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-navy-300">
+                            <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center border border-white/10">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4a012" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <span>Av. da Educação, 1200 — São Paulo/SP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <form id="visitForm" class="bg-white rounded-3xl p-8 lg:p-10 shadow-2xl" novalidate>
+                        <h3 class="text-xl font-extrabold text-navy-900 mb-1">Agendar Visita Gratuita</h3>
+                        <p class="text-sm text-navy-400 mb-7">Preencha os dados e entraremos em contato.</p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label for="visitName" class="block text-sm font-semibold text-navy-700 mb-1.5">Nome completo *</label>
+                                <input type="text" id="visitName" name="name" required placeholder="Seu nome" class="w-full h-12 px-4 bg-navy-50 border border-navy-200 rounded-xl text-sm text-navy-800 placeholder:text-navy-400 focus:outline-none focus:ring-2 focus:ring-mustard-400 focus:border-mustard-400 transition-all">
+                            </div>
+                            <div>
+                                <label for="visitEmail" class="block text-sm font-semibold text-navy-700 mb-1.5">E-mail *</label>
+                                <input type="email" id="visitEmail" name="email" required placeholder="seu@email.com" class="w-full h-12 px-4 bg-navy-50 border border-navy-200 rounded-xl text-sm text-navy-800 placeholder:text-navy-400 focus:outline-none focus:ring-2 focus:ring-mustard-400 focus:border-mustard-400 transition-all">
+                            </div>
+                            <div>
+                                <label for="visitPhone" class="block text-sm font-semibold text-navy-700 mb-1.5">Telefone *</label>
+                                <input type="tel" id="visitPhone" name="phone" required placeholder="(11) 9 0000-0000" class="w-full h-12 px-4 bg-navy-50 border border-navy-200 rounded-xl text-sm text-navy-800 placeholder:text-navy-400 focus:outline-none focus:ring-2 focus:ring-mustard-400 focus:border-mustard-400 transition-all">
+                            </div>
+                            <div>
+                                <label for="visitSegment" class="block text-sm font-semibold text-navy-700 mb-1.5">Segmento de Interesse *</label>
+                                <select id="visitSegment" name="segment" required class="w-full h-12 px-4 bg-navy-50 border border-navy-200 rounded-xl text-sm text-navy-800 focus:outline-none focus:ring-2 focus:ring-mustard-400 focus:border-mustard-400 transition-all appearance-none cursor-pointer" style="background-image: url('data:image/svg+xml,%3Csvg width=%2712%27 height=%2712%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%2394a3b8%27 stroke-width=%272%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpolyline points=%276 9 12 15 18 9%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 14px center;">
+                                    <option value="" disabled selected>Selecione o segmento</option>
+                                    <option value="infantil">Educação Infantil (2-5 anos)</option>
+                                    <option value="fundamental1">Ensino Fundamental I (6-10 anos)</option>
+                                    <option value="fundamental2">Ensino Fundamental II (11-14 anos)</option>
+                                    <option value="medio">Ensino Médio (15-17 anos)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="visitSubmit" class="w-full mt-6 bg-mustard-500 text-navy-900 font-bold text-base py-4 rounded-xl hover:bg-mustard-400 hover:shadow-lg hover:shadow-mustard-500/25 transition-all duration-300 flex items-center justify-center gap-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            Agendar Minha Visita
+                        </button>
+
+                        <p class="text-xs text-navy-400 text-center mt-4">Seus dados estão seguros. Não compartilhamos com terceiros.</p>
+
+                        <!-- Success message (hidden by default) -->
+                        <div id="formSuccess" class="hidden mt-6 bg-emerald-50 border border-emerald-200 rounded-xl p-4 text-center">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" class="mx-auto mb-2"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
+                            <p class="text-sm font-bold text-emerald-800">Visita agendada com sucesso!</p>
+                            <p class="text-xs text-emerald-600 mt-1">Entraremos em contato em até 24 horas.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
+    </main>
+
+    <footer class="bg-navy-950 text-navy-400 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+                <!-- Brand -->
+                <div class="col-span-2 lg:col-span-1">
+                    <a href="#" class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 bg-navy-800 rounded-xl flex items-center justify-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="5" stroke="#d4a012" stroke-width="2"/><path d="M9 10l2 2 4-4.5" stroke="#d4a012" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 18h8M10 21h4M12 15v3" stroke="#d4a012" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <div>
+                            <span class="block text-base font-extrabold text-white">Lumina</span>
+                            <span class="block text-[0.55rem] text-mustard-500/70 uppercase tracking-[0.2em]">Academy</span>
+                        </div>
+                    </a>
+                    <p class="text-sm leading-relaxed mb-4">Há 25 anos formando cidadãos bilíngues, criativos e preparados para o mundo.</p>
+                    <!-- EDITABLE: Phone -->
+                    <a href="tel:+551130000000" class="text-sm hover:text-white transition-colors">(11) 3000-0000</a>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">A Escola</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#segments" class="hover:text-white transition-colors">Segmentos</a></li>
+                        <li><a href="#differentials" class="hover:text-white transition-colors">Diferenciais</a></li>
+                        <li><a href="#tour" class="hover:text-white transition-colors">Galeria de Fotos</a></li>
+                        <li><a href="#visit" class="hover:text-white transition-colors">Agendar Visita</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Para Famílias</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Portal do Aluno</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Calendário Escolar</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Uniforme</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Transporte</a></li>
+                    </ul>
+                </div>
+
+                <!-- Map -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-4">Localização</h4>
+                    <!-- EDITABLE: Google Maps -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.0!2d-46.66!3d-23.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1spt-BR!2sbr" width="100%" height="150" style="border:0; border-radius: 12px; opacity: 0.8;" allowfullscreen="" loading="lazy" title="Localização Lumina Academy"></iframe>
+                </div>
+            </div>
+
+            <!-- Partner Logos -->
+            <div class="py-8 border-b border-white/10">
+                <p class="text-xs text-navy-500 text-center mb-5 uppercase tracking-wider font-bold">Parceiros & Certificações</p>
+                <div class="flex flex-wrap items-center justify-center gap-8">
+                    <div class="text-navy-500/50 text-xs font-bold uppercase tracking-wider px-4 py-2 border border-white/10 rounded-lg">Google for Education</div>
+                    <div class="text-navy-500/50 text-xs font-bold uppercase tracking-wider px-4 py-2 border border-white/10 rounded-lg">Cambridge</div>
+                    <div class="text-navy-500/50 text-xs font-bold uppercase tracking-wider px-4 py-2 border border-white/10 rounded-lg">LEGO Education</div>
+                    <div class="text-navy-500/50 text-xs font-bold uppercase tracking-wider px-4 py-2 border border-white/10 rounded-lg">Apple School</div>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+                <p>&copy; 2026 Lumina Academy. Todos os direitos reservados.</p>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-white transition-colors">Política de Privacidade</a>
+                    <a href="#" class="hover:text-white transition-colors">Termos de Uso</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

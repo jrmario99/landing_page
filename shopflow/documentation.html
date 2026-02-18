@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopFlow — Documentation / Documentação</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .lang-pt { display: none; }
+        .show-pt .lang-en { display: none; }
+        .show-pt .lang-pt { display: block; }
+        pre { background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 12px; overflow-x: auto; font-size: 0.85rem; line-height: 1.7; }
+        code { font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+        .toc a { transition: color 0.2s; }
+        .toc a:hover { color: #f59e0b; }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">&larr; Back to Store</a>
+            <div class="flex items-center gap-3">
+                <span class="text-xs text-gray-400">Language:</span>
+                <button onclick="setLang('en')" id="langEn" class="px-3 py-1 text-xs font-bold rounded-lg bg-gray-900 text-white transition-all">EN</button>
+                <button onclick="setLang('pt')" id="langPt" class="px-3 py-1 text-xs font-bold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all">PT</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+
+        <!-- Title -->
+        <div class="mb-12">
+            <div class="inline-block bg-amber-50 text-amber-700 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4 border border-amber-200">ShopFlow Template</div>
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-3">
+                <span class="lang-en">Documentation</span>
+                <span class="lang-pt">Documentação</span>
+            </h1>
+            <p class="text-lg text-gray-500">
+                <span class="lang-en">E-commerce Front-end Template — Fashion & Tech Store</span>
+                <span class="lang-pt">Template Front-end E-commerce — Loja de Moda & Tecnologia</span>
+            </p>
+        </div>
+
+        <!-- Table of Contents -->
+        <nav class="toc bg-gray-50 rounded-2xl p-6 mb-12 border border-gray-100">
+            <h2 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">
+                <span class="lang-en">Table of Contents</span>
+                <span class="lang-pt">Índice</span>
+            </h2>
+            <ol class="space-y-1 text-sm text-gray-600 list-decimal list-inside">
+                <li><a href="#overview" class="lang-en">Overview & Features</a><a href="#overview" class="lang-pt">Visão Geral & Recursos</a></li>
+                <li><a href="#structure" class="lang-en">File Structure</a><a href="#structure" class="lang-pt">Estrutura de Arquivos</a></li>
+                <li><a href="#products" class="lang-en">Product Data Structure</a><a href="#products" class="lang-pt">Estrutura de Dados dos Produtos</a></li>
+                <li><a href="#cart" class="lang-en">Cart Sidebar (Off-Canvas)</a><a href="#cart" class="lang-pt">Carrinho Lateral (Off-Canvas)</a></li>
+                <li><a href="#quickview" class="lang-en">Quick View Modal</a><a href="#quickview" class="lang-pt">Modal Quick View</a></li>
+                <li><a href="#sections" class="lang-en">Sections Guide</a><a href="#sections" class="lang-pt">Guia de Seções</a></li>
+                <li><a href="#colors" class="lang-en">Color Customization</a><a href="#colors" class="lang-pt">Personalização de Cores</a></li>
+                <li><a href="#mobile" class="lang-en">Mobile Bottom Bar</a><a href="#mobile" class="lang-pt">Barra Inferior Mobile</a></li>
+                <li><a href="#api" class="lang-en">JavaScript API</a><a href="#api" class="lang-pt">API JavaScript</a></li>
+                <li><a href="#tech" class="lang-en">Tech Stack</a><a href="#tech" class="lang-pt">Stack Tecnológica</a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Overview -->
+        <section id="overview" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">1. Overview & Features</span>
+                <span class="lang-pt">1. Visão Geral & Recursos</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p><strong>ShopFlow</strong> is a conversion-focused e-commerce front-end template for fashion and tech stores. Built with <strong>Tailwind CSS v3 CDN</strong> and <strong>vanilla JavaScript</strong> — no build step, no dependencies.</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Off-Canvas Cart Sidebar</strong> — Slides from the right, no page redirect. Items persist in localStorage</li>
+                    <li><strong>Product Quick View</strong> — Modal with product details, quantity selector, and add-to-cart</li>
+                    <li><strong>Product Tabs</strong> — New Arrivals / Best Sellers / On Sale with animated transitions</li>
+                    <li><strong>Product Cards</strong> — Image swap on hover, badges (New, -30%), quick action buttons</li>
+                    <li><strong>Hero Carousel</strong> — Full-width, autoplay (5s), swipe support, dots navigation</li>
+                    <li><strong>Bento Grid Categories</strong> — Mosaic layout with hover effects</li>
+                    <li><strong>Deal of the Day</strong> — Countdown timer, featured product with add-to-cart</li>
+                    <li><strong>Mobile Bottom Bar</strong> — 5-tab navigation (Home, Categories, Deals, Wishlist, Cart)</li>
+                    <li><strong>Search Bar</strong> — Visual suggestion dropdown (desktop), expandable on mobile</li>
+                    <li><strong>Toast Notifications</strong> — "Added to cart" feedback</li>
+                    <li><strong>Instagram Feed</strong> — Simulated social grid with hover overlay</li>
+                    <li><strong>Newsletter</strong> — Large input with CTA in footer</li>
+                    <li><strong>Payment Icons</strong> — Visa, Mastercard, PIX, Boleto, Amex, Elo</li>
+                </ul>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p><strong>ShopFlow</strong> é um template front-end de e-commerce focado em conversão para lojas de moda e tecnologia. Construído com <strong>Tailwind CSS v3 CDN</strong> e <strong>JavaScript puro</strong> — sem build, sem dependências.</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Carrinho Lateral Off-Canvas</strong> — Desliza da direita, sem redirecionar de página. Itens persistem no localStorage</li>
+                    <li><strong>Quick View de Produto</strong> — Modal com detalhes, seletor de quantidade e adicionar ao carrinho</li>
+                    <li><strong>Abas de Produtos</strong> — Novidades / Mais Vendidos / Ofertas com transições animadas</li>
+                    <li><strong>Cards de Produto</strong> — Troca de imagem no hover, badges (New, -30%), botões de ação rápida</li>
+                    <li><strong>Hero Carousel</strong> — Largura total, autoplay (5s), suporte a swipe, navegação por dots</li>
+                    <li><strong>Bento Grid de Categorias</strong> — Layout mosaico com efeitos hover</li>
+                    <li><strong>Oferta do Dia</strong> — Cronômetro regressivo, produto destaque com add-to-cart</li>
+                    <li><strong>Barra Inferior Mobile</strong> — Navegação com 5 abas (Início, Categorias, Ofertas, Favoritos, Carrinho)</li>
+                    <li><strong>Barra de Busca</strong> — Dropdown de sugestões visuais (desktop), expansível no mobile</li>
+                    <li><strong>Notificações Toast</strong> — Feedback "Adicionado ao carrinho"</li>
+                    <li><strong>Feed Instagram</strong> — Grid social simulado com overlay no hover</li>
+                    <li><strong>Newsletter</strong> — Input grande com CTA no footer</li>
+                    <li><strong>Ícones de Pagamento</strong> — Visa, Mastercard, PIX, Boleto, Amex, Elo</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. File Structure -->
+        <section id="structure" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">2. File Structure</span>
+                <span class="lang-pt">2. Estrutura de Arquivos</span>
+            </h2>
+            <pre><code>shopflow/
+├── index.html              # Homepage (all sections)
+├── documentation.html      # This file
+└── assets/
+    ├── css/
+    │   └── ecommerce.css   # Store-specific styles
+    ├── js/
+    │   └── store.js        # Cart, Quick View, Carousel, Tabs, Countdown
+    └── img/
+        └── favicon.svg     # Cart + arrow icon</code></pre>
+        </section>
+
+        <!-- 3. Product Data Structure -->
+        <section id="products" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">3. Product Data Structure</span>
+                <span class="lang-pt">3. Estrutura de Dados dos Produtos</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p>Products are defined in the <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">PRODUCTS</code> object at the top of <code>store.js</code>. It has three arrays:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><code>new</code> — New Arrivals (Novidades tab)</li>
+                    <li><code>best</code> — Best Sellers (Mais Vendidos tab)</li>
+                    <li><code>sale</code> — On Sale (Ofertas tab)</li>
+                </ul>
+                <p>Each product object:</p>
+                <pre><code>{
+    id: 'n1',                    // Unique identifier
+    name: 'Camiseta Oversized',  // Display name
+    price: 129,                  // Current price (number)
+    oldPrice: null,              // Original price before discount (null if no sale)
+    badge: 'New',                // Badge text ('New', '-40%', null)
+    reviews: 24,                 // Number of reviews (for Quick View)
+    desc: 'Product description', // Description text (for Quick View)
+    installments: '3x de R$ 43'  // Installment text
+}</code></pre>
+                <p>To add your own products, simply edit the arrays. Each tab shows 8 products (4-column grid on desktop, 2-column on mobile).</p>
+                <p class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-amber-800 text-sm"><strong>Tip:</strong> To load products from an API, replace the static <code>PRODUCTS</code> object with a <code>fetch()</code> call in the <code>init()</code> function.</p>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p>Os produtos são definidos no objeto <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">PRODUCTS</code> no topo do <code>store.js</code>. Ele possui três arrays:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><code>new</code> — Novidades (aba Novidades)</li>
+                    <li><code>best</code> — Mais Vendidos (aba Mais Vendidos)</li>
+                    <li><code>sale</code> — Ofertas (aba Ofertas)</li>
+                </ul>
+                <p>Cada objeto de produto:</p>
+                <pre><code>{
+    id: 'n1',                      // Identificador único
+    name: 'Camiseta Oversized',    // Nome de exibição
+    price: 129,                    // Preço atual (número)
+    oldPrice: null,                // Preço original antes do desconto (null se sem promoção)
+    badge: 'New',                  // Texto do badge ('New', '-40%', null)
+    reviews: 24,                   // Número de avaliações (para Quick View)
+    desc: 'Descrição do produto',  // Texto de descrição (para Quick View)
+    installments: '3x de R$ 43'    // Texto de parcelamento
+}</code></pre>
+                <p>Para adicionar seus próprios produtos, basta editar os arrays. Cada aba mostra 8 produtos (grid 4 colunas no desktop, 2 no mobile).</p>
+                <p class="bg-amber-50 p-4 rounded-xl border border-amber-200 text-amber-800 text-sm"><strong>Dica:</strong> Para carregar produtos de uma API, substitua o objeto estático <code>PRODUCTS</code> por uma chamada <code>fetch()</code> na função <code>init()</code>.</p>
+            </div>
+        </section>
+
+        <!-- 4. Cart Sidebar -->
+        <section id="cart" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">4. Cart Sidebar (Off-Canvas)</span>
+                <span class="lang-pt">4. Carrinho Lateral (Off-Canvas)</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p>The cart sidebar slides from the right without redirecting to another page. Key behaviors:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Opens automatically</strong> when an item is added to cart</li>
+                    <li><strong>Persists items</strong> in <code>localStorage</code> under key <code>shopflow-cart</code></li>
+                    <li><strong>Quantity controls</strong> — increase/decrease per item</li>
+                    <li><strong>Remove button</strong> — X icon on each item</li>
+                    <li><strong>Empty state</strong> — Shows bag icon and "Continue shopping" link</li>
+                    <li><strong>Closes via</strong> — Close button, overlay click, or ESC key</li>
+                    <li><strong>Prevents body scroll</strong> when open</li>
+                    <li>Opens from: header cart icon, mobile bottom bar cart button, or after adding any item</li>
+                </ul>
+                <p>Badge counters update on: header cart icon, mobile bottom bar cart icon.</p>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p>O carrinho lateral desliza da direita sem redirecionar para outra página. Comportamentos principais:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><strong>Abre automaticamente</strong> ao adicionar um item ao carrinho</li>
+                    <li><strong>Persiste itens</strong> no <code>localStorage</code> na chave <code>shopflow-cart</code></li>
+                    <li><strong>Controles de quantidade</strong> — aumentar/diminuir por item</li>
+                    <li><strong>Botão remover</strong> — Ícone X em cada item</li>
+                    <li><strong>Estado vazio</strong> — Mostra ícone de sacola e link "Continuar comprando"</li>
+                    <li><strong>Fecha por</strong> — Botão fechar, clique no overlay, ou tecla ESC</li>
+                    <li><strong>Previne scroll do body</strong> quando aberto</li>
+                    <li>Abre de: ícone do carrinho no header, botão do carrinho na barra mobile, ou após adicionar qualquer item</li>
+                </ul>
+                <p>Badges de contagem atualizam em: ícone do carrinho no header, ícone do carrinho na barra mobile.</p>
+            </div>
+        </section>
+
+        <!-- 5. Quick View -->
+        <section id="quickview" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">5. Quick View Modal</span>
+                <span class="lang-pt">5. Modal Quick View</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p>The Quick View modal opens when clicking the <strong>eye icon</strong> on a product card (visible on hover). It shows:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li>Product image placeholder (left column)</li>
+                    <li>Badge (New or sale percentage)</li>
+                    <li>Product name and star rating</li>
+                    <li>Price with old price crossed out (if on sale)</li>
+                    <li>Description text</li>
+                    <li>Quantity selector (+/-)</li>
+                    <li>"Add to Cart" button — adds the selected quantity and opens the cart sidebar</li>
+                </ul>
+                <p>Closes via: X button, overlay click, or ESC key.</p>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p>O modal Quick View abre ao clicar no <strong>ícone de olho</strong> no card do produto (visível no hover). Mostra:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li>Placeholder da imagem do produto (coluna esquerda)</li>
+                    <li>Badge (New ou porcentagem de desconto)</li>
+                    <li>Nome do produto e classificação por estrelas</li>
+                    <li>Preço com preço antigo riscado (se em oferta)</li>
+                    <li>Texto de descrição</li>
+                    <li>Seletor de quantidade (+/-)</li>
+                    <li>Botão "Adicionar ao Carrinho" — adiciona a quantidade selecionada e abre o carrinho</li>
+                </ul>
+                <p>Fecha por: botão X, clique no overlay, ou tecla ESC.</p>
+            </div>
+        </section>
+
+        <!-- 6. Sections Guide -->
+        <section id="sections" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">6. Sections Guide</span>
+                <span class="lang-pt">6. Guia de Seções</span>
+            </h2>
+            <div class="lang-en space-y-4 text-gray-600">
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Promo Bar</h3>
+                    <p class="text-sm">Top strip with promotional message and coupon code. Dismissible with X button. Edit text directly in HTML.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Header</h3>
+                    <p class="text-sm">Sticky navbar with logo, category dropdown, search bar (desktop), account/wishlist/cart icons with badge counters. Mobile: hamburger menu + search toggle.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Hero Carousel</h3>
+                    <p class="text-sm">3 full-width slides with gradient backgrounds. Autoplay 5s, prev/next arrows, dot indicators, touch swipe support.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Categories (Bento Grid)</h3>
+                    <p class="text-sm">Mosaic layout with 5 category cards. One large card spans 2 rows + 2 cols. Gradient overlays with hover scale effect.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Featured Products (Tabs)</h3>
+                    <p class="text-sm">3 tabs: Novidades, Mais Vendidos, Ofertas. Each shows 8 product cards. Products defined in store.js PRODUCTS object.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Deal of the Day</h3>
+                    <p class="text-sm">Dark section with countdown timer (hours:minutes:seconds), featured product info, price comparison, and add-to-cart button. Timer starts at 12 hours from page load (configurable in store.js).</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Trust Bar</h3>
+                    <p class="text-sm">4-column grid: Free Shipping, Secure Purchase, Free Returns, 24/7 Support.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Instagram Feed</h3>
+                    <p class="text-sm">6 placeholder cards (3 on mobile, 6 on desktop) with gradient overlays simulating Instagram photos. Instagram icon overlay on hover.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Footer</h3>
+                    <p class="text-sm">Newsletter form (email + CTA button), 5-column grid (Brand, Institucional, Ajuda, Políticas, Social), payment method icons.</p>
+                </div>
+            </div>
+            <div class="lang-pt space-y-4 text-gray-600">
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Barra Promocional</h3>
+                    <p class="text-sm">Faixa superior com mensagem promocional e código de cupom. Dispensável com botão X. Edite o texto diretamente no HTML.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Header</h3>
+                    <p class="text-sm">Navbar sticky com logo, dropdown de categorias, barra de busca (desktop), ícones de conta/favoritos/carrinho com badges. Mobile: menu hambúrguer + toggle de busca.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Hero Carousel</h3>
+                    <p class="text-sm">3 slides fullwidth com fundos em gradiente. Autoplay 5s, setas prev/next, indicadores de dots, suporte a swipe.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Categorias (Bento Grid)</h3>
+                    <p class="text-sm">Layout mosaico com 5 cards de categorias. Um card grande ocupa 2 linhas + 2 colunas. Overlays em gradiente com efeito scale no hover.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Produtos Destaque (Abas)</h3>
+                    <p class="text-sm">3 abas: Novidades, Mais Vendidos, Ofertas. Cada uma mostra 8 cards de produto. Produtos definidos no objeto PRODUCTS do store.js.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Oferta do Dia</h3>
+                    <p class="text-sm">Seção escura com cronômetro regressivo (horas:minutos:segundos), info do produto destaque, comparação de preço e botão add-to-cart. Timer inicia em 12 horas a partir do carregamento (configurável no store.js).</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Barra de Confiança</h3>
+                    <p class="text-sm">Grid de 4 colunas: Frete Grátis, Compra Segura, Troca Gratuita, Suporte 24/7.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Feed Instagram</h3>
+                    <p class="text-sm">6 cards placeholder (3 no mobile, 6 no desktop) com overlays em gradiente simulando fotos do Instagram. Ícone do Instagram aparece no hover.</p>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                    <h3 class="font-bold text-gray-900 mb-1">Rodapé</h3>
+                    <p class="text-sm">Formulário newsletter (email + botão CTA), grid de 5 colunas (Marca, Institucional, Ajuda, Políticas, Social), ícones de métodos de pagamento.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Colors -->
+        <section id="colors" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">7. Color Customization</span>
+                <span class="lang-pt">7. Personalização de Cores</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p>Colors are in the Tailwind config inside <code>index.html</code> head:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">shop-*</code> — Primary slate/navy palette (backgrounds, text, borders)</li>
+                    <li><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">accent-*</code> — Amber/gold accent (CTAs, highlights, badges, logo)</li>
+                    <li><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">sale-*</code> — Red for sale badges and promotional elements</li>
+                    <li><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">green-*</code> — Tailwind default greens (success states)</li>
+                </ul>
+                <p>Also update the corresponding colors in <code>ecommerce.css</code> (product card styles, toast background, etc.).</p>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p>As cores estão na config do Tailwind dentro do <code>index.html</code> head:</p>
+                <ul class="list-disc list-inside space-y-1 ml-4">
+                    <li><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">shop-*</code> — Paleta primária slate/navy (fundos, textos, bordas)</li>
+                    <li><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">accent-*</code> — Destaque âmbar/dourado (CTAs, destaques, badges, logo)</li>
+                    <li><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">sale-*</code> — Vermelho para badges de oferta e elementos promocionais</li>
+                    <li><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">green-*</code> — Verdes padrão do Tailwind (estados de sucesso)</li>
+                </ul>
+                <p>Atualize também as cores correspondentes no <code>ecommerce.css</code> (estilos dos cards, fundo do toast, etc.).</p>
+            </div>
+        </section>
+
+        <!-- 8. Mobile Bottom Bar -->
+        <section id="mobile" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">8. Mobile Bottom Bar</span>
+                <span class="lang-pt">8. Barra Inferior Mobile</span>
+            </h2>
+            <div class="lang-en space-y-3 text-gray-600">
+                <p>A 5-tab bottom navigation bar appears on mobile (hidden on <code>lg:</code> breakpoint, 1024px+):</p>
+                <table class="w-full text-sm border-collapse">
+                    <thead><tr class="border-b border-gray-200 text-left">
+                        <th class="py-2 pr-4 font-bold">Tab</th><th class="py-2 font-bold">Action</th>
+                    </tr></thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr><td class="py-2 pr-4">Início</td><td class="py-2">Scrolls to top</td></tr>
+                        <tr><td class="py-2 pr-4">Categorias</td><td class="py-2">Scrolls to categories section</td></tr>
+                        <tr><td class="py-2 pr-4">Ofertas</td><td class="py-2">Scrolls to deal section</td></tr>
+                        <tr><td class="py-2 pr-4">Favoritos</td><td class="py-2">Placeholder (no logic yet)</td></tr>
+                        <tr><td class="py-2 pr-4">Carrinho</td><td class="py-2">Opens cart sidebar with badge counter</td></tr>
+                    </tbody>
+                </table>
+                <p>The bar includes <code>safe-area-bottom</code> padding for notched devices (iPhone X+).</p>
+            </div>
+            <div class="lang-pt space-y-3 text-gray-600">
+                <p>Uma barra de navegação com 5 abas aparece no mobile (oculta no breakpoint <code>lg:</code>, 1024px+):</p>
+                <table class="w-full text-sm border-collapse">
+                    <thead><tr class="border-b border-gray-200 text-left">
+                        <th class="py-2 pr-4 font-bold">Aba</th><th class="py-2 font-bold">Ação</th>
+                    </tr></thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr><td class="py-2 pr-4">Início</td><td class="py-2">Rola para o topo</td></tr>
+                        <tr><td class="py-2 pr-4">Categorias</td><td class="py-2">Rola para seção de categorias</td></tr>
+                        <tr><td class="py-2 pr-4">Ofertas</td><td class="py-2">Rola para seção de oferta</td></tr>
+                        <tr><td class="py-2 pr-4">Favoritos</td><td class="py-2">Placeholder (sem lógica ainda)</td></tr>
+                        <tr><td class="py-2 pr-4">Carrinho</td><td class="py-2">Abre o carrinho lateral com badge de contagem</td></tr>
+                    </tbody>
+                </table>
+                <p>A barra inclui padding <code>safe-area-bottom</code> para dispositivos com notch (iPhone X+).</p>
+            </div>
+        </section>
+
+        <!-- 9. JavaScript API -->
+        <section id="api" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">9. JavaScript API</span>
+                <span class="lang-pt">9. API JavaScript</span>
+            </h2>
+            <div class="space-y-3 text-gray-600">
+                <p class="lang-en">The <code>ShopFlow</code> global object exposes these public methods:</p>
+                <p class="lang-pt">O objeto global <code>ShopFlow</code> expõe estes métodos públicos:</p>
+                <pre><code>ShopFlow.addToCart(id, tab)      // Add product to cart
+ShopFlow.removeFromCart(id)      // Remove product from cart
+ShopFlow.updateQty(id, delta)    // Change quantity (+1 or -1)
+ShopFlow.openCart()              // Open cart sidebar
+ShopFlow.closeCart()             // Close cart sidebar
+ShopFlow.openQuickView(id, tab)  // Open quick view modal
+ShopFlow.closeQuickView()        // Close quick view modal
+ShopFlow.qvQty(delta)            // Change quick view quantity</code></pre>
+                <p class="lang-en">Cart data is stored in <code>localStorage</code> as JSON array under key <code>shopflow-cart</code>.</p>
+                <p class="lang-pt">Os dados do carrinho são armazenados no <code>localStorage</code> como array JSON na chave <code>shopflow-cart</code>.</p>
+            </div>
+        </section>
+
+        <!-- 10. Tech Stack -->
+        <section id="tech" class="mb-14">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4 pb-2 border-b border-gray-100">
+                <span class="lang-en">10. Tech Stack</span>
+                <span class="lang-pt">10. Stack Tecnológica</span>
+            </h2>
+            <div class="space-y-3 text-gray-600">
+                <table class="w-full text-sm border-collapse">
+                    <thead><tr class="border-b border-gray-200 text-left">
+                        <th class="py-2 pr-4 font-bold">Technology</th><th class="py-2 font-bold">Details</th>
+                    </tr></thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr><td class="py-2 pr-4 font-medium">Tailwind CSS v3</td><td class="py-2">CDN — no build step required</td></tr>
+                        <tr><td class="py-2 pr-4 font-medium">Vanilla JavaScript</td><td class="py-2">IIFE module pattern, no dependencies</td></tr>
+                        <tr><td class="py-2 pr-4 font-medium">Inter (Google Fonts)</td><td class="py-2">Weight 300–900</td></tr>
+                        <tr><td class="py-2 pr-4 font-medium">Inline SVG Icons</td><td class="py-2">No icon library dependency</td></tr>
+                        <tr><td class="py-2 pr-4 font-medium">LocalStorage</td><td class="py-2">Cart persistence across sessions</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-gray-100 py-6">
+        <p class="text-center text-xs text-gray-400">ShopFlow Template — Documentation</p>
+    </footer>
+
+    <script>
+        function setLang(lang) {
+            localStorage.setItem('shopflow-doc-lang', lang);
+            document.body.classList.toggle('show-pt', lang === 'pt');
+            document.getElementById('langEn').className = lang === 'en'
+                ? 'px-3 py-1 text-xs font-bold rounded-lg bg-gray-900 text-white transition-all'
+                : 'px-3 py-1 text-xs font-bold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all';
+            document.getElementById('langPt').className = lang === 'pt'
+                ? 'px-3 py-1 text-xs font-bold rounded-lg bg-gray-900 text-white transition-all'
+                : 'px-3 py-1 text-xs font-bold rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all';
+        }
+
+        setLang(localStorage.getItem('shopflow-doc-lang') || 'en');
+    </script>
+</body>
+</html>

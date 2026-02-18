@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronicle — Documentation</title>
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        ink: { 50:'#f8f9fa',100:'#f1f3f5',200:'#e9ecef',300:'#dee2e6',400:'#adb5bd',500:'#868e96',600:'#495057',700:'#343a40',800:'#212529',900:'#121416' },
+                        accent: { DEFAULT:'#6366f1', light:'#818cf8', dark:'#4f46e5' },
+                        surface: { light:'#ffffff', dark:'#0f1117', 'dark-alt':'#161922' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .doc-section + .doc-section { margin-top: 3rem; }
+        code:not(pre code) { padding: 0.15em 0.4em; border-radius: 4px; font-size: 0.875em; background: #f1f3f5; color: #e5484d; }
+        .dark code:not(pre code) { background: rgba(99,102,241,0.1); color: #818cf8; }
+        pre { background: #0f1117; color: #e9ecef; padding: 1.25rem; border-radius: 12px; overflow-x: auto; font-size: 0.8125rem; line-height: 1.7; }
+    </style>
+</head>
+<body class="bg-surface-light dark:bg-surface-dark text-ink-700 dark:text-ink-300 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-surface-dark/80 backdrop-blur-xl border-b border-ink-200/60 dark:border-ink-800/60">
+        <div class="max-w-4xl mx-auto px-6 flex items-center justify-between h-16">
+            <a href="index.html" class="flex items-center gap-2">
+                <svg width="28" height="28" viewBox="0 0 48 48" class="text-accent"><rect width="48" height="48" rx="10" fill="currentColor"/><path d="M14 14h8v20h-8zM26 14h8v12h-8z" fill="white"/><rect x="26" y="30" width="8" height="4" rx="2" fill="white" opacity="0.5"/></svg>
+                <span class="font-bold text-lg text-ink-900 dark:text-white">Chronicle</span>
+                <span class="text-ink-400 text-sm ml-1">/ Docs</span>
+            </a>
+            <div class="flex items-center gap-3">
+                <!-- Language -->
+                <button id="langToggle" class="px-3 py-1.5 rounded-lg text-xs font-semibold border border-ink-200 dark:border-ink-700 text-ink-600 dark:text-ink-300 hover:border-accent hover:text-accent transition-colors">
+                    <span id="langLabel">EN</span>
+                </button>
+                <!-- Theme -->
+                <button id="themeToggle" class="p-2 rounded-lg text-ink-500 dark:text-ink-400 hover:bg-ink-100 dark:hover:bg-ink-800 transition-colors">
+                    <svg id="themeIconLight" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-15.07 1.41 1.41m11.31 11.31 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41m12.73-12.73-1.41 1.41"/></svg>
+                    <svg id="themeIconDark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 py-12">
+        <!-- Title -->
+        <div class="mb-12">
+            <h1 class="font-extrabold text-3xl lg:text-4xl text-ink-900 dark:text-white mb-3">Documentation</h1>
+            <p class="text-ink-500 text-lg">Everything you need to customize and deploy the Chronicle template.</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <nav class="mb-12 p-6 rounded-2xl border border-ink-200/70 dark:border-ink-800/70 bg-ink-50/50 dark:bg-surface-dark-alt">
+            <h2 class="font-bold text-sm uppercase tracking-wider text-ink-400 mb-4" data-en="Table of Contents" data-pt="Sumário">Table of Contents</h2>
+            <ol class="space-y-2 text-sm font-medium">
+                <li><a href="#overview" class="text-accent hover:underline">1. <span data-en="Overview" data-pt="Visão Geral">Overview</span></a></li>
+                <li><a href="#structure" class="text-accent hover:underline">2. <span data-en="File Structure" data-pt="Estrutura de Arquivos">File Structure</span></a></li>
+                <li><a href="#tech-stack" class="text-accent hover:underline">3. <span data-en="Tech Stack" data-pt="Stack Técnica">Tech Stack</span></a></li>
+                <li><a href="#pages" class="text-accent hover:underline">4. <span data-en="Pages" data-pt="Páginas">Pages</span></a></li>
+                <li><a href="#dark-mode" class="text-accent hover:underline">5. <span data-en="Dark Mode" data-pt="Modo Escuro">Dark Mode</span></a></li>
+                <li><a href="#customization" class="text-accent hover:underline">6. <span data-en="Customization" data-pt="Personalização">Customization</span></a></li>
+                <li><a href="#code-blocks" class="text-accent hover:underline">7. <span data-en="Code Blocks" data-pt="Blocos de Código">Code Blocks</span></a></li>
+                <li><a href="#seo" class="text-accent hover:underline">8. <span data-en="SEO & Semantics" data-pt="SEO & Semântica">SEO & Semantics</span></a></li>
+                <li><a href="#performance" class="text-accent hover:underline">9. <span data-en="Performance" data-pt="Performance">Performance</span></a></li>
+                <li><a href="#credits" class="text-accent hover:underline">10. <span data-en="Credits" data-pt="Créditos">Credits</span></a></li>
+            </ol>
+        </nav>
+
+        <!-- 1. Overview -->
+        <section id="overview" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="1. Overview" data-pt="1. Visão Geral">1. Overview</h2>
+            <p class="leading-relaxed mb-4" data-en="Chronicle is a premium blog/magazine template designed for tech content. Inspired by Medium and Vercel Blog, it focuses on readability, performance, and reader retention." data-pt="Chronicle é um template premium de blog/revista projetado para conteúdo tech. Inspirado no Medium e Vercel Blog, foca em legibilidade, performance e retenção de leitura.">
+                Chronicle is a premium blog/magazine template designed for tech content. Inspired by Medium and Vercel Blog, it focuses on readability, performance, and reader retention.
+            </p>
+            <p class="leading-relaxed" data-en="Key features include: real dark mode, reading progress bar, floating share buttons, beautiful code blocks with copy functionality, responsive design, and SEO-optimized semantic HTML." data-pt="Recursos principais: modo escuro real, barra de progresso de leitura, botões de compartilhamento flutuantes, blocos de código bonitos com cópia, design responsivo e HTML semântico otimizado para SEO.">
+                Key features include: real dark mode, reading progress bar, floating share buttons, beautiful code blocks with copy functionality, responsive design, and SEO-optimized semantic HTML.
+            </p>
+        </section>
+
+        <!-- 2. File Structure -->
+        <section id="structure" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="2. File Structure" data-pt="2. Estrutura de Arquivos">2. File Structure</h2>
+            <pre class="font-mono"><code>chronicle/
+├── index.html              # Home page (featured + grid + sidebar)
+├── post.html               # Single article page
+├── category.html           # Category listing page
+├── documentation.html      # This file
+└── assets/
+    ├── css/
+    │   └── style.css       # Custom styles (extends Tailwind)
+    ├── js/
+    │   └── main.js         # Theme, search, menu, progress, copy code
+    └── img/
+        └── favicon.svg     # SVG favicon</code></pre>
+        </section>
+
+        <!-- 3. Tech Stack -->
+        <section id="tech-stack" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="3. Tech Stack" data-pt="3. Stack Técnica">3. Tech Stack</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm border-collapse">
+                    <thead>
+                        <tr class="border-b border-ink-200 dark:border-ink-700">
+                            <th class="text-left py-3 pr-4 font-semibold text-ink-900 dark:text-white">Technology</th>
+                            <th class="text-left py-3 pr-4 font-semibold text-ink-900 dark:text-white">Version</th>
+                            <th class="text-left py-3 font-semibold text-ink-900 dark:text-white" data-en="Purpose" data-pt="Propósito">Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-ink-100 dark:divide-ink-800">
+                        <tr><td class="py-3 pr-4 font-medium">Tailwind CSS</td><td class="py-3 pr-4">v3 (CDN)</td><td class="py-3" data-en="Utility-first styling" data-pt="Estilização utility-first">Utility-first styling</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">Inter</td><td class="py-3 pr-4">Variable</td><td class="py-3" data-en="Headings & UI font" data-pt="Fonte para títulos & UI">Headings & UI font</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">Merriweather</td><td class="py-3 pr-4">400, 700</td><td class="py-3" data-en="Body text (serif)" data-pt="Texto corrido (serifada)">Body text (serif)</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">JetBrains Mono</td><td class="py-3 pr-4">400, 500</td><td class="py-3" data-en="Code blocks & inline code" data-pt="Blocos de código & código inline">Code blocks & inline code</td></tr>
+                        <tr><td class="py-3 pr-4 font-medium">Vanilla JS</td><td class="py-3 pr-4">ES6+</td><td class="py-3" data-en="No dependencies" data-pt="Sem dependências">No dependencies</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 4. Pages -->
+        <section id="pages" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="4. Pages" data-pt="4. Páginas">4. Pages</h2>
+
+            <h3 class="font-bold text-lg text-ink-800 dark:text-ink-100 mt-6 mb-3">index.html — Home</h3>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="<strong>Header:</strong> Sticky navbar with logo, nav links, expandable search bar (Ctrl+K), dark mode toggle, mobile off-canvas menu, and horizontal scrolling category tags." data-pt="<strong>Header:</strong> Navbar sticky com logo, links de nav, barra de busca expansível (Ctrl+K), toggle de modo escuro, menu mobile off-canvas e tags de categorias em scroll horizontal."><strong>Header:</strong> Sticky navbar with logo, nav links, expandable search bar (Ctrl+K), dark mode toggle, mobile off-canvas menu, and horizontal scrolling category tags.</li>
+                <li data-en="<strong>Featured Post (Hero):</strong> Large 3/5 + 2/5 grid layout with image, category badge, title, summary, author info and reading time." data-pt="<strong>Post em Destaque (Hero):</strong> Layout grid 3/5 + 2/5 com imagem, badge de categoria, título, resumo, info do autor e tempo de leitura."><strong>Featured Post (Hero):</strong> Large 3/5 + 2/5 grid layout with image, category badge, title, summary, author info and reading time.</li>
+                <li data-en="<strong>Article Grid:</strong> Asymmetric grid with large (2-col) and small (1-col) cards. Each card has: image, category badge, title, excerpt, author avatar, and reading time." data-pt="<strong>Grid de Artigos:</strong> Grid assimétrico com cards grandes (2 colunas) e pequenos (1 coluna). Cada card possui: imagem, badge de categoria, título, resumo, avatar do autor e tempo de leitura."><strong>Article Grid:</strong> Asymmetric grid with large (2-col) and small (1-col) cards. Each card has: image, category badge, title, excerpt, author avatar, and reading time.</li>
+                <li data-en="<strong>Sidebar (Sticky):</strong> Newsletter signup box, Trending Topics (numbered list), and Ad Space placeholder (300×250)." data-pt="<strong>Sidebar (Sticky):</strong> Box de inscrição na newsletter, Trending Topics (lista numerada) e espaço para anúncio (300×250)."><strong>Sidebar (Sticky):</strong> Newsletter signup box, Trending Topics (numbered list), and Ad Space placeholder (300×250).</li>
+            </ul>
+
+            <h3 class="font-bold text-lg text-ink-800 dark:text-ink-100 mt-6 mb-3">post.html — Single Article</h3>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="<strong>Reading Progress Bar:</strong> Fixed at the very top, gradient from accent to purple." data-pt="<strong>Barra de Progresso:</strong> Fixa no topo, gradiente de accent para roxo."><strong>Reading Progress Bar:</strong> Fixed at the very top, gradient from accent to purple.</li>
+                <li data-en="<strong>Floating Share Buttons:</strong> Fixed on the left side (desktop). Twitter/X, LinkedIn, Copy Link, and Back to Top." data-pt="<strong>Botões de Compartilhamento Flutuantes:</strong> Fixos no lado esquerdo (desktop). Twitter/X, LinkedIn, Copiar Link e Voltar ao Topo."><strong>Floating Share Buttons:</strong> Fixed on the left side (desktop). Twitter/X, LinkedIn, Copy Link, and Back to Top.</li>
+                <li data-en="<strong>Article Content:</strong> Custom prose typography with serif body, heading hierarchy, blockquotes, inline code, code blocks with syntax highlighting and copy button, info/warning callouts." data-pt="<strong>Conteúdo do Artigo:</strong> Tipografia customizada com corpo serifado, hierarquia de headings, blockquotes, código inline, blocos de código com syntax highlighting e botão de copiar, callouts de info/aviso."><strong>Article Content:</strong> Custom prose typography with serif body, heading hierarchy, blockquotes, inline code, code blocks with syntax highlighting and copy button, info/warning callouts.</li>
+                <li data-en="<strong>Author Bio:</strong> Card with avatar, name, social link, bio and follow/profile buttons." data-pt="<strong>Bio do Autor:</strong> Card com avatar, nome, link social, bio e botões de seguir/perfil."><strong>Author Bio:</strong> Card with avatar, name, social link, bio and follow/profile buttons.</li>
+                <li data-en="<strong>Read Next:</strong> 3-column grid of related articles at the bottom." data-pt="<strong>Continue Lendo:</strong> Grid de 3 colunas com artigos relacionados no final."><strong>Read Next:</strong> 3-column grid of related articles at the bottom.</li>
+            </ul>
+
+            <h3 class="font-bold text-lg text-ink-800 dark:text-ink-100 mt-6 mb-3">category.html — Category Listing</h3>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="Category header with icon, name, description, article count, and sort dropdown." data-pt="Cabeçalho de categoria com ícone, nome, descrição, contagem de artigos e dropdown de ordenação.">Category header with icon, name, description, article count, and sort dropdown.</li>
+                <li data-en="List-style article cards with 2/5 image + 3/5 content layout." data-pt="Cards de artigo em formato lista com layout 2/5 imagem + 3/5 conteúdo.">List-style article cards with 2/5 image + 3/5 content layout.</li>
+                <li data-en="Pagination with numbered buttons and prev/next arrows." data-pt="Paginação com botões numerados e setas anterior/próximo.">Pagination with numbered buttons and prev/next arrows.</li>
+                <li data-en="Sidebar with all categories (with counts), newsletter, and ad space." data-pt="Sidebar com todas as categorias (com contadores), newsletter e espaço para anúncio.">Sidebar with all categories (with counts), newsletter, and ad space.</li>
+            </ul>
+        </section>
+
+        <!-- 5. Dark Mode -->
+        <section id="dark-mode" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="5. Dark Mode" data-pt="5. Modo Escuro">5. Dark Mode</h2>
+            <p class="leading-relaxed mb-4" data-en="Dark mode is implemented using Tailwind's <code>class</code> strategy. The theme preference is persisted in <code>localStorage</code> and respects the OS <code>prefers-color-scheme</code> on first visit." data-pt="O modo escuro é implementado usando a estratégia <code>class</code> do Tailwind. A preferência de tema é persistida no <code>localStorage</code> e respeita o <code>prefers-color-scheme</code> do OS na primeira visita.">
+                Dark mode is implemented using Tailwind's <code>class</code> strategy. The theme preference is persisted in <code>localStorage</code> and respects the OS <code>prefers-color-scheme</code> on first visit.
+            </p>
+            <pre class="font-mono"><code>// Theme is stored as:
+localStorage.setItem('chronicle-theme', 'dark' | 'light');
+
+// Colors:
+// Light: bg-surface-light (#ffffff), text-ink-800 (#212529)
+// Dark:  bg-surface-dark (#0f1117), text-ink-200 (#e9ecef)
+// Alt:   bg-surface-dark-alt (#161922) — cards, sidebar</code></pre>
+        </section>
+
+        <!-- 6. Customization -->
+        <section id="customization" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="6. Customization" data-pt="6. Personalização">6. Customization</h2>
+
+            <h3 class="font-bold text-lg text-ink-800 dark:text-ink-100 mt-6 mb-3" data-en="Changing the Accent Color" data-pt="Alterando a Cor de Destaque">Changing the Accent Color</h3>
+            <p class="leading-relaxed mb-3" data-en="Edit the Tailwind config in the <code>&lt;script&gt;</code> tag of each HTML file:" data-pt="Edite o config do Tailwind na tag <code>&lt;script&gt;</code> de cada arquivo HTML:">
+                Edit the Tailwind config in the <code>&lt;script&gt;</code> tag of each HTML file:
+            </p>
+            <pre class="font-mono"><code>// In tailwind.config:
+colors: {
+    accent: {
+        DEFAULT: '#6366f1', // Change this to your brand color
+        light: '#818cf8',   // Lighter variant
+        dark: '#4f46e5',    // Darker variant (hover)
+    }
+}</code></pre>
+            <p class="leading-relaxed mt-3" data-en="Also update <code>style.css</code> where the hex <code>#6366f1</code> appears (focus outlines, selection color, code blocks)." data-pt="Também atualize <code>style.css</code> onde o hex <code>#6366f1</code> aparece (outlines de foco, cor de seleção, blocos de código).">
+                Also update <code>style.css</code> where the hex <code>#6366f1</code> appears (focus outlines, selection color, code blocks).
+            </p>
+
+            <h3 class="font-bold text-lg text-ink-800 dark:text-ink-100 mt-6 mb-3" data-en="Changing Fonts" data-pt="Alterando Fontes">Changing Fonts</h3>
+            <p class="leading-relaxed mb-3" data-en="Update the Google Fonts link and Tailwind config:" data-pt="Atualize o link do Google Fonts e o config do Tailwind:">
+                Update the Google Fonts link and Tailwind config:
+            </p>
+            <pre class="font-mono"><code>// Tailwind config:
+fontFamily: {
+    sans: ['Inter', ...],          // Titles & UI
+    serif: ['Merriweather', ...],  // Body text
+    mono: ['JetBrains Mono', ...], // Code
+}
+
+// Also update style.css where font-family is specified</code></pre>
+
+            <h3 class="font-bold text-lg text-ink-800 dark:text-ink-100 mt-6 mb-3" data-en="Images" data-pt="Imagens">Images</h3>
+            <p class="leading-relaxed" data-en="All images use Unsplash URLs for demo purposes. Replace them with your actual images. Recommended sizes:" data-pt="Todas as imagens usam URLs do Unsplash para demonstração. Substitua pelas suas imagens reais. Tamanhos recomendados:">
+                All images use Unsplash URLs for demo purposes. Replace them with your actual images. Recommended sizes:
+            </p>
+            <ul class="list-disc pl-6 space-y-1 mt-2 text-sm">
+                <li data-en="Featured/Hero: 900×600px" data-pt="Destaque/Hero: 900×600px">Featured/Hero: 900×600px</li>
+                <li data-en="Article post cover: 1200×600px" data-pt="Capa do artigo: 1200×600px">Article post cover: 1200×600px</li>
+                <li data-en="Card thumbnails (large): 600×400px" data-pt="Thumbnails de card (grande): 600×400px">Card thumbnails (large): 600×400px</li>
+                <li data-en="Card thumbnails (small): 400×260px" data-pt="Thumbnails de card (pequeno): 400×260px">Card thumbnails (small): 400×260px</li>
+            </ul>
+        </section>
+
+        <!-- 7. Code Blocks -->
+        <section id="code-blocks" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="7. Code Blocks" data-pt="7. Blocos de Código">7. Code Blocks</h2>
+            <p class="leading-relaxed mb-4" data-en="Code blocks are styled with a dark theme (matching the dark mode background) for consistency. Each block includes:" data-pt="Blocos de código são estilizados com tema escuro (combinando com o fundo do modo escuro) para consistência. Cada bloco inclui:">
+                Code blocks are styled with a dark theme (matching the dark mode background) for consistency. Each block includes:
+            </p>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="Decorative traffic light dots (macOS style)" data-pt="Dots decorativos de semáforo (estilo macOS)">Decorative traffic light dots (macOS style)</li>
+                <li data-en="Language label (e.g., 'javascript')" data-pt="Label de linguagem (ex: 'javascript')">Language label (e.g., "javascript")</li>
+                <li data-en="Copy button with feedback ('Copiado!')" data-pt="Botão de copiar com feedback ('Copiado!')">Copy button with feedback ("Copiado!")</li>
+            </ul>
+            <p class="leading-relaxed mt-4" data-en="To add real syntax highlighting, integrate a library like <strong>Prism.js</strong> or <strong>Highlight.js</strong>. The dark theme will pair naturally with the existing code block styles." data-pt="Para adicionar syntax highlighting real, integre uma biblioteca como <strong>Prism.js</strong> ou <strong>Highlight.js</strong>. O tema escuro combinará naturalmente com os estilos de blocos de código existentes.">
+                To add real syntax highlighting, integrate a library like <strong>Prism.js</strong> or <strong>Highlight.js</strong>. The dark theme will pair naturally with the existing code block styles.
+            </p>
+            <pre class="font-mono mt-4"><code>&lt;!-- Add Prism.js for syntax highlighting --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.min.css" rel="stylesheet"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"&gt;&lt;/script&gt;</code></pre>
+        </section>
+
+        <!-- 8. SEO -->
+        <section id="seo" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="8. SEO & Semantics" data-pt="8. SEO & Semântica">8. SEO & Semantics</h2>
+            <p class="leading-relaxed mb-4" data-en="Chronicle uses semantic HTML5 tags throughout:" data-pt="Chronicle usa tags HTML5 semânticas em toda a estrutura:">
+                Chronicle uses semantic HTML5 tags throughout:
+            </p>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li><code>&lt;article&gt;</code> — <span data-en="Each post card and the main article content" data-pt="Cada card de post e o conteúdo principal do artigo">Each post card and the main article content</span></li>
+                <li><code>&lt;aside&gt;</code> — <span data-en="Sidebar sections (newsletter, trending, ads)" data-pt="Seções da sidebar (newsletter, trending, anúncios)">Sidebar sections (newsletter, trending, ads)</span></li>
+                <li><code>&lt;time datetime&gt;</code> — <span data-en="All publication dates with ISO format" data-pt="Todas as datas de publicação em formato ISO">All publication dates with ISO format</span></li>
+                <li><code>&lt;nav aria-label&gt;</code> — <span data-en="Navigation with accessible labels" data-pt="Navegação com labels acessíveis">Navigation with accessible labels</span></li>
+                <li><code>&lt;figure&gt; / &lt;figcaption&gt;</code> — <span data-en="Post cover images with captions" data-pt="Imagens de capa com legendas">Post cover images with captions</span></li>
+                <li><code>&lt;header&gt; / &lt;main&gt; / &lt;footer&gt;</code> — <span data-en="Page landmarks" data-pt="Landmarks da página">Page landmarks</span></li>
+            </ul>
+            <p class="leading-relaxed mt-4" data-en="Open Graph meta tags are included for social sharing. Update the <code>og:image</code> URL with your actual image." data-pt="Meta tags Open Graph são incluídas para compartilhamento social. Atualize a URL do <code>og:image</code> com sua imagem real.">
+                Open Graph meta tags are included for social sharing. Update the <code>og:image</code> URL with your actual image.
+            </p>
+        </section>
+
+        <!-- 9. Performance -->
+        <section id="performance" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="9. Performance" data-pt="9. Performance">9. Performance</h2>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li data-en="<strong>Zero dependencies</strong> — No jQuery, no heavy libraries. Only Tailwind CDN + vanilla JS." data-pt="<strong>Zero dependências</strong> — Sem jQuery, sem bibliotecas pesadas. Apenas Tailwind CDN + vanilla JS."><strong>Zero dependencies</strong> — No jQuery, no heavy libraries. Only Tailwind CDN + vanilla JS.</li>
+                <li data-en="<strong>Lazy loading</strong> — All non-hero images use <code>loading='lazy'</code>." data-pt="<strong>Lazy loading</strong> — Todas as imagens fora do hero usam <code>loading='lazy'</code>."><strong>Lazy loading</strong> — All non-hero images use <code>loading="lazy"</code>.</li>
+                <li data-en="<strong>Passive listeners</strong> — Scroll events use <code>{ passive: true }</code>." data-pt="<strong>Listeners passivos</strong> — Eventos de scroll usam <code>{ passive: true }</code>."><strong>Passive listeners</strong> — Scroll events use <code>{ passive: true }</code>.</li>
+                <li data-en="<strong>Font preconnect</strong> — Google Fonts domains are preconnected." data-pt="<strong>Font preconnect</strong> — Domínios do Google Fonts são pré-conectados."><strong>Font preconnect</strong> — Google Fonts domains are preconnected.</li>
+                <li data-en="<strong>Staggered reveal</strong> — Cards use Intersection Observer for staggered fade-in." data-pt="<strong>Reveal escalonado</strong> — Cards usam Intersection Observer para fade-in escalonado."><strong>Staggered reveal</strong> — Cards use Intersection Observer for staggered fade-in.</li>
+                <li data-en="<strong>Print styles</strong> — Header, footer, share buttons and progress bar are hidden in print." data-pt="<strong>Estilos de impressão</strong> — Header, footer, botões de compartilhamento e barra de progresso são ocultos na impressão."><strong>Print styles</strong> — Header, footer, share buttons and progress bar are hidden in print.</li>
+            </ul>
+            <p class="leading-relaxed mt-4" data-en="For production, replace the Tailwind CDN with a build step (<code>npx tailwindcss -o style.min.css --minify</code>) for significantly smaller CSS." data-pt="Para produção, substitua o CDN do Tailwind por um build step (<code>npx tailwindcss -o style.min.css --minify</code>) para CSS significativamente menor.">
+                For production, replace the Tailwind CDN with a build step (<code>npx tailwindcss -o style.min.css --minify</code>) for significantly smaller CSS.
+            </p>
+        </section>
+
+        <!-- 10. Credits -->
+        <section id="credits" class="doc-section">
+            <h2 class="font-bold text-2xl text-ink-900 dark:text-white mb-4" data-en="10. Credits" data-pt="10. Créditos">10. Credits</h2>
+            <ul class="list-disc pl-6 space-y-2 leading-relaxed">
+                <li><a href="https://tailwindcss.com" class="text-accent hover:underline" target="_blank">Tailwind CSS</a> — Utility-first CSS framework</li>
+                <li><a href="https://fonts.google.com" class="text-accent hover:underline" target="_blank">Google Fonts</a> — Inter, Merriweather, JetBrains Mono</li>
+                <li><a href="https://unsplash.com" class="text-accent hover:underline" target="_blank">Unsplash</a> — Demo images (replace for production)</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-ink-200/60 dark:border-ink-800/60 mt-16">
+        <div class="max-w-4xl mx-auto px-6 py-8 text-center">
+            <p class="text-xs text-ink-400">&copy; 2026 Chronicle. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIconLight = document.getElementById('themeIconLight');
+        const themeIconDark = document.getElementById('themeIconDark');
+        const html = document.documentElement;
+
+        function getTheme() {
+            return localStorage.getItem('chronicle-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        }
+
+        function applyTheme(theme) {
+            html.classList.toggle('dark', theme === 'dark');
+            if (themeIconLight) themeIconLight.classList.toggle('hidden', theme === 'dark');
+            if (themeIconDark) themeIconDark.classList.toggle('hidden', theme !== 'dark');
+            localStorage.setItem('chronicle-theme', theme);
+        }
+
+        applyTheme(getTheme());
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                applyTheme(html.classList.contains('dark') ? 'light' : 'dark');
+            });
+        }
+
+        // Language Toggle (EN/PT)
+        const langToggle = document.getElementById('langToggle');
+        const langLabel = document.getElementById('langLabel');
+        let currentLang = localStorage.getItem('chronicle-doc-lang') || 'en';
+
+        function applyLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('chronicle-doc-lang', lang);
+            if (langLabel) langLabel.textContent = lang.toUpperCase();
+            document.querySelectorAll('[data-en][data-pt]').forEach(el => {
+                el.innerHTML = el.getAttribute(`data-${lang}`);
+            });
+        }
+
+        applyLang(currentLang);
+
+        if (langToggle) {
+            langToggle.addEventListener('click', () => {
+                applyLang(currentLang === 'en' ? 'pt' : 'en');
+            });
+        }
+    </script>
+</body>
+</html>

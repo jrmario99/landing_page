@@ -1,0 +1,411 @@
+/* ===========================
+   CSS Custom Properties
+   =========================== */
+:root {
+  /* Light theme (default) */
+  --bg-primary: #faf5ef;
+  --bg-secondary: #f2e8db;
+  --bg-card: #ffffff;
+  --text-primary: #3d2c1e;
+  --text-secondary: #6b5344;
+  --text-muted: #917a6a;
+  --accent: #c4653a;
+  --accent-hover: #a8512d;
+  --border: #e6d5c3;
+  --shadow: rgba(109, 72, 47, 0.08);
+  --shadow-hover: rgba(109, 72, 47, 0.15);
+  --input-bg: #ffffff;
+  --toggle-bg: rgba(109, 72, 47, 0.1);
+  --toggle-hover: rgba(109, 72, 47, 0.18);
+  --link-bg: #ffffff;
+  --link-hover-bg: #fef8f2;
+  --success: #5a8a5e;
+  --error: #c44a3a;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1e1714;
+  --bg-secondary: #2a211c;
+  --bg-card: #302722;
+  --text-primary: #ede4db;
+  --text-secondary: #c4b5a6;
+  --text-muted: #9a897a;
+  --accent: #e0955e;
+  --accent-hover: #eaad7e;
+  --border: #443930;
+  --shadow: rgba(0, 0, 0, 0.2);
+  --shadow-hover: rgba(0, 0, 0, 0.35);
+  --input-bg: #2a211c;
+  --toggle-bg: rgba(224, 149, 94, 0.15);
+  --toggle-hover: rgba(224, 149, 94, 0.25);
+  --link-bg: #302722;
+  --link-hover-bg: #3a302a;
+  --success: #7ab87e;
+  --error: #e07a6a;
+}
+
+/* ===========================
+   Reset & Base
+   =========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===========================
+   Theme Toggle
+   =========================== */
+.theme-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 100;
+  background: var(--toggle-bg);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(8px);
+}
+
+.theme-toggle:hover {
+  background: var(--toggle-hover);
+  transform: scale(1.08);
+}
+
+.theme-toggle:active {
+  transform: scale(0.95);
+}
+
+.icon-sun,
+.icon-moon {
+  position: absolute;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Light mode: show moon (click to go dark), hide sun */
+.icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
+.icon-moon {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+/* Dark mode: show sun (click to go light), hide moon */
+[data-theme="dark"] .icon-sun {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+[data-theme="dark"] .icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+/* ===========================
+   Container
+   =========================== */
+.container {
+  width: 100%;
+  max-width: 480px;
+  padding: 3rem 1.25rem 2rem;
+  flex: 1;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   Profile Card
+   =========================== */
+.profile-card {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  background: linear-gradient(135deg, var(--accent), #e8a87c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 28px var(--shadow-hover);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-fallback {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.profile-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.profile-tagline {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.profile-location {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.profile-location svg {
+  flex-shrink: 0;
+}
+
+/* ===========================
+   Link List
+   =========================== */
+.links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.95rem 1.25rem;
+  background: var(--link-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.link-item:hover {
+  background: var(--link-hover-bg);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--shadow-hover);
+}
+
+.link-item:active {
+  transform: translateY(0);
+}
+
+.link-item svg {
+  flex-shrink: 0;
+  color: var(--accent);
+  transition: color 0.2s ease;
+}
+
+.link-item span {
+  flex: 1;
+}
+
+/* Arrow indicator */
+.link-item::after {
+  content: '\2192';
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.link-item:hover::after {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+
+/* ===========================
+   Newsletter Section
+   =========================== */
+.newsletter-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 12px var(--shadow);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.newsletter-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.newsletter-description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+  line-height: 1.5;
+}
+
+.form-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.email-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.email-input::placeholder {
+  color: var(--text-muted);
+}
+
+.email-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(196, 101, 58, 0.15);
+}
+
+[data-theme="dark"] .email-input:focus {
+  box-shadow: 0 0 0 3px rgba(224, 149, 94, 0.2);
+}
+
+.subscribe-btn {
+  padding: 0.75rem 1.35rem;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.subscribe-btn:hover {
+  background: var(--accent-hover);
+}
+
+.subscribe-btn:active {
+  transform: scale(0.97);
+}
+
+.form-message {
+  font-size: 0.82rem;
+  margin-top: 0.65rem;
+  min-height: 1.2em;
+  transition: color 0.2s ease;
+}
+
+.form-message.success {
+  color: var(--success);
+}
+
+.form-message.error {
+  color: var(--error);
+}
+
+/* ===========================
+   Footer
+   =========================== */
+.footer {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 520px) {
+  .container {
+    padding: 2.5rem 1rem 1.5rem;
+  }
+
+  .profile-name {
+    font-size: 1.55rem;
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
+
+  .subscribe-btn {
+    width: 100%;
+  }
+
+  .theme-toggle {
+    top: 0.85rem;
+    right: 0.85rem;
+  }
+}

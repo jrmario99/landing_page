@@ -1,0 +1,363 @@
+/* ============================================
+   PREVLAW — Accessible Legal Landing Page
+   Custom CSS (extends Tailwind v3 CDN)
+============================================ */
+
+/* ============================================
+   1. BASE / RESETS
+============================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%; /* 16px base — accessibility widget will change this */
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus-visible — keyboard users only */
+:focus-visible {
+    outline: 3px solid #e8732a;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Skip-to-content (screen readers) */
+.sr-only-focusable:not(:focus) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* ============================================
+   2. ACCESSIBILITY WIDGET (a11y bar)
+============================================ */
+.a11y-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #d9e2ec;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.a11y-btn:hover,
+.a11y-btn:focus-visible {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.a11y-btn.active {
+    background: #e8732a;
+    color: #fff;
+    border-color: #e8732a;
+}
+
+/* Font-size steps */
+html.font-sm  { font-size: 87.5%;  } /* 14px */
+html.font-md  { font-size: 100%;   } /* 16px — default */
+html.font-lg  { font-size: 112.5%; } /* 18px */
+html.font-xl  { font-size: 125%;   } /* 20px */
+
+/* ============================================
+   3. HIGH CONTRAST MODE
+============================================ */
+body.high-contrast {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+body.high-contrast * {
+    border-color: #fff !important;
+}
+
+body.high-contrast section,
+body.high-contrast footer,
+body.high-contrast header,
+body.high-contrast div[role="toolbar"] {
+    background: #000 !important;
+    color: #fff !important;
+}
+
+body.high-contrast a {
+    color: #ffd700 !important;
+}
+
+body.high-contrast a:hover {
+    color: #ff8a4c !important;
+}
+
+body.high-contrast button {
+    border-color: #fff !important;
+    color: #fff !important;
+}
+
+body.high-contrast .a11y-btn {
+    background: transparent !important;
+    border-color: #ffd700 !important;
+    color: #ffd700 !important;
+}
+
+body.high-contrast .a11y-btn.active {
+    background: #ffd700 !important;
+    color: #000 !important;
+}
+
+body.high-contrast img {
+    filter: grayscale(100%) contrast(1.2);
+}
+
+body.high-contrast .quiz-option {
+    background: #111 !important;
+    border-color: #ffd700 !important;
+}
+
+body.high-contrast .accordion {
+    background: #111 !important;
+    border-color: #555 !important;
+}
+
+body.high-contrast .carousel-slide > div {
+    background: #111 !important;
+    border-color: #555 !important;
+}
+
+body.high-contrast .area-card {
+    background: #111 !important;
+    border-color: #555 !important;
+}
+
+body.high-contrast iframe {
+    filter: grayscale(100%) invert(0.9);
+}
+
+/* ============================================
+   4. QUIZ OPTIONS
+============================================ */
+.quiz-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    min-height: 48px;
+}
+
+.quiz-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.quiz-option:focus-visible {
+    outline: 3px solid #e8732a;
+    outline-offset: 2px;
+}
+
+.quiz-option__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.quiz-option__text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.quiz-option__sub {
+    font-size: 0.8rem;
+    color: #9fb3c8;
+    line-height: 1.4;
+}
+
+/* ============================================
+   5. ACCORDION
+============================================ */
+.accordion__trigger {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+}
+
+.accordion__trigger:hover {
+    background: rgba(16, 42, 67, 0.02);
+}
+
+.accordion__icon {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.accordion.open .accordion__icon {
+    transform: rotate(45deg);
+    background-color: #e8732a;
+    color: #fff;
+}
+
+.accordion.open .accordion__icon svg {
+    stroke: #fff;
+}
+
+.accordion__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.accordion.open .accordion__content {
+    max-height: 500px;
+}
+
+/* ============================================
+   6. CAROUSEL
+============================================ */
+.carousel-track {
+    will-change: transform;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+}
+
+/* Dots */
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #bcccdc;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.carousel-dot.active {
+    background: #e8732a;
+    transform: scale(1.3);
+}
+
+.carousel-dot:focus-visible {
+    outline: 2px solid #e8732a;
+    outline-offset: 3px;
+}
+
+/* ============================================
+   7. MOBILE MENU HAMBURGER ANIMATION
+============================================ */
+#menuToggle.open .mobile-bar:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+#menuToggle.open .mobile-bar:nth-child(2) {
+    opacity: 0;
+}
+
+#menuToggle.open .mobile-bar:nth-child(3) {
+    width: 1.5rem;
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+
+#mobileMenu.open {
+    max-height: 500px;
+}
+
+/* ============================================
+   8. NAVBAR SCROLL STATE
+============================================ */
+#navbar.scrolled {
+    box-shadow: 0 2px 20px rgba(16, 42, 67, 0.08);
+}
+
+/* ============================================
+   9. STICKY FOOTER (Mobile)
+============================================ */
+#stickyFooter.visible {
+    transform: translateY(0);
+}
+
+/* ============================================
+   10. SCROLL REVEAL
+============================================ */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-up.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   11. SMOOTH SCROLL OFFSET (for sticky navbar)
+============================================ */
+section[id] {
+    scroll-margin-top: 100px;
+}
+
+/* ============================================
+   12. PRINT STYLES
+============================================ */
+@media print {
+    #a11yBar,
+    #stickyFooter,
+    #menuToggle,
+    #mobileMenu,
+    .carousel-dot,
+    #carouselPrev,
+    #carouselNext {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        color: #000;
+        background: #fff;
+    }
+
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+}
