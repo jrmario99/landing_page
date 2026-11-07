@@ -59,15 +59,16 @@
             <section class="dash-section">
                 <h2 class="section-title"><i class="pi pi-globe"></i> Monitoramento de Sistemas</h2>
                 <div class="systems-grid">
-                    <div v-for="sys in data.systems" :key="sys.name" class="sys-card">
-                        <div class="sys-status-bar" :class="`sys-bar--${sys.status}`"></div>
+                    <div v-for="sys in data.systems" :key="sys.name" class="sys-card" :class="{ 'sys-card--maintenance': sys.maintenance }">
+                        <div class="sys-status-bar" :class="sys.maintenance ? 'sys-bar--maintenance' : `sys-bar--${sys.status}`"></div>
                         <div class="sys-body">
                             <div class="sys-top">
                                 <div class="sys-name-row">
-                                    <span class="sys-dot" :class="`dot-status--${sys.status}`"></span>
+                                    <span class="sys-dot" :class="sys.maintenance ? 'dot-status--maintenance' : `dot-status--${sys.status}`"></span>
                                     <span class="sys-name">{{ sys.name }}</span>
                                 </div>
-                                <Tag :value="statusLabel(sys.status)" :severity="statusSeverity(sys.status)" />
+                                <Tag v-if="sys.maintenance" value="Manutenção" severity="secondary" />
+                                <Tag v-else :value="statusLabel(sys.status)" :severity="statusSeverity(sys.status)" />
                             </div>
                             <div class="sys-metrics">
                                 <div class="sys-metric">
@@ -83,10 +84,79 @@
                                 {{ sys.url.replace('https://', '') }}
                                 <i class="pi pi-external-link"></i>
                             </a>
+                            <div class="sys-actions">
+                                <button v-if="logsForSystem(sys)" class="btn-log" @click="openLog(sys)">
+                                    <i class="pi pi-exclamation-circle"></i> LOG
+                                </button>
+                                <div v-if="sys.slug" class="sys-toggle-row">
+                                    <span class="toggle-label">{{ sys.maintenance ? 'Em manutenção' : 'Online' }}</span>
+                                    <ToggleSwitch
+                                        :modelValue="!sys.maintenance"
+                                        :loading="toggling[sys.slug]"
+                                        @update:modelValue="toggleSystem(sys)"
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <!-- ── Visitantes por sistema ── -->
+            <section class="dash-section">
+                <h2 class="section-title"><i class="pi pi-chart-bar"></i> Visitantes por Sistema</h2>
+                <div v-if="!data.visitors_system?.length" class="empty-state">Aguardando dados do log de acesso</div>
+                <div v-else class="visitors-list">
+                    <div v-for="v in data.visitors_system" :key="v.domain" class="visitor-row">
+                        <div class="visitor-left">
+                            <span class="visitor-country">{{ v.system }}</span>
+                            <span class="visitor-domain">{{ v.domain }}</span>
+                        </div>
+                        <div class="visitor-right">
+                            <div class="visitor-bar-wrap">
+                                <div class="visitor-bar" :style="{ width: `${Math.round(v.total / data.visitors_system[0].total * 100)}%` }"></div>
+                            </div>
+                            <span class="visitor-count">{{ v.total }}</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Visitantes por país (portfolio) ── -->
+            <section class="dash-section" v-if="data.visitors_country?.length">
+                <h2 class="section-title"><i class="pi pi-map-marker"></i> Visitantes do Portfólio por País</h2>
+                <div class="visitors-list">
+                    <div v-for="v in data.visitors_country" :key="v.country_code" class="visitor-row">
+                        <div class="visitor-left">
+                            <img :src="`https://flagcdn.com/20x15/${v.country_code}.png`" :alt="v.country" class="visitor-flag" />
+                            <span class="visitor-country">{{ v.country }}</span>
+                        </div>
+                        <div class="visitor-right">
+                            <div class="visitor-bar-wrap">
+                                <div class="visitor-bar" :style="{ width: `${Math.round(v.total / data.visitors_country[0].total * 100)}%` }"></div>
+                            </div>
+                            <span class="visitor-count">{{ v.total }}</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ── Modal de Logs ── -->
+            <Dialog v-model:visible="logModal.visible" :header="`Logs — ${logModal.app}`"
+                modal :style="{ width: '680px', maxWidth: '95vw' }" :draggable="false">
+                <div v-if="!logModal.errors?.length" class="empty-state" style="padding:32px 0">
+                    Nenhum erro recente registrado
+                </div>
+                <div v-else class="logs-list" style="max-height: 460px">
+                    <div v-for="(err, i) in logModal.errors" :key="i" class="log-entry">
+                        <div class="log-top">
+                            <span class="log-level" :class="`log-level--${err.level.toLowerCase()}`">{{ err.level }}</span>
+                            <span class="log-at">{{ err.at }}</span>
+                        </div>
+                        <p class="log-msg">{{ err.message }}</p>
+                    </div>
+                </div>
+            </Dialog>
 
             <!-- ── Linha 2: Gráfico + Servidor ── -->
             <div class="dash-row2">
@@ -164,12 +234,40 @@ import Tag from 'primevue/tag'
 import Skeleton from 'primevue/skeleton'
 import ProgressBar from 'primevue/progressbar'
 import Chart from 'primevue/chart'
+import ToggleSwitch from 'primevue/toggleswitch'
+import Dialog from 'primevue/dialog'
+import { useToast } from 'primevue/usetoast'
 import axios from 'axios'
 
-const data    = ref(null)
-const loading = ref(false)
+const data     = ref(null)
+const loading  = ref(false)
 const loadedAt = ref(null)
 const secondsAgo = ref(0)
+const toggling = ref({})
+const toast    = useToast()
+const logs        = ref([])
+const logsLoading = ref(false)
+const logModal    = ref({ visible: false, app: '', errors: [] })
+
+// Map system name (from monitoring) to log app name
+const LOG_NAME_MAP = {
+    'CrieCurrículo':    'CrieCurrículo',
+    'Calc. Tributária': 'Calc. Tributária',
+    'Quanto Subiu':     'Quanto Subiu',
+    'TrataPlan':        'TrataPlan',
+    'Jornada — API':    'Jornada API',
+}
+
+function logsForSystem(sys) {
+    const appName = LOG_NAME_MAP[sys.name]
+    return appName ? logs.value.find(a => a.app === appName) : null
+}
+
+function openLog(sys) {
+    const appLog = logsForSystem(sys)
+    if (!appLog) return
+    logModal.value = { visible: true, app: sys.name, errors: appLog.errors }
+}
 let timer = null
 
 const today = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' })
@@ -177,8 +275,11 @@ const today = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: '2-
 async function load() {
     loading.value = true
     try {
-        const { data: d } = await axios.get('/api/admin/dashboard')
-        data.value   = d
+        const [dash] = await Promise.all([
+            axios.get('/api/admin/dashboard'),
+            loadLogs(),
+        ])
+        data.value = dash.data
         loadedAt.value = Date.now()
         secondsAgo.value = 0
     } finally {
@@ -186,9 +287,37 @@ async function load() {
     }
 }
 
+async function loadLogs() {
+    logsLoading.value = true
+    try {
+        const { data: d } = await axios.get('/api/admin/logs')
+        logs.value = d
+    } finally {
+        logsLoading.value = false
+    }
+}
+
+async function toggleSystem(sys) {
+    toggling.value[sys.slug] = true
+    try {
+        const { data: res } = await axios.post(`/api/admin/systems/${sys.slug}/toggle`)
+        sys.maintenance = res.maintenance
+        toast.add({
+            severity: res.maintenance ? 'warn' : 'success',
+            summary: res.maintenance ? 'Manutenção ativada' : 'Sistema online',
+            detail: `${sys.name} está ${res.maintenance ? 'em manutenção' : 'online novamente'}.`,
+            life: 4000,
+        })
+    } catch {
+        toast.add({ severity: 'error', summary: 'Erro', detail: 'Falha ao alternar o estado do sistema.', life: 4000 })
+    } finally {
+        toggling.value[sys.slug] = false
+    }
+}
+
 // KPI helpers
-const systemsOnline   = computed(() => data.value?.systems.filter(s => s.status === 'online').length   ?? 0)
-const systemsDegraded = computed(() => data.value?.systems.filter(s => s.status !== 'online').length   ?? 0)
+const systemsOnline   = computed(() => data.value?.systems.filter(s => !s.maintenance && s.status === 'online').length ?? 0)
+const systemsDegraded = computed(() => data.value?.systems.filter(s => !s.maintenance && s.status !== 'online').length ?? 0)
 
 function statusLabel(s)    { return { online: 'Online', degraded: 'Alerta', offline: 'Offline' }[s] ?? s }
 function statusSeverity(s) { return { online: 'success', degraded: 'warn', offline: 'danger' }[s] ?? 'secondary' }
@@ -365,9 +494,16 @@ onUnmounted(() => clearInterval(timer))
 .latency--warn { color: #fbbf24; }
 .latency--bad  { color: #f87171; }
 
-.sys-link { font-size: 11px; color: #334155; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color 0.2s; }
+.sys-link { font-size: 11px; color: #334155; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: color 0.2s; margin-bottom: 12px; }
 .sys-link:hover { color: #64748b; }
 .sys-link .pi { font-size: 9px; }
+
+.sys-toggle-row { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); }
+.toggle-label { font-size: 11px; color: #475569; }
+
+.sys-card--maintenance { opacity: 0.75; }
+.sys-bar--maintenance { background: linear-gradient(90deg, #64748b, #94a3b8); }
+.dot-status--maintenance { background: #64748b; box-shadow: none; animation: none; }
 
 /* ── Row 2 ── */
 .dash-row2 {
@@ -414,6 +550,56 @@ onUnmounted(() => clearInterval(timer))
 
 .server-footer { display: flex; align-items: center; justify-content: space-between; }
 .server-updated { font-size: 11px; color: #334155; }
+
+/* ── Visitors ── */
+.visitors-list { display: flex; flex-direction: column; gap: 10px; }
+.visitor-row   { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.visitor-left  { display: flex; flex-direction: column; gap: 2px; min-width: 160px; }
+.visitor-flag  { border-radius: 2px; flex-shrink: 0; }
+.visitor-country { font-size: 13px; color: #cbd5e1; }
+.visitor-domain  { font-size: 10px; color: #334155; }
+.visitor-right { display: flex; align-items: center; gap: 10px; flex: 1; }
+.visitor-bar-wrap { flex: 1; height: 6px; background: rgba(255,255,255,0.06); border-radius: 99px; overflow: hidden; }
+.visitor-bar   { height: 100%; background: linear-gradient(90deg, #6366f1, #818cf8); border-radius: 99px; transition: width 0.4s; }
+.visitor-count { font-size: 12px; color: #64748b; min-width: 28px; text-align: right; }
+
+/* ── Log button on sys card ── */
+.sys-actions { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); }
+.btn-log {
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #f87171;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+    transition: background 0.2s;
+}
+.btn-log:hover { background: rgba(239,68,68,0.2); }
+.btn-log .pi  { font-size: 10px; }
+
+/* ── Logs (modal) ── */
+.logs-list   { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; }
+.log-entry   { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 10px 12px; }
+.log-top     { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.log-level   { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; padding: 2px 7px; border-radius: 4px; }
+.log-level--error     { background: rgba(239,68,68,0.15);  color: #f87171; }
+.log-level--critical  { background: rgba(239,68,68,0.25);  color: #fca5a5; }
+.log-level--alert     { background: rgba(245,158,11,0.15); color: #fbbf24; }
+.log-level--emergency { background: rgba(239,68,68,0.35);  color: #ff6b6b; }
+.log-at  { font-size: 10px; color: #475569; }
+.log-msg { font-size: 12px; color: #94a3b8; line-height: 1.5; word-break: break-word; margin: 0; }
+
+.empty-state { font-size: 13px; color: #334155; text-align: center; padding: 24px 0; }
+
+/* ── Dialog dark ── */
+:deep(.p-dialog) { background: #0f1120 !important; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 14px !important; }
+:deep(.p-dialog-header) { background: #0f1120 !important; color: #f1f5f9 !important; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
+:deep(.p-dialog-content) { background: #0f1120 !important; padding: 20px !important; }
+:deep(.p-dialog-header-close) { color: #475569 !important; }
 
 /* ── Responsive ── */
 @media (max-width: 1200px) {

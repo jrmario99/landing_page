@@ -1,5 +1,5 @@
 # Dependências
-/vendor/
+vendor/
 frontend/node_modules/
 
 # Ambiente
@@ -17,6 +17,14 @@ storage/framework/cache/data/
 storage/framework/sessions/
 storage/framework/views/
 storage/rate_limit/
+
+# Build output do Vite (gerado por: cd frontend && npm run build)
+# Fontes canônicas ficam em frontend/public/ e frontend/src/
+/public/assets/
+/public/index.html
+/public/img/
+/public/logos/
+/public/templates/
 
 # IDE e sistema
 .vscode/

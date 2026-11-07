@@ -24,15 +24,20 @@ class TrackerController extends Controller
             return response()->json(['status' => 'ignored']);
         }
 
+        $geo = $action === 'visit' ? $this->geolocate($ip) : [];
+
         PageVisit::create([
-            'action'     => $action,
-            'ip_address' => $ip,
-            'user_agent' => $action === 'visit' ? ($data['user_agent'] ?? null) : null,
-            'referrer'   => $action === 'visit' ? substr($data['referrer'] ?? '', 0, 500) : null,
-            'screen'     => $action === 'visit' ? ($data['screen'] ?? null) : null,
-            'language'   => $action === 'visit' ? ($data['language'] ?? null) : null,
-            'links'      => $action === 'clicks' ? ($data['links'] ?? null) : null,
-            'duration'   => $action === 'clicks' ? ($data['duration'] ?? null) : null,
+            'action'       => $action,
+            'ip_address'   => $ip,
+            'user_agent'   => $action === 'visit' ? ($data['user_agent'] ?? null) : null,
+            'referrer'     => $action === 'visit' ? substr($data['referrer'] ?? '', 0, 500) : null,
+            'screen'       => $action === 'visit' ? ($data['screen'] ?? null) : null,
+            'language'     => $action === 'visit' ? ($data['language'] ?? null) : null,
+            'links'        => $action === 'clicks' ? ($data['links'] ?? null) : null,
+            'duration'     => $action === 'clicks' ? ($data['duration'] ?? null) : null,
+            'country'      => $geo['country'] ?? null,
+            'country_code' => $geo['country_code'] ?? null,
+            'city'         => $geo['city'] ?? null,
         ]);
 
         if ($this->isRateLimited($ip)) {
@@ -42,6 +47,29 @@ class TrackerController extends Controller
         $this->sendEmail($action, $data, $ip);
 
         return response()->json(['status' => 'ok']);
+    }
+
+    private function geolocate(string $ip): array
+    {
+        if (in_array($ip, ['127.0.0.1', '::1']) || str_starts_with($ip, '192.168.') || str_starts_with($ip, '10.')) {
+            return ['country' => 'Local', 'country_code' => 'BR', 'city' => 'Local'];
+        }
+
+        return Cache::remember('geo_' . md5($ip), 86400 * 30, function () use ($ip) {
+            try {
+                $ctx = stream_context_create(['http' => ['timeout' => 3]]);
+                $raw = file_get_contents("http://ip-api.com/json/{$ip}?fields=country,countryCode,city", false, $ctx);
+                $res = json_decode($raw, true);
+                if (($res['countryCode'] ?? '') !== '') {
+                    return [
+                        'country'      => $res['country'],
+                        'country_code' => $res['countryCode'],
+                        'city'         => $res['city'] ?? null,
+                    ];
+                }
+            } catch (\Throwable) {}
+            return [];
+        });
     }
 
     private function isRateLimited(string $ip): bool

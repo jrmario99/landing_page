@@ -12,10 +12,12 @@ class DashboardController extends Controller
     public function index(): JsonResponse
     {
         return response()->json([
-            'kpis'    => $this->kpis(),
-            'systems' => $this->systemsHealth(),
-            'server'  => $this->serverStats(),
-            'visits'  => $this->visitStats(),
+            'kpis'             => $this->kpis(),
+            'systems'          => $this->systemsHealth(),
+            'server'           => $this->serverStats(),
+            'visits'           => $this->visitStats(),
+            'visitors_country' => $this->visitorsByCountry(),
+            'visitors_system'  => $this->visitorsBySystem(),
         ]);
     }
 
@@ -34,10 +36,12 @@ class DashboardController extends Controller
     private function systemsHealth(): array
     {
         $systems = [
-            ['name' => 'CrieCurrículo',    'url' => 'https://criecurriculo.com.br',    'color' => '#818cf8'],
-            ['name' => 'Calc. Tributária','url' => 'https://calculadoraimposto.com',   'color' => '#34d399'],
-            ['name' => 'Quanto Subiu',    'url' => 'https://quantosubiu.com.br',       'color' => '#fb923c'],
-            ['name' => 'TrataPlan',       'url' => 'https://trataplan.com.br',         'color' => '#22d3ee'],
+            ['slug' => 'criecurriculo', 'name' => 'CrieCurrículo',    'url' => 'https://criecurriculo.com.br',           'color' => '#818cf8', 'path' => '/var/www/criecurriculo',               'type' => 'laravel'],
+            ['slug' => 'calculadora',   'name' => 'Calc. Tributária', 'url' => 'https://calculadoraimposto.com',         'color' => '#34d399', 'path' => '/var/www/calculadora_tributaria',       'type' => 'laravel'],
+            ['slug' => 'quantosubiu',   'name' => 'Quanto Subiu',     'url' => 'https://quantosubiu.com.br',             'color' => '#fb923c', 'path' => '/var/www/quantosubiu',                 'type' => 'laravel'],
+            ['slug' => 'trataplan',     'name' => 'TrataPlan',        'url' => 'https://trataplan.com.br',               'color' => '#22d3ee', 'path' => '/var/www/trataplan',                   'type' => 'laravel'],
+            ['slug' => 'jornada-app',   'name' => 'Jornada — App',    'url' => 'https://app.silvoneisonntag.com.br',     'color' => '#f472b6', 'path' => '/var/www/jornada_mentoria/jornada-app',  'type' => 'static'],
+            ['slug' => 'jornada-api',   'name' => 'Jornada — API',    'url' => 'https://api.silvoneisonntag.com.br',     'color' => '#fb7185', 'path' => '/var/www/jornada_mentoria/jornada-api',  'type' => 'laravel'],
         ];
 
         $results = [];
@@ -76,12 +80,18 @@ class DashboardController extends Controller
         $latency = round((microtime(true) - $start) * 1000);
 
         return [
-            'name'    => $sys['name'],
-            'url'     => $sys['url'],
-            'color'   => $sys['color'],
-            'status'  => $status,
-            'code'    => $code,
-            'latency' => $latency,
+            'slug'        => $sys['slug'],
+            'name'        => $sys['name'],
+            'url'         => $sys['url'],
+            'color'       => $sys['color'],
+            'status'      => $status,
+            'code'        => $code,
+            'latency'     => $latency,
+            'maintenance' => $sys['path'] && (
+                ($sys['type'] ?? 'laravel') === 'static'
+                    ? file_exists($sys['path'] . '/.maintenance')
+                    : file_exists($sys['path'] . '/storage/framework/down')
+            ),
         ];
     }
 
@@ -125,6 +135,73 @@ class DashboardController extends Controller
             ],
             'php'     => PHP_VERSION,
         ];
+    }
+
+    private function visitorsByCountry(): array
+    {
+        return PageVisit::query()
+            ->where('action', 'visit')
+            ->whereNotNull('country_code')
+            ->selectRaw('country, country_code, COUNT(*) as total')
+            ->groupBy('country', 'country_code')
+            ->orderByDesc('total')
+            ->limit(10)
+            ->get()
+            ->map(fn($r) => [
+                'country'      => $r->country,
+                'country_code' => strtolower($r->country_code),
+                'total'        => $r->total,
+            ])
+            ->all();
+    }
+
+    private function visitorsBySystem(): array
+    {
+        $logFile = '/var/log/nginx/visitors.log';
+
+        if (!file_exists($logFile) || !is_readable($logFile)) {
+            return [];
+        }
+
+        $domains = [
+            'criecurriculo.com.br'     => 'CrieCurrículo',
+            'calculadoraimposto.com'   => 'Calc. Tributária',
+            'quantosubiu.com.br'       => 'Quanto Subiu',
+            'trataplan.com.br'         => 'TrataPlan',
+            'app.silvoneisonntag.com.br' => 'Jornada — App',
+            'api.silvoneisonntag.com.br' => 'Jornada — API',
+            'mbsistemas.site'          => 'MB Sistemas',
+        ];
+
+        $counts = array_fill_keys(array_keys($domains), 0);
+
+        // Lê os últimos 512KB do log
+        $fp   = fopen($logFile, 'rb');
+        $size = filesize($logFile);
+        $pos  = max(0, $size - 512 * 1024);
+        fseek($fp, $pos);
+        $content = fread($fp, $size - $pos);
+        fclose($fp);
+
+        foreach (explode("\n", $content) as $line) {
+            if (!$line) continue;
+            $parts = explode(' ', $line, 2);
+            $host  = $parts[0] ?? '';
+            // strip www.
+            $host = preg_replace('/^www\./', '', $host);
+            if (isset($counts[$host])) {
+                $counts[$host]++;
+            }
+        }
+
+        $result = [];
+        foreach ($counts as $domain => $total) {
+            if ($total === 0) continue;
+            $result[] = ['system' => $domains[$domain], 'domain' => $domain, 'total' => $total];
+        }
+
+        usort($result, fn($a, $b) => $b['total'] <=> $a['total']);
+        return $result;
     }
 
     private function visitStats(): array

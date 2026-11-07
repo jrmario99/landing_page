@@ -11,6 +11,7 @@ class PageVisit extends Model
     protected $fillable = [
         'action', 'ip_address', 'user_agent', 'referrer',
         'screen', 'language', 'links', 'duration',
+        'country', 'country_code', 'city',
     ];
 
     protected $casts = [

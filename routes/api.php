@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\TrackerController;
 use App\Http\Controllers\Api\Admin\AuthController;
 use App\Http\Controllers\Api\Admin\DashboardController;
 use App\Http\Controllers\Api\Admin\MessageController;
+use App\Http\Controllers\Api\Admin\SystemController;
+use App\Http\Controllers\Api\Admin\LogController;
 use Illuminate\Support\Facades\Route;
 
 // Públicas
@@ -20,6 +22,8 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::get('/me', [AuthController::class, 'me']);
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::post('/systems/{slug}/toggle', [SystemController::class, 'toggle']);
+    Route::get('/logs', [LogController::class, 'index']);
 
     Route::get('/messages', [MessageController::class, 'index']);
     Route::get('/messages/unread-count', [MessageController::class, 'unreadCount']);
